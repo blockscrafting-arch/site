@@ -39,7 +39,7 @@ jobs:
           VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
         run: |
           if [ -z "$VPS_HOST" ] || [ -z "$VPS_SSH_KEY" ]; then
-            echo "VPS_HOST or VPS_SSH_KEY not set — skip deploy"
+            echo "VPS_HOST or VPS_SSH_KEY not set - skip deploy"
             exit 0
           fi
           mkdir -p ~/.ssh
@@ -50,11 +50,4 @@ jobs:
           echo "Saving and copying image..."
           docker save vlad-execute-site:latest | gzip | ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new "$USER_AT_HOST" "cat > /tmp/vlad-execute-site.tar.gz"
           echo "Loading image and restarting container..."
-          ssh -i ~/.ssh/deploy_key "$USER_AT_HOST" << 'REMOTE'
-            docker load < /tmp/vlad-execute-site.tar.gz
-            rm -f /tmp/vlad-execute-site.tar.gz
-            docker stop site 2>/dev/null || true
-            docker rm site 2>/dev/null || true
-            docker run -d --name site -p 127.0.0.1:8080:80 --restart unless-stopped vlad-execute-site:latest
-            echo "Deploy done."
-REMOTE
+          ssh -i ~/.ssh/deploy_key "$USER_AT_HOST" "docker load < /tmp/vlad-execute-site.tar.gz && rm -f /tmp/vlad-execute-site.tar.gz && docker stop site 2>/dev/null || true; docker rm site 2>/dev/null || true; docker run -d --name site -p 127.0.0.1:8080:80 --restart unless-stopped vlad-execute-site:latest && echo Deploy done."
