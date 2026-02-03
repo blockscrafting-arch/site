@@ -1,6 +1,7 @@
 # vlad.execute(_) — Сайт
 
-Сайт-портфолио: разработка и автоматизация (Telegram-боты, AI-агенты, n8n, Python).
+Сайт-портфолио: разработка и автоматизация (Telegram-боты, AI-агенты, n8n, Python).  
+Автодеплой: push в `main` → GitHub Actions → VPS.
 
 ## Стек
 
