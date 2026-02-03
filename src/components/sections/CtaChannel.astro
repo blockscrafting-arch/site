@@ -1,0 +1,23 @@
+---
+/**
+ * CTA-секция: призыв подписаться на Telegram-канал.
+ */
+import Button from '../common/Button.astro';
+import { site } from '../../utils/site';
+---
+
+<section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="cta-channel-heading">
+  <div class="rounded-2xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50/80 dark:bg-emerald-950/30 backdrop-blur-sm px-6 py-10 text-center sm:px-10 sm:py-14 transition-shadow duration-200 hover:shadow-lg">
+    <h2 id="cta-channel-heading" class="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl">
+      Подписаться на канал
+    </h2>
+    <p class="mt-3 max-w-xl mx-auto text-gray-600 dark:text-gray-400">
+      Кейсы, экспертные посты и технические решения — в Telegram.
+    </p>
+    <div class="mt-8">
+      <Button href={site.tgChannel} variant="primary" external>
+        {site.tgChannelHandle}
+      </Button>
+    </div>
+  </div>
+</section>

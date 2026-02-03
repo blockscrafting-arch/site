@@ -1,0 +1,57 @@
+---
+/**
+ * Страница контактов: форма обратной связи (вебхук) и ссылка на Telegram.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/common/Button.astro';
+import ContactForm from '../components/features/ContactForm';
+import { site } from '../utils/site';
+
+const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
+  ? import.meta.env.PUBLIC_CONTACT_WEBHOOK
+  : '';
+const hasWebhook = Boolean(webhookUrl && webhookUrl.trim());
+---
+
+<BaseLayout
+  title="Контакты — vlad.execute(_)"
+  description={`Связаться с Владом: форма и Telegram ${site.tgChannelHandle}.`}
+>
+  <div class="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Контакты</h1>
+    <p class="mt-2 text-gray-600 dark:text-gray-400">
+      Напишите в Telegram или через форму — отвечу в течение дня.
+    </p>
+
+    <section class="mt-10 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 p-6" aria-labelledby="telegram-heading">
+      <h2 id="telegram-heading" class="font-semibold text-gray-900 dark:text-white">Telegram</h2>
+      <p class="mt-2 text-gray-600 dark:text-gray-400">
+        Основной канал связи для заказов и вопросов.
+      </p>
+      <a
+        href={site.tgChannel}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-4 inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:underline font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 rounded"
+      >
+        {site.tgChannelHandle}
+      </a>
+      <div class="mt-4">
+        <Button href={site.tgChannel} variant="primary" external>
+          Написать в Telegram
+        </Button>
+      </div>
+    </section>
+
+    <section class="mt-10" aria-labelledby="form-heading">
+      <h2 id="form-heading" class="text-xl font-semibold text-gray-900 dark:text-white">Форма обратной связи</h2>
+      {hasWebhook ? (
+        <ContactForm client:load webhookUrl={webhookUrl} />
+      ) : (
+        <p class="mt-4 rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 px-4 py-3 text-amber-800 dark:text-amber-200">
+          Форма не настроена. Укажите <code class="rounded bg-amber-100 dark:bg-amber-900/40 px-1">PUBLIC_CONTACT_WEBHOOK</code> в .env и пересоберите сайт. Пока можно написать в Telegram выше.
+        </p>
+      )}
+    </section>
+  </div>
+</BaseLayout>

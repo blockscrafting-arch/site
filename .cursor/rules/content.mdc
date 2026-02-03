@@ -1,0 +1,36 @@
+---
+description: Правила контента — кейсы, инструкции, глоссарий
+globs: src/content/**/*.md, src/content/**/*.json
+alwaysApply: false
+---
+
+# Content — vlad.execute(_)
+
+## Структура контента
+- **Кейсы**: `src/content/cases/*.md` — frontmatter (title, description, result, stack, date), тело в Markdown
+- **Инструкции**: `src/content/guides/*.md` — frontmatter (title, description, order), тело с кодом и списками
+- **Глоссарий**: `src/content/glossary.json` — термины с полями term, description (короткое пояснение для тултипа)
+
+## Формат кейса
+```yaml
+---
+title: Название
+description: Краткое описание проблемы/решения
+result: Результат в цифрах или фактах
+stack: [n8n, Python, Telegram]
+date: YYYY-MM-DD
+---
+```
+
+## Формат инструкции
+```yaml
+---
+title: Название инструкции
+description: О чём инструкция
+order: 1
+---
+```
+
+## Глоссарий
+- Ключ — термин как в тексте (регистр учитывается где нужно)
+- description — одно-два предложения, без HTML

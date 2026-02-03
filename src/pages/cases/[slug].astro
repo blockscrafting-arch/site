@@ -1,0 +1,59 @@
+---
+/**
+ * Страница одного кейса по slug.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Badge from '../../components/common/Badge.astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const cases = await getCollection('cases');
+  return cases.map((entry) => ({ params: { slug: entry.slug } }));
+};
+
+const { slug } = Astro.params;
+if (!slug) throw new Error('Missing slug');
+const cases = await getCollection('cases');
+const entry = cases.find((e) => e.slug === slug);
+if (!entry) throw new Error(`Case not found: ${slug}`);
+
+const { Content } = await entry.render();
+const { title, description, result, stack, metrics } = entry.data;
+---
+
+<BaseLayout title={`${title} — Кейсы | vlad.execute(_)`} description={description}>
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <header>
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{title}</h1>
+      {description && (
+        <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">{description}</p>
+      )}
+      {((stack ?? []).length > 0) && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {(stack ?? []).map((s) => (
+            <Badge variant="emerald">{s}</Badge>
+          ))}
+        </div>
+      )}
+      {result && (
+        <p class="mt-4 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 px-4 py-2 text-sm text-emerald-800 dark:text-emerald-200">
+          <strong>Результат:</strong> {result}
+        </p>
+      )}
+      {metrics && metrics.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-3" role="list">
+          {metrics.map((m) => (
+            <li class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2 text-sm">
+              <span class="font-bold text-emerald-600 dark:text-emerald-400">{m.value}</span>
+              <span class="text-gray-600 dark:text-gray-400"> — {m.label}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+    <div class="mt-8 prose prose-gray dark:prose-invert max-w-none">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

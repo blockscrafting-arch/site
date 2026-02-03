@@ -1,0 +1,34 @@
+---
+/**
+ * Страница «Обо мне».
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/common/Button.astro';
+import { site } from '../utils/site';
+---
+
+<BaseLayout
+  title="Обо мне — vlad.execute(_)"
+  description="Влад — разработчик и автоматизатор. Telegram-боты, AI-агенты, n8n, Python."
+>
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Обо мне</h1>
+    <div class="mt-6 space-y-4 text-gray-600 dark:text-gray-400">
+      <p>
+        Я — Влад, разработчик и автоматизатор. Помогаю бизнесу экономить время и деньги через AI и умную автоматизацию.
+      </p>
+      <p>
+        <strong class="text-gray-900 dark:text-white">Бизнесу:</strong> заменяю раздутый штат на алгоритмы. Превращаю ваши OPEX в CAPEX.
+      </p>
+      <p>
+        <strong class="text-gray-900 dark:text-white">Людям:</strong> даю «цифровой экзоскелет» — вы сможете делать объем работы целого отдела в одиночку, работая 2 часа в день.
+      </p>
+      <p>
+        В канале <a href={site.tgChannel} class="text-emerald-600 dark:text-emerald-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelHandle}</a> делюсь кейсами, экспертной информацией и техническими решениями.
+      </p>
+    </div>
+    <div class="mt-10">
+      <Button href="/contact" variant="primary">Написать</Button>
+    </div>
+  </div>
+</BaseLayout>

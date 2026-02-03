@@ -1,0 +1,25 @@
+---
+/**
+ * Секция Hero на главной: заголовок, typewriter-фраза, CTA.
+ */
+import Button from '../common/Button.astro';
+import TypewriterHero from '../features/TypewriterHero';
+---
+
+<section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
+  <div class="text-center rounded-2xl bg-white/60 dark:bg-gray-950/40 backdrop-blur-sm px-6 py-10 sm:px-10 sm:py-12">
+    <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
+      Привет. Я — Влад.
+    </h1>
+    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 sm:text-xl">
+      Разработчик и автоматизатор. Помогаю бизнесу экономить время и деньги через AI и умную автоматизацию.
+    </p>
+    <p class="mt-6 text-xl sm:text-2xl">
+      Я <TypewriterHero client:load />.
+    </p>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <Button href="/contact" variant="primary">Написать</Button>
+      <Button href="/cases" variant="outline">Смотреть кейсы</Button>
+    </div>
+  </div>
+</section>

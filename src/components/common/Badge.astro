@@ -1,0 +1,29 @@
+---
+/**
+ * Бейдж для тегов (стек, категории).
+ * @param variant - Цвет: default | emerald | gray
+ */
+interface Props {
+  variant?: 'default' | 'emerald' | 'gray';
+  class?: string;
+}
+
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const base = 'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium';
+
+const variants = {
+  default:
+    'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
+  emerald:
+    'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300',
+  gray:
+    'bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
+};
+
+const classes = [base, variants[variant], className].filter(Boolean).join(' ');
+---
+
+<span class={classes}>
+  <slot />
+</span>

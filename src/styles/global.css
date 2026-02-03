@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .skip-link {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+  }
+  .skip-link:focus {
+    @apply static z-[100] m-4 p-3 bg-emerald-600 text-white rounded-lg;
+    width: auto;
+    height: auto;
+    clip: auto;
+    clip-path: none;
+    overflow: visible;
+  }
+
+  /* Единообразный :focus-visible для ссылок в контенте (кнопки уже имеют ring в компонентах) */
+  main a:not(.skip-link):focus-visible {
+    @apply outline-none ring-2 ring-emerald-500 ring-offset-2 dark:ring-offset-gray-950 rounded;
+  }
+}

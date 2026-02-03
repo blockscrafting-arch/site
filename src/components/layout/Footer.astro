@@ -1,0 +1,25 @@
+---
+/**
+ * Подвал сайта: копирайт, ссылки на разделы, контакт (Telegram).
+ */
+import { site } from '../../utils/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
+  <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+    <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        © {year} vlad.execute(_). Разработка и автоматизация.
+      </p>
+      <nav class="flex gap-6 text-sm" aria-label="Подвал">
+        <a href="/cases" class="text-gray-500 hover:text-emerald-600 dark:hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 rounded">Кейсы</a>
+        <a href="/guides" class="text-gray-500 hover:text-emerald-600 dark:hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 rounded">Инструкции</a>
+        <a href="/contact" class="text-gray-500 hover:text-emerald-600 dark:hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 rounded">Контакты</a>
+      </nav>
+    </div>
+    <p class="mt-4 text-center text-sm text-gray-400 dark:text-gray-500">
+      Telegram: <a href={site.tgChannel} class="text-emerald-600 dark:text-emerald-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelHandle}</a>
+    </p>
+  </div>
+</footer>

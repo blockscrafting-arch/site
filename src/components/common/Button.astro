@@ -1,0 +1,44 @@
+---
+/**
+ * Кнопка с вариантами: primary, secondary, outline.
+ * @param variant - Стиль кнопки
+ * @param href - Если задан, рендерится как <a>, иначе <button>
+ * @param external - Для ссылки: открывать в новой вкладке с rel="noopener noreferrer"
+ * @param type - Для button: submit | button
+ */
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline';
+  href?: string;
+  external?: boolean;
+  type?: 'submit' | 'button';
+  class?: string;
+  disabled?: boolean;
+}
+
+const { variant = 'primary', href, external = false, type = 'button', class: className = '', disabled = false } = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 disabled:pointer-events-none disabled:opacity-50';
+
+const variants = {
+  primary:
+    'bg-emerald-600 text-white hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600',
+  secondary:
+    'bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700',
+  outline:
+    'border border-gray-300 dark:border-gray-600 bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800',
+};
+
+const classes = [base, variants[variant], className].filter(Boolean).join(' ');
+const linkAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' as const } : {};
+---
+
+{href ? (
+  <a href={href} class={classes} {...linkAttrs}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={classes} disabled={disabled}>
+    <slot />
+  </button>
+)}

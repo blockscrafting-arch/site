@@ -1,0 +1,42 @@
+---
+/**
+ * Список инструкций.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import Card from '../../components/common/Card.astro';
+
+const guides = await getCollection('guides');
+const sorted = guides.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+---
+
+<BaseLayout
+  title="Инструкции — vlad.execute(_)"
+  description="Пошаговые инструкции: API-ключи, VPS, домен, Telegram-бот и др."
+>
+  <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Инструкции</h1>
+    <p class="mt-2 text-gray-600 dark:text-gray-400">
+      Пошаговые гайды по настройке сервисов и интеграций.
+    </p>
+
+    {sorted.length === 0 ? (
+      <p class="mt-8 text-gray-500 dark:text-gray-400">Инструкции скоро появятся.</p>
+    ) : (
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2" role="list">
+        {sorted.map((entry) => (
+          <li>
+            <Card href={`/guides/${entry.slug}`}>
+              <h2 class="font-semibold text-gray-900 dark:text-white">{entry.data.title}</h2>
+              {entry.data.description && (
+                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                  {entry.data.description}
+                </p>
+              )}
+            </Card>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</BaseLayout>

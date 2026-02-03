@@ -1,0 +1,27 @@
+---
+/**
+ * Блок соцдоказательства: цифры и результаты из кейсов.
+ */
+const metrics = [
+  { value: '24/7', label: 'Автоматизации работают без выходных' },
+  { value: 'секунды', label: 'Расписание из голосового сообщения' },
+  { value: '1 вечер', label: 'Свой AI-ассистент в Telegram' },
+];
+---
+
+<section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="trust-heading">
+  <h2 id="trust-heading" class="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl text-center">
+    Результаты
+  </h2>
+  <p class="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+    Реальные метрики из проектов: экономия времени, скорость внедрения.
+  </p>
+  <ul class="mt-12 grid gap-8 sm:grid-cols-3" role="list">
+    {metrics.map((m) => (
+      <li class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 text-center shadow-sm">
+        <span class="block text-2xl font-bold text-emerald-600 dark:text-emerald-400 sm:text-3xl">{m.value}</span>
+        <span class="mt-2 block text-sm text-gray-600 dark:text-gray-400">{m.label}</span>
+      </li>
+    ))}
+  </ul>
+</section>

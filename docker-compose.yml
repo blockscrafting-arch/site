@@ -1,0 +1,10 @@
+# Локальный просмотр собранного сайта в Docker (после npm run build не нужен — только для проверки образа).
+# Запуск: docker compose up --build
+# Сайт: http://localhost:80
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "80:80"

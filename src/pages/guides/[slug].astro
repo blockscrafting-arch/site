@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const guides = await getCollection('guides');
+  return guides.map((entry) => ({ params: { slug: entry.slug } }));
+};
+
+const { slug } = Astro.params;
+if (!slug) throw new Error('Missing slug');
+const guides = await getCollection('guides');
+const entry = guides.find((e) => e.slug === slug);
+if (!entry) throw new Error('Guide not found: ' + slug);
+
+const { Content } = await entry.render();
+const { title, description } = entry.data;
+---
+
+<BaseLayout title={`${title} — Инструкции | vlad.execute(_)`} description={description ?? undefined}>
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <header>
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{title}</h1>
+      {description && (
+        <p class="mt-2 text-gray-600 dark:text-gray-400">{description}</p>
+      )}
+    </header>
+    <div class="mt-8 prose prose-gray dark:prose-invert max-w-none">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
