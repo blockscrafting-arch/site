@@ -1,34 +1,10 @@
 [
-  {
-    "term": "n8n",
-    "description": "Платформа для автоматизации рабочих процессов с визуальным редактором. Связывает сервисы, CRM, мессенджеры и API без кода."
-  },
-  {
-    "term": "Python",
-    "description": "Язык программирования. Используется для скриптов, парсинга, интеграций и кастомной логики."
-  },
-  {
-    "term": "LLM",
-    "description": "Large Language Model — большая языковая модель (ChatGPT, Gemini, Claude). Основа для чат-ботов и AI-агентов."
-  },
-  {
-    "term": "Supabase",
-    "description": "Backend-as-a-Service: база данных PostgreSQL, аутентификация, хранилище. Альтернатива Firebase с открытым кодом."
-  },
-  {
-    "term": "VPS",
-    "description": "Виртуальный выделенный сервер. Нужен для круглосуточной работы ботов и автоматизаций."
-  },
-  {
-    "term": "API",
-    "description": "Application Programming Interface — способ обмена данными между программами по правилам сервиса."
-  },
-  {
-    "term": "RAG",
-    "description": "Retrieval-Augmented Generation — подход, когда модель дополняет ответы данными из базы (поиск + генерация)."
-  },
-  {
-    "term": "Telegram Mini App",
-    "description": "Веб-приложение внутри Telegram. Работает как обычный сайт, но открывается в клиенте Telegram."
-  }
+  {"term": "n8n", "description": "Платформа для автоматизации рабочих процессов с визуальным редактором. Связывает сервисы, CRM, мессенджеры и API без кода."},
+  {"term": "Python", "description": "Язык программирования. Используется для скриптов, парсинга, интеграций и кастомной логики."},
+  {"term": "LLM", "description": "Large Language Model — большая языковая модель (ChatGPT, Gemini, Claude). Основа для чат-ботов и AI-агентов."},
+  {"term": "Supabase", "description": "Backend-as-a-Service: база данных PostgreSQL, аутентификация, хранилище. Альтернатива Firebase с открытым кодом."},
+  {"term": "VPS", "description": "Виртуальный выделенный сервер. Нужен для круглосуточной работы ботов и автоматизаций."},
+  {"term": "API", "description": "Application Programming Interface — способ обмена данными между программами по правилам сервиса."},
+  {"term": "RAG", "description": "Retrieval-Augmented Generation — подход, когда модель дополняет ответы данными из базы (поиск + генерация)."},
+  {"term": "Telegram Mini App", "description": "Веб-приложение внутри Telegram. Работает как обычный сайт, но открывается в клиенте Telegram."}
 ]

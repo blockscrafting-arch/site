@@ -1,49 +1,45 @@
-/**
- * Hero-блок с эффектом печатающегося текста (TypeIt).
- * Циклически печатает и стирает фразы про услуги.
- */
-
 import { useEffect, useRef } from 'react';
-// @ts-expect-error — пакет typeit не экспортирует типы в @types
 import TypeIt from 'typeit';
 
 const PHRASES = [
-  'Автоматизирую рутину',
-  'Создаю AI-агентов',
-  'Делаю Telegram ботов',
-  'Настраиваю n8n',
-  'Пишу Python-скрипты',
-  'Экономлю ваше время',
+  'автоматизирую рутину',
+  'делаю AI-агентов',
+  'пишу Telegram-ботов',
+  'настраиваю n8n',
+  'пишу на Python',
+  'экономлю ваше время',
 ];
 
-const OPTIONS = {
-  strings: PHRASES,
-  speed: 80,
-  deleteSpeed: 50,
-  lifeLike: true,
-  cursor: true,
-  cursorChar: '|',
-  breakLines: false,
-  nextStringDelay: [1200, 800],
-  loop: true,
-  loopDelay: [1500, 500],
-};
-
 export default function TypewriterHero() {
-  const elRef = useRef<HTMLSpanElement>(null);
+  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!elRef.current) return;
-    const instance = new TypeIt(elRef.current, OPTIONS).go();
-    return () => instance.destroy();
+    if (!ref.current) return;
+    const el = ref.current;
+    const instance = new (TypeIt as unknown as { new (el: HTMLElement, opts?: object): { type: (s: string) => unknown; pause: (n: number) => unknown; delete: (n?: number) => unknown; go: () => unknown } })(el, {
+      speed: 80,
+      lifeLike: true,
+      loop: true,
+      breakLines: false,
+    });
+    PHRASES.forEach((phrase, i) => {
+      instance.type(phrase);
+      if (i < PHRASES.length - 1) {
+        instance.pause(1500).delete(phrase.length);
+      } else {
+        instance.pause(2000).delete(phrase.length);
+      }
+    });
+    instance.go();
+    return () => instance.destroy?.();
   }, []);
 
   return (
     <span
-      ref={elRef}
+      ref={ref}
       className="min-h-[1.5em] inline-block text-emerald-600 dark:text-emerald-400 font-semibold"
       aria-live="polite"
-      aria-label="Услуги: автоматизация, AI-агенты, Telegram боты, n8n, Python, экономия времени"
+      aria-label={`Услуги: ${PHRASES.join(', ')}`}
     />
   );
 }
