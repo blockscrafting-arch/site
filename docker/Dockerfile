@@ -16,6 +16,6 @@ FROM nginx:alpine
 ARG BUILD_ID
 COPY --from=builder /app/dist /usr/share/nginx/html
 RUN echo "${BUILD_ID:-unknown}" > /usr/share/nginx/html/build.txt
-RUN echo 'server { root /usr/share/nginx/html; location / { try_files $uri $uri/ /index.html; } }' > /etc/nginx/conf.d/default.conf
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
