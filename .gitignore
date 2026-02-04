@@ -1,11 +1,23 @@
-node_modules
-dist
-.astro
+# Dependencies
+node_modules/
+
+# Build
+dist/
+.astro/
+
+# Env
 .env
-.env.local
-*.log
+.env.*
+!.env.example
+
+# IDE / OS
 .DS_Store
-playwright-report
-test-results
-.vite
-vlad-execute-site.tar.gz
+*.log
+
+# Tests
+test-results/
+playwright-report/
+coverage/
+
+# Misc
+*.tar.gz

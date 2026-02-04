@@ -1,23 +1,14 @@
 ---
-/**
- * Главная страница: Hero, услуги, доверие, CTA в канал.
- */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/sections/Hero.astro';
 import ServicesSection from '../components/sections/ServicesSection.astro';
 import TrustSection from '../components/sections/TrustSection.astro';
 import CtaChannel from '../components/sections/CtaChannel.astro';
-import { site } from '../utils/site';
 ---
 
-<BaseLayout
-  title={`${site.name} — разработка и автоматизация`}
-  description={site.description}
->
-  <main>
-    <Hero />
-    <ServicesSection />
-    <TrustSection />
-    <CtaChannel />
-  </main>
+<BaseLayout title="vlad.execute(_) — Разработка и автоматизация">
+  <Hero />
+  <ServicesSection />
+  <TrustSection />
+  <CtaChannel />
 </BaseLayout>

@@ -10,7 +10,10 @@ export const site = {
     : 'https://vladexecute.ru',
   /** Путь к изображению для OG (от корня сайта). Для лучшей совместимости соцсетей замените на og.png 1200×630. */
   ogImage: '/og.svg',
-  /** Канал Telegram для CTA. */
-  tgChannel: 'https://t.me/goutach',
-  tgChannelHandle: '@goutach',
+  /** Канал Telegram для подписки (CTA на главной). */
+  tgChannel: 'https://t.me/vladexecute',
+  tgChannelHandle: '@vladexecute',
+  /** Личный контакт для связи (страница контактов, футер). */
+  tgContact: 'https://t.me/goutach',
+  tgContactHandle: '@goutach',
 } as const;

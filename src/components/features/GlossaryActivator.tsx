@@ -22,22 +22,8 @@ const TIPPY_OPTIONS: Partial<TippyProps> = {
   allowHTML: false,
 };
 
-/** Символ считается частью слова (буква, цифра, подчёркивание). */
-function isWordChar(c: string): boolean {
-  return /[\p{L}\p{N}_]/u.test(c);
-}
-
 /**
- * Проверяет, что подстрока text[start..end) — целое слово (границы не внутри слова).
- */
-function isWordBoundary(text: string, start: number, end: number): boolean {
-  const beforeOk = start === 0 || !isWordChar(text[start - 1]!);
-  const afterOk = end >= text.length || !isWordChar(text[end]!);
-  return beforeOk && afterOk;
-}
-
-/**
- * Находит в тексте все вхождения терминов (целиком, по границам слов) и возвращает массив отрезков.
+ * Находит в тексте все вхождения терминов (целиком) и возвращает массив отрезков.
  * Термины должны быть отсортированы по длине (длинные первыми).
  */
 function findTermRanges(
@@ -54,21 +40,16 @@ function findTermRanges(
     while (true) {
       const idx = text.indexOf(term, pos);
       if (idx === -1) break;
-      const end = idx + term.length;
-      if (!isWordBoundary(text, idx, end)) {
-        pos = idx + 1;
-        continue;
-      }
       let overlap = false;
-      for (let i = idx; i < end; i++) {
+      for (let i = idx; i < idx + term.length; i++) {
         if (used.has(i)) {
           overlap = true;
           break;
         }
       }
       if (!overlap) {
-        for (let i = idx; i < end; i++) used.add(i);
-        ranges.push({ start: idx, end, entry });
+        for (let i = idx; i < idx + term.length; i++) used.add(i);
+        ranges.push({ start: idx, end: idx + term.length, entry });
       }
       pos = idx + 1;
     }

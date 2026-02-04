@@ -1,7 +1,19 @@
 ---
 /**
- * Редирект /contacts -> /contact (каноническая страница контактов).
- * 301 для SEO и единого каноникала.
+ * Редирект /contacts → /contact (301).
+ * Для static output используем HTML с meta refresh и ссылкой.
  */
-return Astro.redirect('/contact', 301);
+const site = (await import('../utils/site')).site;
 ---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/contact/" />
+    <link rel="canonical" href={`${site.url}/contact/`} />
+    <title>Переход на страницу контактов</title>
+  </head>
+  <body>
+    <p>Переход на <a href="/contact/">страницу контактов</a>…</p>
+  </body>
+</html>

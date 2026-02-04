@@ -10,12 +10,11 @@ import { site } from '../utils/site';
 const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
   ? import.meta.env.PUBLIC_CONTACT_WEBHOOK
   : '';
-const hasWebhook = Boolean(webhookUrl && webhookUrl.trim());
 ---
 
 <BaseLayout
   title="Контакты — vlad.execute(_)"
-  description={`Связаться с Владом: форма и Telegram ${site.tgChannelHandle}.`}
+  description={`Связаться с Владом: форма и Telegram ${site.tgContactHandle}.`}
 >
   <div class="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16">
     <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Контакты</h1>
@@ -29,15 +28,15 @@ const hasWebhook = Boolean(webhookUrl && webhookUrl.trim());
         Основной канал связи для заказов и вопросов.
       </p>
       <a
-        href={site.tgChannel}
+        href={site.tgContact}
         target="_blank"
         rel="noopener noreferrer"
         class="mt-4 inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:underline font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 rounded"
       >
-        {site.tgChannelHandle}
+        {site.tgContactHandle}
       </a>
       <div class="mt-4">
-        <Button href={site.tgChannel} variant="primary" external>
+        <Button href={site.tgContact} variant="primary" external>
           Написать в Telegram
         </Button>
       </div>
@@ -45,13 +44,7 @@ const hasWebhook = Boolean(webhookUrl && webhookUrl.trim());
 
     <section class="mt-10" aria-labelledby="form-heading">
       <h2 id="form-heading" class="text-xl font-semibold text-gray-900 dark:text-white">Форма обратной связи</h2>
-      {hasWebhook ? (
-        <ContactForm client:load webhookUrl={webhookUrl} />
-      ) : (
-        <p class="mt-4 rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 px-4 py-3 text-amber-800 dark:text-amber-200">
-          Форма не настроена. Укажите <code class="rounded bg-amber-100 dark:bg-amber-900/40 px-1">PUBLIC_CONTACT_WEBHOOK</code> в .env и пересоберите сайт. Пока можно написать в Telegram выше.
-        </p>
-      )}
+      <ContactForm client:load webhookUrl={webhookUrl} />
     </section>
   </div>
 </BaseLayout>
