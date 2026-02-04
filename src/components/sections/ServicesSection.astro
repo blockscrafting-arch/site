@@ -1,8 +1,10 @@
 ---
 import Card from '../common/Card.astro';
 import Badge from '../common/Badge.astro';
+import SectionReveal from '../features/SectionReveal';
 ---
 
+<SectionReveal client:load>
 <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="services-heading">
   <h2 id="services-heading" class="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl text-center">
     Чем занимаюсь
@@ -44,3 +46,4 @@ import Badge from '../common/Badge.astro';
     </Card>
   </div>
 </section>
+</SectionReveal>

@@ -2,13 +2,44 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/sections/Hero.astro';
 import ServicesSection from '../components/sections/ServicesSection.astro';
+import CasesPreview from '../components/sections/CasesPreview.astro';
 import TrustSection from '../components/sections/TrustSection.astro';
+import ProcessSection from '../components/sections/ProcessSection.astro';
+import AboutPreview from '../components/sections/AboutPreview.astro';
+import FaqSection from '../components/sections/FaqSection.astro';
 import CtaChannel from '../components/sections/CtaChannel.astro';
+import CtaContact from '../components/sections/CtaContact.astro';
+import { getCollection } from 'astro:content';
+
+const cases = await getCollection('cases');
+const sortedCases = cases.sort((a, b) => {
+  const dateA = a.data.date?.getTime() ?? 0;
+  const dateB = b.data.date?.getTime() ?? 0;
+  return dateB - dateA;
+});
+const defaultMetrics = [
+  { value: '24/7', label: 'Автоматизации работают без выходных' },
+  { value: 'секунды', label: 'Расписание из голосового сообщения' },
+  { value: '1 вечер', label: 'Свой AI-ассистент в Telegram' },
+];
+const metricsFromCases = sortedCases
+  .slice(0, 3)
+  .map((c) => c.data.metrics?.[0])
+  .filter((m): m is { value: string; label: string } => Boolean(m));
+const metrics =
+  metricsFromCases.length >= 3
+    ? metricsFromCases
+    : [...metricsFromCases, ...defaultMetrics.slice(0, 3 - metricsFromCases.length)];
 ---
 
 <BaseLayout title="vlad.execute(_) — Разработка и автоматизация">
   <Hero />
   <ServicesSection />
-  <TrustSection />
+  <CasesPreview />
+  <TrustSection metrics={metrics} />
+  <ProcessSection />
+  <AboutPreview />
+  <FaqSection />
   <CtaChannel />
+  <CtaContact />
 </BaseLayout>

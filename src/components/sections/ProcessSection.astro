@@ -1,0 +1,28 @@
+---
+const steps = [
+  { num: '1', title: 'Заявка', desc: 'Опишите задачу в Telegram или через форму. Уточним сроки и бюджет.' },
+  { num: '2', title: 'План', desc: 'Предложу решение и этапы. Согласуем объём работ.' },
+  { num: '3', title: 'Реализация', desc: 'Делаю по шагам с обратной связью. Можно итеративно.' },
+  { num: '4', title: 'Запуск', desc: 'Передаю вам результат, документацию и поддержку при необходимости.' },
+];
+---
+
+<section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="process-heading">
+  <h2 id="process-heading" class="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl text-center">
+    Как мы работаем
+  </h2>
+  <p class="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+    От заявки до запуска — прозрачно и по шагам.
+  </p>
+  <ol class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4" role="list">
+    {steps.map((s) => (
+      <li class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 font-bold text-lg">
+          {s.num}
+        </span>
+        <h3 class="mt-4 font-semibold text-gray-900 dark:text-white">{s.title}</h3>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{s.desc}</p>
+      </li>
+    ))}
+  </ol>
+</section>
