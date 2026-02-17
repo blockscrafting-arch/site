@@ -2,6 +2,7 @@
 /**
  * Секция «Проблема — Решение»: горизонтальный скролл с карточками.
  */
+import GlitchHeading from '../features/GlitchHeading';
 const items = [
   { problem: 'Менеджеры тонут в заявках', solution: 'AI-бот квалифицирует и распределяет за секунды', icon: 'inbox' },
   { problem: 'Рутина съедает часы каждый день', solution: 'n8n-воркфлоу делает рутину за вас 24/7', icon: 'clock' },
@@ -13,14 +14,14 @@ const items = [
 
 <section class="py-20 sm:py-28 overflow-hidden" aria-labelledby="problem-solution-heading">
   <div class="problem-solution-header mb-12 px-4 sm:px-6 text-center">
-    <h2 id="problem-solution-heading" class="problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl">
-      Узнаёте себя?
+    <h2 id="problem-solution-heading" class="problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl" aria-label="Узнаёте себя?">
+      <GlitchHeading text="Узнаёте себя?" client:visible preset="encrypted" />
     </h2>
     <p class="problem-solution-desc mt-4 text-[var(--color-text-muted)] max-w-2xl mx-auto">
       Проблемы, которые я решаю автоматизацией и ботами.
     </p>
   </div>
-  <div class="problem-solution-track flex gap-6 px-4 sm:px-6 pb-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
+  <div class="problem-solution-track flex gap-6 px-4 sm:px-6 pb-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide cursor-grab" style="scrollbar-width: none; -ms-overflow-style: none;" data-horizontal-scroll>
     {items.map((item, i) => (
       <article
         class="problem-solution-card flex-shrink-0 w-[85vw] sm:w-[400px] snap-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 shadow-lg"
@@ -65,4 +66,40 @@ const items = [
     ease: 'power2.out',
     scrollTrigger: { trigger: '.problem-solution-track', start: 'top 80%', toggleActions: 'play none none none' },
   });
+
+  // На ПК: колёсико мыши — горизонтальный скролл, перетаскивание — листание
+  const track = document.querySelector('[data-horizontal-scroll]');
+  if (track) {
+    track.addEventListener('wheel', function (e) {
+      const canScrollLeft = track.scrollLeft > 0;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const canScrollRight = track.scrollLeft < maxScroll;
+      if (e.deltaY !== 0 && (e.deltaY > 0 ? canScrollRight : canScrollLeft)) {
+        track.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    let isDown = false, startX, startScrollLeft;
+    track.addEventListener('mousedown', function (e) {
+      if (e.button !== 0) return;
+      isDown = true;
+      startX = e.clientX;
+      startScrollLeft = track.scrollLeft;
+      track.classList.add('cursor-grabbing', 'select-none');
+      track.classList.remove('cursor-grab');
+    });
+    function stopDrag() {
+      isDown = false;
+      track?.classList.remove('cursor-grabbing', 'select-none');
+      track?.classList.add('cursor-grab');
+    }
+    window.addEventListener('mouseleave', stopDrag);
+    window.addEventListener('mouseup', stopDrag);
+    track.addEventListener('mousemove', function (e) {
+      if (!isDown) return;
+      e.preventDefault();
+      track.scrollLeft = startScrollLeft - (e.clientX - startX);
+    });
+  }
 </script>

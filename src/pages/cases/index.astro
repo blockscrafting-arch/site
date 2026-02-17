@@ -56,9 +56,10 @@ const categories = [
       <ul class="cases-grid mt-10 grid gap-6 sm:grid-cols-2" role="list">
         {sorted.map((entry) => {
           const accent = entry.data.accentColor ?? '#10b981';
-          const category = entry.data.category ?? 'custom';
+          const cats = entry.data.categories?.length ? entry.data.categories : ['custom'];
+          const categoryList = cats.join(' ');
           return (
-            <li class="case-card-item" data-category={category}>
+            <li class="case-card-item" data-category={categoryList}>
               <a
                 href={`/cases/${entry.slug}`}
                 class="group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-opacity-80 hover:shadow-glow-sm"
@@ -127,8 +128,9 @@ const categories = [
       document.querySelectorAll('.cases-filter-btn').forEach((b) => b.removeAttribute('data-active'));
       btn.setAttribute('data-active', 'true');
       document.querySelectorAll('.case-card-item').forEach((el) => {
-        const itemCat = (el as HTMLElement).dataset.category;
-        (el as HTMLElement).style.display = cat === 'all' || itemCat === cat ? '' : 'none';
+        const itemCats = ((el as HTMLElement).dataset.category ?? '').split(' ').filter(Boolean);
+        const show = cat === 'all' || itemCats.includes(cat);
+        (el as HTMLElement).style.display = show ? '' : 'none';
       });
     });
   });

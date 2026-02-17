@@ -4,7 +4,7 @@ description: "Первый агент на базе GPTs — автоматиз�
 result: "Монстр крутится на модели и выдаёт чистый результат; юридическая логика переведена на язык алгоритмов."
 stack: ["OpenAI", "GPTs", "n8n"]
 date: 2025-12-27
-category: ai-agent
+categories: [ai-agent]
 accentColor: "#8b5cf6"
 metrics:
   - { value: "IF/THEN", label: "Жёсткая логика в промпте" }

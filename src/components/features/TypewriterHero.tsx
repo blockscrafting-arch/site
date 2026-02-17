@@ -1,35 +1,41 @@
 /**
- * Hero-блок с эффектом печатающегося текста (TypeIt).
- * Циклически печатает и стирает фразы про услуги.
+ * Hero: печатающийся главный заголовок (TypeIt).
+ * Циклически печатает и стирает цепляющие фразы — выгода и результат.
  */
 
 import { useEffect, useRef } from 'react';
 // @ts-expect-error — пакет typeit не экспортирует типы в @types
 import TypeIt from 'typeit';
 
+/** Фразы для главного экрана: выгода и результат, без воды. */
 const PHRASES = [
-  'Автоматизирую рутину',
-  'Создаю AI-агентов',
-  'Делаю Telegram ботов',
-  'Настраиваю n8n',
-  'Пишу Python-скрипты',
-  'Экономлю ваше время',
+  'Рутину — в ноль',
+  'Боты, которые работают за вас',
+  '10+ часов в неделю — обратно вам',
+  'AI вместо трёх менеджеров',
+  'От заявки до сделки — на автопилоте',
+  'Автоматизирую. Вы растёте.',
 ];
 
 const OPTIONS = {
   strings: PHRASES,
-  speed: 80,
-  deleteSpeed: 50,
+  speed: 70,
+  deleteSpeed: 45,
   lifeLike: true,
   cursor: true,
   cursorChar: '|',
   breakLines: false,
-  nextStringDelay: [1200, 800],
+  nextStringDelay: [1400, 900],
   loop: true,
-  loopDelay: [1500, 500],
+  loopDelay: [1200, 600],
 };
 
-export default function TypewriterHero() {
+interface TypewriterHeroProps {
+  /** Классы для обёртки (например цвет и размер под Hero). */
+  className?: string;
+}
+
+export default function TypewriterHero({ className }: TypewriterHeroProps) {
   const elRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -41,9 +47,9 @@ export default function TypewriterHero() {
   return (
     <span
       ref={elRef}
-      className="min-h-[1.5em] inline-block text-emerald-600 dark:text-emerald-400 font-semibold"
+      className={`min-h-[1.2em] inline-block ${className ?? 'text-[var(--color-accent)] font-semibold'}`}
       aria-live="polite"
-      aria-label="Услуги: автоматизация, AI-агенты, Telegram боты, n8n, Python, экономия времени"
+      aria-label="Главный заголовок: рутина в ноль, боты за вас, экономия времени, AI вместо менеджеров, автопилот заявок"
     />
   );
 }

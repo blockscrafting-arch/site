@@ -22,9 +22,10 @@ const casesCollection = defineCollection({
       )
       .optional(),
     client: z.string().optional(),
-    category: z
-      .enum(['bot', 'ai-agent', 'automation', 'mini-app', 'parser', 'custom'])
-      .optional(),
+    /** Кейс может относиться к нескольким категориям сразу. */
+    categories: z
+      .array(z.enum(['bot', 'ai-agent', 'automation', 'mini-app', 'parser', 'custom']))
+      .default([]),
     accentColor: z.string().default('#10b981'),
     layout: z
       .enum(['default', 'split', 'fullwidth', 'timeline'])

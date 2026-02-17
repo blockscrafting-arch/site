@@ -4,7 +4,7 @@ description: "Веб-приложение слушает разговор, ра�
 result: "Любой звонок превращается в разговор с суфлёром: реальное время, редактирование транскрипта на лету, контекст проекта из загруженных файлов."
 stack: ["React", "FastAPI", "Whisper", "OpenRouter", "Gemini", "PostgreSQL", "WebSockets"]
 date: 2026-02-05
-category: ai-agent
+categories: [ai-agent]
 accentColor: "#10b981"
 metrics:
   - { value: "2 сек", label: "Подсказка от ИИ" }

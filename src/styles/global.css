@@ -230,4 +230,28 @@
   .guide-card a:hover {
     transform: translateY(-2px);
   }
+
+  /* Анимированный градиент текста (тренд 2024–2025) */
+  .text-gradient-animate {
+    background: linear-gradient(
+      90deg,
+      var(--color-accent),
+      var(--color-accent-cyan),
+      #a78bfa,
+      var(--color-accent)
+    );
+    background-size: 300% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradient-shift 6s ease infinite;
+  }
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .text-gradient-animate { animation: none; }
+    .text-gradient-animate { background-position: 0% 50%; }
+  }
 }

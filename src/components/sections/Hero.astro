@@ -1,6 +1,6 @@
 ---
 /**
- * Hero главной: полноэкранный блок (точечный фон — глобально на body), заголовок с GSAP reveal, подзаголовок с эффектом печати «что делаю», CTA.
+ * Hero главной: печатающийся заголовок (TypeIt) как h1, подзаголовок, терминал с метриками, CTA.
  */
 import Button from '../common/Button.astro';
 import TypewriterHero from '../features/TypewriterHero';
@@ -14,13 +14,10 @@ import TypewriterHero from '../features/TypewriterHero';
 
   <div class="relative z-10 max-w-4xl mx-auto text-center">
     <h1 class="hero-title font-display text-4xl font-extrabold tracking-tight text-[var(--color-text)] sm:text-5xl md:text-6xl lg:text-7xl">
-      Автоматизирую. Всё.
+      <TypewriterHero client:load class="!text-inherit min-h-[1.2em] inline-block" />
     </h1>
-    <p class="hero-benefit mt-3 text-base font-medium text-[var(--color-accent)] sm:text-lg" aria-hidden="true">
-      Экономлю время и бюджет — от идеи до запуска
-    </p>
-    <p class="hero-subtitle mt-4 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto">
-      Я <TypewriterHero client:load /> — Telegram-боты, AI-агенты, n8n, парсеры. От идеи до запуска без лишней рутины.
+    <p class="hero-subtitle mt-5 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto">
+      Telegram-боты, AI-агенты, n8n — от идеи до запуска. <span class="text-gradient-animate font-semibold">Экономлю время и бюджет.</span>
     </p>
     <div class="hero-terminal mt-10 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-sm p-4 pl-5 text-left font-mono text-sm sm:text-base max-w-xl mx-auto overflow-hidden border-l-4 border-l-[var(--color-accent)]">
       <div class="text-[var(--color-text-muted)]">&gt; bot.deploy() <span class="text-[var(--color-accent)]">// 2400+ лидов/мес</span></div>
@@ -44,25 +41,12 @@ import TypewriterHero from '../features/TypewriterHero';
   const terminal = document.querySelector('.hero-terminal');
 
   if (title) {
-    const text = title.textContent || '';
-    title.innerHTML = text.split('').map((c) => `<span class="hero-char inline-block opacity-0">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
-    const chars = title.querySelectorAll('.hero-char');
-    gsap.to(chars, {
-      opacity: 1,
-      duration: 0.04,
-      stagger: 0.03,
-      delay: 0.2,
-      ease: 'power2.out',
-    });
-  }
-  const benefit = document.querySelector('.hero-benefit');
-  if (benefit) {
-    gsap.fromTo(benefit, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.5, ease: 'power2.out' });
+    gsap.fromTo(title, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.15, ease: 'power2.out' });
   }
   if (subtitle) {
-    gsap.fromTo(subtitle, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.75, ease: 'power2.out' });
+    gsap.fromTo(subtitle, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.5, ease: 'power2.out' });
   }
   if (terminal) {
-    gsap.fromTo(terminal, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, delay: 1.1, ease: 'power2.out' });
+    gsap.fromTo(terminal, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.85, ease: 'power2.out' });
   }
 </script>

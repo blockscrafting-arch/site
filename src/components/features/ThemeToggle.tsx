@@ -1,6 +1,6 @@
 /**
  * Переключатель тёмной/светлой темы.
- * Сохраняет выбор в localStorage, учитывает prefers-color-scheme при первом визите.
+ * По умолчанию — тёмная тема; выбор сохраняется в localStorage.
  */
 import { useEffect, useState } from 'react';
 
@@ -11,7 +11,7 @@ function getInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'dark';
   const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
   if (stored === 'dark' || stored === 'light') return stored;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return 'dark';
 }
 
 const THEME_COLORS = { light: '#fafafa', dark: '#0a0a0a' } as const;
