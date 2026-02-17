@@ -19,10 +19,11 @@ const steps = [
     <p class="mt-4 text-center text-[var(--color-text-muted)]">
       От брифа до запуска — прозрачно и по шагам.
     </p>
-    <ol class="process-steps mt-16 space-y-8" role="list">
+    <ol class="process-steps relative mt-16 space-y-8 pl-0" role="list">
+      <span class="absolute left-5 top-10 bottom-10 w-0.5 bg-gradient-to-b from-[var(--color-accent)]/50 via-[var(--color-accent)]/30 to-transparent" aria-hidden="true"></span>
       {steps.map((step, i) => (
-        <li class="process-step flex gap-6" style={`--step-i: ${i}`}>
-          <span class="process-step-num flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-muted)] font-mono text-sm font-semibold text-[var(--color-accent)]" aria-hidden="true">
+        <li class="process-step relative flex gap-6" style={`--step-i: ${i}`}>
+          <span class="process-step-num relative z-10 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-muted)] font-mono text-sm font-semibold text-[var(--color-accent)] ring-4 ring-[var(--color-bg)]" aria-hidden="true">
             {i + 1}
           </span>
           <div>

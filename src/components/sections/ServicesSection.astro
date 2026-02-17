@@ -3,13 +3,14 @@
  * Секция «Услуги»: 6 карточек с glow/tilt — боты, AI-агенты, Mini Apps, n8n, скрипты/парсеры, кастом.
  */
 import Badge from '../common/Badge.astro';
+const serviceAccents = ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b', '#ec4899', '#10b981'];
 const services = [
-  { title: 'Telegram-боты', desc: 'Приём заявок, поддержка, рассылки, мини-приложения в одном чате.', tags: ['Telegram', 'Mini App'], href: '/cases' },
-  { title: 'AI-агенты', desc: 'Обработка заявок, аналитика, ответы клиентам на базе LLM и RAG.', tags: ['LLM', 'RAG'], href: '/cases' },
-  { title: 'TG Mini Apps', desc: 'Веб-приложения внутри Telegram: формы, каталоги, личные кабинеты.', tags: ['Telegram', 'Web'], href: '/cases' },
-  { title: 'n8n-автоматизация', desc: 'Связываю CRM, мессенджеры, таблицы и сервисы в единые воронки.', tags: ['n8n', 'API'], href: '/cases' },
-  { title: 'Скрипты и парсеры', desc: 'Парсинг данных, интеграции, кастомные решения на Python под задачу.', tags: ['Python', 'API'], href: '/cases' },
-  { title: 'Кастомная разработка', desc: 'Интеграции под ключ, бэкенды, автоматизация под ваш процесс.', tags: ['Python', 'n8n'], href: '/contact' },
+  { title: 'Telegram-боты', desc: 'Приём заявок, поддержка, рассылки, мини-приложения в одном чате.', tags: ['Telegram', 'Mini App'], href: '/cases', icon: 'chat' },
+  { title: 'AI-агенты', desc: 'Обработка заявок, аналитика, ответы клиентам на базе LLM и RAG.', tags: ['LLM', 'RAG'], href: '/cases', icon: 'brain' },
+  { title: 'TG Mini Apps', desc: 'Веб-приложения внутри Telegram: формы, каталоги, личные кабинеты.', tags: ['Telegram', 'Web'], href: '/cases', icon: 'app' },
+  { title: 'n8n-автоматизация', desc: 'Связываю CRM, мессенджеры, таблицы и сервисы в единые воронки.', tags: ['n8n', 'API'], href: '/cases', icon: 'flow' },
+  { title: 'Скрипты и парсеры', desc: 'Парсинг данных, интеграции, кастомные решения на Python под задачу.', tags: ['Python', 'API'], href: '/cases', icon: 'code' },
+  { title: 'Кастомная разработка', desc: 'Интеграции под ключ, бэкенды, автоматизация под ваш процесс.', tags: ['Python', 'n8n'], href: '/contact', icon: 'wrench' },
 ];
 ---
 
@@ -22,19 +23,32 @@ const services = [
       Чат-боты, AI-агенты, Mini Apps, n8n, скрипты — от идеи до рабочего решения.
     </p>
     <div class="services-grid mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {services.map((s) => (
-        <a
-          href={s.href}
-          class="service-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)]/50 hover:shadow-glow-sm"
+      {services.map((s, i) => {
+        const accent = serviceAccents[i % serviceAccents.length];
+        return (
+          <a
+            href={s.href}
+            class="service-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)]/50 hover:shadow-glow-sm overflow-hidden"
             data-tilt="5"
-        >
-          <h3 class="font-display font-semibold text-[var(--color-text)] text-lg">{s.title}</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">{s.desc}</p>
-          <div class="mt-4 flex flex-wrap gap-2">
-            {s.tags.map((tag) => <Badge variant="gray">{tag}</Badge>)}
-          </div>
-        </a>
-      ))}
+            style={`--service-accent: ${accent}`}
+          >
+            <span class="block h-1 w-14 rounded-full mb-4" style={{ backgroundColor: accent }} aria-hidden="true"></span>
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl text-[var(--color-text-muted)] group-hover:text-[var(--color-accent)] transition-colors" style={{ backgroundColor: `${accent}18` }} aria-hidden="true">
+              {s.icon === 'chat' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>)}
+              {s.icon === 'brain' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>)}
+              {s.icon === 'app' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>)}
+              {s.icon === 'flow' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>)}
+              {s.icon === 'code' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>)}
+              {s.icon === 'wrench' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>)}
+            </span>
+            <h3 class="font-display font-semibold text-[var(--color-text)] text-lg mt-3">{s.title}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)]">{s.desc}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {s.tags.map((tag) => <Badge variant="gray">{tag}</Badge>)}
+            </div>
+          </a>
+        );
+      })}
     </div>
   </div>
 </section>

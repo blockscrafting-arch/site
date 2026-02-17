@@ -1,12 +1,11 @@
 ---
 /**
- * Блок социального доказательства: реальные метрики из кейсов
- * (lead-bot, support-automation, jarvis).
+ * Блок социального доказательства: метрики из кейсов канала (экспорт → src/content/cases).
  */
 const metrics = [
-  { value: '1–2 мин', label: 'От заявки на сайте до ответа клиенту. Раньше 15–30 минут — теперь без потерь и копирования в таблицу.' },
-  { value: '−35%', label: 'Нагрузка на операторов поддержки. Типовые вопросы (доставка, статус, возврат) закрывает бот за секунды.' },
-  { value: '1 вечер', label: 'От нуля до своего AI-ассистента в Telegram: голос, память, напоминания — без абонплат за корпоративные системы.' },
+  { value: '10 ч/нед', label: 'Вернули PM: голосовые в текст за вечер (n8n + Whisper), скан по диагонали вместо 2 часов прослушивания.', icon: 'clock' },
+  { value: '120 → 2 ч/мес', label: 'Постинг в 50+ Telegram-групп: было 120 часов в месяц, стало 2 часа на загрузку контента в таблицу.', icon: 'chart' },
+  { value: '1 вечер', label: 'От нуля до своего AI-ассистента в Telegram: голос, память, напоминания — без абонплат за корпоративные системы.', icon: 'zap' },
 ];
 ---
 
@@ -21,7 +20,12 @@ const metrics = [
     <ul class="trust-metrics mt-16 grid gap-8 sm:grid-cols-3" role="list">
       {metrics.map((m) => (
         <li class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-center" data-tilt="4">
-          <span class="trust-value block font-display text-2xl font-bold text-[var(--color-accent)] sm:text-3xl">{m.value}</span>
+          <span class="trust-icon mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-accent-muted)] text-[var(--color-accent)]" aria-hidden="true">
+            {m.icon === 'clock' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>)}
+            {m.icon === 'chart' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>)}
+            {m.icon === 'zap' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>)}
+          </span>
+          <span class="trust-value mt-4 block font-display text-2xl font-bold text-[var(--color-accent)] sm:text-3xl">{m.value}</span>
           <span class="mt-2 block text-sm text-[var(--color-text-muted)]">{m.label}</span>
         </li>
       ))}

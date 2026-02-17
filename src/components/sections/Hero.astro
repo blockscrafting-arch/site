@@ -1,21 +1,25 @@
 ---
 /**
- * Hero главной: полноэкранный блок (точечный фон — глобально на body), заголовок с GSAP reveal, подзаголовок, CTA.
+ * Hero главной: полноэкранный блок (точечный фон — глобально на body), заголовок с GSAP reveal, подзаголовок с эффектом печати «что делаю», CTA.
  */
 import Button from '../common/Button.astro';
+import TypewriterHero from '../features/TypewriterHero';
 ---
 
 <section class="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-24 sm:px-6 overflow-hidden">
   <div class="absolute inset-0 bg-gradient-hero opacity-60" aria-hidden="true"></div>
+  <!-- Декоративные блобы для глубины -->
+  <div class="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-[var(--color-accent)]/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full bg-[var(--color-accent-cyan)]/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
   <div class="relative z-10 max-w-4xl mx-auto text-center">
     <h1 class="hero-title font-display text-4xl font-extrabold tracking-tight text-[var(--color-text)] sm:text-5xl md:text-6xl lg:text-7xl">
       Автоматизирую. Всё.
     </h1>
     <p class="hero-subtitle mt-6 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto">
-      Telegram-боты, AI-агенты, n8n, парсеры. От идеи до запуска — без лишней рутины.
+      Я <TypewriterHero client:load /> — Telegram-боты, AI-агенты, n8n, парсеры. От идеи до запуска без лишней рутины.
     </p>
-    <div class="hero-terminal mt-10 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-sm p-4 text-left font-mono text-sm sm:text-base max-w-xl mx-auto overflow-hidden">
+    <div class="hero-terminal mt-10 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-sm p-4 pl-5 text-left font-mono text-sm sm:text-base max-w-xl mx-auto overflow-hidden border-l-4 border-l-[var(--color-accent)]">
       <div class="text-[var(--color-text-muted)]">&gt; bot.deploy() <span class="text-[var(--color-accent)]">// 2400+ лидов/мес</span></div>
       <div class="text-[var(--color-text-muted)] mt-1">&gt; agent.run() <span class="text-[var(--color-accent)]">// −80% рутины</span></div>
       <div class="text-[var(--color-text-muted)] mt-1">&gt; automate() <span class="text-[var(--color-accent)]">// 24/7 без выходных</span></div>
