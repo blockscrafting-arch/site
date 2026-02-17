@@ -29,6 +29,27 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const canonical = `${site.url}${path}`;
 const ogImageUrl = image?.startsWith('http') ? image : `${site.url}${image ?? site.ogImage}`;
 
+/** JSON-LD для главной: Person + Service (AEO/SEO, AI-поиск 2026). */
+const schemaOrg = path === '/' ? {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      name: 'Влад',
+      url: site.url,
+      description: site.description,
+      sameAs: [site.tgChannel, site.tgChannelContent],
+    },
+    {
+      '@type': 'ProfessionalService',
+      name: site.name,
+      url: site.url,
+      description: desc,
+      areaServed: 'RU',
+    },
+  ],
+} : null;
+
 /** Экранирует </script> в JSON для безопасной вставки в тег script (защита от XSS). */
 const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\u003c/script');
 ---
@@ -58,6 +79,9 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={desc} />
     <meta name="twitter:image" content={ogImageUrl} />
+    {schemaOrg && (
+      <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+    )}
     <ClientRouter fallback="swap" />
   </head>
   <body class="min-h-screen flex flex-col font-sans antialiased">

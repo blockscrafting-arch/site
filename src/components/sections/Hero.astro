@@ -16,7 +16,10 @@ import TypewriterHero from '../features/TypewriterHero';
     <h1 class="hero-title font-display text-4xl font-extrabold tracking-tight text-[var(--color-text)] sm:text-5xl md:text-6xl lg:text-7xl">
       Автоматизирую. Всё.
     </h1>
-    <p class="hero-subtitle mt-6 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto">
+    <p class="hero-benefit mt-3 text-base font-medium text-[var(--color-accent)] sm:text-lg" aria-hidden="true">
+      Экономлю время и бюджет — от идеи до запуска
+    </p>
+    <p class="hero-subtitle mt-4 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto">
       Я <TypewriterHero client:load /> — Telegram-боты, AI-агенты, n8n, парсеры. От идеи до запуска без лишней рутины.
     </p>
     <div class="hero-terminal mt-10 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-sm p-4 pl-5 text-left font-mono text-sm sm:text-base max-w-xl mx-auto overflow-hidden border-l-4 border-l-[var(--color-accent)]">
@@ -52,8 +55,12 @@ import TypewriterHero from '../features/TypewriterHero';
       ease: 'power2.out',
     });
   }
+  const benefit = document.querySelector('.hero-benefit');
+  if (benefit) {
+    gsap.fromTo(benefit, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.5, ease: 'power2.out' });
+  }
   if (subtitle) {
-    gsap.fromTo(subtitle, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.8, ease: 'power2.out' });
+    gsap.fromTo(subtitle, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.75, ease: 'power2.out' });
   }
   if (terminal) {
     gsap.fromTo(terminal, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, delay: 1.1, ease: 'power2.out' });
