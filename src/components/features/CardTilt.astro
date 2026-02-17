@@ -1,0 +1,63 @@
+---
+/**
+ * Инициализация лёгкого 3D tilt для элементов с data-tilt (только десктоп, без touch).
+ * Значение data-tilt — максимальный угол в градусах (по умолчанию 6).
+ */
+---
+
+<script>
+  (function () {
+    if (typeof window === 'undefined' || 'ontouchstart' in window) return;
+    const maxTilt = 6;
+    function init() {
+      document.querySelectorAll('[data-tilt]').forEach((el) => {
+        const card = el as HTMLElement;
+        const limit = Number(card.dataset.tilt) || maxTilt;
+        let raf = 0;
+        let active = false;
+        let currentX = 0,
+          currentY = 0;
+        let targetX = 0,
+          targetY = 0;
+
+        function updateTransform() {
+          if (!active) return;
+          currentX += (targetX - currentX) * 0.15;
+          currentY += (targetY - currentY) * 0.15;
+          card.style.transform = `perspective(1000px) rotateX(${-currentY}deg) rotateY(${currentX}deg)`;
+          raf = requestAnimationFrame(updateTransform);
+        }
+
+        card.addEventListener('mouseenter', () => {
+          active = true;
+          raf = requestAnimationFrame(updateTransform);
+        });
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          targetX = x * limit * 2;
+          targetY = y * limit * 2;
+        });
+        card.addEventListener('mouseleave', () => {
+          active = false;
+          cancelAnimationFrame(raf);
+          targetX = targetY = 0;
+          const reset = () => {
+            currentX += (0 - currentX) * 0.2;
+            currentY += (0 - currentY) * 0.2;
+            card.style.transform = `perspective(1000px) rotateX(${-currentY}deg) rotateY(${currentX}deg)`;
+            if (Math.abs(currentX) > 0.01 || Math.abs(currentY) > 0.01) requestAnimationFrame(reset);
+          };
+          requestAnimationFrame(reset);
+        });
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>

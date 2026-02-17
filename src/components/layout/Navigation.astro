@@ -21,9 +21,9 @@ const currentPath = Astro.url.pathname;
         <a
           href={href}
           class:list={[
-            'text-sm font-medium transition-colors rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]',
+            'nav-link relative text-sm font-medium transition-colors rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]',
             isActive
-              ? 'text-[var(--color-accent)]'
+              ? 'text-[var(--color-accent)] nav-link-active'
               : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]',
           ]}
         >

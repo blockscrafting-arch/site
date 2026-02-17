@@ -1,0 +1,35 @@
+---
+/**
+ * Кнопка «Наверх»: появляется при скролле вниз, по клику — плавный скролл вверх.
+ */
+---
+
+<button
+  type="button"
+  id="back-to-top"
+  class="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+  aria-label="Прокрутить наверх"
+  title="Наверх"
+>
+  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+  </svg>
+</button>
+<script>
+  (function () {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    const threshold = 400;
+    function update() {
+      const show = window.scrollY > threshold;
+      btn.classList.toggle('opacity-100', show);
+      btn.classList.toggle('pointer-events-auto', show);
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.addEventListener('astro:page-load', update);
+  })();
+</script>

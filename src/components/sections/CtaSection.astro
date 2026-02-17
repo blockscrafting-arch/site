@@ -8,14 +8,14 @@ import { site } from '../../utils/site';
 
 <section class="py-24 sm:py-32 px-4 sm:px-6" aria-labelledby="cta-heading">
   <div class="mx-auto max-w-2xl text-center">
-    <div class="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] bg-gradient-to-b from-[var(--color-accent-muted)]/20 to-transparent p-10 sm:p-14">
-      <h2 id="cta-heading" class="font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl">
+    <div class="cta-block rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] bg-gradient-to-b from-[var(--color-accent-muted)]/20 to-transparent p-10 sm:p-14">
+      <h2 id="cta-heading" class="cta-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl">
         Готовы автоматизировать?
       </h2>
-      <p class="mt-4 text-[var(--color-text-muted)]">
+      <p class="cta-desc mt-4 text-[var(--color-text-muted)]">
         Опишите задачу — обсудим решение и сроки.
       </p>
-      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <div class="cta-buttons mt-10 flex flex-wrap items-center justify-center gap-4">
         <Button href="/contact" variant="primary" class="shadow-glow-sm">Обсудить задачу</Button>
         <a
           href={site.tgChannel}
@@ -29,3 +29,20 @@ import { site } from '../../utils/site';
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const block = document.querySelector('.cta-block');
+  if (block) {
+    gsap.fromTo(block, { opacity: 0, y: 28, scale: 0.98 }, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.7,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: block, start: 'top 85%', toggleActions: 'play none none none' },
+    });
+  }
+</script>

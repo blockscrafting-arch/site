@@ -1,0 +1,29 @@
+---
+/**
+ * Полоса прогресса чтения (прогресс скролла страницы) — фиксирована сверху.
+ */
+---
+
+<div
+  id="scroll-progress"
+  class="fixed left-0 top-0 z-[100] h-0.5 w-0 bg-[var(--color-accent)] transition-[width] duration-150 ease-out"
+  aria-hidden="true"
+  role="presentation"
+></div>
+<script>
+  (function () {
+    const el = document.getElementById('scroll-progress');
+    if (!el) return;
+    function update() {
+      const doc = document.documentElement;
+      const scrollTop = window.scrollY || doc.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      el.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+    document.addEventListener('astro:page-load', update);
+  })();
+</script>

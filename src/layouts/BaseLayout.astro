@@ -10,6 +10,9 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import GlossaryActivator from '../components/features/GlossaryActivator';
 import CustomCursor from '../components/features/CustomCursor.astro';
+import ScrollProgress from '../components/features/ScrollProgress.astro';
+import BackToTop from '../components/features/BackToTop.astro';
+import CardTilt from '../components/features/CardTilt.astro';
 import glossaryData from '../content/glossary.json';
 import { site } from '../utils/site';
 
@@ -62,6 +65,9 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
       Перейти к содержимому
     </a>
     <CustomCursor />
+    <ScrollProgress />
+    <BackToTop />
+    <CardTilt />
     <script type="application/json" id="glossary-data" set:html={safeGlossaryJson}></script>
     <GlossaryActivator client:load />
     <Header />

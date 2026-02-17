@@ -1,13 +1,11 @@
 ---
 /**
- * Hero главной: полноэкранный блок с canvas-фоном, заголовок с GSAP reveal, подзаголовок, «командная строка», CTA.
+ * Hero главной: полноэкранный блок (точечный фон — глобально на body), заголовок с GSAP reveal, подзаголовок, CTA.
  */
-import HeroCanvas from './HeroCanvas.astro';
 import Button from '../common/Button.astro';
 ---
 
 <section class="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-24 sm:px-6 overflow-hidden">
-  <HeroCanvas />
   <div class="absolute inset-0 bg-gradient-hero opacity-60" aria-hidden="true"></div>
 
   <div class="relative z-10 max-w-4xl mx-auto text-center">

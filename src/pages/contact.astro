@@ -5,6 +5,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/common/Button.astro';
 import ContactForm from '../components/features/ContactForm';
+import CopyButton from '../components/features/CopyButton';
 import { site } from '../utils/site';
 
 const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
@@ -16,22 +17,22 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
   title="Контакты — vlad.execute(_)"
   description={`Связаться с Владом: форма и Telegram ${site.tgChannelHandle}.`}
 >
-  <div class="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+  <div class="contact-page mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
     <h1 class="contact-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
       Контакты
     </h1>
-    <p class="mt-2 text-[var(--color-text-muted)]">
+    <p class="contact-intro mt-2 text-[var(--color-text-muted)]">
       Напишите в Telegram или через форму — отвечу в течение дня.
     </p>
 
-    <section class="mt-10 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8" aria-labelledby="telegram-heading">
+    <section class="contact-telegram mt-10 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8" aria-labelledby="telegram-heading">
       <h2 id="telegram-heading" class="font-display text-lg font-semibold text-[var(--color-text)]">
         Telegram
       </h2>
       <p class="mt-2 text-[var(--color-text-muted)]">
         Основной канал связи для заказов и вопросов.
       </p>
-      <div class="mt-6 flex flex-wrap gap-4">
+      <div class="mt-6 flex flex-wrap items-center gap-4">
         <Button href={site.tgChannel} variant="primary" external class="shadow-glow-sm">
           Написать в Telegram
         </Button>
@@ -43,10 +44,11 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
         >
           {site.tgChannelHandle}
         </a>
+        <CopyButton client:load value={site.tgChannelHandle} label="Скопировать" copiedLabel="Скопировано!" />
       </div>
     </section>
 
-    <section class="mt-10" aria-labelledby="form-heading">
+    <section class="contact-form-section mt-10" aria-labelledby="form-heading">
       <h2 id="form-heading" class="font-display text-lg font-semibold text-[var(--color-text)]">
         Форма обратной связи
       </h2>
@@ -59,8 +61,13 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
-  const title = document.querySelector('.contact-title');
-  if (title) {
-    gsap.fromTo(title, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 });
+  const page = document.querySelector('.contact-page');
+  if (page) {
+    const title = page.querySelector('.contact-title');
+    const intro = page.querySelector('.contact-intro');
+    const telegram = page.querySelector('.contact-telegram');
+    const formSection = page.querySelector('.contact-form-section');
+    const els = [title, intro, telegram, formSection].filter(Boolean);
+    gsap.fromTo(els, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: 'power2.out', delay: 0.1 });
   }
 </script>

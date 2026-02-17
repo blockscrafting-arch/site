@@ -1,25 +1,26 @@
 ---
 /**
- * Блок социального доказательства: метрики с counter-up при скролле.
+ * Блок социального доказательства: реальные метрики из кейсов
+ * (lead-bot, support-automation, jarvis).
  */
 const metrics = [
-  { value: '24/7', label: 'Автоматизации работают без выходных' },
-  { value: 'секунды', label: 'Расписание из голосового сообщения' },
-  { value: '1 вечер', label: 'Свой AI-ассистент в Telegram' },
+  { value: '1–2 мин', label: 'От заявки на сайте до ответа клиенту. Раньше 15–30 минут — теперь без потерь и копирования в таблицу.' },
+  { value: '−35%', label: 'Нагрузка на операторов поддержки. Типовые вопросы (доставка, статус, возврат) закрывает бот за секунды.' },
+  { value: '1 вечер', label: 'От нуля до своего AI-ассистента в Telegram: голос, память, напоминания — без абонплат за корпоративные системы.' },
 ];
 ---
 
 <section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="trust-heading">
   <div class="mx-auto max-w-6xl">
     <h2 id="trust-heading" class="trust-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl text-center">
-      Результаты
+      Результаты в цифрах
     </h2>
     <p class="mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto">
-      Реальные метрики из проектов: экономия времени, скорость внедрения.
+      Показатели из реальных проектов: как изменилась скорость ответов клиентам и нагрузка на команду.
     </p>
     <ul class="trust-metrics mt-16 grid gap-8 sm:grid-cols-3" role="list">
       {metrics.map((m) => (
-        <li class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-center">
+        <li class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-center" data-tilt="4">
           <span class="trust-value block font-display text-2xl font-bold text-[var(--color-accent)] sm:text-3xl">{m.value}</span>
           <span class="mt-2 block text-sm text-[var(--color-text-muted)]">{m.label}</span>
         </li>

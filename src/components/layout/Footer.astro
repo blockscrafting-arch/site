@@ -6,7 +6,7 @@ import { site } from '../../utils/site';
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+<footer class="footer-animate border-t border-[var(--color-border)] bg-[var(--color-surface)]">
   <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
     <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
       <p class="text-sm text-[var(--color-text-muted)]">
@@ -23,3 +23,18 @@ const year = new Date().getFullYear();
     </p>
   </div>
 </footer>
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const footer = document.querySelector('.footer-animate');
+  if (footer) {
+    gsap.fromTo(footer, { opacity: 0, y: 20 }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: footer, start: 'top 95%', toggleActions: 'play none none none' },
+    });
+  }
+</script>
