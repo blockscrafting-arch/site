@@ -1,10 +1,10 @@
 ---
 title: "Постинг в 50+ Telegram-групп: рой аккаунтов и умная автоматизация"
-description: "Комплексная система на Python и Google Sheets: автопостинг с имитацией человека, прогрев аккаунтов, мониторинг ключевых слов. 120 часов в месяц → 2 часа."
+description: "Комплексная система на Python и Google Sheets: юзербот, автопостинг с имитацией человека, прогрев аккаунтов, парсинг и мониторинг ключевых слов. 120 часов в месяц → 2 часа."
 result: "Экономия с 120 ч/мес до 2 ч/мес на загрузку контента; 50+ групп без ручного труда; реакция на упоминания за 5–10 минут."
-stack: ["Python", "Telethon", "Google Sheets", "Telegram"]
+stack: ["Python", "Telethon", "Google Sheets", "Telegram", "Userbot"]
 date: 2026-01-23
-categories: [automation]
+categories: [automation, parser]
 accentColor: "#0ea5e9"
 metrics:
   - { value: "−118 ч/мес", label: "Время на постинг" }
