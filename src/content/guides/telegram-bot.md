@@ -3,6 +3,7 @@ title: "Создание Telegram-бота"
 description: "Как создать бота через BotFather и получить токен."
 order: 7
 category: setup
+forClient: true
 ---
 
 1. Откройте в Telegram бота **@BotFather**.

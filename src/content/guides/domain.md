@@ -3,6 +3,7 @@ title: "Домен (адрес в интернете)"
 description: "Настройка домена или поддомена для бота и n8n по HTTPS."
 order: 6
 category: setup
+forClient: true
 ---
 
 Для работы Telegram-бота или n8n нужен адрес с защищённым соединением (HTTPS). Голый IP сервера не подойдёт.

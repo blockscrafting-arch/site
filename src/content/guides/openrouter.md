@@ -3,6 +3,7 @@ title: "OpenRouter — API-ключ"
 description: "Как получить ключ OpenRouter и пополнить баланс."
 order: 2
 category: integrations
+forClient: true
 ---
 
 ## Шаги

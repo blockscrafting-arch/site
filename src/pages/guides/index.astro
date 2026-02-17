@@ -1,6 +1,6 @@
 ---
 /**
- * База знаний / Инструкции: список с категориями и поиском.
+ * База знаний / Инструкции: блок «Для заказчика», категории, поиск.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
@@ -8,12 +8,22 @@ import { getCollection } from 'astro:content';
 const guides = await getCollection('guides');
 const sorted = [...guides].sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 
+/** Инструкции для заказчика (без тех.фона) — показываем первым блоком. */
+const clientGuides = sorted.filter((g) => g.data.forClient === true);
+
 const categoryLabels: Record<string, string> = {
-  setup: 'Настройка',
-  integrations: 'Интеграции',
-  faq: 'FAQ',
+  setup: 'Установка и настройка',
+  integrations: 'Сервисы и интеграции',
+  faq: 'Вопросы и ответы',
   other: 'Прочее',
 };
+const categoryIntro: Record<string, string> = {
+  setup: 'Как поднять сервер, домен, окружение и куда положить ключи.',
+  integrations: 'Подключение Telegram, OpenAI, таблиц, n8n и других сервисов.',
+  faq: 'Когда что выбрать, лимиты, бэкапы и типовые вопросы.',
+  other: 'Дополнительные материалы.',
+};
+
 const groups = new Map<string, typeof sorted>();
 for (const g of sorted) {
   const cat = g.data.category ?? 'other';
@@ -26,22 +36,52 @@ const sortedGroups = order.filter((k) => groups.has(k));
 
 <BaseLayout
   title="Инструкции — vlad.execute(_)"
-  description="Пошаговые инструкции: API-ключи, VPS, домен, Telegram-бот и др."
+  description="Пошаговые инструкции для заказчиков и разработчиков: чеклист к старту, API-ключи, VPS, домен, Telegram, n8n."
 >
   <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
     <h1 class="guides-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
-      База знаний
+      Инструкции
     </h1>
     <p class="mt-2 text-[var(--color-text-muted)] max-w-2xl">
-      Часть инструкций — <strong class="text-[var(--color-text)]">для заказчиков</strong>: что сделать перед стартом проекта (получить API-ключ, токен бота, что прислать по VPS и домену). Остальное — технические гайды и FAQ по интеграциям.
+      Часть материалов — <strong class="text-[var(--color-text)]">для заказчиков</strong>: что сделать и что подготовить перед стартом. Остальное — технические гайды по настройке и интеграциям.
     </p>
 
-    <div class="mt-8">
+    <!-- Блок для заказчика (не технаря) -->
+    {clientGuides.length > 0 && (
+      <section class="guides-client-block mt-10 rounded-2xl border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/5 p-6 sm:p-8" aria-labelledby="guides-for-client">
+        <h2 id="guides-for-client" class="text-xl font-display font-semibold text-[var(--color-text)] flex items-center gap-2">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent)]/20 text-[var(--color-accent)]" aria-hidden="true">✓</span>
+          Для заказчика: что подготовить к старту
+        </h2>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)] max-w-xl">
+          Эти шаги можно сделать без технических знаний. По каждой теме — короткая пошаговая инструкция.
+        </p>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list">
+          {clientGuides.map((entry) => (
+            <li class="guide-card guide-card-client" data-title={entry.data.title.toLowerCase()} data-desc={(entry.data.description ?? '').toLowerCase()}>
+              <a
+                href={`/guides/${entry.slug}`}
+                class="block rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition-all duration-200 hover:border-[var(--color-accent)]/50 hover:shadow-glow-sm"
+              >
+                <h3 class="font-display font-semibold text-[var(--color-text)] text-base">{entry.data.title}</h3>
+                {entry.data.description && (
+                  <p class="mt-1.5 text-sm text-[var(--color-text-muted)] line-clamp-2">
+                    {entry.data.description}
+                  </p>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <div class="mt-10">
       <label for="guides-search" class="sr-only">Поиск по инструкциям</label>
       <input
         id="guides-search"
         type="search"
-        placeholder="Поиск..."
+        placeholder="Найти инструкцию..."
         class="guides-search w-full max-w-md rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20"
         autocomplete="off"
       />
@@ -50,35 +90,42 @@ const sortedGroups = order.filter((k) => groups.has(k));
     {sorted.length === 0 ? (
       <p class="mt-12 text-[var(--color-text-muted)]">Инструкции скоро появятся.</p>
     ) : (
-      <div class="guides-list mt-12 space-y-10">
-        {sortedGroups.map((catKey) => {
-          const items = groups.get(catKey)!;
-          const label = categoryLabels[catKey] ?? 'Прочее';
-          return (
-            <section aria-labelledby={`guide-cat-${catKey}`}>
-              <h2 id={`guide-cat-${catKey}`} class="text-lg font-semibold text-[var(--color-text)] mb-4">
-                {label}
-              </h2>
-              <ul class="grid gap-4 sm:grid-cols-2" role="list">
-                {items.map((entry) => (
-                  <li class="guide-card" data-title={entry.data.title.toLowerCase()} data-desc={(entry.data.description ?? '').toLowerCase()}>
-                    <a
-                      href={`/guides/${entry.slug}`}
-                      class="block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-200 hover:border-[var(--color-accent)]/50 hover:shadow-glow-sm"
-                    >
-                      <h3 class="font-display font-semibold text-[var(--color-text)]">{entry.data.title}</h3>
-                      {entry.data.description && (
-                        <p class="mt-2 text-sm text-[var(--color-text-muted)] line-clamp-2">
-                          {entry.data.description}
-                        </p>
-                      )}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          );
-        })}
+      <div class="guides-list mt-12">
+        <h2 class="text-lg font-semibold text-[var(--color-text-muted)] mb-6">Все инструкции по категориям</h2>
+        <div class="space-y-12">
+          {sortedGroups.map((catKey) => {
+            const items = groups.get(catKey)!;
+            const label = categoryLabels[catKey] ?? 'Прочее';
+            const intro = categoryIntro[catKey];
+            return (
+              <section aria-labelledby={`guide-cat-${catKey}`} class="guide-cat-section">
+                <h3 id={`guide-cat-${catKey}`} class="text-lg font-display font-semibold text-[var(--color-text)] mb-1">
+                  {label}
+                </h3>
+                {intro && (
+                  <p class="text-sm text-[var(--color-text-muted)] mb-4 max-w-2xl">{intro}</p>
+                )}
+                <ul class="grid gap-4 sm:grid-cols-2" role="list">
+                  {items.map((entry) => (
+                    <li class="guide-card" data-title={entry.data.title.toLowerCase()} data-desc={(entry.data.description ?? '').toLowerCase()}>
+                      <a
+                        href={`/guides/${entry.slug}`}
+                        class="block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-200 hover:border-[var(--color-accent)]/50 hover:shadow-glow-sm"
+                      >
+                        <h4 class="font-display font-semibold text-[var(--color-text)]">{entry.data.title}</h4>
+                        {entry.data.description && (
+                          <p class="mt-2 text-sm text-[var(--color-text-muted)] line-clamp-2">
+                            {entry.data.description}
+                          </p>
+                        )}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+        </div>
       </div>
     )}
   </div>
@@ -89,9 +136,13 @@ const sortedGroups = order.filter((k) => groups.has(k));
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
   const title = document.querySelector('.guides-page-title');
+  const clientBlock = document.querySelector('.guides-client-block');
   const cards = document.querySelectorAll('.guide-card');
   if (title) {
     gsap.fromTo(title, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 });
+  }
+  if (clientBlock) {
+    gsap.fromTo(clientBlock, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, delay: 0.1 });
   }
   gsap.fromTo(cards, { opacity: 0, y: 16 }, {
     opacity: 1,
@@ -99,7 +150,7 @@ const sortedGroups = order.filter((k) => groups.has(k));
     duration: 0.4,
     stagger: 0.05,
     ease: 'power2.out',
-    scrollTrigger: { trigger: '.guides-list', start: 'top 90%', toggleActions: 'play none none none' },
+    scrollTrigger: { trigger: '.guides-list', start: 'top 88%', toggleActions: 'play none none none' },
   });
   const search = document.getElementById('guides-search');
   if (search) {
@@ -111,6 +162,17 @@ const sortedGroups = order.filter((k) => groups.has(k));
         const show = !q || title.includes(q) || desc.includes(q);
         (el as HTMLElement).style.display = show ? '' : 'none';
       });
+      document.querySelectorAll('.guide-cat-section').forEach((section) => {
+        const cardsInSection = (section as HTMLElement).querySelectorAll('.guide-card');
+        const anyVisible = Array.from(cardsInSection).some((el) => (el as HTMLElement).style.display !== 'none');
+        (section as HTMLElement).style.display = !q || anyVisible ? '' : 'none';
+      });
+      const clientBlock = document.querySelector('.guides-client-block');
+      if (clientBlock) {
+        const clientCards = (clientBlock as HTMLElement).querySelectorAll('.guide-card');
+        const clientVisible = !q || Array.from(clientCards).some((el) => (el as HTMLElement).style.display !== 'none');
+        (clientBlock as HTMLElement).style.display = clientVisible ? '' : 'none';
+      }
     });
   }
 </script>

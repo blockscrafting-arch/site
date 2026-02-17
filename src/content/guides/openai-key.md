@@ -3,6 +3,7 @@ title: "Получение ключа OpenAI"
 description: "Пошаговая инструкция: регистрация, создание API-ключа и пополнение счёта."
 order: 1
 category: setup
+forClient: true
 ---
 
 ## Шаги

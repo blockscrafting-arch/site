@@ -51,6 +51,8 @@ const guidesCollection = defineCollection({
     description: z.string().optional(),
     order: z.number().optional(),
     category: z.enum(['setup', 'integrations', 'faq']).optional(),
+    /** Инструкция для заказчика (без тех.фона): что сделать перед стартом проекта. */
+    forClient: z.boolean().optional(),
   }),
 });
 
