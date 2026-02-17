@@ -24,10 +24,19 @@ const accentColors = ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b'];
         return (
           <a
             href={`/cases/${c.slug}`}
-            class="case-preview-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-opacity-80 hover:shadow-glow-sm"
+            class="case-preview-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden transition-all duration-300 hover:border-opacity-80 hover:shadow-glow-sm"
             data-tilt="5"
             style={`--case-accent: ${accent}`}
           >
+            <div class="h-20 flex items-end px-6 pt-4" style={{ background: `linear-gradient(135deg, ${accent}22 0%, ${accent}08 100%)` }} aria-hidden="true">
+              <svg class="w-16 h-10 opacity-60" viewBox="0 0 64 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="4" stroke={accent} stroke-width="1.5" fill="none" />
+                <circle cx="32" cy="12" r="4" stroke={accent} stroke-width="1.2" fill="none" opacity="0.8" />
+                <circle cx="52" cy="12" r="4" stroke={accent} stroke-width="1.2" fill="none" opacity="0.6" />
+                <path d="M16 12 L28 12 M36 12 L48 12" stroke={accent} stroke-width="1" stroke-opacity="0.6" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="p-6 pt-4">
             <span class="block h-1 w-12 rounded-full mb-4" style={{ backgroundColor: accent }} aria-hidden="true"></span>
             <h3 class="font-display font-semibold text-[var(--color-text)]">{c.data.title}</h3>
             <p class="mt-2 text-sm text-[var(--color-text-muted)] line-clamp-2">{c.data.description}</p>
@@ -36,6 +45,7 @@ const accentColors = ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b'];
                 {metric.value} — {metric.label}
               </p>
             )}
+            </div>
           </a>
         );
       })}

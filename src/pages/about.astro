@@ -4,6 +4,7 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/common/Button.astro';
+import AboutVisual from '../components/illustrations/AboutVisual.astro';
 import { site } from '../utils/site';
 
 const stack = [
@@ -29,11 +30,16 @@ const stack = [
   description="Влад — разработчик и автоматизатор. Telegram-боты, AI-агенты, n8n, Python."
 >
   <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-    <h1 class="about-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
-      Обо мне
-    </h1>
+    <div class="flex flex-col sm:flex-row sm:items-start sm:gap-10">
+      <div class="flex-shrink-0 mx-auto sm:mx-0 order-2 sm:order-1">
+        <AboutVisual />
+      </div>
+      <div class="order-1 sm:order-2 flex-1 min-w-0">
+        <h1 class="about-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
+          Обо мне
+        </h1>
 
-    <p class="about-lead mt-6 text-xl font-medium text-[var(--color-text)] sm:text-2xl">
+        <p class="about-lead mt-6 text-xl font-medium text-[var(--color-text)] sm:text-2xl">
       Делаю так, чтобы рутину за вас делали боты и воркфлоу, а вы — только то, что реально приносит деньги.
     </p>
 
@@ -55,10 +61,12 @@ const stack = [
         </div>
       </div>
 
-      <p class="mt-8">
-        В канале <a href={site.tgChannelContent} class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelContentHandle}</a> разбираю кейсы, баги и решения — без рекламы, с пользой для тех, кто сам внедряет автоматизацию.
-      </p>
+      </div>
     </div>
+
+    <p class="mt-8 text-[var(--color-text-muted)]">
+      В канале <a href={site.tgChannelContent} class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelContentHandle}</a> разбираю кейсы, баги и решения — без рекламы, с пользой для тех, кто сам внедряет автоматизацию.
+    </p>
 
     <section class="mt-14 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8" aria-labelledby="stack-heading">
       <h2 id="stack-heading" class="font-display text-lg font-semibold text-[var(--color-text)]">

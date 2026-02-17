@@ -132,28 +132,9 @@ const sortedGroups = order.filter((k) => groups.has(k));
 </BaseLayout>
 
 <script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  const title = document.querySelector('.guides-page-title');
-  const clientBlock = document.querySelector('.guides-client-block');
-  const cards = document.querySelectorAll('.guide-card');
-  if (title) {
-    gsap.fromTo(title, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 });
-  }
-  if (clientBlock) {
-    gsap.fromTo(clientBlock, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, delay: 0.1 });
-  }
-  gsap.fromTo(cards, { opacity: 0, y: 16 }, {
-    opacity: 1,
-    y: 0,
-    duration: 0.4,
-    stagger: 0.05,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.guides-list', start: 'top 88%', toggleActions: 'play none none none' },
-  });
-  const search = document.getElementById('guides-search');
-  if (search) {
+  (function () {
+    const search = document.getElementById('guides-search');
+    if (!search) return;
     search.addEventListener('input', () => {
       const q = (search as HTMLInputElement).value.trim().toLowerCase();
       document.querySelectorAll('.guide-card').forEach((el) => {
@@ -174,5 +155,5 @@ const sortedGroups = order.filter((k) => groups.has(k));
         (clientBlock as HTMLElement).style.display = clientVisible ? '' : 'none';
       }
     });
-  }
+  })();
 </script>

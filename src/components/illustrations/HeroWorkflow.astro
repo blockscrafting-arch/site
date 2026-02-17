@@ -1,0 +1,60 @@
+---
+/**
+ * Декоративная SVG-иллюстрация для Hero: узлы и связи (воркфлоу/автоматизация).
+ * Цвета через currentColor и var(--color-accent) в стилях.
+ */
+---
+
+<figure class="hero-workflow-illus pointer-events-none select-none" aria-hidden="true">
+  <svg
+    class="w-full h-auto max-w-md mx-auto sm:max-w-sm opacity-90"
+    viewBox="0 0 280 160"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="hero-wf-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="var(--color-accent)" stop-opacity="0.9" />
+        <stop offset="100%" stop-color="var(--color-accent-cyan)" stop-opacity="0.7" />
+      </linearGradient>
+      <filter id="hero-wf-glow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <!-- Связи -->
+    <path d="M50 50 L120 50 L120 80" stroke="url(#hero-wf-accent)" stroke-width="1.5" stroke-opacity="0.6" fill="none" stroke-linecap="round" />
+    <path d="M120 80 L120 110 L180 110" stroke="url(#hero-wf-accent)" stroke-width="1.5" stroke-opacity="0.5" fill="none" stroke-linecap="round" />
+    <path d="M180 80 L180 50 L230 50" stroke="url(#hero-wf-accent)" stroke-width="1.5" stroke-opacity="0.5" fill="none" stroke-linecap="round" />
+    <path d="M50 50 L50 110 L120 110" stroke="url(#hero-wf-accent)" stroke-width="1.2" stroke-opacity="0.4" fill="none" stroke-dasharray="4 3" stroke-linecap="round" />
+    <!-- Узлы -->
+    <circle cx="50" cy="50" r="14" fill="var(--color-surface)" stroke="var(--color-accent)" stroke-width="2" opacity="0.95" filter="url(#hero-wf-glow)" />
+    <circle cx="50" cy="50" r="6" fill="var(--color-accent)" />
+    <circle cx="120" cy="50" r="14" fill="var(--color-surface)" stroke="var(--color-accent)" stroke-width="2" opacity="0.9" />
+    <circle cx="120" cy="50" r="6" fill="var(--color-accent)" />
+    <circle cx="120" cy="80" r="12" fill="var(--color-surface)" stroke="var(--color-accent-cyan)" stroke-width="1.5" opacity="0.9" />
+    <circle cx="120" cy="80" r="5" fill="var(--color-accent-cyan)" />
+    <circle cx="120" cy="110" r="14" fill="var(--color-surface)" stroke="var(--color-accent)" stroke-width="2" opacity="0.9" />
+    <circle cx="120" cy="110" r="6" fill="var(--color-accent)" />
+    <circle cx="180" cy="110" r="14" fill="var(--color-surface)" stroke="var(--color-accent)" stroke-width="2" opacity="0.9" />
+    <circle cx="180" cy="110" r="6" fill="var(--color-accent)" />
+    <circle cx="180" cy="80" r="12" fill="var(--color-surface)" stroke="var(--color-accent-cyan)" stroke-width="1.5" opacity="0.9" />
+    <circle cx="180" cy="80" r="5" fill="var(--color-accent-cyan)" />
+    <circle cx="180" cy="50" r="14" fill="var(--color-surface)" stroke="var(--color-accent)" stroke-width="2" opacity="0.9" />
+    <circle cx="180" cy="50" r="6" fill="var(--color-accent)" />
+    <circle cx="230" cy="50" r="16" fill="var(--color-surface)" stroke="var(--color-accent)" stroke-width="2.5" opacity="1" filter="url(#hero-wf-glow)" />
+    <circle cx="230" cy="50" r="7" fill="var(--color-accent)" />
+  </svg>
+</figure>
+
+<style>
+  .hero-workflow-illus {
+    max-height: 180px;
+  }
+  @media (min-width: 640px) {
+    .hero-workflow-illus { max-height: 200px; }
+  }
+</style>

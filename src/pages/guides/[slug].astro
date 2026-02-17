@@ -41,24 +41,3 @@ const { title, description } = entry.data;
     </div>
   </article>
 </BaseLayout>
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  const header = document.querySelector('.guide-detail-header');
-  if (header) {
-    const back = header.querySelector('.guide-back');
-    const title = header.querySelector('.guide-title');
-    const desc = header.querySelector('.guide-desc');
-    const els = [back, title, desc].filter(Boolean);
-    gsap.fromTo(els, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: 'power2.out', delay: 0.1 });
-  }
-  const prose = document.querySelector('.guide-detail-prose');
-  const cta = document.querySelector('.guide-detail-cta');
-  if (prose) {
-    gsap.fromTo(prose, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.25, ease: 'power2.out' });
-  }
-  if (cta) {
-    gsap.fromTo(cta, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, delay: 0.4, ease: 'power2.out' });
-  }
-</script>

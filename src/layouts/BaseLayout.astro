@@ -66,7 +66,8 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" /></noscript>
     <title>{title}</title>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
@@ -93,7 +94,7 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
     <BackToTop />
     <CardTilt />
     <script type="application/json" id="glossary-data" set:html={safeGlossaryJson}></script>
-    <GlossaryActivator client:load />
+    <GlossaryActivator client:idle />
     <Header />
     <main id="main-content" class="flex-1 pt-16" data-glossary>
       <slot />
@@ -101,7 +102,12 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
     <Footer />
     <script>
       import { initLenis } from '../scripts/lenis';
-      initLenis();
+      const run = () => initLenis();
+      if (typeof requestIdleCallback !== 'undefined') {
+        requestIdleCallback(run, { timeout: 2000 });
+      } else {
+        setTimeout(run, 1);
+      }
     </script>
     <script is:inline>
       document.addEventListener('astro:after-swap', () => {

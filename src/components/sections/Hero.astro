@@ -1,9 +1,10 @@
 ---
 /**
- * Hero главной: печатающийся заголовок (TypeIt) как h1, подзаголовок, терминал с метриками, CTA.
+ * Hero главной: печатающийся заголовок (TypeIt) как h1, подзаголовок, терминал с метриками, CTA, визуализация.
  */
 import Button from '../common/Button.astro';
 import TypewriterHero from '../features/TypewriterHero';
+import HeroWorkflow from '../illustrations/HeroWorkflow.astro';
 ---
 
 <section class="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-24 sm:px-6 overflow-hidden">
@@ -12,21 +13,28 @@ import TypewriterHero from '../features/TypewriterHero';
   <div class="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-[var(--color-accent)]/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
   <div class="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full bg-[var(--color-accent-cyan)]/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
-  <div class="relative z-10 max-w-4xl mx-auto text-center">
-    <h1 class="hero-title font-display text-4xl font-extrabold tracking-tight text-[var(--color-text)] sm:text-5xl md:text-6xl lg:text-7xl">
-      <TypewriterHero client:load class="!text-inherit min-h-[1.2em] inline-block" />
-    </h1>
-    <p class="hero-subtitle mt-5 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto">
-      Telegram-боты, AI-агенты, n8n — от идеи до запуска. <span class="text-gradient-animate font-semibold">Экономлю время и бюджет.</span>
-    </p>
-    <div class="hero-terminal mt-10 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-sm p-4 pl-5 text-left font-mono text-sm sm:text-base max-w-xl mx-auto overflow-hidden border-l-4 border-l-[var(--color-accent)]">
-      <div class="text-[var(--color-text-muted)]">&gt; bot.deploy() <span class="text-[var(--color-accent)]">// 2400+ лидов/мес</span></div>
-      <div class="text-[var(--color-text-muted)] mt-1">&gt; agent.run() <span class="text-[var(--color-accent)]">// −80% рутины</span></div>
-      <div class="text-[var(--color-text-muted)] mt-1">&gt; automate() <span class="text-[var(--color-accent)]">// 24/7 без выходных</span></div>
-    </div>
-    <div class="mt-12 flex flex-wrap items-center justify-center gap-4">
-      <Button href="/contact" variant="primary" class="shadow-glow-sm">Обсудить задачу</Button>
-      <Button href="/cases" variant="ghost">Смотреть кейсы</Button>
+  <div class="relative z-10 max-w-6xl mx-auto w-full">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+      <div class="max-w-4xl mx-auto lg:mx-0 text-center lg:text-left">
+        <h1 class="hero-title font-display text-4xl font-extrabold tracking-tight text-[var(--color-text)] sm:text-5xl md:text-6xl lg:text-7xl">
+          <TypewriterHero client:load class="!text-inherit min-h-[1.2em] inline-block" />
+        </h1>
+        <p class="hero-subtitle mt-5 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto lg:mx-0">
+          Telegram-боты, AI-агенты, n8n — от идеи до запуска. <span class="text-gradient-animate font-semibold">Экономлю время и бюджет.</span>
+        </p>
+        <div class="hero-terminal mt-10 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-sm p-4 pl-5 text-left font-mono text-sm sm:text-base max-w-xl mx-auto lg:mx-0 overflow-hidden border-l-4 border-l-[var(--color-accent)]">
+          <div class="text-[var(--color-text-muted)]">&gt; bot.deploy() <span class="text-[var(--color-accent)]">// 2400+ лидов/мес</span></div>
+          <div class="text-[var(--color-text-muted)] mt-1">&gt; agent.run() <span class="text-[var(--color-accent)]">// −80% рутины</span></div>
+          <div class="text-[var(--color-text-muted)] mt-1">&gt; automate() <span class="text-[var(--color-accent)]">// 24/7 без выходных</span></div>
+        </div>
+        <div class="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+          <Button href="/contact" variant="primary" class="shadow-glow-sm">Обсудить задачу</Button>
+          <Button href="/cases" variant="ghost">Смотреть кейсы</Button>
+        </div>
+      </div>
+      <div class="mt-12 lg:mt-0 lg:flex-shrink-0 lg:w-[320px] flex justify-center">
+        <HeroWorkflow />
+      </div>
     </div>
   </div>
 </section>

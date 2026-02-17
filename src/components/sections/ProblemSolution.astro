@@ -20,8 +20,13 @@ const items = [
     <p class="problem-solution-desc mt-4 text-[var(--color-text-muted)] max-w-2xl mx-auto">
       Проблемы, которые я решаю автоматизацией и ботами.
     </p>
+    <p class="problem-solution-swipe-hint sm:hidden mt-3 text-sm text-[var(--color-text-muted)] flex items-center justify-center gap-2" aria-hidden="true">
+      <span>Листайте влево</span>
+      <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+    </p>
   </div>
   <div class="problem-solution-wrap relative px-4 sm:px-6">
+    <div class="problem-solution-fade sm:hidden pointer-events-none absolute right-4 top-0 bottom-8 w-12 z-[1]" style="background: linear-gradient(to left, var(--color-bg) 0%, transparent 100%);" aria-hidden="true"></div>
     <button
       type="button"
       class="problem-solution-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] shadow-lg transition-colors hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"

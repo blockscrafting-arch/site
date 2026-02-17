@@ -3,11 +3,11 @@
  * Секция «Как я работаю»: таймлайн из 5 шагов с scroll-анимацией.
  */
 const steps = [
-  { title: 'Брифинг', desc: 'Уточняем задачу, каналы, желаемый результат.' },
-  { title: 'Прототип', desc: 'Схема или MVP за 1–2 дня, чтобы проверить гипотезу.' },
-  { title: 'Разработка', desc: 'Собираю бота/воркфлоу, тестируем на реальных сценариях.' },
-  { title: 'Запуск', desc: 'Деплой, инструкции, передача доступа.' },
-  { title: 'Поддержка', desc: 'Правки и доработки по договорённости.' },
+  { title: 'Брифинг', desc: 'Уточняем задачу, каналы, желаемый результат.', icon: 'brief' },
+  { title: 'Прототип', desc: 'Схема или MVP за 1–2 дня, чтобы проверить гипотезу.', icon: 'proto' },
+  { title: 'Разработка', desc: 'Собираю бота/воркфлоу, тестируем на реальных сценариях.', icon: 'code' },
+  { title: 'Запуск', desc: 'Деплой, инструкции, передача доступа.', icon: 'launch' },
+  { title: 'Поддержка', desc: 'Правки и доработки по договорённости.', icon: 'support' },
 ];
 ---
 
@@ -23,8 +23,12 @@ const steps = [
       <span class="absolute left-5 top-10 bottom-10 w-0.5 bg-gradient-to-b from-[var(--color-accent)]/50 via-[var(--color-accent)]/30 to-transparent" aria-hidden="true"></span>
       {steps.map((step, i) => (
         <li class="process-step relative flex gap-6" style={`--step-i: ${i}`}>
-          <span class="process-step-num relative z-10 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-muted)] font-mono text-sm font-semibold text-[var(--color-accent)] ring-4 ring-[var(--color-bg)]" aria-hidden="true">
-            {i + 1}
+          <span class="process-step-num relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent-muted)] text-[var(--color-accent)] ring-4 ring-[var(--color-bg)]" aria-hidden="true">
+            {step.icon === 'brief' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>)}
+            {step.icon === 'proto' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>)}
+            {step.icon === 'code' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>)}
+            {step.icon === 'launch' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>)}
+            {step.icon === 'support' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>)}
           </span>
           <div>
             <h3 class="font-display font-semibold text-[var(--color-text)]">{step.title}</h3>

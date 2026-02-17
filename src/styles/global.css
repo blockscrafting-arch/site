@@ -254,4 +254,36 @@
     .text-gradient-animate { animation: none; }
     .text-gradient-animate { background-position: 0% 50%; }
   }
+
+  /* Инструкции: лёгкая анимация появления без GSAP (быстрая отрисовка) */
+  @keyframes guide-fade-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .guides-page-title { animation: guide-fade-in 0.5s ease-out forwards; }
+  .guides-client-block { opacity: 0; animation: guide-fade-in 0.4s ease-out 0.1s forwards; }
+  .guides-list { opacity: 0; animation: guide-fade-in 0.4s ease-out 0.15s forwards; }
+  .guide-detail-header .guide-back,
+  .guide-detail-header .guide-title,
+  .guide-detail-header .guide-desc {
+    opacity: 0;
+    animation: guide-fade-in 0.45s ease-out forwards;
+  }
+  .guide-detail-header .guide-title { animation-delay: 0.08s; }
+  .guide-detail-header .guide-desc { animation-delay: 0.16s; }
+  .guide-detail-prose { opacity: 0; animation: guide-fade-in 0.5s ease-out 0.25s forwards; }
+  .guide-detail-cta { opacity: 0; animation: guide-fade-in 0.4s ease-out 0.4s forwards; }
+  @media (prefers-reduced-motion: reduce) {
+    .guides-page-title,
+    .guides-client-block,
+    .guides-list,
+    .guide-detail-header .guide-back,
+    .guide-detail-header .guide-title,
+    .guide-detail-header .guide-desc,
+    .guide-detail-prose,
+    .guide-detail-cta {
+      animation: none;
+      opacity: 1;
+    }
+  }
 }

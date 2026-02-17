@@ -3,6 +3,7 @@
  * Секция «Услуги»: 6 карточек с glow/tilt — боты, AI-агенты, Mini Apps, n8n, скрипты/парсеры, кастом.
  */
 import Badge from '../common/Badge.astro';
+import ServicesVisual from '../illustrations/ServicesVisual.astro';
 const serviceAccents = ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b', '#ec4899', '#10b981'];
 const services = [
   { title: 'Telegram-боты', desc: 'Приём заявок, поддержка, рассылки, мини-приложения в одном чате.', tags: ['Telegram', 'Mini App'], href: '/cases', icon: 'chat' },
@@ -22,7 +23,10 @@ const services = [
     <p class="mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto">
       Чат-боты, AI-агенты, Mini Apps, n8n, скрипты — от идеи до рабочего решения.
     </p>
-    <div class="services-grid mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-10 flex justify-center">
+      <ServicesVisual />
+    </div>
+    <div class="services-grid mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((s, i) => {
         const accent = serviceAccents[i % serviceAccents.length];
         return (

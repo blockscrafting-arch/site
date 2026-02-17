@@ -27,9 +27,16 @@ function isWordChar(c: string): boolean {
   return /[\p{L}\p{N}_]/u.test(c);
 }
 
+/** Конец слова: индекс сразу после последнего подряд идущего word-символа с позиции start. */
+function getWordEnd(text: string, start: number): number {
+  let i = start;
+  while (i < text.length && isWordChar(text[i])) i++;
+  return i;
+}
+
 /**
- * Находит в тексте все вхождения терминов как отдельных слов и возвращает массив отрезков.
- * Термин срабатывает только если стоит не внутри другого слова (граница слова).
+ * Находит в тексте все вхождения терминов как отдельных слов или как начала слова (бот → боты, агент → агентов).
+ * Термин не срабатывает внутри другого слова (работаю ≠ бот).
  * Термины должны быть отсортированы по длине (длинные первыми).
  */
 function findTermRanges(
@@ -47,20 +54,35 @@ function findTermRanges(
       const idx = text.indexOf(term, pos);
       if (idx === -1) break;
       const before = idx === 0 ? null : text[idx - 1];
-      const after = idx + term.length >= text.length ? null : text[idx + term.length];
-      const atWordBoundary =
-        (before === null || !isWordChar(before)) &&
-        (after === null || !isWordChar(after));
+      const afterIdx = idx + term.length;
+      const after = afterIdx >= text.length ? null : text[afterIdx];
+      const wordStarts = before === null || !isWordChar(before);
+      if (!wordStarts) {
+        pos = idx + 1;
+        continue;
+      }
+      let end: number;
+      if (after === null || !isWordChar(after)) {
+        end = afterIdx;
+      } else {
+        const wordEnd = getWordEnd(text, idx);
+        const word = text.slice(idx, wordEnd);
+        if (!word.startsWith(term)) {
+          pos = idx + 1;
+          continue;
+        }
+        end = wordEnd;
+      }
       let overlap = false;
-      for (let i = idx; i < idx + term.length; i++) {
+      for (let i = idx; i < end; i++) {
         if (used.has(i)) {
           overlap = true;
           break;
         }
       }
-      if (atWordBoundary && !overlap) {
-        for (let i = idx; i < idx + term.length; i++) used.add(i);
-        ranges.push({ start: idx, end: idx + term.length, entry });
+      if (!overlap) {
+        for (let i = idx; i < end; i++) used.add(i);
+        ranges.push({ start: idx, end, entry });
       }
       pos = idx + 1;
     }
