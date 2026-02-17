@@ -240,9 +240,41 @@ services:
       - "127.0.0.1:9080:80"
 ```
 
-4. В проекте раскомментируйте job `deploy` в `.github/workflows/deploy.yml` и при необходимости поправьте путь и команды под ваш сервер (например `cd /opt/vlad-execute-site`, `docker compose pull` или пересборка образа на сервере из кода).
+4. В workflow деплой вызывает `deploy/deploy.sh`: подставляет конфиг nginx из репозитория (`deploy/nginx-vladexecute.ru.conf`, порт **9080**), перезагружает nginx и перезапускает контейнер. Путь на сервере в workflow — `cd /opt` (репозиторий должен быть в `/opt` или поправьте путь в `.github/workflows/deploy.yml`).
 
-После этого при push в `main` workflow будет собирать образ (или артефакты), подключаться по SSH и обновлять контейнер на VPS. Детали можно дописать под ваш способ деплоя (образ в registry или копирование файлов + сборка на сервере).
+5. **Один раз на VPS** настройте sudo для пользователя деплоя (тот, что в `VPS_USER`), чтобы скрипт мог копировать конфиг и перезагружать nginx без пароля:
+
+```bash
+sudo visudo
+```
+
+Добавьте строку (подставьте имя пользователя вместо `deploy`):
+
+```
+deploy ALL=(ALL) NOPASSWD: /usr/bin/cp *deploy/nginx*.conf /etc/nginx/sites-available/*, /usr/sbin/nginx, /usr/bin/systemctl reload nginx
+```
+
+Или проще — разрешить все команды для deploy (менее безопасно, но проще):
+
+```
+deploy ALL=(ALL) NOPASSWD: ALL
+```
+
+Убедитесь, что симлинк nginx создан: `sudo ln -sf /etc/nginx/sites-available/vladexecute.ru /etc/nginx/sites-enabled/`.
+
+После этого при push в `main` workflow собирает образ, подключается по SSH, выполняет `git pull` и `bash deploy/deploy.sh`: конфиг nginx обновляется из репо (всегда 9080), nginx перезагружается, контейнер пересобирается и запускается.
+
+---
+
+## Деплой прошёл, но сайт старый — что проверить
+
+1. **Nginx проксирует на нужный порт?** Конфиг лежит в репо: `deploy/nginx-vladexecute.ru.conf` (порт **9080**). При каждом деплое он копируется на сервер через `deploy/deploy.sh`. Если что-то меняли вручную на VPS — после следующего push конфиг из репо перезапишет. Проверка вручную: `proxy_pass http://127.0.0.1:9080;`, затем `sudo nginx -t && sudo systemctl reload nginx`.
+
+2. **Контейнер запущен?** На сервере: `cd /opt && docker compose ps`. Должен быть `opt-web-1` в статусе Up. Если нет — `docker compose up -d --build`.
+
+3. **Кэш браузера.** Сделайте жёсткое обновление: Ctrl+Shift+R (или Cmd+Shift+R). Или откройте сайт в режиме инкогнито.
+
+4. **Кэш nginx на хосте.** Если в конфиге nginx есть `proxy_cache`, временно отключите или сбросьте кэш и перезагрузите nginx.
 
 ---
 

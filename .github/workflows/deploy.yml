@@ -44,5 +44,4 @@ jobs:
           script: |
             cd /opt
             git pull
-            docker compose down
-            docker compose up -d --build
+            bash deploy/deploy.sh
