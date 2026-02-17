@@ -100,16 +100,16 @@ ping www.vladexecute.ru
 
 На **вашем компьютере** (где лежит проект):
 
-1. Соберите образ с правильным URL для продакшена:
+1. Соберите образ с правильным URL для продакшена (и вебхуком формы, если нужен):
 
 ```bash
 cd "d:/vladexecute/proj/Сайт"
-# Сборка с доменом для canonical и OG
-# Windows (PowerShell):
-$env:SITE="https://vladexecute.ru"; npm run build
-# Windows (CMD): set SITE=https://vladexecute.ru && npm run build
-# Linux/macOS: SITE=https://vladexecute.ru npm run build
-docker build -t vlad-execute-site -f docker/Dockerfile .
+# Вариант А: передать переменные при сборке (подставляются в статику при npm run build внутри образа)
+docker build -t vlad-execute-site -f docker/Dockerfile . \
+  --build-arg SITE=https://vladexecute.ru \
+  --build-arg PUBLIC_CONTACT_WEBHOOK=https://ваш-n8n.ru/webhook/ваш-id
+
+# Вариант Б: если собираете на сервере через docker compose, положите в каталог с docker-compose.yml файл .env с SITE и PUBLIC_CONTACT_WEBHOOK (см. пункт 3 в разделе «Деплой прошёл, но сайт старый»).
 ```
 
 2. Сохраните образ в файл и залейте на сервер (или позже настроите GitHub Actions):
@@ -228,17 +228,7 @@ cd /opt/vlad-execute-site
 git clone https://github.com/ВАШ_ЛОГИН/ВАШ_РЕПО.git .
 ```
 
-Создайте там же `docker-compose.yml` (или скопируйте из проекта) и конфиг для запуска одного контейнера на 9080 (как в шаге 5). Пример `docker-compose.yml` на сервере:
-
-```yaml
-services:
-  web:
-    image: vlad-execute-site:latest
-    container_name: site
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:9080:80"
-```
+В каталоге деплоя должен быть `docker-compose.yml` из репозитория (в нём заданы сборка и порт 9080). **Создайте там же файл `.env`** с переменными `SITE` и `PUBLIC_CONTACT_WEBHOOK` — при `docker compose up -d --build` они передаются в сборку, иначе форма контактов и canonical URL будут пустыми (см. пункт 3 раздела «Деплой прошёл, но сайт старый»).
 
 4. В workflow деплой вызывает `deploy/deploy.sh`: подставляет конфиг nginx из репозитория (`deploy/nginx-vladexecute.ru.conf`, порт **9080**), перезагружает nginx и перезапускает контейнер. Путь на сервере в workflow — `cd /opt` (репозиторий должен быть в `/opt` или поправьте путь в `.github/workflows/deploy.yml`).
 
@@ -272,9 +262,21 @@ deploy ALL=(ALL) NOPASSWD: ALL
 
 2. **Контейнер запущен?** На сервере: `cd /opt && docker compose ps`. Должен быть `opt-web-1` в статусе Up. Если нет — `docker compose up -d --build`.
 
-3. **Кэш браузера.** Сделайте жёсткое обновление: Ctrl+Shift+R (или Cmd+Shift+R). Или откройте сайт в режиме инкогнито.
+3. **Форма контактов пишет «не указан вебхук»?** URL вебхука подставляется **при сборке**, а не при запуске. В каталоге с `docker-compose.yml` (например `/opt`) создайте или отредактируйте `.env` с переменными:
+   ```env
+   PUBLIC_CONTACT_WEBHOOK=https://ваш-n8n.ru/webhook/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   SITE=https://vladexecute.ru
+   ```
+   Затем **пересоберите образ** (без кэша, чтобы переменные попали в сборку) и перезапустите:
+   ```bash
+   cd /opt   # или каталог, где лежит docker-compose.yml и .env
+   docker compose build --no-cache
+   docker compose up -d
+   ```
 
-4. **Кэш nginx на хосте.** Если в конфиге nginx есть `proxy_cache`, временно отключите или сбросьте кэш и перезагрузите nginx.
+4. **Кэш браузера.** Сделайте жёсткое обновление: Ctrl+Shift+R (или Cmd+Shift+R). Или откройте сайт в режиме инкогнито.
+
+5. **Кэш nginx на хосте.** Если в конфиге nginx есть `proxy_cache`, временно отключите или сбросьте кэш и перезагрузите nginx.
 
 ---
 

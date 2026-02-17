@@ -1,9 +1,13 @@
 # Локальный просмотр: docker compose up --build → http://localhost:9080
-# На VPS: контейнер на 9080, nginx на хосте слушает 80 и проксирует на 127.0.0.1:9080.
+# На VPS: положи .env в эту папку, затем: docker compose build --no-cache && docker compose up -d
+# В .env задай PUBLIC_CONTACT_WEBHOOK и при необходимости SITE — они подставятся при сборке.
 services:
   web:
     build:
       context: .
       dockerfile: docker/Dockerfile
+      args:
+        PUBLIC_CONTACT_WEBHOOK: ${PUBLIC_CONTACT_WEBHOOK:-}
+        SITE: ${SITE:-}
     ports:
       - "127.0.0.1:9080:80"

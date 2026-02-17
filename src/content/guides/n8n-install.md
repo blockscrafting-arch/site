@@ -15,7 +15,7 @@ n8n — конструктор автоматизаций (workflow). Чтобы
 ```yaml
 services:
   n8n:
-    image: n8nio/n8n:latest
+    image: docker.n8n.io/n8nio/n8n
     restart: unless-stopped
     ports:
       - "127.0.0.1:5678:5678"
@@ -34,7 +34,7 @@ volumes:
 
 ## Вариант Б: Установка через npm
 
-На сервере с установленным Node.js 18+:
+На сервере с установленным Node.js 20+:
 
 ```bash
 npm install -g n8n

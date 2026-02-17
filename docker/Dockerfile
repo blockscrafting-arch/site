@@ -1,6 +1,11 @@
-# Сборка статики Astro
+# Сборка статики Astro (PUBLIC_* и SITE подставляются в код при сборке)
 FROM node:20-alpine AS builder
 WORKDIR /app
+# Передай при сборке: --build-arg PUBLIC_CONTACT_WEBHOOK=... или через docker-compose
+ARG PUBLIC_CONTACT_WEBHOOK
+ARG SITE
+ENV PUBLIC_CONTACT_WEBHOOK=${PUBLIC_CONTACT_WEBHOOK}
+ENV SITE=${SITE}
 COPY package.json package-lock.json* ./
 RUN npm ci
 COPY . .

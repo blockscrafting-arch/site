@@ -24,7 +24,7 @@ npm run lint
 
 **Пошаговая инструкция под домен vladexecute.ru:** см. **[DEPLOY.md](./DEPLOY.md)** — выбор VPS, DNS, HTTPS (Let's Encrypt), автодеплой.
 
-Кратко: сборка с `SITE=https://vladexecute.ru`, образ в Docker, на сервере nginx + certbot для HTTPS, прокси в контейнер.
+Кратко: при сборке образа задаются `SITE` и `PUBLIC_CONTACT_WEBHOOK` (через `.env` на сервере и `docker compose build` или через `--build-arg` при локальной сборке). На сервере — nginx + certbot для HTTPS, прокси в контейнер.
 
 ## Форма контактов
 
@@ -32,7 +32,7 @@ npm run lint
 
 - `PUBLIC_CONTACT_WEBHOOK` — POST-URL; тело запроса: `{ name, contact, message }` (JSON).
 
-Скопируйте `.env.example` в `.env` и укажите свой вебхук. Без переменной форма покажет сообщение «Форма не настроена».
+Скопируйте `.env.example` в `.env` и укажите свой вебхук. Без переменной форма покажет сообщение «Форма не настроена». При деплое в Docker URL вебхука подставляется **при сборке** образа (см. DEPLOY.md).
 
 ## Структура
 
