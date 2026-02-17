@@ -4,7 +4,7 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/common/Button.astro';
-import AboutVisual from '../components/illustrations/AboutVisual.astro';
+import AboutTerminal from '../components/illustrations/AboutTerminal.astro';
 import { site } from '../utils/site';
 
 const stack = [
@@ -29,68 +29,71 @@ const stack = [
   title="Обо мне — vlad.execute(_)"
   description="Влад — разработчик и автоматизатор. Telegram-боты, AI-агенты, n8n, Python."
 >
-  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-    <div class="flex flex-col sm:flex-row sm:items-start sm:gap-10">
-      <div class="flex-shrink-0 mx-auto sm:mx-0 order-2 sm:order-1">
-        <AboutVisual />
+  <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:items-start lg:gap-16">
+      <!-- Terminal Visual (Left on desktop, Top on mobile) -->
+      <div class="w-full lg:w-1/2 order-1 lg:sticky lg:top-24">
+        <AboutTerminal />
       </div>
-      <div class="order-1 sm:order-2 flex-1 min-w-0">
+
+      <!-- Content (Right on desktop, Bottom on mobile) -->
+      <div class="w-full lg:w-1/2 order-2 mt-12 lg:mt-0">
         <h1 class="about-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
           Обо мне
         </h1>
 
         <p class="about-lead mt-6 text-xl font-medium text-[var(--color-text)] sm:text-2xl">
-      Делаю так, чтобы рутину за вас делали боты и воркфлоу, а вы — только то, что реально приносит деньги.
-    </p>
+          Делаю так, чтобы рутину за вас делали боты и воркфлоу, а вы — только то, что реально приносит деньги.
+        </p>
 
-    <div class="about-intro mt-10 space-y-6 text-[var(--color-text-muted)]">
-      <p class="text-lg">
-        Я Влад — разработчик и автоматизатор. Не «просто настройщик n8n»: собираю системы под ключ — от идеи до запуска на вашем сервере. Telegram-боты, AI-агенты, парсинг, интеграции с CRM и таблицами. Без воды и лишних слоёв: сразу к делу и к результату в цифрах.
-      </p>
+        <div class="about-intro mt-10 space-y-6 text-[var(--color-text-muted)]">
+          <p class="text-lg">
+            Я Влад — разработчик и автоматизатор. Не «просто настройщик n8n»: собираю системы под ключ — от идеи до запуска на вашем сервере. Telegram-боты, AI-агенты, парсинг, интеграции с CRM и таблицами. Без воды и лишних слоёв: сразу к делу и к результату в цифрах.
+          </p>
 
-      <div class="about-cards grid gap-4 sm:grid-cols-2 mt-10">
-        <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-sm">
-          <span class="text-2xl font-display font-bold text-[var(--color-accent)]" aria-hidden="true">→</span>
-          <h2 class="mt-2 font-display text-lg font-semibold text-[var(--color-text)]">Бизнесу</h2>
-          <p class="mt-2 text-sm">Меньше ручных операций, меньше штат на рутине. Заявки, квалификация, отчёты — в автоматизацию. Вы получаете предсказуемый процесс и экономию в часах и деньгах.</p>
+          <div class="about-cards grid gap-4 mt-10">
+            <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-sm">
+              <span class="text-2xl font-display font-bold text-[var(--color-accent)]" aria-hidden="true">→</span>
+              <h2 class="mt-2 font-display text-lg font-semibold text-[var(--color-text)]">Бизнесу</h2>
+              <p class="mt-2 text-sm">Меньше ручных операций, меньше штат на рутине. Заявки, квалификация, отчёты — в автоматизацию. Вы получаете предсказуемый процесс и экономию в часах и деньгах.</p>
+            </div>
+            <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-sm">
+              <span class="text-2xl font-display font-bold text-[var(--color-accent)]" aria-hidden="true">→</span>
+              <h2 class="mt-2 font-display text-lg font-semibold text-[var(--color-text)]">Основателям и командам</h2>
+              <p class="mt-2 text-sm">«Цифровой экзоскелет»: объём работы отдела — в одиночку или малой командой. Боты и агенты как усиление, без найма лишних рук.</p>
+            </div>
+          </div>
         </div>
-        <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-sm">
-          <span class="text-2xl font-display font-bold text-[var(--color-accent)]" aria-hidden="true">→</span>
-          <h2 class="mt-2 font-display text-lg font-semibold text-[var(--color-text)]">Основателям и командам</h2>
-          <p class="mt-2 text-sm">«Цифровой экзоскелет»: объём работы отдела — в одиночку или малой командой. Боты и агенты как усиление, без найма лишних рук.</p>
+
+        <p class="mt-8 text-[var(--color-text-muted)]">
+          В канале <a href={site.tgChannelContent} class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelContentHandle}</a> разбираю кейсы, баги и решения — без рекламы, с пользой для тех, кто сам внедряет автоматизацию.
+        </p>
+
+        <section class="mt-14 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8" aria-labelledby="stack-heading">
+          <h2 id="stack-heading" class="font-display text-lg font-semibold text-[var(--color-text)]">
+            С чем работаю
+          </h2>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+            Платформы, языки и сервисы, с которыми чаще всего собираю ботов, агентов и интеграции.
+          </p>
+          <ul class="mt-5 flex flex-wrap gap-3" role="list">
+            {stack.map((tech) => (
+              <li>
+                <span class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-2 text-sm font-medium text-[var(--color-text)]">
+                  {tech}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <div class="mt-12 flex flex-wrap items-center gap-4">
+          <Button href="/contact" variant="primary">Обсудить задачу</Button>
+          <a href={site.tgChannel} class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors" target="_blank" rel="noopener noreferrer">
+            Написать в Telegram →
+          </a>
         </div>
       </div>
-
-      </div>
-    </div>
-
-    <p class="mt-8 text-[var(--color-text-muted)]">
-      В канале <a href={site.tgChannelContent} class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelContentHandle}</a> разбираю кейсы, баги и решения — без рекламы, с пользой для тех, кто сам внедряет автоматизацию.
-    </p>
-
-    <section class="mt-14 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8" aria-labelledby="stack-heading">
-      <h2 id="stack-heading" class="font-display text-lg font-semibold text-[var(--color-text)]">
-        С чем работаю
-      </h2>
-      <p class="mt-2 text-sm text-[var(--color-text-muted)]">
-        Платформы, языки и сервисы, с которыми чаще всего собираю ботов, агентов и интеграции.
-      </p>
-      <ul class="mt-5 flex flex-wrap gap-3" role="list">
-        {stack.map((tech) => (
-          <li>
-            <span class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-2 text-sm font-medium text-[var(--color-text)]">
-              {tech}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <div class="mt-12 flex flex-wrap items-center gap-4">
-      <Button href="/contact" variant="primary">Обсудить задачу</Button>
-      <a href={site.tgChannel} class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors" target="_blank" rel="noopener noreferrer">
-        Написать в Telegram →
-      </a>
     </div>
   </div>
 </BaseLayout>
@@ -99,18 +102,22 @@ const stack = [
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
+  
   const title = document.querySelector('.about-title');
   const blocks = document.querySelectorAll('.about-lead, .about-intro > p, .about-cards > div');
+  
   if (title) {
     gsap.fromTo(title, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 });
   }
-  if (blocks.length) gsap.fromTo(blocks, { opacity: 0, y: 16 }, {
-    opacity: 1,
-    y: 0,
-    duration: 0.4,
-    stagger: 0.1,
-    delay: 0.2,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.about-title', start: 'top 85%', toggleActions: 'play none none none' },
-  });
+  if (blocks.length) {
+    gsap.fromTo(blocks, { opacity: 0, y: 16 }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      stagger: 0.1,
+      delay: 0.2,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '.about-title', start: 'top 85%', toggleActions: 'play none none none' },
+    });
+  }
 </script>

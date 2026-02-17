@@ -3,7 +3,7 @@
  * Секция «Услуги»: 6 карточек с glow/tilt — боты, AI-агенты, Mini Apps, n8n, скрипты/парсеры, кастом.
  */
 import Badge from '../common/Badge.astro';
-import ServicesVisual from '../illustrations/ServicesVisual.astro';
+
 const serviceAccents = ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b', '#ec4899', '#10b981'];
 const services = [
   { title: 'Telegram-боты', desc: 'Приём заявок, поддержка, рассылки, мини-приложения в одном чате.', tags: ['Telegram', 'Mini App'], href: '/cases', icon: 'chat' },
@@ -15,18 +15,21 @@ const services = [
 ];
 ---
 
-<section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="services-heading">
-  <div class="mx-auto max-w-6xl">
+<section class="relative py-20 sm:py-28 px-4 sm:px-6 overflow-hidden" aria-labelledby="services-heading">
+  <!-- Subtle Background Pattern -->
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(var(--color-text) 1px, transparent 1px); background-size: 24px 24px;" aria-hidden="true"></div>
+  <!-- Radial Gradient for Depth -->
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at center, var(--color-accent-muted) 0%, transparent 70%); opacity: 0.4;" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl z-10">
     <h2 id="services-heading" class="services-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center">
       Чем занимаюсь
     </h2>
     <p class="mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto">
       Чат-боты, AI-агенты, Mini Apps, n8n, скрипты — от идеи до рабочего решения.
     </p>
-    <div class="mt-10 flex justify-center">
-      <ServicesVisual />
-    </div>
-    <div class="services-grid mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+    <div class="services-grid mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((s, i) => {
         const accent = serviceAccents[i % serviceAccents.length];
         return (
