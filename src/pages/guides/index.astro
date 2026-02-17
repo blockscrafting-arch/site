@@ -1,0 +1,116 @@
+---
+/**
+ * База знаний / Инструкции: список с категориями и поиском.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const guides = await getCollection('guides');
+const sorted = [...guides].sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+
+const categoryLabels: Record<string, string> = {
+  setup: 'Настройка',
+  integrations: 'Интеграции',
+  faq: 'FAQ',
+  other: 'Прочее',
+};
+const groups = new Map<string, typeof sorted>();
+for (const g of sorted) {
+  const cat = g.data.category ?? 'other';
+  if (!groups.has(cat)) groups.set(cat, []);
+  groups.get(cat)!.push(g);
+}
+const order = ['setup', 'integrations', 'faq', 'other'];
+const sortedGroups = order.filter((k) => groups.has(k));
+---
+
+<BaseLayout
+  title="Инструкции — vlad.execute(_)"
+  description="Пошаговые инструкции: API-ключи, VPS, домен, Telegram-бот и др."
+>
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <h1 class="guides-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
+      База знаний
+    </h1>
+    <p class="mt-2 text-[var(--color-text-muted)]">
+      Пошаговые гайды по настройке сервисов и интеграций.
+    </p>
+
+    <div class="mt-8">
+      <label for="guides-search" class="sr-only">Поиск по инструкциям</label>
+      <input
+        id="guides-search"
+        type="search"
+        placeholder="Поиск..."
+        class="guides-search w-full max-w-md rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20"
+        autocomplete="off"
+      />
+    </div>
+
+    {sorted.length === 0 ? (
+      <p class="mt-12 text-[var(--color-text-muted)]">Инструкции скоро появятся.</p>
+    ) : (
+      <div class="guides-list mt-12 space-y-10">
+        {sortedGroups.map((catKey) => {
+          const items = groups.get(catKey)!;
+          const label = categoryLabels[catKey] ?? 'Прочее';
+          return (
+            <section aria-labelledby={`guide-cat-${catKey}`}>
+              <h2 id={`guide-cat-${catKey}`} class="text-lg font-semibold text-[var(--color-text)] mb-4">
+                {label}
+              </h2>
+              <ul class="grid gap-4 sm:grid-cols-2" role="list">
+                {items.map((entry) => (
+                  <li class="guide-card" data-title={entry.data.title.toLowerCase()} data-desc={(entry.data.description ?? '').toLowerCase()}>
+                    <a
+                      href={`/guides/${entry.slug}`}
+                      class="block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-200 hover:border-[var(--color-accent)]/50 hover:shadow-glow-sm"
+                    >
+                      <h3 class="font-display font-semibold text-[var(--color-text)]">{entry.data.title}</h3>
+                      {entry.data.description && (
+                        <p class="mt-2 text-sm text-[var(--color-text-muted)] line-clamp-2">
+                          {entry.data.description}
+                        </p>
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          );
+        })}
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const title = document.querySelector('.guides-page-title');
+  const cards = document.querySelectorAll('.guide-card');
+  if (title) {
+    gsap.fromTo(title, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 });
+  }
+  gsap.fromTo(cards, { opacity: 0, y: 16 }, {
+    opacity: 1,
+    y: 0,
+    duration: 0.4,
+    stagger: 0.05,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.guides-list', start: 'top 90%', toggleActions: 'play none none none' },
+  });
+  const search = document.getElementById('guides-search');
+  if (search) {
+    search.addEventListener('input', () => {
+      const q = (search as HTMLInputElement).value.trim().toLowerCase();
+      document.querySelectorAll('.guide-card').forEach((el) => {
+        const title = (el as HTMLElement).dataset.title ?? '';
+        const desc = (el as HTMLElement).dataset.desc ?? '';
+        const show = !q || title.includes(q) || desc.includes(q);
+        (el as HTMLElement).style.display = show ? '' : 'none';
+      });
+    });
+  }
+</script>

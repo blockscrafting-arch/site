@@ -1,0 +1,50 @@
+# Деплой на VPS: сборка и опциональный push образа / деплой по SSH.
+# Для работы добавьте секреты: VPS_HOST, VPS_USER, VPS_SSH_KEY (приватный ключ).
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Build Docker image
+        run: |
+          docker build -t vlad-execute-site:${{ github.sha }} -f docker/Dockerfile .
+
+  # Раскомментируйте и заполните секреты для деплоя на VPS по SSH
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Deploy to VPS
+  #       uses: appleboy/ssh-action@v1.0.0
+  #       with:
+  #         host: ${{ secrets.VPS_HOST }}
+  #         username: ${{ secrets.VPS_USER }}
+  #         key: ${{ secrets.VPS_SSH_KEY }}
+  #         script: |
+  #           cd /opt/vlad-execute-site
+  #           git pull
+  #           docker build -t vlad-execute-site .
+  #           docker compose up -d

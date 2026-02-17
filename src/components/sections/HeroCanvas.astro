@@ -1,0 +1,52 @@
+---
+/**
+ * Canvas-фон для Hero: сетка точек (infinite canvas).
+ * Рисуется на клиенте для анимации и производительности.
+ */
+---
+
+<div class="hero-canvas-wrap absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+  <canvas id="hero-canvas" class="absolute inset-0 w-full h-full" width="1920" height="1080"></canvas>
+</div>
+<script>
+  (function initHeroCanvas() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.scale(dpr, dpr);
+      draw();
+    };
+
+    const dotSpacing = 48;
+    const dotRadius = 1.2;
+    const opacity = 0.4;
+
+    function draw() {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      ctx.clearRect(0, 0, w, h);
+      const accent = getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim() || '#10b981';
+      ctx.fillStyle = accent;
+      ctx.globalAlpha = opacity;
+      for (let x = 0; x <= w + dotSpacing; x += dotSpacing) {
+        for (let y = 0; y <= h + dotSpacing; y += dotSpacing) {
+          ctx.beginPath();
+          ctx.arc(x, y, dotRadius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+  })();
+</script>

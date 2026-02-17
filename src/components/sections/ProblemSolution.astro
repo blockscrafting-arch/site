@@ -1,0 +1,60 @@
+---
+/**
+ * Секция «Проблема — Решение»: горизонтальный скролл с карточками.
+ */
+const items = [
+  { problem: 'Менеджеры тонут в заявках', solution: 'AI-бот квалифицирует и распределяет за секунды', icon: 'inbox' },
+  { problem: 'Рутина съедает часы каждый день', solution: 'n8n-воркфлоу делает рутину за вас 24/7', icon: 'clock' },
+  { problem: 'Клиенты ждут ответа часами', solution: 'Чат-бот отвечает мгновенно и передаёт живому менеджеру', icon: 'chat' },
+  { problem: 'Данные размазаны по таблицам и чатам', solution: 'Один бот или агент собирает всё в CRM и отчёты', icon: 'db' },
+  { problem: 'Нужно масштабировать, но руки не доходят', solution: 'Автоматизация под ключ: от брифа до запуска', icon: 'rocket' },
+];
+---
+
+<section class="py-20 sm:py-28 overflow-hidden" aria-labelledby="problem-solution-heading">
+  <div class="mb-12 px-4 sm:px-6 text-center">
+    <h2 id="problem-solution-heading" class="font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl">
+      Узнаёте себя?
+    </h2>
+    <p class="mt-4 text-[var(--color-text-muted)] max-w-2xl mx-auto">
+      Проблемы, которые я решаю автоматизацией и ботами.
+    </p>
+  </div>
+  <div class="problem-solution-track flex gap-6 px-4 sm:px-6 pb-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
+    {items.map((item, i) => (
+      <article
+        class="problem-solution-card flex-shrink-0 w-[85vw] sm:w-[400px] snap-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 shadow-lg"
+        style={`animation-delay: ${i * 0.1}s`}
+      >
+        <div class="flex items-start gap-4">
+          <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent-muted)] text-[var(--color-accent)]" aria-hidden="true">
+            {item.icon === 'inbox' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293H7.586a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 003.586 13H2" /></svg>)}
+            {item.icon === 'clock' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>)}
+            {item.icon === 'chat' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>)}
+            {item.icon === 'db' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>)}
+            {item.icon === 'rocket' && (<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>)}
+          </span>
+          <div>
+            <p class="text-[var(--color-text-muted)] text-sm font-medium">{item.problem}</p>
+            <p class="mt-2 text-[var(--color-text)] font-semibold">{item.solution}</p>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const cards = document.querySelectorAll('.problem-solution-card');
+  gsap.fromTo(cards, { opacity: 0, x: 40 }, {
+    opacity: 1,
+    x: 0,
+    duration: 0.5,
+    stagger: 0.12,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.problem-solution-track', start: 'top 80%', toggleActions: 'play none none none' },
+  });
+</script>

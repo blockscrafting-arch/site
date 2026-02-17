@@ -1,0 +1,112 @@
+---
+/**
+ * Страница одного кейса с уникальным оформлением (accentColor, layout).
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Badge from '../../components/common/Badge.astro';
+import Button from '../../components/common/Button.astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const cases = await getCollection('cases');
+  return cases.filter((c) => !c.data.draft).map((entry) => ({ params: { slug: entry.slug } }));
+};
+
+const { slug } = Astro.params;
+if (!slug) throw new Error('Missing slug');
+const cases = await getCollection('cases');
+const entry = cases.find((e) => e.slug === slug);
+if (!entry) throw new Error(`Case not found: ${slug}`);
+
+const { Content } = await entry.render();
+const data = entry.data;
+const { title, description, result, stack, metrics, accentColor, layout, problem, testimonial } = data;
+const accent = accentColor ?? '#10b981';
+const layoutType = layout ?? 'default';
+---
+
+<BaseLayout title={`${title} — Кейсы | vlad.execute(_)`} description={description}>
+  <article
+    class="case-detail"
+    style={`--case-accent: ${accent}`}
+    data-layout={layoutType}
+  >
+    <header
+      class="case-hero rounded-b-3xl border-b border-[var(--color-border)] px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      style={{ backgroundColor: `${accent}12`, borderColor: `${accent}30` }}
+    >
+      <div class="mx-auto max-w-3xl">
+        <a
+          href="/cases"
+          class="mb-6 inline-flex items-center text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
+        >
+          ← Кейсы
+        </a>
+        <h1 class="font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl">
+          {title}
+        </h1>
+        {description && (
+          <p class="mt-4 text-lg text-[var(--color-text-muted)]">{description}</p>
+        )}
+        {((stack ?? []).length > 0) && (
+          <div class="mt-6 flex flex-wrap gap-2">
+            {(stack ?? []).map((s) => (
+              <Badge variant="emerald">{s}</Badge>
+            ))}
+          </div>
+        )}
+        {result && (
+          <p
+            class="mt-6 rounded-xl px-4 py-3 text-sm font-medium"
+            style={{ backgroundColor: `${accent}20`, color: accent }}
+          >
+            <strong>Результат:</strong> {result}
+          </p>
+        )}
+        {metrics && metrics.length > 0 && (
+          <ul class="mt-6 flex flex-wrap gap-3" role="list">
+            {metrics.map((m) => (
+              <li
+                class="rounded-xl border px-4 py-3 text-sm bg-[var(--color-surface)] border-[var(--color-border)]"
+              >
+                <span class="font-bold" style={{ color: accent }}>
+                  {m.prefix ?? ''}{m.value}{m.suffix ?? ''}
+                </span>
+                <span class="text-[var(--color-text-muted)]"> — {m.label}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      {problem && (
+        <section class="mb-10 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+          <h2 class="font-display text-lg font-semibold text-[var(--color-text)]">Проблема</h2>
+          <p class="mt-2 text-[var(--color-text-muted)]">{problem}</p>
+        </section>
+      )}
+      <div class="prose prose-invert max-w-none prose-headings:font-display prose-a:text-[var(--color-accent)]">
+        <Content />
+      </div>
+      {testimonial && (
+        <blockquote
+          class="mt-12 rounded-2xl border-l-4 px-6 py-4 italic text-[var(--color-text-muted)]"
+          style={{ borderColor: accent }}
+        >
+          "{testimonial.text}" — {testimonial.author}
+        </blockquote>
+      )}
+      <div class="mt-14 flex flex-wrap gap-4">
+        <Button href="/contact" variant="primary">
+          Обсудить похожий проект
+        </Button>
+        <Button href="/cases" variant="ghost">
+          Все кейсы
+        </Button>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

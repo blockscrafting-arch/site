@@ -1,0 +1,30 @@
+---
+/**
+ * Карточка контента. Используется для кейсов, постов, блоков.
+ * @param href - Если задан, вся карточка — ссылка
+ * @param padding - Размер отступов: default | none
+ */
+interface Props {
+  href?: string;
+  padding?: 'default' | 'none';
+  class?: string;
+}
+
+const { href, padding = 'default', class: className = '' } = Astro.props;
+
+const paddingClass = padding === 'none' ? '' : 'p-5 sm:p-6';
+const base =
+  'block rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg';
+
+const classes = [base, paddingClass, className].filter(Boolean).join(' ');
+---
+
+{href ? (
+  <a href={href} class={classes}>
+    <slot />
+  </a>
+) : (
+  <div class={classes}>
+    <slot />
+  </div>
+)}

@@ -1,0 +1,59 @@
+---
+/**
+ * Hero главной: полноэкранный блок с canvas-фоном, заголовок с GSAP reveal, подзаголовок, «командная строка», CTA.
+ */
+import HeroCanvas from './HeroCanvas.astro';
+import Button from '../common/Button.astro';
+---
+
+<section class="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-24 sm:px-6 overflow-hidden">
+  <HeroCanvas />
+  <div class="absolute inset-0 bg-gradient-hero opacity-60" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    <h1 class="hero-title font-display text-4xl font-extrabold tracking-tight text-[var(--color-text)] sm:text-5xl md:text-6xl lg:text-7xl">
+      Автоматизирую. Всё.
+    </h1>
+    <p class="hero-subtitle mt-6 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto">
+      Telegram-боты, AI-агенты, n8n, парсеры. От идеи до запуска — без лишней рутины.
+    </p>
+    <div class="hero-terminal mt-10 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-sm p-4 text-left font-mono text-sm sm:text-base max-w-xl mx-auto overflow-hidden">
+      <div class="text-[var(--color-text-muted)]">&gt; bot.deploy() <span class="text-[var(--color-accent)]">// 2400+ лидов/мес</span></div>
+      <div class="text-[var(--color-text-muted)] mt-1">&gt; agent.run() <span class="text-[var(--color-accent)]">// −80% рутины</span></div>
+      <div class="text-[var(--color-text-muted)] mt-1">&gt; automate() <span class="text-[var(--color-accent)]">// 24/7 без выходных</span></div>
+    </div>
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-4">
+      <Button href="/contact" variant="primary" class="shadow-glow-sm">Обсудить задачу</Button>
+      <Button href="/cases" variant="ghost">Смотреть кейсы</Button>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const title = document.querySelector('.hero-title');
+  const subtitle = document.querySelector('.hero-subtitle');
+  const terminal = document.querySelector('.hero-terminal');
+
+  if (title) {
+    const text = title.textContent || '';
+    title.innerHTML = text.split('').map((c) => `<span class="hero-char inline-block opacity-0">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+    const chars = title.querySelectorAll('.hero-char');
+    gsap.to(chars, {
+      opacity: 1,
+      duration: 0.04,
+      stagger: 0.03,
+      delay: 0.2,
+      ease: 'power2.out',
+    });
+  }
+  if (subtitle) {
+    gsap.fromTo(subtitle, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.8, ease: 'power2.out' });
+  }
+  if (terminal) {
+    gsap.fromTo(terminal, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, delay: 1.1, ease: 'power2.out' });
+  }
+</script>

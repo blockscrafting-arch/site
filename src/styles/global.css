@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Design tokens (dark-first) ===== */
+:root {
+  --color-bg: #0a0a0a;
+  --color-surface: #111111;
+  --color-surface-muted: #1a1a1a;
+  --color-text: #fafafa;
+  --color-text-muted: #a1a1aa;
+  --color-border: #27272a;
+  --color-accent: #10b981;
+  --color-accent-cyan: #06b6d4;
+  --color-accent-muted: rgba(16, 185, 129, 0.15);
+  --color-accent-glow: rgba(16, 185, 129, 0.4);
+}
+
+/* Light mode overrides */
+.light,
+[data-theme="light"] {
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f4f4f5;
+  --color-text: #09090b;
+  --color-text-muted: #71717a;
+  --color-border: #e4e4e7;
+  --color-accent: #059669;
+  --color-accent-muted: rgba(5, 150, 105, 0.12);
+  --color-accent-glow: rgba(5, 150, 105, 0.25);
+}
+
+/* Apply theme when .dark is on html (Tailwind) */
+.dark {
+  --color-bg: #0a0a0a;
+  --color-surface: #111111;
+  --color-surface-muted: #1a1a1a;
+  --color-text: #fafafa;
+  --color-text-muted: #a1a1aa;
+  --color-border: #27272a;
+  --color-accent: #10b981;
+  --color-accent-cyan: #06b6d4;
+  --color-accent-muted: rgba(16, 185, 129, 0.15);
+  --color-accent-glow: rgba(16, 185, 129, 0.4);
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+  }
+  .skip-link:focus {
+    @apply static z-[100] m-4 p-3 rounded-lg;
+    background-color: var(--color-accent);
+    color: white;
+    width: auto;
+    height: auto;
+    clip: auto;
+    clip-path: none;
+    overflow: visible;
+  }
+
+  main a:not(.skip-link):focus-visible {
+    @apply outline-none ring-2 ring-offset-2 rounded;
+    --tw-ring-color: var(--color-accent);
+    --tw-ring-offset-color: var(--color-bg);
+  }
+
+  /* Контент кейса (markdown) */
+  .case-detail .prose {
+    color: var(--color-text-muted);
+  }
+  .case-detail .prose h2 {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .case-detail .prose h3 {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .case-detail .prose p {
+    margin-bottom: 1rem;
+  }
+  .case-detail .prose ul,
+  .case-detail .prose ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  .case-detail .prose a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+  .case-detail .prose strong {
+    color: var(--color-text);
+  }
+  .case-detail .prose code {
+    background: var(--color-surface-muted);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
+
+  .guide-prose {
+    color: var(--color-text-muted);
+  }
+  .guide-prose h2 {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .guide-prose h3 {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .guide-prose p { margin-bottom: 1rem; }
+  .guide-prose ul, .guide-prose ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+  .guide-prose a { color: var(--color-accent); text-decoration: underline; }
+  .guide-prose strong { color: var(--color-text); }
+  .guide-prose code {
+    background: var(--color-surface-muted);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
+}

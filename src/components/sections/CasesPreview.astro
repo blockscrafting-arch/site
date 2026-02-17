@@ -1,0 +1,70 @@
+---
+/**
+ * Превью кейсов на главной: bento-сетка из 3–4 кейсов с метрикой и ссылкой.
+ */
+import { getCollection } from 'astro:content';
+const allCases = await getCollection('cases');
+const cases = allCases.filter((c) => !c.data.draft).sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
+const featured = cases.slice(0, 4);
+const accentColors = ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b'];
+---
+
+<section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="cases-preview-heading">
+  <div class="mx-auto max-w-6xl">
+    <h2 id="cases-preview-heading" class="cases-preview-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center">
+      Результаты в деле
+    </h2>
+    <p class="mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto">
+      Реальные проекты: боты, агенты, автоматизация.
+    </p>
+    <div class="cases-bento mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {featured.map((c, i) => {
+        const metric = c.data.metrics?.[0];
+        const accent = accentColors[i % accentColors.length];
+        return (
+          <a
+            href={`/cases/${c.slug}`}
+            class="case-preview-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-opacity-80 hover:shadow-glow-sm"
+            style={`--case-accent: ${accent}`}
+          >
+            <span class="block h-1 w-12 rounded-full mb-4" style={{ backgroundColor: accent }} aria-hidden="true"></span>
+            <h3 class="font-display font-semibold text-[var(--color-text)]">{c.data.title}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] line-clamp-2">{c.data.description}</p>
+            {metric && (
+              <p class="mt-4 text-sm font-medium" style={{ color: accent }}>
+                {metric.value} — {metric.label}
+              </p>
+            )}
+          </a>
+        );
+      })}
+    </div>
+    <div class="mt-10 text-center">
+      <a
+        href="/cases"
+        class="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium border border-[var(--color-border)] text-[var(--color-text)] hover:bg-[var(--color-surface-muted)] transition-colors"
+      >
+        Все кейсы
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const heading = document.querySelector('.cases-preview-heading');
+  const cards = document.querySelectorAll('.case-preview-card');
+  if (heading) {
+    gsap.fromTo(heading, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: heading, start: 'top 85%' } });
+  }
+  gsap.fromTo(cards, { opacity: 0, y: 20 }, {
+    opacity: 1,
+    y: 0,
+    duration: 0.5,
+    stagger: 0.1,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.cases-bento', start: 'top 82%', toggleActions: 'play none none none' },
+  });
+</script>

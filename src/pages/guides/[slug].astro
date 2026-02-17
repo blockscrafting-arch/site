@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Button from '../../components/common/Button.astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const guides = await getCollection('guides');
+  return guides.map((entry) => ({ params: { slug: entry.slug } }));
+};
+
+const { slug } = Astro.params;
+if (!slug) throw new Error('Missing slug');
+const guides = await getCollection('guides');
+const entry = guides.find((e) => e.slug === slug);
+if (!entry) throw new Error('Guide not found: ' + slug);
+
+const { Content } = await entry.render();
+const { title, description } = entry.data;
+---
+
+<BaseLayout title={`${title} — Инструкции | vlad.execute(_)`} description={description ?? undefined}>
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <header>
+      <a
+        href="/guides"
+        class="mb-6 inline-flex items-center text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
+      >
+        ← Инструкции
+      </a>
+      <h1 class="font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">{title}</h1>
+      {description && (
+        <p class="mt-2 text-lg text-[var(--color-text-muted)]">{description}</p>
+      )}
+    </header>
+    <div class="guide-prose mt-8 prose prose-invert max-w-none">
+      <Content />
+    </div>
+    <div class="mt-12">
+      <Button href="/guides" variant="ghost">Все инструкции</Button>
+    </div>
+  </article>
+</BaseLayout>

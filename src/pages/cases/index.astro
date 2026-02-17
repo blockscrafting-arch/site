@@ -1,0 +1,135 @@
+---
+/**
+ * Список кейсов с фильтрацией по категории и уникальными карточками.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import Badge from '../../components/common/Badge.astro';
+
+const allCases = await getCollection('cases');
+const cases = allCases.filter((c) => !c.data.draft);
+const sorted = [...cases].sort((a, b) => {
+  const dateA = a.data.date?.getTime() ?? 0;
+  const dateB = b.data.date?.getTime() ?? 0;
+  return dateB - dateA;
+});
+
+const categories = [
+  { id: 'all', label: 'Все' },
+  { id: 'bot', label: 'Боты' },
+  { id: 'ai-agent', label: 'AI-агенты' },
+  { id: 'automation', label: 'Автоматизация' },
+  { id: 'mini-app', label: 'Mini Apps' },
+  { id: 'parser', label: 'Парсеры' },
+  { id: 'custom', label: 'Кастом' },
+] as const;
+---
+
+<BaseLayout
+  title="Кейсы — vlad.execute(_)"
+  description="Реальные проекты: автоматизация, боты, AI-агенты, n8n, Python."
+>
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <h1 class="cases-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
+      Кейсы
+    </h1>
+    <p class="mt-2 text-[var(--color-text-muted)]">
+      Разборы реальных проектов с результатами и цифрами.
+    </p>
+
+    <div class="cases-filters mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Фильтр по категории">
+      {categories.map((cat) => (
+        <button
+          type="button"
+          class="cases-filter-btn rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text)] data-[active]:border-[var(--color-accent)] data-[active]:bg-[var(--color-accent-muted)] data-[active]:text-[var(--color-accent)]"
+          data-category={cat.id}
+          data-active={cat.id === 'all' ? 'true' : undefined}
+        >
+          {cat.label}
+        </button>
+      ))}
+    </div>
+
+    {sorted.length === 0 ? (
+      <p class="mt-12 text-[var(--color-text-muted)]">Кейсы скоро появятся.</p>
+    ) : (
+      <ul class="cases-grid mt-10 grid gap-6 sm:grid-cols-2" role="list">
+        {sorted.map((entry) => {
+          const accent = entry.data.accentColor ?? '#10b981';
+          const category = entry.data.category ?? 'custom';
+          return (
+            <li class="case-card-item" data-category={category}>
+              <a
+                href={`/cases/${entry.slug}`}
+                class="group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-opacity-80 hover:shadow-glow-sm"
+              >
+                <span
+                  class="mb-4 block h-1 w-12 rounded-full"
+                  style={{ backgroundColor: accent }}
+                  aria-hidden="true"
+                />
+                <h2 class="font-display font-semibold text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
+                  {entry.data.title}
+                </h2>
+                <p class="mt-2 text-sm text-[var(--color-text-muted)] line-clamp-2">
+                  {entry.data.description}
+                </p>
+                {entry.data.result && (
+                  <p class="mt-3 text-sm font-medium line-clamp-2" style={{ color: accent }}>
+                    {entry.data.result}
+                  </p>
+                )}
+                {entry.data.metrics && entry.data.metrics.length > 0 && (
+                  <ul class="mt-3 flex flex-wrap gap-2" role="list">
+                    {entry.data.metrics.slice(0, 3).map((m) => (
+                      <li class="rounded-md bg-[var(--color-surface-muted)] px-2 py-1 text-xs font-medium text-[var(--color-text-muted)]">
+                        <span style={{ color: accent }}>{m.value}</span> — {m.label}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {entry.data.stack && entry.data.stack.length > 0 && (
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {entry.data.stack.map((s) => (
+                      <Badge variant="gray">{s}</Badge>
+                    ))}
+                  </div>
+                )}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    )}
+  </div>
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const title = document.querySelector('.cases-page-title');
+  const cards = document.querySelectorAll('.case-card-item');
+  if (title) {
+    gsap.fromTo(title, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 });
+  }
+  gsap.fromTo(cards, { opacity: 0, y: 20 }, {
+    opacity: 1,
+    y: 0,
+    duration: 0.4,
+    stagger: 0.08,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.cases-grid', start: 'top 88%', toggleActions: 'play none none none' },
+  });
+  document.querySelectorAll('.cases-filter-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = (btn as HTMLElement).dataset.category;
+      document.querySelectorAll('.cases-filter-btn').forEach((b) => b.removeAttribute('data-active'));
+      btn.setAttribute('data-active', 'true');
+      document.querySelectorAll('.case-card-item').forEach((el) => {
+        const itemCat = (el as HTMLElement).dataset.category;
+        (el as HTMLElement).style.display = cat === 'all' || itemCat === cat ? '' : 'none';
+      });
+    });
+  });
+</script>

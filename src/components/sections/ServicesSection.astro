@@ -1,0 +1,58 @@
+---
+/**
+ * Секция «Услуги»: 6 карточек с glow/tilt — боты, AI-агенты, Mini Apps, n8n, скрипты/парсеры, кастом.
+ */
+import Badge from '../common/Badge.astro';
+const services = [
+  { title: 'Telegram-боты', desc: 'Приём заявок, поддержка, рассылки, мини-приложения в одном чате.', tags: ['Telegram', 'Mini App'], href: '/cases' },
+  { title: 'AI-агенты', desc: 'Обработка заявок, аналитика, ответы клиентам на базе LLM и RAG.', tags: ['LLM', 'RAG'], href: '/cases' },
+  { title: 'TG Mini Apps', desc: 'Веб-приложения внутри Telegram: формы, каталоги, личные кабинеты.', tags: ['Telegram', 'Web'], href: '/cases' },
+  { title: 'n8n-автоматизация', desc: 'Связываю CRM, мессенджеры, таблицы и сервисы в единые воронки.', tags: ['n8n', 'API'], href: '/cases' },
+  { title: 'Скрипты и парсеры', desc: 'Парсинг данных, интеграции, кастомные решения на Python под задачу.', tags: ['Python', 'API'], href: '/cases' },
+  { title: 'Кастомная разработка', desc: 'Интеграции под ключ, бэкенды, автоматизация под ваш процесс.', tags: ['Python', 'n8n'], href: '/contact' },
+];
+---
+
+<section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="services-heading">
+  <div class="mx-auto max-w-6xl">
+    <h2 id="services-heading" class="services-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center">
+      Чем занимаюсь
+    </h2>
+    <p class="mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto">
+      Чат-боты, AI-агенты, Mini Apps, n8n, скрипты — от идеи до рабочего решения.
+    </p>
+    <div class="services-grid mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s) => (
+        <a
+          href={s.href}
+          class="service-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)]/50 hover:shadow-glow-sm"
+        >
+          <h3 class="font-display font-semibold text-[var(--color-text)] text-lg">{s.title}</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">{s.desc}</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {s.tags.map((tag) => <Badge variant="gray">{tag}</Badge>)}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const heading = document.querySelector('.services-heading');
+  const cards = document.querySelectorAll('.service-card');
+  if (heading) {
+    gsap.fromTo(heading, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: heading, start: 'top 85%' } });
+  }
+  gsap.fromTo(cards, { opacity: 0, y: 24 }, {
+    opacity: 1,
+    y: 0,
+    duration: 0.5,
+    stagger: 0.08,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.services-grid', start: 'top 82%', toggleActions: 'play none none none' },
+  });
+</script>

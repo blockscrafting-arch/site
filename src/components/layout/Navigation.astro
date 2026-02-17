@@ -1,0 +1,35 @@
+---
+/**
+ * Навигация по сайту (десктоп).
+ * На мобильных используется блок в Header на основе <details>/<summary>.
+ */
+const navItems = [
+  { href: '/', label: 'Главная' },
+  { href: '/cases', label: 'Кейсы' },
+  { href: '/guides', label: 'Инструкции' },
+  { href: '/about', label: 'Обо мне' },
+  { href: '/contact', label: 'Контакты' },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="flex items-center gap-6" aria-label="Основное меню">
+  {
+    navItems.map(({ href, label }) => {
+      const isActive = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+      return (
+        <a
+          href={href}
+          class:list={[
+            'text-sm font-medium transition-colors rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]',
+            isActive
+              ? 'text-[var(--color-accent)]'
+              : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]',
+          ]}
+        >
+          {label}
+        </a>
+      );
+    })
+  }
+</nav>

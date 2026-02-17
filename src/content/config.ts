@@ -1,0 +1,59 @@
+/**
+ * Конфигурация коллекций контента (кейсы, инструкции).
+ */
+import { defineCollection, z } from 'astro:content';
+
+const casesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    result: z.string().optional(),
+    stack: z.array(z.string()).optional(),
+    date: z.coerce.date().optional(),
+    metrics: z
+      .array(
+        z.object({
+          value: z.string(),
+          label: z.string(),
+          prefix: z.string().optional(),
+          suffix: z.string().optional(),
+        })
+      )
+      .optional(),
+    client: z.string().optional(),
+    category: z
+      .enum(['bot', 'ai-agent', 'automation', 'mini-app', 'parser', 'custom'])
+      .optional(),
+    accentColor: z.string().default('#10b981'),
+    layout: z
+      .enum(['default', 'split', 'fullwidth', 'timeline'])
+      .default('default'),
+    heroImage: z.string().optional(),
+    heroStyle: z.enum(['dark', 'light', 'gradient']).optional(),
+    problem: z.string().optional(),
+    testimonial: z
+      .object({
+        text: z.string(),
+        author: z.string(),
+      })
+      .optional(),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
+});
+
+const guidesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    order: z.number().optional(),
+    category: z.enum(['setup', 'integrations', 'faq']).optional(),
+  }),
+});
+
+export const collections = {
+  cases: casesCollection,
+  guides: guidesCollection,
+};

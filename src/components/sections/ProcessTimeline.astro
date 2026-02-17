@@ -1,0 +1,55 @@
+---
+/**
+ * Секция «Как я работаю»: таймлайн из 5 шагов с scroll-анимацией.
+ */
+const steps = [
+  { title: 'Брифинг', desc: 'Уточняем задачу, каналы, желаемый результат.' },
+  { title: 'Прототип', desc: 'Схема или MVP за 1–2 дня, чтобы проверить гипотезу.' },
+  { title: 'Разработка', desc: 'Собираю бота/воркфлоу, тестируем на реальных сценариях.' },
+  { title: 'Запуск', desc: 'Деплой, инструкции, передача доступа.' },
+  { title: 'Поддержка', desc: 'Правки и доработки по договорённости.' },
+];
+---
+
+<section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="process-heading">
+  <div class="mx-auto max-w-3xl">
+    <h2 id="process-heading" class="process-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center">
+      Как мы работаем
+    </h2>
+    <p class="mt-4 text-center text-[var(--color-text-muted)]">
+      От брифа до запуска — прозрачно и по шагам.
+    </p>
+    <ol class="process-steps mt-16 space-y-8" role="list">
+      {steps.map((step, i) => (
+        <li class="process-step flex gap-6" style={`--step-i: ${i}`}>
+          <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-muted)] font-mono text-sm font-semibold text-[var(--color-accent)]" aria-hidden="true">
+            {i + 1}
+          </span>
+          <div>
+            <h3 class="font-display font-semibold text-[var(--color-text)]">{step.title}</h3>
+            <p class="mt-1 text-sm text-[var(--color-text-muted)]">{step.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const heading = document.querySelector('.process-heading');
+  const stepsEl = document.querySelectorAll('.process-step');
+  if (heading) {
+    gsap.fromTo(heading, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: heading, start: 'top 85%' } });
+  }
+  gsap.fromTo(stepsEl, { opacity: 0, x: -24 }, {
+    opacity: 1,
+    x: 0,
+    duration: 0.5,
+    stagger: 0.12,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.process-steps', start: 'top 80%', toggleActions: 'play none none none' },
+  });
+</script>

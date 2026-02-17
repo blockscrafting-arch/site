@@ -1,0 +1,27 @@
+---
+/**
+ * Кастомный курсор (только десктоп, без touch). Увеличивается на hover по ссылкам и кнопкам.
+ */
+---
+
+<div id="custom-cursor" class="pointer-events-none fixed left-0 top-0 z-[9999] h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--color-accent)] opacity-0 transition-opacity duration-200 md:opacity-100" aria-hidden="true" style="mix-blend-mode: difference;"></div>
+<script is:inline>
+  (function () {
+    if (typeof window === 'undefined' || 'ontouchstart' in window) return;
+    var cur = document.getElementById('custom-cursor');
+    if (!cur) return;
+    var x = 0, y = 0, big = false;
+    document.addEventListener('mousemove', function (e) { x = e.clientX; y = e.clientY; });
+    document.body.addEventListener('mouseover', function (e) {
+      big = !!(e.target && (e.target.closest('a') || e.target.closest('button') || e.target.closest('[role="button"]')));
+    });
+    document.body.addEventListener('mouseout', function () { big = false; });
+    function tick() {
+      cur.style.left = x + 'px';
+      cur.style.top = y + 'px';
+      cur.style.transform = 'translate(-50%,-50%) scale(' + (big ? 2 : 1) + ')';
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>

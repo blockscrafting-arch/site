@@ -1,0 +1,31 @@
+---
+/**
+ * Финальный CTA на главной: «Готовы автоматизировать?» + кнопка/форма.
+ */
+import Button from '../common/Button.astro';
+import { site } from '../../utils/site';
+---
+
+<section class="py-24 sm:py-32 px-4 sm:px-6" aria-labelledby="cta-heading">
+  <div class="mx-auto max-w-2xl text-center">
+    <div class="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] bg-gradient-to-b from-[var(--color-accent-muted)]/20 to-transparent p-10 sm:p-14">
+      <h2 id="cta-heading" class="font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl">
+        Готовы автоматизировать?
+      </h2>
+      <p class="mt-4 text-[var(--color-text-muted)]">
+        Опишите задачу — обсудим решение и сроки.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <Button href="/contact" variant="primary" class="shadow-glow-sm">Обсудить задачу</Button>
+        <a
+          href={site.tgChannel}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+        >
+          Написать в Telegram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+---
+/**
+ * Страница «Обо мне»: сторителлинг, стек, манифест.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/common/Button.astro';
+import { site } from '../utils/site';
+
+const stack = ['Telegram', 'n8n', 'Python', 'OpenAI', 'Supabase', 'Google Sheets', 'Airtable'];
+---
+
+<BaseLayout
+  title="Обо мне — vlad.execute(_)"
+  description="Влад — разработчик и автоматизатор. Telegram-боты, AI-агенты, n8n, Python."
+>
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <h1 class="about-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
+      Обо мне
+    </h1>
+
+    <div class="mt-10 space-y-8 text-[var(--color-text-muted)]">
+      <p class="text-lg">
+        Я — Влад, разработчик и автоматизатор. Помогаю бизнесу экономить время и деньги через AI и умную автоматизацию.
+      </p>
+      <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+        <h2 class="font-display text-lg font-semibold text-[var(--color-text)]">Бизнесу</h2>
+        <p class="mt-2">Заменяю раздутый штат на алгоритмы. Превращаю ваши OPEX в CAPEX.</p>
+      </div>
+      <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+        <h2 class="font-display text-lg font-semibold text-[var(--color-text)]">Людям</h2>
+        <p class="mt-2">«Цифровой экзоскелет» — объём работы целого отдела в одиночку, работая 2 часа в день.</p>
+      </div>
+      <p>
+        В канале <a href={site.tgChannel} class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelHandle}</a> делюсь кейсами, экспертной информацией и техническими решениями.
+      </p>
+    </div>
+
+    <section class="mt-14" aria-labelledby="stack-heading">
+      <h2 id="stack-heading" class="font-display text-lg font-semibold text-[var(--color-text)]">
+        С чем работаю
+      </h2>
+      <ul class="mt-4 flex flex-wrap gap-3" role="list">
+        {stack.map((tech) => (
+          <li>
+            <span class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-text)]">
+              {tech}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <div class="mt-14">
+      <Button href="/contact" variant="primary">Написать</Button>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const title = document.querySelector('.about-title');
+  const blocks = document.querySelectorAll('.about-title + div > div, .about-title + div > p');
+  if (title) {
+    gsap.fromTo(title, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 });
+  }
+  gsap.fromTo(blocks, { opacity: 0, y: 16 }, {
+    opacity: 1,
+    y: 0,
+    duration: 0.4,
+    stagger: 0.1,
+    delay: 0.2,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.about-title', start: 'top 85%', toggleActions: 'play none none none' },
+  });
+</script>
