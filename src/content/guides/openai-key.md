@@ -7,10 +7,10 @@ category: setup
 
 ## Шаги
 
-1. Зайдите на [https://auth.openai.com/log-in](https://auth.openai.com/log-in).
+1. Зайдите на [platform.openai.com](https://platform.openai.com) (или [auth.openai.com](https://auth.openai.com) для входа).
 2. Войдите или зарегистрируйтесь.
-3. Нажмите шестерёнку справа сверху.
-4. В меню слева: **API keys** → **Create new secret key** → введите любое название ключа → выберите любой доступный проект (project) → **Create secret key** → скопируйте и сохраните ключ. Формат ключа: `sk-proj-gQ5z3…`.
+3. В кабинете откройте **API keys** (шестерёнка → API keys или раздел в меню).
+4. **Create new secret key** → введите любое название ключа → выберите любой доступный проект (project) → **Create secret key** → скопируйте и сохраните ключ. Формат ключа: `sk-proj-gQ5z3…`.
 
 ## Пополнение счёта
 

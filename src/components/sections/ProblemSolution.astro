@@ -21,7 +21,22 @@ const items = [
       Проблемы, которые я решаю автоматизацией и ботами.
     </p>
   </div>
-  <div class="problem-solution-track flex gap-6 px-4 sm:px-6 pb-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide cursor-grab" style="scrollbar-width: none; -ms-overflow-style: none;" data-horizontal-scroll>
+  <div class="problem-solution-wrap relative px-4 sm:px-6">
+    <button
+      type="button"
+      class="problem-solution-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] shadow-lg transition-colors hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
+      aria-label="Листать влево"
+    >
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+    </button>
+    <button
+      type="button"
+      class="problem-solution-next absolute right-0 top-1/2 z-10 -translate-y-1/2 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] shadow-lg transition-colors hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
+      aria-label="Листать вправо"
+    >
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+    </button>
+    <div class="problem-solution-track flex gap-6 pb-4 pl-4 pr-4 sm:pl-14 sm:pr-14 overflow-x-auto snap-x snap-mandatory scrollbar-hide cursor-grab" style="scrollbar-width: none; -ms-overflow-style: none;" data-horizontal-scroll>
     {items.map((item, i) => (
       <article
         class="problem-solution-card flex-shrink-0 w-[85vw] sm:w-[400px] snap-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 shadow-lg"
@@ -43,6 +58,10 @@ const items = [
         </div>
       </article>
     ))}
+    </div>
+    <div class="problem-solution-bar mt-2 h-1 w-full overflow-hidden rounded-full bg-[var(--color-surface-muted)]" role="presentation">
+      <div class="problem-solution-bar-fill h-full rounded-full bg-[var(--color-accent)] transition-[width] duration-150" style="width: 0%"></div>
+    </div>
   </div>
 </section>
 
@@ -101,5 +120,47 @@ const items = [
       e.preventDefault();
       track.scrollLeft = startScrollLeft - (e.clientX - startX);
     });
+
+    // Кнопки влево/вправо и полоска прогресса
+    const prevBtn = document.querySelector('.problem-solution-prev');
+    const nextBtn = document.querySelector('.problem-solution-next');
+    const barFill = document.querySelector('.problem-solution-bar-fill');
+    const step = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (prevBtn) {
+        prevBtn.disabled = track.scrollLeft <= 0;
+      }
+      if (nextBtn) {
+        nextBtn.disabled = maxScroll <= 0 || track.scrollLeft >= maxScroll - 1;
+      }
+      if (barFill) {
+        const pct = maxScroll > 0 ? (track.scrollLeft / maxScroll) * 100 : 0;
+        barFill.style.width = pct + '%';
+      }
+    };
+    step();
+    track.addEventListener('scroll', step);
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -track.clientWidth * 0.85, behavior: 'smooth' });
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        track.scrollBy({ left: track.clientWidth * 0.85, behavior: 'smooth' });
+      });
+    }
+    const bar = document.querySelector('.problem-solution-bar');
+    if (bar && barFill) {
+      bar.addEventListener('click', (e) => {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        if (maxScroll <= 0) return;
+        const rect = bar.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const pct = Math.max(0, Math.min(1, x / rect.width));
+        track.scrollTo({ left: pct * maxScroll, behavior: 'smooth' });
+      });
+      bar.classList.add('cursor-pointer');
+    }
   }
 </script>

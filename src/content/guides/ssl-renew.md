@@ -9,10 +9,12 @@ Let's Encrypt выдаёт бесплатные сертификаты на 90 �
 
 ## Проверка автопродления
 
-На сервере с установленным certbot:
+На сервере с установленным certbot (apt или snap):
 
 ```bash
 sudo systemctl status certbot.timer
+# или, если certbot установлен через snap:
+# sudo systemctl status snap.certbot.renew.timer
 ```
 
 Если таймер активен, сертификаты продлеваются сами. Проверить вручную:
