@@ -155,10 +155,10 @@ certbot --nginx -d vladexecute.ru -d www.vladexecute.ru
 
 Введите email, согласитесь с условиями. Certbot создаст конфиг и получит сертификаты.
 
-4. Настройте nginx как прокси к контейнеру. Запустите контейнер на внутреннем порту 8080:
+4. Настройте nginx как прокси к контейнеру. Запустите контейнер на внутреннем порту 9080:
 
 ```bash
-docker run -d --name site -p 127.0.0.1:8080:80 --restart unless-stopped vlad-execute-site:latest
+docker run -d --name site -p 127.0.0.1:9080:80 --restart unless-stopped vlad-execute-site:latest
 ```
 
 5. Создайте конфиг nginx для сайта (или отредактируйте тот, что создал certbot):
@@ -188,7 +188,7 @@ server {
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     location / {
-        proxy_pass http://127.0.0.1:8080;
+        proxy_pass http://127.0.0.1:9080;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -198,7 +198,7 @@ server {
 }
 ```
 
-Если certbot уже создал файл в `sites-available`, откройте его и замените блок `location /` на `proxy_pass http://127.0.0.1:8080` и заголовки выше. Либо поместите этот конфиг в отдельный файл и сделайте симлинк:
+Если certbot уже создал файл в `sites-available`, откройте его и замените блок `location /` на `proxy_pass http://127.0.0.1:9080` и заголовки выше. Либо поместите этот конфиг в отдельный файл и сделайте симлинк:
 
 ```bash
 ln -s /etc/nginx/sites-available/vladexecute.ru /etc/nginx/sites-enabled/
@@ -228,7 +228,7 @@ cd /opt/vlad-execute-site
 git clone https://github.com/ВАШ_ЛОГИН/ВАШ_РЕПО.git .
 ```
 
-Создайте там же `docker-compose.yml` (или скопируйте из проекта) и конфиг для запуска одного контейнера на 8080 (как в шаге 5). Пример `docker-compose.yml` на сервере:
+Создайте там же `docker-compose.yml` (или скопируйте из проекта) и конфиг для запуска одного контейнера на 9080 (как в шаге 5). Пример `docker-compose.yml` на сервере:
 
 ```yaml
 services:
@@ -237,7 +237,7 @@ services:
     container_name: site
     restart: unless-stopped
     ports:
-      - "127.0.0.1:8080:80"
+      - "127.0.0.1:9080:80"
 ```
 
 4. В проекте раскомментируйте job `deploy` в `.github/workflows/deploy.yml` и при необходимости поправьте путь и команды под ваш сервер (например `cd /opt/vlad-execute-site`, `docker compose pull` или пересборка образа на сервере из кода).
