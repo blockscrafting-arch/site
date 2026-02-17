@@ -22,8 +22,14 @@ const TIPPY_OPTIONS: Partial<TippyProps> = {
   allowHTML: false,
 };
 
+/** Символ считается частью слова (буква, цифра, подчёркивание). Не срабатываем в середине слова. */
+function isWordChar(c: string): boolean {
+  return /[\p{L}\p{N}_]/u.test(c);
+}
+
 /**
- * Находит в тексте все вхождения терминов (целиком) и возвращает массив отрезков.
+ * Находит в тексте все вхождения терминов как отдельных слов и возвращает массив отрезков.
+ * Термин срабатывает только если стоит не внутри другого слова (граница слова).
  * Термины должны быть отсортированы по длине (длинные первыми).
  */
 function findTermRanges(
@@ -31,7 +37,7 @@ function findTermRanges(
   terms: GlossaryEntry[]
 ): Array<{ start: number; end: number; entry: GlossaryEntry }> {
   const ranges: Array<{ start: number; end: number; entry: GlossaryEntry }> = [];
-  const used = new Set<number>(); // индексы символов, уже входящие в какой-то диапазон
+  const used = new Set<number>();
 
   for (const entry of terms) {
     const term = entry.term;
@@ -40,6 +46,11 @@ function findTermRanges(
     while (true) {
       const idx = text.indexOf(term, pos);
       if (idx === -1) break;
+      const before = idx === 0 ? null : text[idx - 1];
+      const after = idx + term.length >= text.length ? null : text[idx + term.length];
+      const atWordBoundary =
+        (before === null || !isWordChar(before)) &&
+        (after === null || !isWordChar(after));
       let overlap = false;
       for (let i = idx; i < idx + term.length; i++) {
         if (used.has(i)) {
@@ -47,7 +58,7 @@ function findTermRanges(
           break;
         }
       }
-      if (!overlap) {
+      if (atWordBoundary && !overlap) {
         for (let i = idx; i < idx + term.length; i++) used.add(i);
         ranges.push({ start: idx, end: idx + term.length, entry });
       }
