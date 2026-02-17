@@ -19,7 +19,10 @@ category: integrations
 ## Webhook: что нужно на сервере
 
 - Домен с SSL (например поддомен для n8n).
-- Nginx: проксирование с `https://n8n.ваш-домен.ru` на `http://127.0.0.1:5678`.
-- В n8n в настройках (или в env) задать: `N8N_HOST=n8n.ваш-домен.ru`, `N8N_PROTOCOL=https`.
+- Nginx: проксирование с `https://n8n.ваш-домен.ru` на `http://127.0.0.1:5678`, заголовки `X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Proto`.
+- В n8n (переменные окружения) задать:
+  - `WEBHOOK_URL=https://n8n.ваш-домен.ru/` — публичный URL для регистрации webhook в Telegram;
+  - `N8N_HOST=n8n.ваш-домен.ru`, `N8N_PROTOCOL=https`;
+  - `N8N_PROXY_HOPS=1` — т.к. перед n8n один обратный прокси.
 
 После этого бот будет отправлять входящие сообщения в n8n, и вы сможете строить цепочки (ответы, сохранение в таблицы, вызов API и т.д.).
