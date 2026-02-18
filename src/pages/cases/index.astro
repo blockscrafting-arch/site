@@ -30,7 +30,7 @@ const categories = [
   description="Реальные проекты: автоматизация, боты, AI-агенты, n8n, Python."
 >
   <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-    <h1 class="cases-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
+    <h1 class="reveal cases-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
       Кейсы
     </h1>
     <p class="mt-2 text-[var(--color-text-muted)]">
@@ -53,7 +53,7 @@ const categories = [
     {sorted.length === 0 ? (
       <p class="mt-12 text-[var(--color-text-muted)]">Кейсы скоро появятся.</p>
     ) : (
-      <ul class="cases-grid mt-10 grid gap-6 sm:grid-cols-2" role="list">
+      <ul class="reveal-stagger cases-grid mt-10 grid gap-6 sm:grid-cols-2" role="list">
         {sorted.map((entry) => {
           const accent = entry.data.accentColor ?? '#10b981';
           const cats = entry.data.categories?.length ? entry.data.categories : ['custom'];
@@ -106,22 +106,6 @@ const categories = [
 </BaseLayout>
 
 <script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  const title = document.querySelector('.cases-page-title');
-  const cards = document.querySelectorAll('.case-card-item');
-  if (title) {
-    gsap.fromTo(title, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 });
-  }
-  gsap.fromTo(cards, { opacity: 0, y: 20 }, {
-    opacity: 1,
-    y: 0,
-    duration: 0.4,
-    stagger: 0.08,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.cases-grid', start: 'top 88%', toggleActions: 'play none none none' },
-  });
   document.querySelectorAll('.cases-filter-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const cat = (btn as HTMLElement).dataset.category;

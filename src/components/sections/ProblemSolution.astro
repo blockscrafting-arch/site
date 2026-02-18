@@ -14,10 +14,10 @@ const items = [
 
 <section class="py-20 sm:py-28 overflow-hidden" aria-labelledby="problem-solution-heading">
   <div class="problem-solution-header mb-12 px-4 sm:px-6 text-center">
-    <h2 id="problem-solution-heading" class="problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl" aria-label="Узнаёте себя?">
+    <h2 id="problem-solution-heading" class="reveal problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl" aria-label="Узнаёте себя?">
       <GlitchHeading text="Узнаёте себя?" client:visible preset="encrypted" />
     </h2>
-    <p class="problem-solution-desc mt-4 text-[var(--color-text-muted)] max-w-2xl mx-auto">
+    <p class="reveal problem-solution-desc mt-4 text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
       Проблемы, которые я решаю автоматизацией и ботами.
     </p>
     <p class="problem-solution-swipe-hint sm:hidden mt-3 text-sm text-[var(--color-text-muted)] flex items-center justify-center gap-2" aria-hidden="true">
@@ -45,7 +45,6 @@ const items = [
     {items.map((item, i) => (
       <article
         class="problem-solution-card flex-shrink-0 w-[85vw] sm:w-[400px] snap-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 shadow-lg"
-        data-tilt="5"
         style={`animation-delay: ${i * 0.1}s`}
       >
         <div class="flex items-start gap-4">
@@ -71,26 +70,6 @@ const items = [
 </section>
 
 <script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  const header = document.querySelector('.problem-solution-header');
-  const heading = document.querySelector('.problem-solution-heading');
-  const desc = document.querySelector('.problem-solution-desc');
-  if (header) {
-    gsap.fromTo(heading, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, scrollTrigger: { trigger: header, start: 'top 85%' } });
-    gsap.fromTo(desc, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.1, scrollTrigger: { trigger: header, start: 'top 85%' } });
-  }
-  const cards = document.querySelectorAll('.problem-solution-card');
-  gsap.fromTo(cards, { opacity: 0, x: 40 }, {
-    opacity: 1,
-    x: 0,
-    duration: 0.5,
-    stagger: 0.12,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.problem-solution-track', start: 'top 80%', toggleActions: 'play none none none' },
-  });
-
   // На ПК: колёсико мыши — горизонтальный скролл, перетаскивание — листание
   const track = document.querySelector('[data-horizontal-scroll]');
   if (track) {

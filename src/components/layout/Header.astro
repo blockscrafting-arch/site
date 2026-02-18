@@ -81,8 +81,6 @@ import { site } from '../../utils/site';
 </div>
 
 <script>
-  import { gsap } from 'gsap';
-  
   // Header scroll behavior
   const header = document.getElementById('main-header');
   let lastScroll = 0;
@@ -145,8 +143,4 @@ import { site } from '../../utils/site';
     });
   }
 
-  // Initial animation
-  if (header) {
-    gsap.fromTo(header, { y: -12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.05 });
-  }
 </script>

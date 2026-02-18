@@ -1,81 +1,66 @@
 ---
 /**
- * Превью кейсов на главной: bento-сетка из 3–4 кейсов с метрикой и ссылкой.
+ * Превью кейсов на главной: bento-сетка, первый кейс wide.
+ * Метрика крупным шрифтом как главный визуал карточки. Без SVG-иллюстраций.
+ * CSS reveal, без GSAP.
  */
 import { getCollection } from 'astro:content';
 const allCases = await getCollection('cases');
 const cases = allCases.filter((c) => !c.data.draft).sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
 const featured = cases.slice(0, 4);
-const accentColors = ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b'];
 ---
 
-<section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="cases-preview-heading">
+<section class="py-24 sm:py-32 px-4 sm:px-6" aria-labelledby="cases-preview-heading">
   <div class="mx-auto max-w-6xl">
-    <h2 id="cases-preview-heading" class="cases-preview-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center">
+    <h2 id="cases-preview-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center">
       Результаты в деле
     </h2>
-    <p class="mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto">
+    <p class="reveal mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
       Реальные проекты: боты, агенты, автоматизация.
     </p>
-    <div class="cases-bento mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+    <div class="reveal-stagger mt-16 grid gap-4 sm:grid-cols-2">
       {featured.map((c, i) => {
         const metric = c.data.metrics?.[0];
-        const accent = accentColors[i % accentColors.length];
+        const isWide = i === 0;
         return (
           <a
             href={`/cases/${c.slug}`}
-            class="case-preview-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden transition-all duration-300 hover:border-opacity-80 hover:shadow-glow-sm"
-            data-tilt="5"
-            style={`--case-accent: ${accent}`}
+            class:list={[
+              'case-preview-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 relative overflow-hidden',
+              isWide && 'sm:col-span-2',
+            ]}
           >
-            <div class="h-20 flex items-end px-6 pt-4" style={{ background: `linear-gradient(135deg, ${accent}22 0%, ${accent}08 100%)` }} aria-hidden="true">
-              <svg class="w-16 h-10 opacity-60" viewBox="0 0 64 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="4" stroke={accent} stroke-width="1.5" fill="none" />
-                <circle cx="32" cy="12" r="4" stroke={accent} stroke-width="1.2" fill="none" opacity="0.8" />
-                <circle cx="52" cy="12" r="4" stroke={accent} stroke-width="1.2" fill="none" opacity="0.6" />
-                <path d="M16 12 L28 12 M36 12 L48 12" stroke={accent} stroke-width="1" stroke-opacity="0.6" stroke-linecap="round" />
-              </svg>
-            </div>
-            <div class="p-6 pt-4">
-            <span class="block h-1 w-12 rounded-full mb-4" style={{ backgroundColor: accent }} aria-hidden="true"></span>
-            <h3 class="font-display font-semibold text-[var(--color-text)]">{c.data.title}</h3>
-            <p class="mt-2 text-sm text-[var(--color-text-muted)] line-clamp-2">{c.data.description}</p>
+            {/* Верхняя часть: крупная метрика */}
             {metric && (
-              <p class="mt-4 text-sm font-medium" style={{ color: accent }}>
-                {metric.value} — {metric.label}
-              </p>
+              <span class:list={[
+                'block font-display font-black text-[var(--color-accent)] leading-none',
+                isWide ? 'text-5xl sm:text-6xl' : 'text-4xl sm:text-5xl',
+              ]}>
+                {metric.value}
+              </span>
             )}
-            </div>
+            {metric && (
+              <span class="block mt-2 text-sm text-[var(--color-text-muted)]">{metric.label}</span>
+            )}
+
+            <h3 class="mt-6 font-display font-semibold text-[var(--color-text)] text-lg">{c.data.title}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] line-clamp-2">{c.data.description}</p>
+
+            {/* Glow при hover */}
+            <div class="absolute -bottom-24 -right-24 w-48 h-48 rounded-full bg-[var(--color-accent)]/0 group-hover:bg-[var(--color-accent)]/5 blur-3xl transition-all duration-500 pointer-events-none" aria-hidden="true"></div>
           </a>
         );
       })}
     </div>
-    <div class="mt-10 text-center">
+
+    <div class="reveal mt-10 text-center" style="animation-delay:.12s">
       <a
         href="/cases"
         class="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium border border-[var(--color-border)] text-[var(--color-text)] hover:bg-[var(--color-surface-muted)] transition-colors"
       >
-        Все кейсы
+        Все кейсы →
       </a>
     </div>
   </div>
 </section>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  const heading = document.querySelector('.cases-preview-heading');
-  const cards = document.querySelectorAll('.case-preview-card');
-  if (heading) {
-    gsap.fromTo(heading, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: heading, start: 'top 85%' } });
-  }
-  gsap.fromTo(cards, { opacity: 0, y: 20 }, {
-    opacity: 1,
-    y: 0,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.cases-bento', start: 'top 82%', toggleActions: 'play none none none' },
-  });
-</script>

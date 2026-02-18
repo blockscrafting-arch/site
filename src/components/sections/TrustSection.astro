@@ -1,54 +1,36 @@
 ---
 /**
- * Блок социального доказательства: метрики из кейсов канала (экспорт → src/content/cases).
+ * Блок социального доказательства: крупные метрики из реальных проектов.
+ * Числа — главный визуал (text-5xl font-black). Без GSAP, без tilt.
  */
 const metrics = [
   { value: '10 ч/нед', label: 'Вернули PM: голосовые в текст за вечер (n8n + Whisper), скан по диагонали вместо 2 часов прослушивания.', icon: 'clock' },
-  { value: '120 → 2 ч/мес', label: 'Постинг в 50+ Telegram-групп: было 120 часов в месяц, стало 2 часа на загрузку контента в таблицу.', icon: 'chart' },
-  { value: '1 вечер', label: 'От нуля до своего AI-ассистента в Telegram: голос, память, напоминания — без абонплат за корпоративные системы.', icon: 'zap' },
+  { value: '120 → 2 ч', label: 'Постинг в 50+ Telegram-групп: было 120 часов в месяц, стало 2 часа на загрузку контента.', icon: 'chart' },
+  { value: '1 вечер', label: 'От нуля до AI-ассистента в Telegram: голос, память, напоминания — без абонплат.', icon: 'zap' },
 ];
 ---
 
-<section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="trust-heading">
+<section class="py-24 sm:py-32 px-4 sm:px-6" aria-labelledby="trust-heading">
   <div class="mx-auto max-w-6xl">
-    <h2 id="trust-heading" class="trust-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl text-center">
+    <h2 id="trust-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl text-center">
       Результаты в цифрах
     </h2>
-    <p class="mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto">
-      Показатели из реальных проектов: как изменилась скорость ответов клиентам и нагрузка на команду.
+    <p class="reveal mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
+      Показатели из реальных проектов.
     </p>
-    
-    <ul class="trust-metrics mt-12 grid gap-8 sm:grid-cols-3" role="list">
+
+    <ul class="reveal-stagger mt-14 grid gap-6 sm:grid-cols-3" role="list">
       {metrics.map((m) => (
-        <li class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-center" data-tilt="4">
-          <span class="trust-icon mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-accent-muted)] text-[var(--color-accent)]" aria-hidden="true">
+        <li class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-center">
+          <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-accent-muted)] text-[var(--color-accent)]" aria-hidden="true">
             {m.icon === 'clock' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>)}
             {m.icon === 'chart' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>)}
             {m.icon === 'zap' && (<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>)}
           </span>
-          <span class="trust-value mt-4 block font-display text-2xl font-bold text-[var(--color-accent)] sm:text-3xl">{m.value}</span>
-          <span class="mt-2 block text-sm text-[var(--color-text-muted)]">{m.label}</span>
+          <span class="mt-5 block font-display text-4xl font-black text-[var(--color-accent)] sm:text-5xl tracking-tight">{m.value}</span>
+          <span class="mt-3 block text-sm text-[var(--color-text-muted)] leading-relaxed">{m.label}</span>
         </li>
       ))}
     </ul>
   </div>
 </section>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  const heading = document.querySelector('.trust-heading');
-  const items = document.querySelectorAll('.trust-metrics li');
-  if (heading) {
-    gsap.fromTo(heading, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: heading, start: 'top 85%' } });
-  }
-  gsap.fromTo(items, { opacity: 0, scale: 0.96 }, {
-    opacity: 1,
-    scale: 1,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.trust-metrics', start: 'top 82%', toggleActions: 'play none none none' },
-  });
-</script>

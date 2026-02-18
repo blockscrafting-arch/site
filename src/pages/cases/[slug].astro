@@ -36,7 +36,7 @@ const layoutType = layout ?? 'default';
       class="case-hero rounded-b-3xl border-b border-[var(--color-border)] px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       style={{ backgroundColor: `${accent}12`, borderColor: `${accent}30` }}
     >
-      <div class="mx-auto max-w-3xl case-hero-inner">
+      <div class="mx-auto max-w-3xl case-hero-inner reveal-stagger is-visible">
         <a
           href="/cases"
           class="case-back mb-6 inline-flex items-center text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
@@ -81,7 +81,7 @@ const layoutType = layout ?? 'default';
       </div>
     </header>
 
-    <div class="case-body mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <div class="case-body reveal-stagger mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       {problem && (
         <section class="case-problem mb-10 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
           <h2 class="font-display text-lg font-semibold text-[var(--color-text)]">Проблема</h2>
@@ -110,28 +110,3 @@ const layoutType = layout ?? 'default';
     </div>
   </article>
 </BaseLayout>
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  const inner = document.querySelector('.case-hero-inner');
-  if (inner) {
-    const back = inner.querySelector('.case-back');
-    const title = inner.querySelector('.case-title');
-    const desc = inner.querySelector('.case-desc');
-    const stack = inner.querySelector('.case-stack');
-    const result = inner.querySelector('.case-result');
-    const metrics = inner.querySelector('.case-metrics');
-    const els = [back, title, desc, stack, result, metrics].filter(Boolean);
-    gsap.fromTo(els, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: 'power2.out', delay: 0.15 });
-  }
-  const body = document.querySelector('.case-body');
-  if (body) {
-    const problem = body.querySelector('.case-problem');
-    const prose = body.querySelector('.prose');
-    const testimonial = body.querySelector('blockquote');
-    const cta = body.querySelector('.case-cta');
-    const bodyEls = [problem, prose, testimonial, cta].filter(Boolean);
-    gsap.fromTo(bodyEls, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: body, start: 'top 88%', toggleActions: 'play none none none' } });
-  }
-</script>

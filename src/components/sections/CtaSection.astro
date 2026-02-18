@@ -1,22 +1,27 @@
 ---
 /**
- * Финальный CTA на главной: «Готовы автоматизировать?» + кнопка/форма.
+ * Финальный CTA на главной. Минималистичный glow-блок. CSS reveal, без GSAP.
  */
 import Button from '../common/Button.astro';
 import { site } from '../../utils/site';
 ---
 
 <section class="py-24 sm:py-32 px-4 sm:px-6" aria-labelledby="cta-heading">
-  <div class="mx-auto max-w-2xl text-center">
-    <div class="cta-block rounded-3xl border-2 border-[var(--color-border)] bg-[var(--color-surface)] bg-gradient-to-b from-[var(--color-accent-muted)]/20 to-transparent p-10 sm:p-14 shadow-[0_0_0_1px_var(--color-accent)_inset,0_0_30px_-10px_var(--color-accent-glow)]">
-      <h2 id="cta-heading" class="cta-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl">
-        <span class="cta-heading-word inline-block opacity-0">Готовы</span> <span class="cta-heading-word inline-block opacity-0">автоматизировать?</span>
+  <div class="reveal mx-auto max-w-2xl text-center">
+    <div class="relative rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-10 sm:p-14 overflow-hidden">
+      <!-- Glow accent фон -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] rounded-full bg-[var(--color-accent)]/10 blur-[80px]"></div>
+      </div>
+
+      <h2 id="cta-heading" class="relative font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl">
+        Готовы автоматизировать?
       </h2>
-      <p class="cta-desc mt-4 text-[var(--color-text-muted)]">
+      <p class="relative mt-4 text-[var(--color-text-muted)]">
         Опишите задачу — обсудим решение и сроки. Ответ в течение дня.
       </p>
-      <div class="cta-buttons mt-10 flex flex-wrap items-center justify-center gap-4">
-        <Button href="/contact" variant="primary" class="shadow-glow-sm">Обсудить задачу</Button>
+      <div class="relative mt-10 flex flex-wrap items-center justify-center gap-4">
+        <Button href="/contact" variant="primary">Обсудить задачу</Button>
         <a
           href={site.tgChannel}
           target="_blank"
@@ -29,31 +34,3 @@ import { site } from '../../utils/site';
     </div>
   </div>
 </section>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  const block = document.querySelector('.cta-block');
-  const words = document.querySelectorAll('.cta-heading-word');
-  if (block) {
-    gsap.fromTo(block, { opacity: 0, y: 28, scale: 0.98 }, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.7,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: block, start: 'top 85%', toggleActions: 'play none none none' },
-    });
-  }
-  if (words.length) {
-    gsap.fromTo(words, { opacity: 0, y: 10 }, {
-      opacity: 1,
-      y: 0,
-      duration: 0.4,
-      stagger: 0.1,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: '.cta-heading', start: 'top 85%', toggleActions: 'play none none none' },
-    });
-  }
-</script>

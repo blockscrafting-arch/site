@@ -12,7 +12,6 @@ import GlossaryActivator from '../components/features/GlossaryActivator';
 import CustomCursor from '../components/features/CustomCursor.astro';
 import ScrollProgress from '../components/features/ScrollProgress.astro';
 import BackToTop from '../components/features/BackToTop.astro';
-import CardTilt from '../components/features/CardTilt.astro';
 import glossaryData from '../content/glossary.json';
 import { site } from '../utils/site';
 
@@ -92,7 +91,6 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
     <CustomCursor />
     <ScrollProgress />
     <BackToTop />
-    <CardTilt />
     <script type="application/json" id="glossary-data" set:html={safeGlossaryJson}></script>
     <GlossaryActivator client:idle />
     <Header />
@@ -108,6 +106,26 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
       } else {
         setTimeout(run, 1);
       }
+    </script>
+    <script is:inline>
+      /** Lightweight scroll-reveal: добавляет .is-visible по IntersectionObserver */
+      function _initReveal() {
+        var els = document.querySelectorAll('.reveal, .reveal-stagger');
+        if (!els.length) return;
+        var io = new IntersectionObserver(function(entries) {
+          for (var i = 0; i < entries.length; i++) {
+            if (entries[i].isIntersecting) {
+              entries[i].target.classList.add('is-visible');
+              io.unobserve(entries[i].target);
+            }
+          }
+        }, { rootMargin: '0px 0px -40px 0px', threshold: 0 });
+        for (var j = 0; j < els.length; j++) io.observe(els[j]);
+      }
+      requestAnimationFrame(function(){ requestAnimationFrame(_initReveal); });
+      document.addEventListener('astro:after-swap', function() {
+        requestAnimationFrame(function(){ requestAnimationFrame(_initReveal); });
+      });
     </script>
     <script is:inline>
       document.addEventListener('astro:after-swap', () => {

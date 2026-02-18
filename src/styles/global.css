@@ -30,7 +30,6 @@
   --color-accent-glow: rgba(5, 150, 105, 0.25);
 }
 
-/* Apply theme when .dark is on html (Tailwind) */
 .dark {
   --color-bg: #0a0a0a;
   --color-surface: #111111;
@@ -51,13 +50,6 @@
   body {
     background-color: var(--color-bg);
     color: var(--color-text);
-    /* Точечный фон на всех страницах (как в Hero) */
-    background-image: radial-gradient(
-      circle at 50% 50%,
-      var(--color-accent-glow) 1.2px,
-      transparent 1.2px
-    );
-    background-size: 48px 48px;
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -74,7 +66,6 @@
     clip: rect(0, 0, 0, 0);
     clip-path: inset(50%);
   }
-  /* Подчёркивание ссылок навигации при hover */
   .nav-link::after {
     content: '';
     position: absolute;
@@ -110,152 +101,81 @@
     --tw-ring-offset-color: var(--color-bg);
   }
 
-  /* Контент кейса (markdown) */
-  .case-detail .prose {
-    color: var(--color-text-muted);
-  }
-  .case-detail .prose h2 {
-    font-family: Manrope, system-ui, sans-serif;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-  }
-  .case-detail .prose h3 {
-    font-family: Manrope, system-ui, sans-serif;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .case-detail .prose p {
-    margin-bottom: 1rem;
-  }
-  .case-detail .prose ul,
-  .case-detail .prose ol {
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
-  }
-  .case-detail .prose a {
-    color: var(--color-accent);
-    text-decoration: underline;
-  }
-  .case-detail .prose strong {
-    color: var(--color-text);
-  }
-  .case-detail .prose code {
-    background: var(--color-surface-muted);
-    padding: 0.2em 0.4em;
-    border-radius: 0.25rem;
-    font-size: 0.9em;
-  }
+  /* Prose: кейсы */
+  .case-detail .prose { color: var(--color-text-muted); }
+  .case-detail .prose h2 { font-family: Manrope, system-ui, sans-serif; font-weight: 600; color: var(--color-text); margin-top: 2rem; margin-bottom: 0.75rem; }
+  .case-detail .prose h3 { font-family: Manrope, system-ui, sans-serif; font-weight: 600; color: var(--color-text); margin-top: 1.5rem; margin-bottom: 0.5rem; }
+  .case-detail .prose p { margin-bottom: 1rem; }
+  .case-detail .prose ul, .case-detail .prose ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+  .case-detail .prose a { color: var(--color-accent); text-decoration: underline; }
+  .case-detail .prose strong { color: var(--color-text); }
+  .case-detail .prose code { background: var(--color-surface-muted); padding: 0.2em 0.4em; border-radius: 0.25rem; font-size: 0.9em; }
 
-  .guide-prose {
-    color: var(--color-text-muted);
-  }
-  .guide-prose h2 {
-    font-family: Manrope, system-ui, sans-serif;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-  }
-  .guide-prose h3 {
-    font-family: Manrope, system-ui, sans-serif;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
+  /* Prose: инструкции */
+  .guide-prose { color: var(--color-text-muted); }
+  .guide-prose h2 { font-family: Manrope, system-ui, sans-serif; font-weight: 600; color: var(--color-text); margin-top: 2rem; margin-bottom: 0.75rem; }
+  .guide-prose h3 { font-family: Manrope, system-ui, sans-serif; font-weight: 600; color: var(--color-text); margin-top: 1.5rem; margin-bottom: 0.5rem; }
   .guide-prose p { margin-bottom: 1rem; }
   .guide-prose ul, .guide-prose ol { margin-bottom: 1rem; padding-left: 1.5rem; }
   .guide-prose a { color: var(--color-accent); text-decoration: underline; }
   .guide-prose strong { color: var(--color-text); }
-  .guide-prose code {
-    background: var(--color-surface-muted);
-    padding: 0.2em 0.4em;
-    border-radius: 0.25rem;
-    font-size: 0.9em;
-  }
+  .guide-prose code { background: var(--color-surface-muted); padding: 0.2em 0.4em; border-radius: 0.25rem; font-size: 0.9em; }
 
-  /* Hover-анимации карточек (без data-tilt — иначе tilt управляет transform) */
+  /* Карточки: мягкий hover через border + glow, без translateY-прыжков */
   .service-card {
-    transition: box-shadow 0.25s ease;
-  }
-  .service-card:not([data-tilt]) {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .service-card:not([data-tilt]):hover {
-    transform: translateY(-4px);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
   }
   .service-card:hover {
-    box-shadow: 0 12px 40px -12px var(--color-accent-glow);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 20px -8px var(--color-accent-glow);
   }
-  .trust-metrics li {
-    transition: box-shadow 0.3s ease;
+  .case-preview-card {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
   }
-  .trust-metrics li:not([data-tilt]) {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .trust-metrics li:not([data-tilt]):hover {
-    transform: translateY(-2px);
-  }
-  .trust-metrics li:hover {
-    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.25);
+  .case-preview-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 20px -8px var(--color-accent-glow);
   }
   .problem-solution-card {
     transition: box-shadow 0.25s ease;
   }
-  .problem-solution-card:not([data-tilt]) {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .problem-solution-card:not([data-tilt]):hover {
-    transform: translateY(-2px);
-  }
   .problem-solution-card:hover {
-    box-shadow: 0 12px 32px -8px var(--color-accent-glow);
-  }
-  .case-preview-card {
-    transition: box-shadow 0.25s ease;
-  }
-  .case-preview-card:not([data-tilt]) {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .case-preview-card:not([data-tilt]):hover {
-    transform: translateY(-4px);
+    box-shadow: 0 0 24px -8px var(--color-accent-glow);
   }
   .guide-card a {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
   .guide-card a:hover {
-    transform: translateY(-2px);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 16px -6px var(--color-accent-glow);
   }
 
-  /* Анимированный градиент текста (тренд 2024–2025) */
-  .text-gradient-animate {
-    background: linear-gradient(
-      90deg,
-      var(--color-accent),
-      var(--color-accent-cyan),
-      #a78bfa,
-      var(--color-accent)
-    );
-    background-size: 300% 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: gradient-shift 6s ease infinite;
+  /* ===== Scroll-reveal: CSS-only с IntersectionObserver ===== */
+  @keyframes reveal-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  @keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+  .reveal {
+    opacity: 0;
   }
+  .reveal.is-visible {
+    animation: reveal-up 0.5s ease-out forwards;
+  }
+  .reveal-stagger.is-visible > * {
+    opacity: 0;
+    animation: reveal-up 0.45s ease-out forwards;
+  }
+  .reveal-stagger.is-visible > *:nth-child(1) { animation-delay: 0s; }
+  .reveal-stagger.is-visible > *:nth-child(2) { animation-delay: 0.06s; }
+  .reveal-stagger.is-visible > *:nth-child(3) { animation-delay: 0.12s; }
+  .reveal-stagger.is-visible > *:nth-child(4) { animation-delay: 0.18s; }
+  .reveal-stagger.is-visible > *:nth-child(5) { animation-delay: 0.24s; }
+  .reveal-stagger.is-visible > *:nth-child(6) { animation-delay: 0.30s; }
   @media (prefers-reduced-motion: reduce) {
-    .text-gradient-animate { animation: none; }
-    .text-gradient-animate { background-position: 0% 50%; }
+    .reveal, .reveal-stagger > * { opacity: 1; animation: none !important; }
   }
 
-  /* Инструкции: лёгкая анимация появления без GSAP (быстрая отрисовка) */
+  /* Инструкции: лёгкая анимация появления */
   @keyframes guide-fade-in {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
@@ -274,14 +194,9 @@
   .guide-detail-prose { opacity: 0; animation: guide-fade-in 0.5s ease-out 0.25s forwards; }
   .guide-detail-cta { opacity: 0; animation: guide-fade-in 0.4s ease-out 0.4s forwards; }
   @media (prefers-reduced-motion: reduce) {
-    .guides-page-title,
-    .guides-client-block,
-    .guides-list,
-    .guide-detail-header .guide-back,
-    .guide-detail-header .guide-title,
-    .guide-detail-header .guide-desc,
-    .guide-detail-prose,
-    .guide-detail-cta {
+    .guides-page-title, .guides-client-block, .guides-list,
+    .guide-detail-header .guide-back, .guide-detail-header .guide-title, .guide-detail-header .guide-desc,
+    .guide-detail-prose, .guide-detail-cta {
       animation: none;
       opacity: 1;
     }
