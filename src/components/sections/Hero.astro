@@ -23,13 +23,14 @@ import TypewriterHero from '../features/TypewriterHero';
       <span class="font-semibold text-[var(--color-accent)]">Экономлю время и бюджет.</span>
     </p>
 
-    <!-- Бегущая строка: услуги (дублируется для бесшовной анимации, padding на контейнере — без зазора между копиями) -->
-    <div class="reveal mt-6 w-full overflow-hidden rounded-full bg-[var(--color-surface)]/50 border border-[var(--color-border)] py-3 px-4" style="animation-delay: .12s;" aria-hidden="true">
+    <!-- Бегущая строка: только продукты/услуги (без инструментов); глоссарий подсвечивает термины -->
+    <div class="reveal mt-6 w-full overflow-hidden rounded-full bg-[var(--color-surface)]/50 border border-[var(--color-border)] py-3 px-4" style="animation-delay: .12s;" data-glossary>
       <div class="flex animate-marquee w-max">
-        <span class="whitespace-nowrap text-sm text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • n8n • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции • CRM • Google Sheets • Деплой • RAG • Supabase • Python • Node.js • Docker • API • Вебхуки • От идеи до запуска</span>
-        <span class="whitespace-nowrap text-sm text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • n8n • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции • CRM • Google Sheets • Деплой • RAG • Supabase • Python • Node.js • Docker • API • Вебхуки • От идеи до запуска</span>
+        <span class="whitespace-nowrap text-sm text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции</span>
+        <span class="whitespace-nowrap text-sm text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции</span>
       </div>
     </div>
+    <p class="reveal mt-3 text-center text-sm text-[var(--color-text-muted)]" style="animation-delay: .14s;">От идеи до запуска</p>
 
     <!-- Терминал с метриками (русский, лаконичный) -->
     <div class="reveal mt-10 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-md p-5 text-left font-mono text-sm sm:text-base max-w-xl mx-auto overflow-hidden" style="animation-delay: .2s;">
