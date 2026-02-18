@@ -24,8 +24,8 @@ function applyTheme(theme: Theme) {
   if (meta) meta.setAttribute('content', THEME_COLORS[theme]);
   try {
     localStorage.setItem(STORAGE_KEY, theme);
-  } catch {
-    // ignore
+  } catch (err) {
+    console.warn('[ThemeToggle] localStorage unavailable:', err);
   }
 }
 

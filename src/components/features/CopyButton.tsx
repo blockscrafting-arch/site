@@ -27,7 +27,8 @@ export default function CopyButton({
       setCopied(true);
       const t = setTimeout(() => setCopied(false), 2000);
       return () => clearTimeout(t);
-    } catch {
+    } catch (err) {
+      console.warn('[CopyButton] Clipboard write failed:', err);
       setCopied(false);
     }
   }, [value]);

@@ -188,7 +188,8 @@ export default function GlossaryActivator() {
     if (el?.tagName === 'SCRIPT' && el.textContent) {
       try {
         glossary = JSON.parse(el.textContent) as GlossaryEntry[];
-      } catch {
+      } catch (err) {
+        console.error('[GlossaryActivator] Invalid glossary JSON:', err);
         glossary = undefined;
       }
     }

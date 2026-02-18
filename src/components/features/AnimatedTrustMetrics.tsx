@@ -31,7 +31,8 @@ export default function AnimatedTrustMetrics({ metrics }: Props) {
             }
             setAnimated(true);
             sessionStorage.setItem(key, '1');
-          } catch {
+          } catch (err) {
+            console.warn('[AnimatedTrustMetrics] sessionStorage unavailable:', err);
             setAnimated(true);
           }
         }
