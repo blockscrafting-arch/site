@@ -81,32 +81,44 @@ import { site } from '../../utils/site';
 </div>
 
 <script>
-  // Header scroll behavior
+  // Header scroll behavior: троттлинг по rAF + гистерезис, чтобы не дёргалось при скролле (Lenis)
   const header = document.getElementById('main-header');
   let lastScroll = 0;
-  
-  window.addEventListener('scroll', () => {
+  let headerVisible = true;
+  let rafId = null;
+  const HIDE_THRESHOLD = 120;
+  const SHOW_THRESHOLD = 60;
+  const MIN_DELTA = 40;
+
+  function updateHeader() {
     const currentScroll = window.scrollY;
     if (!header) return;
-    
-    // Check if mobile menu is open - if so, don't hide header
     const menu = document.getElementById('mobile-menu');
     if (menu && menu.getAttribute('aria-expanded') === 'true') {
-      return;
-    }
-    
-    if (currentScroll < 50) {
       header.style.transform = 'translateY(0)';
-      lastScroll = currentScroll;
+      rafId = null;
       return;
     }
-
-    if (currentScroll > lastScroll && currentScroll > 100) {
-      header.style.transform = 'translateY(-100%)';
+    if (currentScroll <= SHOW_THRESHOLD) {
+      headerVisible = true;
+      header.style.transform = 'translateY(0)';
     } else {
-      header.style.transform = 'translateY(0)';
+      const delta = currentScroll - lastScroll;
+      if (delta > MIN_DELTA && currentScroll > HIDE_THRESHOLD) {
+        headerVisible = false;
+        header.style.transform = 'translateY(-100%)';
+      } else if (delta < -MIN_DELTA || currentScroll < HIDE_THRESHOLD) {
+        headerVisible = true;
+        header.style.transform = 'translateY(0)';
+      }
     }
     lastScroll = currentScroll;
+    rafId = null;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!header || rafId !== null) return;
+    rafId = requestAnimationFrame(updateHeader);
   }, { passive: true });
 
   // Mobile Menu Logic
