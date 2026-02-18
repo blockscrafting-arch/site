@@ -2,7 +2,7 @@
 /**
  * Базовый layout для всех страниц.
  * Подключает глобальные стили, Header, Footer, глоссарий, OG/Twitter meta.
- * Dark-first дизайн, Lenis smooth scroll, View Transitions.
+ * Dark-first дизайн, нативный скролл (без Lenis — стабильный layout), View Transitions.
  */
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
@@ -98,15 +98,6 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
       <slot />
     </main>
     <Footer />
-    <script>
-      import { initLenis } from '../scripts/lenis';
-      const run = () => initLenis();
-      if (typeof requestIdleCallback !== 'undefined') {
-        requestIdleCallback(run, { timeout: 2000 });
-      } else {
-        setTimeout(run, 1);
-      }
-    </script>
     <script is:inline>
       /** Lightweight scroll-reveal: добавляет .is-visible по IntersectionObserver */
       function _initReveal() {
