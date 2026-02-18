@@ -16,7 +16,7 @@ accentColor: "#0077FF"
 problem: "Клиент вёл группу ВК руками: зайти, написать, выбрать фото, опубликовать. Регулярная рутина, отнимающая время и внимание."
 ---
 
-## <svg class="inline-block w-6 h-6 mr-2 text-[var(--color-accent)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Было
+## Было
 
 Клиент вёл группу ВК руками. Каждый пост — это целый ритуал:
 1.  Зайти в ВК.
@@ -26,7 +26,7 @@ problem: "Клиент вёл группу ВК руками: зайти, нап
 
 Мелочь, но когда это нужно делать регулярно — раздражает и жрёт время. Попросил сделать что-то простое: **нажал — пост вышел**. Без лишнего.
 
-## <svg class="inline-block w-6 h-6 mr-2 text-[var(--color-accent)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg> Что сделали
+## Что сделали
 
 **Python-скрипт**, который публикует пост в группу ВКонтакте по одному запуску. Текст и фото задаются через файл конфигурации `.env`, код трогать не нужно вообще.
 
@@ -43,7 +43,7 @@ problem: "Клиент вёл группу ВК руками: зайти, нап
 *   `python-dotenv`
 *   VK API v5.131
 
-## <svg class="inline-block w-6 h-6 mr-2 text-[var(--color-accent)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" /></svg> Как запускать
+## Как запускать
 
 Из терминала одной строкой:
 
@@ -55,7 +55,7 @@ python poster.py
 
 Хочешь запускать по расписанию — вешаешь на `cron` (Linux/macOS) или Планировщик задач (Windows). Скрипт под это заточен и не требует интерактивного ввода.
 
-## <svg class="inline-block w-6 h-6 mr-2 text-[var(--color-accent)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Что получил клиент
+## Что получил клиент
 
 *   **Скрипт с документацией** — README, инструкция по получению токена, пример `.env`.
 *   **Видеоинструкция** по настройке и запуску.
@@ -64,6 +64,6 @@ python poster.py
 **Время реализации:** 1 день.
 **Гарантия:** работает — или чиню бесплатно до результата.
 
-## <svg class="inline-block w-6 h-6 mr-2 text-[var(--color-accent)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.001 6.001 0 00-5.951 5.801 6 6 0-00-5.304 6.002 6 6 0 005.304 6.002 6 6 0 005.951 5.801 6 6 0 00-5.951 5.801M12 18a6 6 0 016-6m-6 6v10.5m0-10.5a6 6 0 016 6m0 0a6 6 0 006 6m-6-6a6 6 0 016 6" /></svg> Итог
+## Итог
 
 Задача простая, но человек экономит **5–10 минут** каждый раз, когда постит. А главное — больше не нужно держать в голове «зайди, не забудь, опубликуй». Запустил скрипт — готово.
