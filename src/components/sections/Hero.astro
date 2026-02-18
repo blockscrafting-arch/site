@@ -19,11 +19,19 @@ import TypewriterHero from '../features/TypewriterHero';
       <TypewriterHero client:load class="!text-inherit" />
     </h1>
 
-    <p class="reveal mt-6 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto leading-relaxed" style="animation-delay: .1s;">
-      <span class="font-semibold text-[var(--color-accent)]">Экономлю время и бюджет.</span>
+    <p class="reveal mt-6 flex items-center justify-center gap-2 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto leading-relaxed" style="animation-delay: .1s;">
+      <svg class="h-5 w-5 shrink-0 text-[var(--color-accent)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span class="font-semibold text-[var(--color-accent)]">Экономлю время и бюджет</span>
     </p>
 
-    <p class="reveal mt-3 text-center text-lg font-medium text-[var(--color-accent)]" style="animation-delay: .11s;">От идеи до запуска</p>
+    <p class="reveal mt-3 flex items-center justify-center gap-2 text-lg font-medium text-[var(--color-accent)]" style="animation-delay: .11s;">
+      <svg class="h-5 w-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06m-2.7-2.7L3 16.8v4.8m2.58-5.84l5.84-5.84" />
+      </svg>
+      От идеи до запуска
+    </p>
 
     <!-- Бегущая строка: только продукты/услуги (без инструментов); глоссарий подсвечивает термины; в конце первого span « • » для бесшовного стыка -->
     <div class="reveal mt-4 w-full overflow-hidden rounded-full bg-[var(--color-surface)]/50 border border-[var(--color-border)] py-3 px-4" style="animation-delay: .12s;" data-glossary>

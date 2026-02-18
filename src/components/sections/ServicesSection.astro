@@ -19,14 +19,16 @@ const services = [
     <h2 id="services-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center">
       Чем занимаюсь
     </h2>
-    <!-- Бегущая строка (как в Hero): продукты/услуги, глоссарий -->
-    <div class="reveal mt-4 w-full overflow-hidden rounded-full bg-[var(--color-surface)]/50 border border-[var(--color-border)] py-3 px-4" style="animation-delay:.06s" data-glossary>
-      <div class="flex animate-marquee w-max">
-        <span class="whitespace-nowrap text-sm text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции • </span>
-        <span class="whitespace-nowrap text-sm text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции • </span>
+    <!-- Бегущая строка: размер как у бывшего текста, справа — подпись -->
+    <div class="reveal mt-4 flex items-center gap-4" style="animation-delay:.06s">
+      <div class="flex-1 min-w-0 overflow-hidden rounded-full bg-[var(--color-surface)]/50 border border-[var(--color-border)] py-2 px-3" data-glossary>
+        <div class="flex animate-marquee w-max">
+          <span class="whitespace-nowrap text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции • </span>
+          <span class="whitespace-nowrap text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции • </span>
+        </div>
       </div>
+      <p class="reveal shrink-0 text-right text-[var(--color-text-muted)] whitespace-nowrap" style="animation-delay:.08s">— от идеи до рабочего решения.</p>
     </div>
-    <p class="reveal mt-3 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.08s">— от идеи до рабочего решения.</p>
 
     <div class="reveal-stagger mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((s) => (
