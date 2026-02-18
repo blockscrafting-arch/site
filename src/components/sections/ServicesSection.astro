@@ -19,9 +19,14 @@ const services = [
     <h2 id="services-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center">
       Чем занимаюсь
     </h2>
-    <p class="reveal mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
-      Чат-боты, AI-агенты, Mini Apps, n8n, скрипты — от идеи до рабочего решения.
-    </p>
+    <!-- Бегущая строка (как в Hero): продукты/услуги, глоссарий -->
+    <div class="reveal mt-4 w-full overflow-hidden rounded-full bg-[var(--color-surface)]/50 border border-[var(--color-border)] py-3 px-4" style="animation-delay:.06s" data-glossary>
+      <div class="flex animate-marquee w-max">
+        <span class="whitespace-nowrap text-sm text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции • </span>
+        <span class="whitespace-nowrap text-sm text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции • </span>
+      </div>
+    </div>
+    <p class="reveal mt-3 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.08s">— от идеи до рабочего решения.</p>
 
     <div class="reveal-stagger mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((s) => (
