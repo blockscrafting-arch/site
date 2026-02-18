@@ -7,7 +7,7 @@ import Button from '../common/Button.astro';
 import TypewriterHero from '../features/TypewriterHero';
 ---
 
-<section class="relative min-h-0 flex flex-col items-center justify-start px-4 pt-16 pb-12 sm:min-h-[90vh] sm:justify-center sm:py-24 sm:px-6 overflow-hidden">
+<section class="relative min-h-0 flex flex-col items-center justify-start px-4 pt-16 pb-12 overflow-visible sm:min-h-[90vh] sm:justify-center sm:py-24 sm:px-6 sm:overflow-hidden">
   <!-- Radial glow фон -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full bg-[var(--color-accent)]/8 blur-[120px]"></div>
@@ -15,11 +15,11 @@ import TypewriterHero from '../features/TypewriterHero';
   </div>
 
   <div class="relative z-10 max-w-3xl mx-auto text-center">
-    <h1 class="reveal font-display text-4xl font-extrabold tracking-tight text-[var(--color-text)] sm:text-5xl md:text-6xl lg:text-7xl min-h-[3em] sm:min-h-[2.4em] flex items-center justify-center">
+    <h1 class="reveal font-display text-3xl font-extrabold tracking-tight text-[var(--color-text)] sm:text-5xl md:text-6xl lg:text-7xl min-h-[3em] sm:min-h-[2.4em] flex items-center justify-center">
       <TypewriterHero client:load class="!text-inherit" />
     </h1>
 
-    <p class="reveal mt-4 sm:mt-6 flex items-center justify-center gap-2 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto leading-relaxed" style="animation-delay: .1s;">
+    <p class="reveal mt-3 sm:mt-6 flex items-center justify-center gap-2 text-lg text-[var(--color-text-muted)] sm:text-xl max-w-2xl mx-auto leading-relaxed" style="animation-delay: .1s;">
       <svg class="h-5 w-5 shrink-0 text-[var(--color-accent)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
@@ -34,15 +34,15 @@ import TypewriterHero from '../features/TypewriterHero';
     </p>
 
     <!-- Бегущая строка: только продукты/услуги (без инструментов); глоссарий подсвечивает термины; в конце первого span « • » для бесшовного стыка -->
-    <div class="reveal mt-3 sm:mt-4 w-full overflow-hidden rounded-full bg-[var(--color-surface)]/50 border border-[var(--color-border)] py-3 px-4" style="animation-delay: .12s;" data-glossary>
+    <div class="reveal mt-2 sm:mt-4 w-full overflow-hidden rounded-full bg-[var(--color-surface)]/50 border border-[var(--color-border)] py-3 px-4" style="animation-delay: .12s;" data-glossary>
       <div class="flex animate-marquee w-max">
         <span class="whitespace-nowrap text-sm text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции • </span>
         <span class="whitespace-nowrap text-sm text-[var(--color-text-muted)]">Telegram-боты • AI-агенты • Mini Apps • Автоматизация • Парсинг • Автопостинг • Скрипты • Интеграции • </span>
       </div>
     </div>
 
-    <!-- Терминал с метриками (русский, лаконичный) -->
-    <div class="reveal mt-6 sm:mt-10 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-md p-5 text-left font-mono text-sm sm:text-base max-w-xl mx-auto overflow-hidden" style="animation-delay: .2s;">
+    <!-- Терминал с метриками (русский, лаконичный); на мобильном скрыт, чтобы первый экран вмещал заголовок + полоску + кнопки -->
+    <div class="reveal max-sm:hidden mt-4 sm:mt-10 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-md p-5 text-left font-mono text-sm sm:text-base max-w-xl mx-auto overflow-hidden" style="animation-delay: .2s;">
       <div class="flex gap-2 mb-3 border-b border-[var(--color-border)] pb-2">
         <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
         <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
@@ -67,7 +67,7 @@ import TypewriterHero from '../features/TypewriterHero';
       </div>
     </div>
 
-    <div class="reveal mt-8 sm:mt-12 flex flex-wrap items-center justify-center gap-4" style="animation-delay: .3s;">
+    <div class="reveal mt-6 sm:mt-12 flex flex-wrap items-center justify-center gap-4" style="animation-delay: .3s;">
       <Button href="/contact" variant="primary">Обсудить задачу</Button>
       <Button href="/cases" variant="ghost">Смотреть кейсы</Button>
     </div>
