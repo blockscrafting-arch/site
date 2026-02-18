@@ -90,5 +90,13 @@
   {"term": "WebSockets", "description": "Протокол двусторонней связи в реальном времени (чат, уведомления, дашборды). Отличие от обычного HTTP — постоянное соединение, сервер может слать данные сам."},
   {"term": "S3", "description": "Облачное хранилище файлов от Amazon (и совместимые: MinIO, DigitalOcean Spaces). Файлы по URL, удобно для загрузок, бэкапов и медиа в приложениях."},
   {"term": "БД", "description": "База данных: структурированное хранение (таблицы, документы). Используют PostgreSQL, Supabase, Airtable и др. для лидов, логов и данных приложений."},
-  {"term": "aiogram", "description": "Асинхронный фреймворк Python для Telegram Bot API. Удобен для ботов с командами, кнопками, FSM и вебхуками."}
+  {"term": "aiogram", "description": "Асинхронный фреймворк Python для Telegram Bot API. Удобен для ботов с командами, кнопками, FSM и вебхуками."},
+  {"term": "python-dotenv", "description": "Библиотека Python для загрузки переменных из файла .env. Секреты и настройки хранятся вне кода."},
+  {"term": "Requests", "description": "Библиотека Python для HTTP-запросов. Простой API для GET, POST и работы с API внешних сервисов."},
+  {"term": "env", "description": "Файл .env — конфигурация рядом с кодом: токены, ключи, URL. Не коммитят в Git. Читают через python-dotenv или аналог."},
+  {"term": "VS Code", "description": "Редактор кода от Microsoft. Расширения для Python, отладка (F5), терминал. Удобен для скриптов и бэкенда."},
+  {"term": "Linux", "description": "Семейство ОС для серверов и разработки. На VPS обычно Ubuntu/Debian. Cron, systemd, nginx — типичный стек."},
+  {"term": "macOS", "description": "Операционная система Apple. Разработка на Mac: терминал, Python, VS Code. Деплой чаще на Linux-сервер."},
+  {"term": "userbot", "description": "Скрипт или бот от имени обычного аккаунта пользователя (не через BotFather). Telethon и аналоги — для постинга и парсинга в группах."},
+  {"term": "Nginx", "description": "Веб-сервер и обратный прокси. На VPS — HTTPS (Let's Encrypt), проксирование на приложение или n8n."}
 ]
