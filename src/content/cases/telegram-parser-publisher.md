@@ -11,7 +11,7 @@ metrics:
   - value: "100%"
     label: "Авто-извлечение PDF"
 stack: ["Python", "Telethon", "aiogram", "n8n", "OpenAI", "PostgreSQL", "Docker"]
-categories: ["automation", "bot", "parser", "ai-agent"]
+categories: ["automation", "bot", "parser", "ai-agent", "autoposting"]
 accentColor: "#8b5cf6"
 problem: "Редактор тратил 2–4 часа в день на ручной мониторинг, чтение PDF и написание саммари. Процесс был не масштабируемым и зависел от одного человека."
 ---
