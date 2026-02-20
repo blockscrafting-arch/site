@@ -12,7 +12,19 @@ const items = [
 ];
 ---
 
-<section class="py-20 sm:py-28 overflow-hidden" aria-labelledby="problem-solution-heading">
+<section class="py-20 sm:py-28 overflow-hidden relative" aria-labelledby="problem-solution-heading">
+  <div class="absolute -right-20 top-10 opacity-[0.15] w-[400px] h-[400px] pointer-events-none z-[-1] text-[var(--color-accent)]" aria-hidden="true">
+    <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3">
+      <g class="animate-eyes">
+        <!-- Левый глаз -->
+        <path d="M 30 100 Q 70 50 110 100 Q 70 150 30 100 Z" />
+        <circle cx="70" cy="100" r="15" fill="currentColor" />
+        <!-- Правый глаз -->
+        <path d="M 120 100 Q 150 60 180 100 Q 150 140 120 100 Z" />
+        <circle cx="150" cy="100" r="12" fill="currentColor" />
+      </g>
+    </svg>
+  </div>
   <div class="problem-solution-header mb-12 px-4 sm:px-6 text-center">
     <h2 id="problem-solution-heading" class="reveal problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl" aria-label="Узнаёте себя?">
       <GlitchHeading text="Узнаёте себя?" client:visible preset="encrypted" />

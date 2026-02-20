@@ -419,3 +419,73 @@
     background-color: var(--color-accent-muted);
   }
 }
+
+/* --- Кастомные анимации для фоновых SVG --- */
+
+/* 1. Моргание глаз */
+@keyframes blink-eyes {
+  0%, 96%, 98%, 100% { transform: scaleY(1); }
+  97%, 99% { transform: scaleY(0.1); }
+}
+.animate-eyes {
+  animation: blink-eyes 5s infinite;
+  transform-origin: center;
+}
+
+/* 2. Печатающие руки */
+@keyframes type-hand-l {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(-3deg); }
+}
+@keyframes type-hand-r {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(3deg); }
+}
+.animate-hand-l {
+  animation: type-hand-l 0.3s infinite alternate;
+  transform-origin: bottom center;
+}
+.animate-hand-r {
+  animation: type-hand-r 0.4s infinite alternate-reverse;
+  transform-origin: bottom center;
+}
+
+/* 3. Плавающий кубок */
+@keyframes float-cup {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+.animate-cup {
+  animation: float-cup 6s ease-in-out infinite;
+}
+
+/* 4. Вылетающие документы из чемодана */
+@keyframes fly-doc {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(30px, -60px) rotate(20deg); opacity: 0; }
+}
+.animate-doc-1 { animation: fly-doc 2.5s infinite linear; }
+.animate-doc-2 { animation: fly-doc 2.5s infinite linear 1.25s; }
+
+/* 5. Перелистывание страницы */
+@keyframes turn-page {
+  0%, 10% { transform: rotateY(0deg); }
+  40%, 60% { transform: rotateY(-180deg); }
+  90%, 100% { transform: rotateY(0deg); }
+}
+.animate-page {
+  animation: turn-page 6s infinite ease-in-out;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+}
+
+/* 6. Летящий самолетик */
+@keyframes airplane-fly {
+  0% { transform: translate(-20vw, 30vh) rotate(-15deg); opacity: 0; }
+  10% { opacity: 0.2; }
+  90% { opacity: 0.2; }
+  100% { transform: translate(120vw, -20vh) rotate(-15deg); opacity: 0; }
+}
+.animate-airplane {
+  animation: airplane-fly 12s linear infinite;
+}

@@ -15,7 +15,7 @@ const services = [
 ];
 ---
 
-<section class="py-24 sm:py-32 px-4 sm:px-6" aria-labelledby="services-heading">
+<section class="py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden" aria-labelledby="services-heading">
   <div class="mx-auto max-w-6xl">
     <h2 id="services-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center">
       Чем занимаюсь
@@ -56,5 +56,22 @@ const services = [
     <div class="reveal mt-12 text-center" style="animation-delay: 0.24s">
       <Button href="/services" variant="outline">Подробнее обо всех услугах</Button>
     </div>
+  </div>
+  <div class="absolute -left-32 -bottom-20 opacity-[0.12] w-[450px] h-[450px] pointer-events-none z-[-1] text-[var(--color-accent)]" aria-hidden="true">
+    <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Клавиатура (вид под углом) -->
+      <rect x="20" y="100" width="160" height="60" rx="4" transform="skewX(-15)" />
+      <!-- Клавиши (схематично) -->
+      <line x1="40" y1="120" x2="160" y2="120" transform="skewX(-15)" opacity="0.5" />
+      <line x1="35" y1="140" x2="155" y2="140" transform="skewX(-15)" opacity="0.5" />
+      <!-- Левая рука -->
+      <g class="animate-hand-l">
+        <path d="M -10 180 C 10 130 40 110 60 125 C 65 110 75 110 80 125" />
+      </g>
+      <!-- Правая рука -->
+      <g class="animate-hand-r">
+        <path d="M 210 170 C 180 120 140 100 120 115 C 115 100 105 100 100 115" />
+      </g>
+    </svg>
   </div>
 </section>

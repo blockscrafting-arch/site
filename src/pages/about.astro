@@ -37,9 +37,9 @@ const stack = [
     </h1>
 
     <!-- Цитата-манифест -->
-    <blockquote class="reveal mt-10 border-l-4 border-[var(--color-accent)] pl-6 py-2" style="animation-delay:.08s">
+    <blockquote class="reveal mt-10 border-l-4 border-[var(--color-accent)] pl-6 py-2 min-h-[100px] flex items-center" style="animation-delay:.08s">
       <p class="text-xl font-medium text-[var(--color-text)] sm:text-2xl leading-relaxed italic">
-        «Делаю так, чтобы рутину за вас делали боты и&nbsp;воркфлоу, а&nbsp;вы&nbsp;— только то, что реально приносит деньги.»
+        «<span id="typewriter-quote"></span>»
       </p>
     </blockquote>
 
@@ -111,3 +111,17 @@ const stack = [
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  import TypeIt from 'typeit';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    new TypeIt('#typewriter-quote', {
+      strings: ['Делаю так, чтобы рутину за вас делали боты и воркфлоу, а вы — только то, что реально приносит деньги.'],
+      speed: 40,
+      waitUntilVisible: true,
+      cursor: true,
+      lifeLike: true
+    }).go();
+  });
+</script>

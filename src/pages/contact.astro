@@ -17,6 +17,18 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
   title="Контакты — vlad.execute(_)"
   description={`Связаться с Владом: форма и Telegram ${site.tgChannelHandle}.`}
 >
+  <!-- Анимированный самолетик на заднем фоне -->
+  <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden" aria-hidden="true">
+    <div class="absolute animate-airplane w-[250px] h-[250px] text-[var(--color-accent)]">
+      <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Самолетик -->
+        <path d="M 40 100 L 180 40 L 130 160 L 100 120 L 130 90 L 70 110 Z" />
+        <path d="M 100 120 L 80 150 L 90 115" />
+        <!-- Пунктирный след -->
+        <path d="M 0 130 Q 15 125 25 110" stroke-dasharray="6 6" opacity="0.5" />
+      </svg>
+    </div>
+  </div>
   <div class="contact-page reveal-stagger is-visible mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
     <h1 class="contact-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
       Контакты

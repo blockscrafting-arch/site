@@ -78,12 +78,18 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <circle class="svg-draw" pathLength="1" cx="60" cy="58" r="20" />
-      <circle class="svg-draw" pathLength="1" cx="38" cy="42" r="8" />
-      <circle class="svg-draw" pathLength="1" cx="82" cy="42" r="8" />
-      <circle class="svg-draw" pathLength="1" cx="60" cy="82" r="8" />
-      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M48 52Q60 48 72 52M52 68Q60 72 68 68M44 58Q52 62 60 58" stroke-width="1.5" />
-      <path class="svg-draw" pathLength="1" d="M54 48l4 4 8-10" stroke-width="2" />
+      <!-- Робот/Мозг -->
+      <rect class="svg-draw" pathLength="1" x="30" y="30" width="60" height="60" rx="12" />
+      <!-- Глаза -->
+      <circle class="svg-draw text-[var(--color-accent)]" pathLength="1" cx="45" cy="55" r="4" stroke-width="2" />
+      <circle class="svg-draw text-[var(--color-accent)]" pathLength="1" cx="75" cy="55" r="4" stroke-width="2" />
+      <!-- Рот-волна -->
+      <path class="svg-draw" pathLength="1" d="M45 75 Q 60 85 75 75" />
+      <!-- Антенна -->
+      <path class="svg-draw" pathLength="1" d="M60 30 V 15" />
+      <circle class="svg-draw" pathLength="1" cx="60" cy="12" r="3" />
+      <!-- Соединения по бокам -->
+      <path class="svg-draw" pathLength="1" d="M30 60 H 15 M 90 60 H 105" opacity="0.5" />
     </svg>
   </ServiceShowcase>
 
@@ -120,13 +126,16 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <circle class="svg-draw" pathLength="1" cx="40" cy="40" r="14" />
-      <path class="svg-draw" pathLength="1" d="M40 26v-4M40 54v4M26 40h-4M54 40h4" opacity="0.6" />
-      <circle class="svg-draw" pathLength="1" cx="80" cy="40" r="14" />
-      <path class="svg-draw" pathLength="1" d="M80 26v-4M80 54v4M66 40h-4M94 40h4" opacity="0.6" />
-      <circle class="svg-draw" pathLength="1" cx="60" cy="80" r="14" />
-      <path class="svg-draw" pathLength="1" d="M60 66v-4M60 94v4M46 80h-4M74 80h4" opacity="0.6" />
-      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M52 46l16-16M56 74l12-20M68 46L54 62" stroke-width="2" />
+      <!-- Блоки шестеренок / узлов -->
+      <rect class="svg-draw" pathLength="1" x="20" y="40" width="24" height="24" rx="4" />
+      <rect class="svg-draw text-[var(--color-accent)]" pathLength="1" x="65" y="20" width="30" height="30" rx="6" stroke-width="2" />
+      <rect class="svg-draw" pathLength="1" x="65" y="70" width="30" height="30" rx="6" />
+      <!-- Конвейерные связи (линии с точками) -->
+      <path class="svg-draw" pathLength="1" d="M44 52 H 55 V 35 H 65" stroke-dasharray="4 4" />
+      <path class="svg-draw" pathLength="1" d="M44 52 H 55 V 85 H 65" stroke-dasharray="4 4" />
+      <circle cx="55" cy="52" r="2" fill="currentColor" />
+      <!-- Символ стрелок на главном блоке -->
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M72 35 L 80 43 L 88 35" stroke-width="1.5" />
     </svg>
   </ServiceShowcase>
 
@@ -165,10 +174,17 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect class="svg-draw" pathLength="1" x="24" y="28" width="72" height="48" rx="4" />
-      <path class="svg-draw" pathLength="1" d="M32 40h56M32 50h44M32 60h38" />
-      <path class="svg-draw" pathLength="1" d="M36 82v8M36 90h12M60 82v8M60 90h12M84 82v8M84 90h12" />
-      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M40 76l6 6 12-12 8 8" stroke-width="2" />
+      <!-- Смартфон/Экран -->
+      <rect class="svg-draw text-[var(--color-accent)]" pathLength="1" x="70" y="25" width="35" height="70" rx="4" stroke-width="2" />
+      <line class="svg-draw" pathLength="1" x1="75" y1="40" x2="95" y2="40" />
+      <line class="svg-draw" pathLength="1" x1="75" y1="50" x2="90" y2="50" />
+      <!-- Мегафон -->
+      <path class="svg-draw" pathLength="1" d="M25 50 L 45 40 L 45 80 L 25 70 Z" />
+      <path class="svg-draw" pathLength="1" d="M25 55 V 65" stroke-width="3" />
+      <path class="svg-draw" pathLength="1" d="M40 80 L 35 95 H 25" />
+      <!-- Волны трансляции -->
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M55 45 Q 65 60 55 75" opacity="0.7" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M60 35 Q 75 60 60 85" opacity="0.4" />
     </svg>
   </ServiceShowcase>
 
@@ -186,10 +202,17 @@ const quickNavItems = [
     direction="left"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect class="svg-draw" pathLength="1" x="24" y="24" width="72" height="68" rx="4" />
-      <path class="svg-draw" pathLength="1" d="M28 36h64M28 44h48M28 52h56M28 60h40" />
-      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M34 44l2-1.5M34 52l2-1.5M34 60l2-1.5" stroke-width="2" />
-      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M60 98v-6M60 92l-6 4 6 4 6-4" />
+      <!-- Окно терминала -->
+      <rect class="svg-draw" pathLength="1" x="15" y="25" width="90" height="70" rx="6" />
+      <line class="svg-draw" pathLength="1" x1="15" y1="45" x2="105" y2="45" />
+      <!-- Кнопки управления окном -->
+      <circle cx="25" cy="35" r="2" fill="currentColor" opacity="0.5" />
+      <circle cx="33" cy="35" r="2" fill="currentColor" opacity="0.5" />
+      <!-- Командная строка: >_ -->
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M25 60 L 35 70 L 25 80" stroke-width="2.5" />
+      <line class="svg-draw text-[var(--color-accent)] animate-pulse" pathLength="1" x1="40" y1="80" x2="55" y2="80" stroke-width="2.5" />
+      <!-- Вывод команды -->
+      <line class="svg-draw" pathLength="1" x1="40" y1="60" x2="80" y2="60" opacity="0.4" />
     </svg>
   </ServiceShowcase>
 
