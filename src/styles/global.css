@@ -206,8 +206,23 @@
   .reveal-stagger.is-visible > *:nth-child(4) { animation-delay: 0.18s; }
   .reveal-stagger.is-visible > *:nth-child(5) { animation-delay: 0.24s; }
   .reveal-stagger.is-visible > *:nth-child(6) { animation-delay: 0.30s; }
+  /* SVG-иконки: лёгкий вход при появлении блока и hover */
+  @keyframes icon-reveal {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .reveal.is-visible .svg-icon-reveal {
+    animation: icon-reveal 0.35s ease-out forwards;
+  }
+  .svg-icon-reveal {
+    transition: transform 0.2s ease;
+  }
+  .svg-icon-reveal:hover {
+    transform: scale(1.05);
+  }
   @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-stagger > * { opacity: 1; animation: none !important; }
+    .svg-icon-reveal { animation: none !important; }
   }
 
   /* Инструкции: лёгкая анимация появления */
@@ -254,6 +269,10 @@
     from { stroke-dashoffset: 100%; }
     to { stroke-dashoffset: 0; }
   }
+  @keyframes draw-line-unit {
+    from { stroke-dashoffset: 1; }
+    to { stroke-dashoffset: 0; }
+  }
   @keyframes pulse-glow {
     0%, 100% { box-shadow: 0 0 0 0 var(--color-accent-glow); }
     50% { box-shadow: 0 0 16px -4px var(--color-accent-glow); }
@@ -296,6 +315,25 @@
   .service-code-type {
     animation: code-type 1.5s steps(20) forwards;
   }
+  /* Большие иллюстрации на /services: рисование по контуру при reveal */
+  .service-illustration-float .svg-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw {
+    animation: draw-line-unit 0.6s ease-out forwards;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(1) { animation-delay: 0.05s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(2) { animation-delay: 0.1s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(3) { animation-delay: 0.15s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(4) { animation-delay: 0.2s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(5) { animation-delay: 0.25s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(6) { animation-delay: 0.3s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(7) { animation-delay: 0.35s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(8) { animation-delay: 0.4s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(9) { animation-delay: 0.45s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(10) { animation-delay: 0.5s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(n+11) { animation-delay: 0.55s; }
   @media (prefers-reduced-motion: reduce) {
     .service-flow-line.is-visible,
     .service-flow-node.is-visible,
@@ -305,6 +343,10 @@
       animation: none;
     }
     .service-flow-line { stroke-dashoffset: 0; }
+    .service-illustration-float .svg-draw {
+      stroke-dashoffset: 0;
+      animation: none;
+    }
   }
 
   .service-benefit-card {

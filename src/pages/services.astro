@@ -44,23 +44,23 @@ const quickNavItems = [
     id="telegram-bots"
     title="Telegram-боты"
     pitch="Менеджер, который не спит, не болеет и отвечает за секунды"
-    description="Клиент пишет в Telegram — бот мгновенно отвечает, собирает заявку, записывает на приём, присылает чек. Не «привет, я бот», а полноценная работа в чате: можно сделать удобную админ-панель прямо в боте (модерация, настройки, отчёты), выводить сюда скрипты и запускать их из чата, работать с формами и данными — без лишних сервисов, всё в одном месте."
-    flowSteps={['Клиент пишет', 'Бот распознаёт запрос', 'Обрабатывает (CRM/база/скрипт)', 'Ответ или админка в том же чате']}
-    benefits={['24/7 без выходных', 'Удобная админка в Telegram', 'Скрипты и отчёты из чата', 'Масштабируется без найма']}
+    description="Админка и скрипты — в приоритете. Удобная панель прямо в боте: модерация, настройки, отчёты; скрипты и отчёты запускаются из чата — без отдельных сервисов, всё в одном месте. Боты через Bot Father очень функциональны: их можно назначать админами в каналах и группах, проверять подписки, делать любые кнопки и меню, публиковать посты. Плюс привычный сценарий: клиент пишет — бот отвечает, собирает заявку, записывает на приём."
+    flowSteps={['Клиент пишет', 'Бот распознаёт запрос', 'Обработка (CRM/база/скрипт)', 'Ответ или админка и скрипты в чате']}
+    benefits={['Админка и скрипты в одном чате', 'Проверка подписок, кнопки, публикация постов', '24/7 без выходных', 'Масштабируется без найма']}
     caseSlug="telegram-parser-publisher"
     caseTitle="Parser & Publisher: контент на автопилоте"
     caseMetric="60 мин → 2 мин на пост"
     direction="left"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M26 46h40v36c0 2-2 4-4 4H30c-2 0-4-2-4-4V46z" />
-      <path d="M26 50h40M32 60h28M32 70h20" />
+      <path class="svg-draw" pathLength="1" d="M26 46h40v36c0 2-2 4-4 4H30c-2 0-4-2-4-4V46z" />
+      <path class="svg-draw" pathLength="1" d="M26 50h40M32 60h28M32 70h20" />
       <circle cx="38" cy="80" r="2.5" class="service-typing-dot" />
       <circle cx="46" cy="80" r="2.5" class="service-typing-dot" />
       <circle cx="54" cy="80" r="2.5" class="service-typing-dot" />
-      <rect x="58" y="22" width="36" height="44" rx="4" />
-      <path d="M64 30h24M64 38h18M64 46h22" />
-      <path d="M76 72v10M76 82h-6M76 82h6" class="text-[var(--color-accent)]" stroke-width="2" />
+      <rect class="svg-draw" pathLength="1" x="58" y="22" width="36" height="44" rx="4" />
+      <path class="svg-draw" pathLength="1" d="M64 30h24M64 38h18M64 46h22" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M76 72v10M76 82h-6M76 82h6" stroke-width="2" />
     </svg>
   </ServiceShowcase>
 
@@ -78,12 +78,12 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="60" cy="58" r="20" />
-      <circle cx="38" cy="42" r="8" />
-      <circle cx="82" cy="42" r="8" />
-      <circle cx="60" cy="82" r="8" />
-      <path d="M48 52Q60 48 72 52M52 68Q60 72 68 68M44 58Q52 62 60 58" class="text-[var(--color-accent)]" stroke-width="1.5" />
-      <path d="M54 48l4 4 8-10" stroke-width="2" />
+      <circle class="svg-draw" pathLength="1" cx="60" cy="58" r="20" />
+      <circle class="svg-draw" pathLength="1" cx="38" cy="42" r="8" />
+      <circle class="svg-draw" pathLength="1" cx="82" cy="42" r="8" />
+      <circle class="svg-draw" pathLength="1" cx="60" cy="82" r="8" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M48 52Q60 48 72 52M52 68Q60 72 68 68M44 58Q52 62 60 58" stroke-width="1.5" />
+      <path class="svg-draw" pathLength="1" d="M54 48l4 4 8-10" stroke-width="2" />
     </svg>
   </ServiceShowcase>
 
@@ -92,17 +92,17 @@ const quickNavItems = [
     id="mini-apps"
     title="TG Mini Apps"
     pitch="Полноценное приложение прямо внутри Telegram"
-    description="Каталог товаров, личный кабинет, форма записи, калькулятор — клиент пользуется, не выходя из мессенджера. Не нужно скачивать отдельное приложение."
+    description="Кастомный красивый интерфейс под ваш бренд — не шаблонный вид, а свой дизайн и UX. Каталог, личный кабинет, форма записи, калькулятор: клиент пользуется, не выходя из мессенджера, без установки отдельного приложения. Единый стиль с ботом, быстрый доступ из чата, оплата в Telegram."
     flowSteps={['Клиент нажимает кнопку в боте', 'Открывается Mini App', 'Взаимодействие', 'Данные в бот/CRM']}
-    benefits={['Без установки', 'Привычный интерфейс', 'Оплата в Telegram', 'Мгновенная доставка']}
+    benefits={['Кастомный интерфейс под бренд', 'Без установки приложения', 'Оплата в Telegram', 'Единый стиль с ботом']}
     direction="left"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="34" y="16" width="52" height="88" rx="6" />
-      <circle cx="60" cy="26" r="3" />
-      <path d="M42 38h36M42 48h28M42 58h32M42 68h24" />
-      <rect x="44" y="76" width="32" height="18" rx="3" class="text-[var(--color-accent)]" stroke-width="2" />
-      <path d="M52 84h16" opacity="0.7" />
+      <rect class="svg-draw" pathLength="1" x="34" y="16" width="52" height="88" rx="6" />
+      <circle class="svg-draw" pathLength="1" cx="60" cy="26" r="3" />
+      <path class="svg-draw" pathLength="1" d="M42 38h36M42 48h28M42 58h32M42 68h24" />
+      <rect class="svg-draw text-[var(--color-accent)]" pathLength="1" x="44" y="76" width="32" height="18" rx="3" stroke-width="2" />
+      <path class="svg-draw" pathLength="1" d="M52 84h16" opacity="0.7" />
     </svg>
   </ServiceShowcase>
 
@@ -120,13 +120,13 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="40" cy="40" r="14" />
-      <path d="M40 26v-4M40 54v4M26 40h-4M54 40h4" opacity="0.6" />
-      <circle cx="80" cy="40" r="14" />
-      <path d="M80 26v-4M80 54v4M66 40h-4M94 40h4" opacity="0.6" />
-      <circle cx="60" cy="80" r="14" />
-      <path d="M60 66v-4M60 94v4M46 80h-4M74 80h4" opacity="0.6" />
-      <path d="M52 46l16-16M56 74l12-20M68 46L54 62" class="text-[var(--color-accent)]" stroke-width="2" />
+      <circle class="svg-draw" pathLength="1" cx="40" cy="40" r="14" />
+      <path class="svg-draw" pathLength="1" d="M40 26v-4M40 54v4M26 40h-4M54 40h4" opacity="0.6" />
+      <circle class="svg-draw" pathLength="1" cx="80" cy="40" r="14" />
+      <path class="svg-draw" pathLength="1" d="M80 26v-4M80 54v4M66 40h-4M94 40h4" opacity="0.6" />
+      <circle class="svg-draw" pathLength="1" cx="60" cy="80" r="14" />
+      <path class="svg-draw" pathLength="1" d="M60 66v-4M60 94v4M46 80h-4M74 80h4" opacity="0.6" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M52 46l16-16M56 74l12-20M68 46L54 62" stroke-width="2" />
     </svg>
   </ServiceShowcase>
 
@@ -144,10 +144,10 @@ const quickNavItems = [
     direction="left"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="48" cy="42" r="18" />
-      <path d="M62 56L78 72" stroke-width="2" />
-      <path d="M20 78h80M24 88h72M28 98h64" />
-      <path d="M26 78l3 3 5-6M44 88l4 4 6-7" class="text-[var(--color-accent)]" stroke-width="1.5" />
+      <circle class="svg-draw" pathLength="1" cx="48" cy="42" r="18" />
+      <path class="svg-draw" pathLength="1" d="M62 56L78 72" stroke-width="2" />
+      <path class="svg-draw" pathLength="1" d="M20 78h80M24 88h72M28 98h64" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M26 78l3 3 5-6M44 88l4 4 6-7" stroke-width="1.5" />
     </svg>
   </ServiceShowcase>
 
@@ -165,10 +165,10 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="24" y="28" width="72" height="48" rx="4" />
-      <path d="M32 40h56M32 50h44M32 60h38" />
-      <path d="M36 82v8M36 90h12M60 82v8M60 90h12M84 82v8M84 90h12" />
-      <path d="M40 76l6 6 12-12 8 8" class="text-[var(--color-accent)]" stroke-width="2" />
+      <rect class="svg-draw" pathLength="1" x="24" y="28" width="72" height="48" rx="4" />
+      <path class="svg-draw" pathLength="1" d="M32 40h56M32 50h44M32 60h38" />
+      <path class="svg-draw" pathLength="1" d="M36 82v8M36 90h12M60 82v8M60 90h12M84 82v8M84 90h12" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M40 76l6 6 12-12 8 8" stroke-width="2" />
     </svg>
   </ServiceShowcase>
 
@@ -186,10 +186,10 @@ const quickNavItems = [
     direction="left"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="24" y="24" width="72" height="68" rx="4" />
-      <path d="M28 36h64M28 44h48M28 52h56M28 60h40" />
-      <path d="M34 44l2-1.5M34 52l2-1.5M34 60l2-1.5" class="text-[var(--color-accent)]" stroke-width="2" />
-      <path d="M60 98v-6M60 92l-6 4 6 4 6-4" class="text-[var(--color-accent)]" />
+      <rect class="svg-draw" pathLength="1" x="24" y="24" width="72" height="68" rx="4" />
+      <path class="svg-draw" pathLength="1" d="M28 36h64M28 44h48M28 52h56M28 60h40" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M34 44l2-1.5M34 52l2-1.5M34 60l2-1.5" stroke-width="2" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M60 98v-6M60 92l-6 4 6 4 6-4" />
     </svg>
   </ServiceShowcase>
 
@@ -204,13 +204,13 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="20" y="28" width="36" height="64" rx="5" />
-      <path d="M28 40h20M28 50h16M28 60h22" />
-      <rect x="64" y="28" width="36" height="64" rx="5" />
-      <path d="M72 40h20M72 50h16M72 60h22" />
-      <path d="M56 60h8" class="text-[var(--color-accent)]" stroke-width="2.5" />
-      <polyline points="52,56 60,60 68,56" class="text-[var(--color-accent)]" fill="none" />
-      <polyline points="52,64 60,60 68,64" class="text-[var(--color-accent)]" fill="none" />
+      <rect class="svg-draw" pathLength="1" x="20" y="28" width="36" height="64" rx="5" />
+      <path class="svg-draw" pathLength="1" d="M28 40h20M28 50h16M28 60h22" />
+      <rect class="svg-draw" pathLength="1" x="64" y="28" width="36" height="64" rx="5" />
+      <path class="svg-draw" pathLength="1" d="M72 40h20M72 50h16M72 60h22" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M56 60h8" stroke-width="2.5" />
+      <polyline class="svg-draw text-[var(--color-accent)]" pathLength="1" points="52,56 60,60 68,56" fill="none" />
+      <polyline class="svg-draw text-[var(--color-accent)]" pathLength="1" points="52,64 60,60 68,64" fill="none" />
     </svg>
   </ServiceShowcase>
 
