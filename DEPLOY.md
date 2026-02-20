@@ -203,7 +203,7 @@ server {
 ```bash
 ln -s /etc/nginx/sites-available/vladexecute.ru /etc/nginx/sites-enabled/
 nginx -t
-systemctl reload nginx
+systemctl restart nginx
 ```
 
 6. Проверка: откройте `https://vladexecute.ru` и `https://www.vladexecute.ru`. Сертификат продлевается автоматически (certbot timer).
@@ -241,7 +241,7 @@ sudo visudo
 Добавьте строку (подставьте имя пользователя вместо `deploy`):
 
 ```
-deploy ALL=(ALL) NOPASSWD: /usr/bin/cp *deploy/nginx*.conf /etc/nginx/sites-available/*, /usr/sbin/nginx, /usr/bin/systemctl reload nginx
+deploy ALL=(ALL) NOPASSWD: /usr/bin/cp *deploy/nginx*.conf /etc/nginx/sites-available/*, /usr/sbin/nginx, /usr/bin/systemctl restart nginx
 ```
 
 Или проще — разрешить все команды для deploy (менее безопасно, но проще):
@@ -258,7 +258,7 @@ deploy ALL=(ALL) NOPASSWD: ALL
 
 ## Деплой прошёл, но сайт старый — что проверить
 
-1. **Nginx проксирует на нужный порт?** Конфиг лежит в репо: `deploy/nginx-vladexecute.ru.conf` (порт **9080**). При каждом деплое он копируется на сервер через `deploy/deploy.sh`. Если что-то меняли вручную на VPS — после следующего push конфиг из репо перезапишет. Проверка вручную: `proxy_pass http://127.0.0.1:9080;`, затем `sudo nginx -t && sudo systemctl reload nginx`.
+1. **Nginx проксирует на нужный порт?** Конфиг лежит в репо: `deploy/nginx-vladexecute.ru.conf` (порт **9080**). При каждом деплое он копируется на сервер через `deploy/deploy.sh`. Если что-то меняли вручную на VPS — после следующего push конфиг из репо перезапишет. Проверка вручную: `proxy_pass http://127.0.0.1:9080;`, затем `sudo nginx -t && sudo systemctl restart nginx`.
 
 2. **Контейнер запущен?** На сервере: `cd /opt && docker compose ps`. Должен быть `opt-web-1` в статусе Up. Если нет — `docker compose up -d --build`.
 
