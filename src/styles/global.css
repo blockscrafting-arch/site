@@ -211,7 +211,8 @@
     from { opacity: 0; transform: scale(0.92); }
     to { opacity: 1; transform: scale(1); }
   }
-  .reveal.is-visible .svg-icon-reveal {
+  .reveal.is-visible .svg-icon-reveal,
+  .reveal-stagger.is-visible .svg-icon-reveal {
     animation: icon-reveal 0.35s ease-out forwards;
   }
   .svg-icon-reveal {
@@ -219,6 +220,22 @@
   }
   .svg-icon-reveal:hover {
     transform: scale(1.05);
+  }
+  @keyframes float-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  .animate-float-icon {
+    animation: float-icon 4s ease-in-out infinite;
+  }
+  /* Легкий сдвиг по фазе для дочерних элементов списков/сеток */
+  *:nth-child(even) > .animate-float-icon,
+  *:nth-child(even) > div > .animate-float-icon {
+    animation-delay: -1.5s;
+  }
+  *:nth-child(3n) > .animate-float-icon,
+  *:nth-child(3n) > div > .animate-float-icon {
+    animation-delay: -2.5s;
   }
   /* Декоративные SVG: лёгкое появление при reveal (исключаем большие иллюстрации с draw) */
   .reveal.is-visible svg {
