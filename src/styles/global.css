@@ -206,7 +206,7 @@
   .reveal-stagger.is-visible > *:nth-child(4) { animation-delay: 0.18s; }
   .reveal-stagger.is-visible > *:nth-child(5) { animation-delay: 0.24s; }
   .reveal-stagger.is-visible > *:nth-child(6) { animation-delay: 0.30s; }
-  /* SVG-иконки: лёгкий вход при появлении блока и hover */
+  /* SVG-иконки: лёгкий вход при появлении блока и hover (все инлайновые SVG с классом svg-icon-reveal) */
   @keyframes icon-reveal {
     from { opacity: 0; transform: scale(0.92); }
     to { opacity: 1; transform: scale(1); }
@@ -215,10 +215,17 @@
     animation: icon-reveal 0.35s ease-out forwards;
   }
   .svg-icon-reveal {
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
   }
   .svg-icon-reveal:hover {
     transform: scale(1.05);
+  }
+  /* Декоративные SVG: лёгкое появление при reveal (исключаем большие иллюстрации с draw) */
+  .reveal.is-visible svg {
+    animation: icon-reveal 0.4s ease-out forwards;
+  }
+  .service-illustration-float svg {
+    animation: none; /* большие иллюстрации анимируются через .svg-draw по контуру */
   }
   @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-stagger > * { opacity: 1; animation: none !important; }

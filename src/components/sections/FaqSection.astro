@@ -10,10 +10,10 @@ const faqs = [
 ---
 
 <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="faq-heading">
-  <h2 id="faq-heading" class="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl text-center">
+  <h2 id="faq-heading" class="reveal text-2xl font-bold text-[var(--color-text)] sm:text-3xl text-center">
     Частые вопросы
   </h2>
-  <div class="mt-12 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm overflow-hidden">
+  <div class="reveal mt-12 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-sm overflow-hidden">
     {faqs.map((faq) => (
       <FaqItem client:load question={faq.question} answer={faq.answer} />
     ))}

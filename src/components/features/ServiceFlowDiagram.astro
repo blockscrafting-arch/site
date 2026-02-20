@@ -18,7 +18,7 @@ const { steps } = Astro.props;
     {steps.map((label, i) => (
       <div class="flex items-center gap-2 sm:flex-shrink-0">
         {i > 0 && (
-          <svg class="h-6 w-12 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <svg class="h-6 w-12 flex-shrink-0 svg-icon-reveal text-[var(--color-accent)]" viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
             <line x1="0" y1="12" x2="36" y2="12" class="service-flow-line" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
             <polyline points="32,8 40,12 32,16" class="service-flow-line" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
           </svg>
@@ -36,7 +36,7 @@ const { steps } = Astro.props;
     {steps.map((label, i) => (
       <div class="flex flex-col items-center gap-2">
         {i > 0 && (
-          <svg class="h-8 w-6 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <svg class="h-8 w-6 flex-shrink-0 svg-icon-reveal text-[var(--color-accent)]" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
             <line x1="12" y1="0" x2="12" y2="20" class="service-flow-line" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
             <polyline points="8,16 12,24 16,16" class="service-flow-line" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
           </svg>
