@@ -248,4 +248,93 @@
   @media (prefers-reduced-motion: reduce) {
     .animate-marquee { animation: none; }
   }
+
+  /* ===== Services page: flow diagram, benefit cards, quick-nav ===== */
+  @keyframes draw-line {
+    from { stroke-dashoffset: 100%; }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 var(--color-accent-glow); }
+    50% { box-shadow: 0 0 16px -4px var(--color-accent-glow); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes typing-dots {
+    0%, 80%, 100% { opacity: 0.3; }
+    40% { opacity: 1; }
+  }
+  @keyframes code-type {
+    from { width: 0; overflow: hidden; }
+    to { width: 100%; }
+  }
+  .service-flow-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  .reveal.is-visible .service-flow-line,
+  .service-flow-line.is-visible {
+    animation: draw-line 0.6s ease-out forwards;
+  }
+  .reveal.is-visible .service-flow-line:nth-of-type(1) { animation-delay: 0.1s; }
+  .reveal.is-visible .service-flow-line:nth-of-type(2) { animation-delay: 0.25s; }
+  .reveal.is-visible .service-flow-line:nth-of-type(3) { animation-delay: 0.4s; }
+  .reveal.is-visible .service-flow-line:nth-of-type(4) { animation-delay: 0.55s; }
+  .service-flow-node.is-visible {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  .service-illustration-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  .service-typing-dot {
+    animation: typing-dots 1.4s ease-in-out infinite;
+  }
+  .service-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .service-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  .service-code-type {
+    animation: code-type 1.5s steps(20) forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .service-flow-line.is-visible,
+    .service-flow-node.is-visible,
+    .service-illustration-float,
+    .service-typing-dot,
+    .service-code-type {
+      animation: none;
+    }
+    .service-flow-line { stroke-dashoffset: 0; }
+  }
+
+  .service-benefit-card {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .service-benefit-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 16px -6px var(--color-accent-glow);
+  }
+
+  .service-quick-nav {
+    position: sticky;
+    top: 4rem;
+    z-index: 40;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .service-quick-nav-inner {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .service-quick-nav a {
+    flex-shrink: 0;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+  .service-quick-nav a.is-active {
+    color: var(--color-accent);
+    background-color: var(--color-accent-muted);
+  }
 }

@@ -1,0 +1,67 @@
+---
+/**
+ * Sticky-навигация по услугам на странице /services.
+ * Горизонтальные pills с якорными ссылками; активный элемент подсвечивается по IntersectionObserver.
+ */
+export interface NavItem {
+  id: string;
+  label: string;
+}
+
+export interface Props {
+  items: NavItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="service-quick-nav py-3 px-4 sm:px-6" aria-label="Навигация по услугам">
+  <div class="service-quick-nav-inner mx-auto max-w-6xl flex items-center gap-2">
+    {items.map((item, i) => (
+      <a
+        href={`#${item.id}`}
+        class:list={[
+          'rounded-full px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)]',
+          i === 0 && 'is-active',
+        ]}
+        data-service-id={item.id}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+</nav>
+
+<script>
+  /**
+   * Подсветка активного пункта по видимой секции (IntersectionObserver).
+   */
+  (function () {
+    const nav = document.querySelector('.service-quick-nav');
+    if (!nav) return;
+    const links = nav.querySelectorAll('a[data-service-id]');
+    const sections = new Map();
+    links.forEach((link) => {
+      const id = link.getAttribute('data-service-id');
+      if (id) {
+        const el = document.getElementById(id);
+        if (el) sections.set(id, el);
+      }
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          links.forEach((link) => {
+            link.classList.toggle('is-active', link.getAttribute('data-service-id') === id);
+          });
+        });
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+  })();
+</script>

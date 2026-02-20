@@ -1,0 +1,232 @@
+---
+/**
+ * Страница «Услуги» — детальный разбор продуктовой линейки «на пальцах».
+ * Hero, sticky quick-nav, 8 сервис-блоков с flow-диаграммами и мини-кейсами, CTA.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceShowcase from '../components/sections/ServiceShowcase.astro';
+import ServiceQuickNav from '../components/features/ServiceQuickNav.astro';
+import Button from '../components/common/Button.astro';
+
+const quickNavItems = [
+  { id: 'telegram-bots', label: 'Telegram-боты' },
+  { id: 'ai-agents', label: 'AI-агенты' },
+  { id: 'mini-apps', label: 'Mini Apps' },
+  { id: 'automation', label: 'Автоматизация' },
+  { id: 'parsing', label: 'Парсинг' },
+  { id: 'autoposting', label: 'Автопостинг' },
+  { id: 'scripts', label: 'Скрипты' },
+  { id: 'integrations', label: 'Интеграции' },
+];
+---
+
+<BaseLayout
+  title="Услуги — vlad.execute(_)"
+  description="Telegram-боты, AI-агенты, автоматизация, парсинг — объясняю на пальцах, что это и зачем бизнесу. С примерами реальных кейсов."
+>
+  <!-- Hero -->
+  <section class="pt-24 pb-6 sm:pt-32 sm:pb-8 px-4 sm:px-6" aria-labelledby="services-hero-heading">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 id="services-hero-heading" class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl">
+        Что я делаю и зачем это бизнесу
+      </h1>
+      <p class="reveal mt-4 text-lg text-[var(--color-text-muted)]" style="animation-delay: 0.06s">
+        Простыми словами — с примерами и цифрами из реальных проектов.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sticky quick-nav -->
+  <ServiceQuickNav items={quickNavItems} />
+
+  <!-- 1. Telegram-боты -->
+  <ServiceShowcase
+    id="telegram-bots"
+    title="Telegram-боты"
+    pitch="Менеджер, который не спит, не болеет и отвечает за секунды"
+    description="Клиент пишет в Telegram — бот мгновенно отвечает, собирает заявку, записывает на приём, присылает чек. Не «привет, я бот», а полноценный сотрудник в чате."
+    flowSteps={['Клиент пишет', 'Бот распознаёт запрос', 'Обрабатывает (CRM/база)', 'Отвечает или передаёт менеджеру']}
+    benefits={['24/7 без выходных', 'Мгновенный ответ', 'Интеграция с CRM', 'Масштабируется без найма']}
+    caseSlug="telegram-parser-publisher"
+    caseTitle="Parser & Publisher: контент на автопилоте"
+    caseMetric="60 мин → 2 мин на пост"
+    direction="left"
+  >
+    <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M30 50c0-2 1.5-4 3.5-4h53c2 0 3.5 2 3.5 4v42c0 2-1.5 4-3.5 4h-53c-2 0-3.5-2-3.5-4V50z" />
+      <path d="M30 54h60M36 64h36M36 74h28" />
+      <circle cx="44" cy="86" r="2.5" class="service-typing-dot" />
+      <circle cx="52" cy="86" r="2.5" class="service-typing-dot" />
+      <circle cx="60" cy="86" r="2.5" class="service-typing-dot" />
+      <path d="M55 28L40 48l6 6 21-26-12-4z" fill="none" />
+      <path d="M65 28l15 20-6 6-21-26 12 0z" fill="none" />
+      <path d="M25 42c0-2 2-3.5 4-3.5h22c2 0 4 1.5 4 3.5v24c0 2-2 3.5-4 3.5H29c-2 0-4-1.5-4-3.5V42z" opacity="0.7" />
+      <path d="M31 46h14M31 54h10" />
+    </svg>
+  </ServiceShowcase>
+
+  <!-- 2. AI-агенты -->
+  <ServiceShowcase
+    id="ai-agents"
+    title="AI-агенты"
+    pitch="Цифровой сотрудник, который выучил все ваши регламенты"
+    description="Как нанять сотрудника, который не устаёт, не болеет и помнит каждый разговор. AI-агент анализирует данные, отвечает клиентам, готовит документы — за секунды."
+    flowSteps={['Запрос', 'AI анализирует контекст (RAG/память)', 'Генерирует ответ', 'Результат']}
+    benefits={['Помнит контекст', 'Работает с документами', 'Учится на ваших данных', 'Заменяет рутину отдела']}
+    caseSlug="ai-lawyer"
+    caseTitle="ИИ-юрист: анализ и КП по ГОСТу"
+    caseMetric="15 условий проверки за секунды"
+    direction="right"
+  >
+    <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="60" cy="52" r="24" />
+      <path d="M42 52l5 5 11-12M56 38v6M60 32v6M64 38h-4M72 52l-5 5M60 72v-6M46 52h6" />
+      <path d="M34 78c2-10 14-18 26-18s24 8 26 18" />
+      <path d="M48 88l6 10 12-16 10 12" class="text-[var(--color-accent)]" stroke-width="2" />
+      <path d="M60 28v8M60 76v8M36 52h-8M92 52h-8M42 32l6 6M72 72l6 6M42 72l6-6M72 32l6 6" opacity="0.4" stroke-width="1" />
+    </svg>
+  </ServiceShowcase>
+
+  <!-- 3. Mini Apps -->
+  <ServiceShowcase
+    id="mini-apps"
+    title="TG Mini Apps"
+    pitch="Полноценное приложение прямо внутри Telegram"
+    description="Каталог товаров, личный кабинет, форма записи, калькулятор — клиент пользуется, не выходя из мессенджера. Не нужно скачивать отдельное приложение."
+    flowSteps={['Клиент нажимает кнопку в боте', 'Открывается Mini App', 'Взаимодействие', 'Данные в бот/CRM']}
+    benefits={['Без установки', 'Привычный интерфейс', 'Оплата в Telegram', 'Мгновенная доставка']}
+    direction="left"
+  >
+    <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="32" y="18" width="56" height="84" rx="8" />
+      <circle cx="60" cy="28" r="4" />
+      <path d="M40 42h40M40 52h32M40 62h24M40 72h36" />
+      <rect x="42" y="78" width="36" height="14" rx="3" class="text-[var(--color-accent)]" stroke-width="2" />
+      <path d="M48 84h24" class="text-[var(--color-text)]" opacity="0.6" />
+    </svg>
+  </ServiceShowcase>
+
+  <!-- 4. Автоматизация -->
+  <ServiceShowcase
+    id="automation"
+    title="Автоматизация"
+    pitch="CRM обновилась → клиент получил письмо → менеджер получил задачу. Автоматически."
+    description="Связываю сервисы в цепочки: заявка пришла — CRM обновилась — менеджер получил задачу — клиент получил подтверждение. Без людей в цепочке, без забытых действий."
+    flowSteps={['Триггер (заявка/событие)', 'n8n обрабатывает', 'Действия (CRM, почта, таблица)', 'Уведомление']}
+    benefits={['Ноль ручных действий', 'Работает 24/7', 'Нет человеческого фактора', 'Масштабируется']}
+    caseSlug="voice-to-text"
+    caseTitle="Голосовые в текст: 40 войсов в день"
+    caseMetric="−100 мин/день, 10 ч/нед вернули клиенту"
+    direction="right"
+  >
+    <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="38" cy="38" r="16" />
+      <circle cx="82" cy="38" r="16" />
+      <circle cx="60" cy="82" r="16" />
+      <path d="M50 46l14-14M56 76l12-22M70 46L54 62" class="text-[var(--color-accent)]" stroke-width="2" />
+      <path d="M38 22v-4M82 22v-4M60 66v4M22 60h-4M98 60h4" opacity="0.5" />
+    </svg>
+  </ServiceShowcase>
+
+  <!-- 5. Парсинг -->
+  <ServiceShowcase
+    id="parsing"
+    title="Парсинг"
+    pitch="Данные из любых источников — в вашу таблицу, автоматически"
+    description="Мониторинг цен конкурентов, сбор контактов, отслеживание новостей и каналов — скрипт собирает данные откуда скажете и кладёт в удобном виде."
+    flowSteps={['Источники (сайты/каналы/API)', 'Скрипт парсит', 'Фильтрация', 'Данные в таблицу/базу']}
+    benefits={['Экономия часов ручного сбора', 'Актуальные данные', 'Масштабируется', 'Запуск по расписанию']}
+    caseSlug="telegram-parser-publisher"
+    caseTitle="Parser & Publisher: мониторинг каналов"
+    caseMetric="Мониторинг без ручного труда"
+    direction="left"
+  >
+    <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="52" cy="44" r="22" />
+      <path d="M44 44l8 8 16-20" class="text-[var(--color-accent)]" stroke-width="2" />
+      <path d="M25 72h70M30 82h60M35 92h50" />
+      <path d="M28 72l4 4 4-4M45 82l5 5 5-5M38 92l4 4" opacity="0.6" />
+    </svg>
+  </ServiceShowcase>
+
+  <!-- 6. Автопостинг -->
+  <ServiceShowcase
+    id="autoposting"
+    title="Автопостинг"
+    pitch="Контент создаётся и публикуется сам — вы только одобряете"
+    description="AI генерирует текст и картинку, система публикует в Telegram, VK, Дзен по расписанию. Вы тратите 2 минуты на проверку вместо часа на создание."
+    flowSteps={['Идея/источник', 'AI пишет текст', 'AI рисует картинку', 'Модерация (1 кнопка)', 'Публикация в N каналов']}
+    benefits={['Контент 24/7', 'Кросс-постинг', 'AI-генерация', 'Контроль одной кнопкой']}
+    caseSlug="ai-content-conveyor"
+    caseTitle="AI-конвейер для автопостинга"
+    caseMetric="30–40 мин → 2 мин на пост"
+    direction="right"
+  >
+    <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="22" y="26" width="76" height="54" rx="5" />
+      <path d="M32 38h56M32 48h44M32 58h36M32 68h48" />
+      <path d="M38 88v-8M58 88v-8M78 88v-8" />
+      <path d="M38 80l8 8 16-16 12 12" class="text-[var(--color-accent)]" stroke-width="2" />
+      <circle cx="44" cy="38" r="2" class="text-[var(--color-accent)]" />
+      <circle cx="44" cy="48" r="2" />
+      <circle cx="44" cy="58" r="2" />
+    </svg>
+  </ServiceShowcase>
+
+  <!-- 7. Скрипты -->
+  <ServiceShowcase
+    id="scripts"
+    title="Скрипты"
+    pitch="Любая рутина, которую вы делаете руками — можно автоматизировать"
+    description="Python-скрипт под вашу задачу. Обработка файлов, генерация отчётов, массовая рассылка, конвертация данных — запуск одной кнопкой или по расписанию."
+    flowSteps={['Задача', 'Скрипт (Python)', 'Результат (файл/отчёт/действие)']}
+    benefits={['Точно под задачу', 'Одна кнопка', 'По расписанию', 'С документацией']}
+    caseSlug="vk-autoposter"
+    caseTitle="Автопостер для ВКонтакте"
+    caseMetric="10 мин → 1 сек на публикацию"
+    direction="left"
+  >
+    <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="22" y="22" width="76" height="76" rx="5" />
+      <path d="M32 38h56M32 50h42M32 62h52M32 74h34" />
+      <path d="M36 38l3-2M36 50l3-2M36 62l3-2" class="text-[var(--color-accent)]" stroke-width="2" />
+      <path d="M50 90v-6M70 90v-6" opacity="0.6" />
+      <path d="M50 84l10 6 10-6" class="text-[var(--color-accent)]" />
+    </svg>
+  </ServiceShowcase>
+
+  <!-- 8. Интеграции -->
+  <ServiceShowcase
+    id="integrations"
+    title="Интеграции"
+    pitch="Связываю любые сервисы, чтобы данные текли автоматически"
+    description="CRM не дружит с мессенджером? Таблица не синхронится с базой? Связываю что угодно с чем угодно: Telegram, 1C, Bitrix, Google Sheets, любые API."
+    flowSteps={['Сервис A', 'API/webhook', 'n8n/скрипт', 'Сервис B']}
+    benefits={['Единый поток данных', 'Нет ручного переноса', 'Любые сервисы', 'Двусторонняя синхронизация']}
+    direction="right"
+  >
+    <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="18" y="32" width="38" height="56" rx="5" />
+      <path d="M26 46h22M26 56h18M26 66h24" />
+      <rect x="64" y="32" width="38" height="56" rx="5" />
+      <path d="M72 46h22M72 56h18M72 66h24" />
+      <path d="M56 60h8" class="text-[var(--color-accent)]" stroke-width="2.5" />
+      <path d="M52 56l6 4-6 4M60 56l6 4-6 4" class="text-[var(--color-accent)]" />
+    </svg>
+  </ServiceShowcase>
+
+  <!-- CTA -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 border-t border-[var(--color-border)]">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl">
+        Не понял, что нужно?
+      </h2>
+      <p class="mt-2 text-[var(--color-text-muted)]">
+        Расскажи задачу — подскажу, какой вариант подойдёт и что могу сделать.
+      </p>
+      <div class="mt-8">
+        <Button href="/contact" variant="primary">Обсудить задачу</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

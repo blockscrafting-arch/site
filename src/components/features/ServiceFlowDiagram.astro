@@ -1,0 +1,52 @@
+---
+/**
+ * Анимированная flow-диаграмма «как это работает».
+ * Горизонтальная цепочка на десктопе, вертикальная на мобильных.
+ * Стрелки рисуются по скроллу (stroke-dashoffset), узлы — с лёгкой пульсацией.
+ */
+export interface Props {
+  /** Подписи шагов (3–5 узлов) */
+  steps: string[];
+}
+
+const { steps } = Astro.props;
+---
+
+<div class="service-flow-diagram reveal my-8">
+  <!-- Десктоп: горизонтальная цепочка -->
+  <div class="hidden sm:flex sm:flex-wrap sm:items-center sm:gap-2">
+    {steps.map((label, i) => (
+      <div class="flex items-center gap-2 sm:flex-shrink-0">
+        {i > 0 && (
+          <svg class="h-6 w-12 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="0" y1="12" x2="36" y2="12" class="service-flow-line" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+            <polyline points="32,8 40,12 32,16" class="service-flow-line" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+          </svg>
+        )}
+        <div
+          class="service-flow-node rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2.5 text-center text-sm font-medium text-[var(--color-text)]"
+        >
+          {label}
+        </div>
+      </div>
+    ))}
+  </div>
+  <!-- Мобильный: вертикальная цепочка -->
+  <div class="flex flex-col gap-2 sm:hidden">
+    {steps.map((label, i) => (
+      <div class="flex flex-col items-center gap-2">
+        {i > 0 && (
+          <svg class="h-8 w-6 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="12" y1="0" x2="12" y2="20" class="service-flow-line" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+            <polyline points="8,16 12,24 16,16" class="service-flow-line" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+          </svg>
+        )}
+        <div
+          class="service-flow-node w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2.5 text-center text-sm font-medium text-[var(--color-text)]"
+        >
+          {label}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

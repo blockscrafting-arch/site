@@ -3,14 +3,15 @@
  * Секция «Услуги»: 6 карточек с иконками. Без GSAP, без tilt — CSS reveal.
  */
 import Badge from '../common/Badge.astro';
+import Button from '../common/Button.astro';
 
 const services = [
-  { title: 'Telegram-боты', desc: 'Приём заявок, поддержка, рассылки, мини-приложения в одном чате.', tags: ['Telegram', 'Mini App'], href: '/cases', icon: 'chat' },
-  { title: 'AI-агенты', desc: 'Обработка заявок, аналитика, ответы клиентам на базе LLM и RAG.', tags: ['LLM', 'RAG'], href: '/cases', icon: 'brain' },
-  { title: 'TG Mini Apps', desc: 'Веб-приложения внутри Telegram: формы, каталоги, личные кабинеты.', tags: ['Telegram', 'Web'], href: '/cases', icon: 'app' },
-  { title: 'n8n-автоматизация', desc: 'Связываю CRM, мессенджеры, таблицы и сервисы в единые воронки.', tags: ['n8n', 'API'], href: '/cases', icon: 'flow' },
-  { title: 'Скрипты и парсеры', desc: 'Парсинг данных, интеграции, кастомные решения на Python под задачу.', tags: ['Python', 'API'], href: '/cases', icon: 'code' },
-  { title: 'Кастомная разработка', desc: 'Интеграции под ключ, бэкенды, автоматизация под ваш процесс.', tags: ['Python', 'n8n'], href: '/contact', icon: 'wrench' },
+  { title: 'Telegram-боты', desc: 'Приём заявок, поддержка, рассылки, мини-приложения в одном чате.', tags: ['Telegram', 'Mini App'], href: '/services#telegram-bots', icon: 'chat' },
+  { title: 'AI-агенты', desc: 'Обработка заявок, аналитика, ответы клиентам на базе LLM и RAG.', tags: ['LLM', 'RAG'], href: '/services#ai-agents', icon: 'brain' },
+  { title: 'TG Mini Apps', desc: 'Веб-приложения внутри Telegram: формы, каталоги, личные кабинеты.', tags: ['Telegram', 'Web'], href: '/services#mini-apps', icon: 'app' },
+  { title: 'n8n-автоматизация', desc: 'Связываю CRM, мессенджеры, таблицы и сервисы в единые воронки.', tags: ['n8n', 'API'], href: '/services#automation', icon: 'flow' },
+  { title: 'Скрипты и парсеры', desc: 'Парсинг данных, интеграции, кастомные решения на Python под задачу.', tags: ['Python', 'API'], href: '/services#parsing', icon: 'code' },
+  { title: 'Кастомная разработка', desc: 'Интеграции под ключ, бэкенды, автоматизация под ваш процесс.', tags: ['Python', 'n8n'], href: '/services#integrations', icon: 'wrench' },
 ];
 ---
 
@@ -51,6 +52,9 @@ const services = [
           </div>
         </a>
       ))}
+    </div>
+    <div class="reveal mt-12 text-center" style="animation-delay: 0.24s">
+      <Button href="/services" variant="outline">Подробнее обо всех услугах</Button>
     </div>
   </div>
 </section>
