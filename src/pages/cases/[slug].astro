@@ -39,9 +39,9 @@ const layoutType = layout ?? 'default';
       <div class="mx-auto max-w-3xl case-hero-inner reveal-stagger is-visible">
         <a
           href="/cases"
-          class="case-back mb-6 inline-flex items-center text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
+          class="group case-back mb-6 inline-flex items-center text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
         >
-          ← Кейсы
+          <span class="mr-1 inline-block transition-transform duration-300 group-hover:-translate-x-1">←</span> Кейсы
         </a>
         <h1 class="case-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl">
           {title}

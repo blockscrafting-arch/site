@@ -24,9 +24,9 @@ const { title, description } = entry.data;
     <header class="guide-detail-header">
       <a
         href="/guides"
-        class="guide-back mb-6 inline-flex items-center text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
+        class="group guide-back mb-6 inline-flex items-center text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
       >
-        ← Инструкции
+        <span class="mr-1 inline-block transition-transform duration-300 group-hover:-translate-x-1">←</span> Инструкции
       </a>
       <h1 class="guide-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">{title}</h1>
       {description && (

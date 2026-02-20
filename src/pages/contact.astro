@@ -40,9 +40,9 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
           href={site.tgChannel}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center text-[var(--color-accent)] hover:underline font-medium"
+          class="group inline-flex items-center text-[var(--color-accent)] hover:underline font-medium transition-colors"
         >
-          {site.tgChannelHandle}
+          {site.tgChannelHandle} <span class="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
         </a>
         <CopyButton client:load value={site.tgChannelHandle} label="Скопировать" copiedLabel="Скопировано!" />
       </div>
