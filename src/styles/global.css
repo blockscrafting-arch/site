@@ -424,48 +424,48 @@
 
 /* 1. Моргание глаз */
 @keyframes blink-eyes {
-  0%, 96%, 98%, 100% { transform: scaleY(1); }
-  97%, 99% { transform: scaleY(0.1); }
+  0%, 46%, 49%, 100% { transform: scaleY(1); }
+  47%, 48% { transform: scaleY(0.05); }
 }
 .animate-eyes {
-  animation: blink-eyes 5s infinite;
+  animation: blink-eyes 8s ease-in-out infinite;
   transform-origin: center;
 }
 
 /* 2. Печатающие руки */
 @keyframes type-hand-l {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-4px) rotate(-3deg); }
+  50% { transform: translateY(-3px) rotate(-5deg); }
 }
 @keyframes type-hand-r {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-4px) rotate(3deg); }
+  50% { transform: translateY(-3px) rotate(5deg); }
 }
 .animate-hand-l {
-  animation: type-hand-l 0.3s infinite alternate;
-  transform-origin: bottom center;
+  animation: type-hand-l 0.15s infinite alternate;
+  transform-origin: 30% 90%;
 }
 .animate-hand-r {
-  animation: type-hand-r 0.4s infinite alternate-reverse;
-  transform-origin: bottom center;
+  animation: type-hand-r 0.2s infinite alternate-reverse;
+  transform-origin: 70% 90%;
 }
 
 /* 3. Плавающий кубок */
 @keyframes float-cup {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
 }
 .animate-cup {
-  animation: float-cup 6s ease-in-out infinite;
+  animation: float-cup 5s ease-in-out infinite;
 }
 
 /* 4. Вылетающие документы из чемодана */
 @keyframes fly-doc {
   0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-  100% { transform: translate(30px, -60px) rotate(20deg); opacity: 0; }
+  100% { transform: translate(40px, -80px) rotate(25deg); opacity: 0; }
 }
-.animate-doc-1 { animation: fly-doc 2.5s infinite linear; }
-.animate-doc-2 { animation: fly-doc 2.5s infinite linear 1.25s; }
+.animate-doc-1 { animation: fly-doc 2.5s infinite ease-out; }
+.animate-doc-2 { animation: fly-doc 2.5s infinite ease-out 1.25s; }
 
 /* 5. Перелистывание страницы */
 @keyframes turn-page {
@@ -479,13 +479,22 @@
   transform-style: preserve-3d;
 }
 
-/* 6. Летящий самолетик */
+/* 6. Летящий самолетик по кривой */
 @keyframes airplane-fly {
-  0% { transform: translate(-20vw, 30vh) rotate(-15deg); opacity: 0; }
-  10% { opacity: 0.2; }
-  90% { opacity: 0.2; }
-  100% { transform: translate(120vw, -20vh) rotate(-15deg); opacity: 0; }
+  0% { 
+    transform: translate(-20vw, 60vh) rotate(35deg); 
+    opacity: 0; 
+  }
+  10% { opacity: 0.3; }
+  25% { transform: translate(15vw, 35vh) rotate(25deg); }
+  50% { transform: translate(50vw, 15vh) rotate(5deg); }
+  75% { transform: translate(85vw, 5vh) rotate(-5deg); }
+  90% { opacity: 0.3; }
+  100% { 
+    transform: translate(120vw, 10vh) rotate(5deg); 
+    opacity: 0; 
+  }
 }
 .animate-airplane {
-  animation: airplane-fly 12s linear infinite;
+  animation: airplane-fly 14s ease-in-out infinite;
 }
