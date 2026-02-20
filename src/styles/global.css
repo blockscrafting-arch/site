@@ -315,6 +315,11 @@
     box-shadow: 0 0 16px -6px var(--color-accent-glow);
   }
 
+  /* Якоря секций услуг: при скролле по клику заголовок не уходит под sticky-нав */
+  .service-section-anchor {
+    scroll-margin-top: 7rem;
+  }
+
   .service-quick-nav {
     position: sticky;
     top: 4rem;
