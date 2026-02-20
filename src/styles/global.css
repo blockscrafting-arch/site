@@ -221,6 +221,16 @@
   .svg-icon-reveal:hover {
     transform: scale(1.05);
   }
+  /* Стрелка «Читать кейс» на /services: только сдвиг вправо при hover, без scale */
+  .service-arrow-icon {
+    transition: transform 0.3s ease-out;
+  }
+  .service-arrow-icon:hover {
+    transform: none;
+  }
+  .group:hover .service-arrow-icon {
+    transform: translateX(0.25rem);
+  }
   @keyframes float-icon {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-4px); }
