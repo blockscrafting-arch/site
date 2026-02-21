@@ -18,12 +18,16 @@ const items = [
       <div class="relative inline-flex items-center justify-center">
         <!-- SVG-водяной знак строго по центру за текстом -->
         <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-96 sm:h-96 opacity-[0.15] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
-          <svg class="w-full h-full animate-slow-spin" viewBox="0 0 200 200" fill="none" stroke="currentColor">
-            <circle cx="100" cy="100" r="70" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.3" />
-            <circle cx="100" cy="100" r="45" stroke-width="2" opacity="0.6" />
-            <circle cx="100" cy="100" r="20" stroke-width="2" />
-            <path d="M100 15 v20 M100 165 v20 M15 100 h20 M165 100 h20" stroke-width="2" stroke-linecap="round" />
-            <path d="M40 40 l15 15 M160 160 l-15 -15 M40 160 l15 -15 M160 40 l-15 15" stroke-width="2" opacity="0.5" stroke-linecap="round" />
+          <svg class="w-full h-full animate-slow-breath" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+            <!-- Левый глаз -->
+            <ellipse cx="65" cy="100" rx="35" ry="55" stroke-width="5" />
+            <circle cx="50" cy="100" r="16" fill="currentColor" />
+            <circle cx="45" cy="94" r="5" fill="var(--color-bg)" stroke="none" />
+            
+            <!-- Правый глаз -->
+            <ellipse cx="135" cy="100" rx="35" ry="55" stroke-width="5" />
+            <circle cx="120" cy="100" r="16" fill="currentColor" />
+            <circle cx="115" cy="94" r="5" fill="var(--color-bg)" stroke="none" />
           </svg>
         </div>
         <h2 id="problem-solution-heading" class="reveal problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl relative z-10" aria-label="Узнаёте себя?">
