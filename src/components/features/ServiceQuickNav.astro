@@ -16,7 +16,7 @@ export interface Props {
 const { items } = Astro.props;
 ---
 
-<nav class="service-quick-nav py-3 px-4 sm:px-6" aria-label="Навигация по услугам">
+<nav class="service-quick-nav py-3 px-4 sm:px-6" aria-label="Навигация по услугам" data-quicknav="no-hint">
   <div class="service-quick-nav-inner mx-auto max-w-6xl flex items-center gap-2">
     {items.map((item, i) => (
       <a
