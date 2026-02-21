@@ -813,10 +813,10 @@
     opacity: 0;
   }
   10% {
-    opacity: 0.8;
+    opacity: 0.12;
   }
   90% {
-    opacity: 0.8;
+    opacity: 0.12;
   }
   100% {
     transform: translate(115vw, -15vh);
