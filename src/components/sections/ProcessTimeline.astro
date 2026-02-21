@@ -15,19 +15,20 @@ const steps = [
   <div class="mx-auto max-w-3xl">
     <div class="relative flex justify-center mb-4">
       <div class="relative inline-flex items-center justify-center">
-        <!-- SVG-водяной знак строго по центру за текстом -->
-        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-96 sm:h-96 opacity-[0.15] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
-          <svg class="w-full h-full animate-slow-spin-reverse" viewBox="0 0 200 200" fill="none" stroke="currentColor">
-            <!-- Outer intricate ring -->
-            <circle cx="100" cy="100" r="70" stroke-width="1" opacity="0.4" stroke-dasharray="2 4" />
-            <!-- Main solid gear base -->
-            <circle cx="100" cy="100" r="45" stroke-width="2" />
-            <circle cx="100" cy="100" r="25" stroke-width="1.5" opacity="0.6" />
-            <!-- Center dot -->
-            <circle cx="100" cy="100" r="5" fill="currentColor" opacity="0.8" />
-            <!-- Elegant Teeth -->
-            <path d="M100 55 v-15 M100 145 v15 M55 100 h-15 M145 100 h15" stroke-width="3" stroke-linecap="round" />
-            <path d="M68 68 l-10-10 M132 132 l10 10 M68 132 l-10 10 M132 68 l10-10" stroke-width="2" opacity="0.6" stroke-linecap="round" />
+        <!-- SVG: шестеренка справа от заголовка, на одной линии с остальными блоками -->
+        <div class="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[15%] sm:translate-x-[25%] lg:translate-x-[35%] w-64 h-64 sm:w-96 sm:h-96 opacity-[0.35] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
+          <svg class="w-full h-full animate-spin-slow" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+            <g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Зубья (перекрестие) -->
+              <line x1="100" y1="25" x2="100" y2="175" />
+              <line x1="25" y1="100" x2="175" y2="100" />
+              <line x1="47" y1="47" x2="153" y2="153" />
+              <line x1="47" y1="153" x2="153" y2="47" />
+              <!-- Тело шестеренки -->
+              <circle cx="100" cy="100" r="45" fill="var(--color-bg)" />
+              <!-- Внутренняя дырка -->
+              <circle cx="100" cy="100" r="20" stroke-width="10" />
+            </g>
           </svg>
         </div>
         <h2 id="process-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center relative z-10">

@@ -16,18 +16,19 @@ const items = [
   <div class="problem-solution-header mb-12 px-4 sm:px-6 text-center">
     <div class="relative flex justify-center">
       <div class="relative inline-flex items-center justify-center">
-        <!-- SVG-водяной знак строго по центру за текстом -->
-        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-96 sm:h-96 opacity-[0.15] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
-          <svg class="w-full h-full animate-slow-breath" viewBox="0 0 200 200" fill="none" stroke="currentColor">
-            <!-- Левый глаз -->
-            <ellipse cx="65" cy="100" rx="35" ry="55" stroke-width="5" />
-            <circle cx="50" cy="100" r="16" fill="currentColor" />
-            <circle cx="45" cy="94" r="5" fill="var(--color-bg)" stroke="none" />
-            
-            <!-- Правый глаз -->
-            <ellipse cx="135" cy="100" rx="35" ry="55" stroke-width="5" />
-            <circle cx="120" cy="100" r="16" fill="currentColor" />
-            <circle cx="115" cy="94" r="5" fill="var(--color-bg)" stroke="none" />
+        <!-- SVG: глаза сбоку, на одной линии с остальными блоками главной -->
+        <div class="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[15%] sm:translate-x-[25%] lg:translate-x-[35%] w-64 h-64 sm:w-96 sm:h-96 opacity-[0.35] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
+          <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+            <g class="animate-blink" style="transform-origin: 100px 100px;">
+              <!-- Левый глаз -->
+              <ellipse cx="65" cy="100" rx="30" ry="45" stroke-width="6" fill="var(--color-bg)" />
+              <circle cx="55" cy="100" r="14" fill="currentColor" />
+              <circle cx="51" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
+              <!-- Правый глаз -->
+              <ellipse cx="135" cy="100" rx="30" ry="45" stroke-width="6" fill="var(--color-bg)" />
+              <circle cx="125" cy="100" r="14" fill="currentColor" />
+              <circle cx="121" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
+            </g>
           </svg>
         </div>
         <h2 id="problem-solution-heading" class="reveal problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl relative z-10" aria-label="Узнаёте себя?">

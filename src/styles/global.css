@@ -855,3 +855,23 @@
 .animate-gears-slow {
   animation: spin 24s linear infinite;
 }
+
+/* Моргание глаз (сплющивание по Y) */
+@keyframes blink {
+  0%, 96%, 98%, 100% { transform: scaleY(1); }
+  97% { transform: scaleY(0.1); }
+}
+.animate-blink {
+  animation: blink 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Медленное вращение для шестеренки (план) */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 15s linear infinite;
+  transform-origin: center;
+}
