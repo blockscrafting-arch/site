@@ -684,6 +684,29 @@
 
 /* --- Кастомные анимации для фоновых SVG --- */
 
+/* Премиальные медленные анимации для фоновых SVG (главная страница) */
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes slow-spin-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+@keyframes slow-breath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.15; filter: drop-shadow(0 0 0px var(--color-accent)); transform: scale(1); }
+  50% { opacity: 0.3; filter: drop-shadow(0 0 8px var(--color-accent)); transform: scale(1.02); }
+}
+
+.animate-slow-spin { animation: slow-spin 45s linear infinite; transform-origin: center; }
+.animate-slow-spin-reverse { animation: slow-spin-reverse 45s linear infinite; transform-origin: center; }
+.animate-slow-breath { animation: slow-breath 8s ease-in-out infinite; transform-origin: center; }
+.animate-glow-pulse { animation: glow-pulse 6s ease-in-out infinite; transform-origin: center; }
+
 /* 1. Моргание глаз */
 @keyframes blink-eyes {
   0%,

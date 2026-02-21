@@ -12,28 +12,28 @@ const steps = [
 ---
 
 <section class="py-24 sm:py-32 px-4 sm:px-6" aria-labelledby="process-heading">
-  <div class="mx-auto max-w-3xl relative">
-    <div class="absolute right-0 sm:-right-10 top-0 sm:-top-10 w-60 h-60 sm:w-84 sm:h-84 opacity-[0.15] text-[var(--color-accent)] pointer-events-none -z-10 animate-float-icon" aria-hidden="true">
-      <svg class="w-full h-full animate-gears-slow" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <!-- Шестеренка: центральное кольцо и зубья -->
-        <circle cx="100" cy="100" r="32" fill="var(--color-bg)" />
-        <circle cx="100" cy="100" r="38" fill="none" />
-        <!-- 8 зубьев -->
-        <line x1="100" y1="58" x2="100" y2="42" />
-        <line x1="142" y1="100" x2="158" y2="100" />
-        <line x1="100" y1="142" x2="100" y2="158" />
-        <line x1="58" y1="100" x2="42" y2="100" />
-        <line x1="128" y1="68" x2="138" y2="58" />
-        <line x1="128" y1="132" x2="138" y2="142" />
-        <line x1="72" y1="132" x2="62" y2="142" />
-        <line x1="72" y1="68" x2="62" y2="58" />
-      </svg>
-    </div>
-
+  <div class="mx-auto max-w-3xl">
     <div class="relative flex justify-center mb-4">
-      <h2 id="process-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center relative z-10">
-        Как мы работаем
-      </h2>
+      <div class="relative inline-flex items-center justify-center">
+        <!-- SVG-водяной знак строго по центру за текстом -->
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-96 sm:h-96 opacity-[0.15] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
+          <svg class="w-full h-full animate-slow-spin-reverse" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+            <!-- Outer intricate ring -->
+            <circle cx="100" cy="100" r="70" stroke-width="1" opacity="0.4" stroke-dasharray="2 4" />
+            <!-- Main solid gear base -->
+            <circle cx="100" cy="100" r="45" stroke-width="2" />
+            <circle cx="100" cy="100" r="25" stroke-width="1.5" opacity="0.6" />
+            <!-- Center dot -->
+            <circle cx="100" cy="100" r="5" fill="currentColor" opacity="0.8" />
+            <!-- Elegant Teeth -->
+            <path d="M100 55 v-15 M100 145 v15 M55 100 h-15 M145 100 h15" stroke-width="3" stroke-linecap="round" />
+            <path d="M68 68 l-10-10 M132 132 l10 10 M68 132 l-10 10 M132 68 l10-10" stroke-width="2" opacity="0.6" stroke-linecap="round" />
+          </svg>
+        </div>
+        <h2 id="process-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center relative z-10">
+          Как мы работаем
+        </h2>
+      </div>
     </div>
     <p class="reveal mt-4 text-center text-[var(--color-text-muted)]" style="animation-delay:.06s">
       От брифа до запуска — прозрачно и по шагам.
