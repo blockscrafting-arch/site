@@ -36,33 +36,59 @@ const { items } = Astro.props;
 <script>
   /**
    * Подсветка активного пункта по видимой секции (IntersectionObserver).
+   * Один активный id по максимальной доле видимости — без дёргания при скролле с телефона.
    */
   (function () {
     const nav = document.querySelector('.service-quick-nav');
     if (!nav) return;
     const links = nav.querySelectorAll('a[data-service-id]');
-    const sections = new Map();
+    const sectionIds = [];
+    const idToSection = new Map();
     links.forEach((link) => {
       const id = link.getAttribute('data-service-id');
       if (id) {
         const el = document.getElementById(id);
-        if (el) sections.set(id, el);
+        if (el) {
+          sectionIds.push(id);
+          idToSection.set(id, el);
+        }
       }
     });
+
+    let visibleRatios = new Map();
+    let rafScheduled = false;
+
+    function updateActive() {
+      rafScheduled = false;
+      let bestId = null;
+      let bestRatio = 0;
+      visibleRatios.forEach((ratio, id) => {
+        if (ratio > bestRatio) {
+          bestRatio = ratio;
+          bestId = id;
+        }
+      });
+      if (!bestId && sectionIds.length) bestId = sectionIds[0];
+      links.forEach((link) => {
+        link.classList.toggle('is-active', link.getAttribute('data-service-id') === bestId);
+      });
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
           const id = entry.target.id;
-          links.forEach((link) => {
-            link.classList.toggle('is-active', link.getAttribute('data-service-id') === id);
-          });
+          if (!id) return;
+          visibleRatios.set(id, entry.isIntersecting ? entry.intersectionRatio : 0);
         });
+        if (!rafScheduled) {
+          rafScheduled = true;
+          requestAnimationFrame(updateActive);
+        }
       },
-      { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+      { rootMargin: '-15% 0px -70% 0px', threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
     );
 
-    sections.forEach((el) => observer.observe(el));
+    idToSection.forEach((el) => observer.observe(el));
   })();
 </script>

@@ -656,8 +656,8 @@
   .service-quick-nav a {
     flex-shrink: 0;
     transition:
-      color 0.2s ease,
-      background-color 0.2s ease;
+      color 0.28s ease-out,
+      background-color 0.28s ease-out;
   }
   .service-quick-nav a.is-active {
     color: var(--color-accent);
