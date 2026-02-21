@@ -908,14 +908,17 @@
 
 /* Отрисовка графика (Результаты в деле) */
 @keyframes draw-chart-loop {
-  0% { stroke-dashoffset: 150; }
-  40%, 80% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 150; }
+  0% { stroke-dashoffset: 150; opacity: 0; }
+  5% { stroke-dashoffset: 150; opacity: 1; }
+  45% { stroke-dashoffset: 0; opacity: 1; }
+  85% { stroke-dashoffset: 0; opacity: 1; }
+  90% { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: 150; opacity: 0; }
 }
 @keyframes dot-pop-loop {
-  0%, 35% { transform: scale(0); opacity: 0; }
-  40%, 80% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(0); opacity: 0; }
+  0%, 40% { transform: scale(0); opacity: 0; }
+  45%, 85% { transform: scale(1); opacity: 1; }
+  90%, 100% { transform: scale(0); opacity: 0; }
 }
 .animate-draw-chart {
   animation: draw-chart-loop 6s ease-in-out infinite;
@@ -940,5 +943,5 @@
   94% { opacity: 0.5; }
 }
 .animate-lightning-strike {
-  animation: lightning-strike-loop 5s ease-in-out infinite;
+  animation: lightning-strike-loop 3s ease-in-out infinite;
 }
