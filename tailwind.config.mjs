@@ -4,6 +4,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      spacing: {
+        84: "21rem", // для фоновых SVG в заголовках (sm:w-84 sm:h-84)
+      },
       fontFamily: {
         sans: ["Inter", "Manrope", "system-ui", "sans-serif"],
         display: ["Manrope", "system-ui", "sans-serif"],
