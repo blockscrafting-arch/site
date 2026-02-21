@@ -7,6 +7,10 @@ export default {
       spacing: {
         84: "21rem", // для фоновых SVG в заголовках (sm:w-84 sm:h-84)
       },
+      translate: {
+        "svg-right": "22%", // выше и правее на Кейсах, Инструкциях, Обо мне
+        "svg-up": "8%",
+      },
       fontFamily: {
         sans: ["Inter", "Manrope", "system-ui", "sans-serif"],
         display: ["Manrope", "system-ui", "sans-serif"],
