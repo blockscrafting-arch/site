@@ -13,9 +13,29 @@ const steps = [
 
 <section class="py-24 sm:py-32 px-4 sm:px-6" aria-labelledby="process-heading">
   <div class="mx-auto max-w-3xl">
-    <h2 id="process-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center">
-      Как мы работаем
-    </h2>
+    <div class="relative flex justify-center mb-4">
+      <div class="relative inline-flex items-center justify-center">
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[45%] sm:translate-x-[55%] w-20 h-20 sm:w-28 sm:h-28 opacity-[0.25] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
+          <svg class="w-full h-full animate-gears-slow" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <!-- Шестеренка: центральное кольцо и зубья -->
+            <circle cx="100" cy="100" r="32" fill="var(--color-bg)" />
+            <circle cx="100" cy="100" r="38" fill="none" />
+            <!-- 8 зубьев -->
+            <line x1="100" y1="58" x2="100" y2="42" />
+            <line x1="142" y1="100" x2="158" y2="100" />
+            <line x1="100" y1="142" x2="100" y2="158" />
+            <line x1="58" y1="100" x2="42" y2="100" />
+            <line x1="128" y1="68" x2="138" y2="58" />
+            <line x1="128" y1="132" x2="138" y2="142" />
+            <line x1="72" y1="132" x2="62" y2="142" />
+            <line x1="72" y1="68" x2="62" y2="58" />
+          </svg>
+        </div>
+        <h2 id="process-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center relative z-10">
+          Как мы работаем
+        </h2>
+      </div>
+    </div>
     <p class="reveal mt-4 text-center text-[var(--color-text-muted)]" style="animation-delay:.06s">
       От брифа до запуска — прозрачно и по шагам.
     </p>

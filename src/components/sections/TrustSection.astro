@@ -12,9 +12,19 @@ const metrics = [
 
 <section class="py-24 sm:py-32 px-4 sm:px-6" aria-labelledby="trust-heading">
   <div class="mx-auto max-w-6xl">
-    <h2 id="trust-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl text-center">
-      Результаты в цифрах
-    </h2>
+    <div class="relative flex justify-center mb-4">
+      <div class="relative inline-flex items-center justify-center">
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[45%] sm:translate-x-[55%] w-20 h-20 sm:w-28 sm:h-28 opacity-[0.28] text-[var(--color-accent)] pointer-events-none -z-10 animate-pulse" aria-hidden="true">
+          <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Молния / искра -->
+            <path d="M 100 25 L 65 95 L 95 95 L 55 175 L 95 105 L 65 105 Z" fill="var(--color-bg)" stroke="currentColor" />
+          </svg>
+        </div>
+        <h2 id="trust-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl text-center relative z-10">
+          Результаты в цифрах
+        </h2>
+      </div>
+    </div>
     <p class="reveal mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
       Показатели из реальных проектов.
     </p>
