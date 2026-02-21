@@ -39,35 +39,34 @@ const sortedGroups = order.filter((k) => groups.has(k));
   description="Пошаговые инструкции для заказчиков и разработчиков: чеклист к старту, API-ключи, VPS, домен, Telegram, n8n."
 >
   <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 relative">
+    <div class="absolute right-0 sm:right-8 top-12 w-60 h-60 sm:w-84 sm:h-84 opacity-[0.15] text-[var(--color-accent)] pointer-events-none -z-10 animate-float-icon" aria-hidden="true" style="perspective: 1000px;">
+      <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Открытая книга: левая страница -->
+        <path d="M 20 55 L 20 165 Q 20 185 55 182 L 98 178 V 62 L 55 58 Q 20 55 20 55 Z" />
+        <line x1="38" y1="78" x2="82" y2="75" opacity="0.5" />
+        <line x1="38" y1="98" x2="80" y2="95" opacity="0.5" />
+        <line x1="38" y1="118" x2="75" y2="115" opacity="0.5" />
+        <!-- Корешок (переплет) -->
+        <rect x="96" y="56" width="8" height="124" rx="1" />
+        <!-- Правая страница (под перелистываемой) -->
+        <path d="M 104 58 L 145 55 Q 180 55 180 55 L 180 165 Q 180 185 145 182 L 102 178 Z" />
+        <line x1="118" y1="78" x2="162" y2="75" opacity="0.4" />
+        <line x1="118" y1="98" x2="158" y2="95" opacity="0.4" />
+        <!-- Закладка -->
+        <path d="M 72 62 L 78 62 L 75 95 L 72 62 Z" stroke="currentColor" opacity="0.5" />
+        <!-- Перелистываемая страница (3D flip) -->
+        <g class="animate-page" style="transform-origin: 100px 100px;">
+          <path d="M 100 58 L 140 55 L 178 55 L 178 165 L 140 182 L 100 178 Z" />
+          <line x1="112" y1="82" x2="165" y2="78" opacity="0.5" />
+          <line x1="112" y1="102" x2="158" y2="98" opacity="0.5" />
+        </g>
+      </svg>
+    </div>
+
     <div class="relative flex justify-center sm:justify-start mb-2">
-      <div class="relative inline-flex items-center justify-center">
-        <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[40%] sm:translate-x-[50%] w-60 h-60 sm:w-84 sm:h-84 opacity-[0.15] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true" style="perspective: 1000px;">
-          <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Открытая книга: левая страница -->
-            <path d="M 20 55 L 20 165 Q 20 185 55 182 L 98 178 V 62 L 55 58 Q 20 55 20 55 Z" />
-            <line x1="38" y1="78" x2="82" y2="75" opacity="0.5" />
-            <line x1="38" y1="98" x2="80" y2="95" opacity="0.5" />
-            <line x1="38" y1="118" x2="75" y2="115" opacity="0.5" />
-            <!-- Корешок (переплет) -->
-            <rect x="96" y="56" width="8" height="124" rx="1" />
-            <!-- Правая страница (под перелистываемой) -->
-            <path d="M 104 58 L 145 55 Q 180 55 180 55 L 180 165 Q 180 185 145 182 L 102 178 Z" />
-            <line x1="118" y1="78" x2="162" y2="75" opacity="0.4" />
-            <line x1="118" y1="98" x2="158" y2="95" opacity="0.4" />
-            <!-- Закладка -->
-            <path d="M 72 62 L 78 62 L 75 95 L 72 62 Z" stroke="currentColor" opacity="0.5" />
-            <!-- Перелистываемая страница (3D flip) -->
-            <g class="animate-page" style="transform-origin: 100px 100px;">
-              <path d="M 100 58 L 140 55 L 178 55 L 178 165 L 140 182 L 100 178 Z" />
-              <line x1="112" y1="82" x2="165" y2="78" opacity="0.5" />
-              <line x1="112" y1="102" x2="158" y2="98" opacity="0.5" />
-            </g>
-          </svg>
-        </div>
-        <h1 class="guides-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl relative z-10">
-          Инструкции
-        </h1>
-      </div>
+      <h1 class="guides-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl relative z-10">
+        Инструкции
+      </h1>
     </div>
     <p class="mt-2 text-[var(--color-text-muted)] max-w-2xl">
       Часть материалов — <strong class="text-[var(--color-text)]">для заказчиков</strong>: что сделать и что подготовить перед стартом. Остальное — технические гайды по настройке и интеграциям.
