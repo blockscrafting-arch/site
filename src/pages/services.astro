@@ -186,17 +186,16 @@ const quickNavItems = [
       <rect class="svg-draw" pathLength="1" x="25" y="20" width="70" height="80" rx="4" opacity="0.3" />
       <path class="svg-draw" pathLength="1" d="M 35 40 h 50 M 35 60 h 50 M 35 80 h 30" opacity="0.3" />
       
-      <!-- Лупа (двигается) -->
+      <!-- Лупа (двигается); контент внутри компенсирует движение, чтобы стоять на месте -->
       <g class="service-scan-glass">
         <circle cx="0" cy="0" r="16" class="svg-draw text-[var(--color-accent)]" stroke-width="2" pathLength="1" />
         <path d="M 12 12 L 22 22" class="svg-draw" stroke-width="2" pathLength="1" />
-        <!-- Увеличенное содержимое внутри лупы -->
         <g clip-path="url(#magnify-parsing)">
-          <g transform="scale(1.4)">
-            <!-- Те же строки, но крупнее -->
-            <path d="M -25 -18 h 50 M -25 2 h 50 M -25 22 h 30" class="text-[var(--color-text-muted)]" stroke-width="2" />
-            <!-- Галочка результата -->
-            <path d="M 5 0 L 12 7 L 22 -5" class="text-[var(--color-accent)]" stroke-width="3" />
+          <g class="service-scan-glass-reverse">
+            <!-- Увеличенные строки (стоят на месте в документе) -->
+            <path d="M -25 -18 h 50 M -25 2 h 50 M -25 22 h 30" class="text-[var(--color-text)]" stroke-width="3" />
+            <!-- Галочка в конце строки -->
+            <path d="M 15 -2 L 20 4 L 30 -8" class="text-[var(--color-accent)]" stroke-width="3" />
           </g>
         </g>
       </g>

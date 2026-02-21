@@ -46,10 +46,14 @@
 @layer base {
   html {
     @apply scroll-smooth;
+    overflow-x: hidden;
+    width: 100%;
     /* Место под скроллбар всегда зарезервировано — нет горизонтального дёргания при появлении/исчезновении полосы */
     scrollbar-gutter: stable;
   }
   body {
+    overflow-x: hidden;
+    width: 100%;
     background-color: var(--color-bg);
     color: var(--color-text);
     background-image: radial-gradient(
@@ -966,6 +970,15 @@
   animation: scan-glass 4s ease-in-out infinite;
 }
 
+/* Противовес: контент внутри лупы остаётся на месте (лупа едет, контент компенсирует) */
+@keyframes scan-glass-reverse {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-24px); }
+}
+.service-scan-glass-reverse {
+  animation: scan-glass-reverse 4s ease-in-out infinite;
+}
+
 /* Появление элементов по очереди (Mini Apps) */
 @keyframes service-fade-in {
   from { opacity: 0; transform: scale(0.95); }
@@ -1034,6 +1047,7 @@
 @media (prefers-reduced-motion: reduce) {
   .service-animate-dash-flow,
   .service-scan-glass,
+  .service-scan-glass-reverse,
   .service-fly-away,
   .service-robot-blink,
   .service-btn-pulse {
