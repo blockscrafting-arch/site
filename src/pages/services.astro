@@ -27,19 +27,21 @@ const quickNavItems = [
   <!-- Hero -->
   <section class="pt-24 pb-6 sm:pt-32 sm:pb-8 px-4 sm:px-6 relative" aria-labelledby="services-hero-heading">
     <div class="mx-auto max-w-3xl text-center grid gap-2 sm:gap-3">
-      <div class="relative inline-block mx-auto">
-        <div class="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[45%] sm:translate-x-[55%] opacity-[0.2] w-24 h-24 sm:w-32 sm:h-32 pointer-events-none z-[-1] text-[var(--color-accent)] animate-cup" aria-hidden="true">
-          <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Шестеренка / автоматизация -->
-            <circle cx="100" cy="100" r="35" fill="var(--color-bg)" />
-            <path d="M 100 65 L 105 75 L 115 70 L 115 85 L 130 85 L 125 95 L 135 105 L 120 110 L 120 125 L 105 120 L 100 135 L 95 120 L 80 125 L 80 110 L 65 105 L 75 95 L 70 85 L 85 85 L 85 70 L 95 75 Z" />
-            <circle cx="100" cy="100" r="15" fill="var(--color-bg)" />
-            <circle cx="100" cy="100" r="12" />
-          </svg>
+      <div class="relative flex justify-center">
+        <div class="relative inline-flex items-center justify-center">
+          <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[45%] sm:translate-x-[55%] w-20 h-20 sm:w-28 sm:h-28 opacity-[0.25] text-[var(--color-accent)] pointer-events-none -z-10 animate-cup" aria-hidden="true">
+            <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Шестеренка / автоматизация: wireframe -->
+              <circle cx="100" cy="100" r="35" />
+              <path d="M 100 65 L 105 75 L 115 70 L 115 85 L 130 85 L 125 95 L 135 105 L 120 110 L 120 125 L 105 120 L 100 135 L 95 120 L 80 125 L 80 110 L 65 105 L 75 95 L 70 85 L 85 85 L 85 70 L 95 75 Z" />
+              <circle cx="100" cy="100" r="15" />
+              <circle cx="100" cy="100" r="12" />
+            </svg>
+          </div>
+          <h1 id="services-hero-heading" class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl relative z-10">
+            Что я делаю и зачем это бизнесу
+          </h1>
         </div>
-        <h1 id="services-hero-heading" class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl relative z-10">
-          Что я делаю и зачем это бизнесу
-        </h1>
       </div>
       <p class="reveal text-lg text-[var(--color-text-muted)] leading-snug" style="animation-delay: 0.06s">
         Простыми словами — с примерами и цифрами из реальных проектов.
