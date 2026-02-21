@@ -14,25 +14,23 @@ const items = [
 
 <section class="py-20 sm:py-28 overflow-hidden relative" aria-labelledby="problem-solution-heading">
   <div class="problem-solution-header mb-12 px-4 sm:px-6 text-center">
-    <div class="relative flex justify-center">
-      <div class="relative inline-flex items-center justify-center">
-        <!-- SVG: глаза. Мобильные — по центру и выше текста; sm+ — сбоку -->
-        <div class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.15] w-48 h-48 left-1/2 -translate-x-1/2 top-0 -translate-y-[55%] sm:w-84 sm:h-84 sm:left-auto sm:right-0 sm:translate-x-[40%] sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true">
-          <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor">
-            <g class="animate-blink" style="transform-origin: 100px 100px;">
-              <!-- Форма глаз -->
-              <ellipse cx="65" cy="100" rx="30" ry="45" stroke-width="6" fill="var(--color-bg)" />
-              <ellipse cx="135" cy="100" rx="30" ry="45" stroke-width="6" fill="var(--color-bg)" />
-              <!-- Зрачки и блики — осматриваются -->
-              <g class="animate-eyes-look">
-                <circle cx="55" cy="100" r="14" fill="currentColor" />
-                <circle cx="51" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
-                <circle cx="125" cy="100" r="14" fill="currentColor" />
-                <circle cx="121" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
-              </g>
+    <div class="relative w-full mb-4">
+      <!-- SVG: глаза. Контекст — вся ширина; sm+ — справа -->
+      <div class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.15] w-48 h-48 left-1/2 -translate-x-1/2 top-0 -translate-y-[55%] sm:w-84 sm:h-84 sm:left-auto sm:right-0 sm:translate-x-[20%] sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true">
+        <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+          <g class="animate-blink" style="transform-origin: 100px 100px;">
+            <ellipse cx="65" cy="100" rx="30" ry="45" stroke-width="6" fill="var(--color-bg)" />
+            <ellipse cx="135" cy="100" rx="30" ry="45" stroke-width="6" fill="var(--color-bg)" />
+            <g class="animate-eyes-look">
+              <circle cx="55" cy="100" r="14" fill="currentColor" />
+              <circle cx="51" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
+              <circle cx="125" cy="100" r="14" fill="currentColor" />
+              <circle cx="121" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
             </g>
-          </svg>
-        </div>
+          </g>
+        </svg>
+      </div>
+      <div class="flex justify-center">
         <h2 id="problem-solution-heading" class="reveal problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl relative z-10" aria-label="Узнаёте себя?">
           <GlitchHeading text="Узнаёте себя?" client:visible preset="encrypted" />
         </h2>
