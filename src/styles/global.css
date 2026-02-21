@@ -945,3 +945,101 @@
 .animate-lightning-strike {
   animation: lightning-strike-loop 3s ease-in-out infinite;
 }
+
+/* ===== Страница услуг: анимации иллюстраций ===== */
+
+/* Бегущий сигнал по пунктирной линии (Автоматизация, Интеграции) */
+@keyframes dash-flow {
+  to { stroke-dashoffset: -24; }
+}
+.service-animate-dash-flow {
+  animation: dash-flow 1.2s linear infinite;
+}
+
+/* Движение лупы влево-вправо (Парсинг): центр (60,58), смещение на 24px */
+@keyframes scan-glass {
+  0%, 100% { transform: translate(60px, 58px); }
+  50% { transform: translate(84px, 58px); }
+}
+.service-scan-glass {
+  transform: translate(60px, 58px);
+  animation: scan-glass 4s ease-in-out infinite;
+}
+
+/* Появление элементов по очереди (Mini Apps) */
+@keyframes service-fade-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.service-fade-in { opacity: 0; }
+.service-illustration-float.reveal.is-visible .service-fade-in {
+  animation: service-fade-in 0.4s ease-out forwards;
+}
+
+/* Полёт бумажного самолётика (Автопостинг) */
+@keyframes service-fly-away {
+  0% { opacity: 1; transform: translate(0, 0) rotate(-20deg); }
+  70% { opacity: 1; transform: translate(35px, -25px) rotate(5deg); }
+  100% { opacity: 0; transform: translate(50px, -40px) rotate(10deg); }
+}
+.service-fly-away {
+  animation: service-fly-away 3s ease-in-out infinite;
+}
+
+/* Подмигивание одного глаза робота (AI-агенты) */
+@keyframes service-robot-blink {
+  0%, 92%, 96%, 100% { transform: scaleY(1); }
+  94% { transform: scaleY(0.08); }
+}
+.service-robot-blink {
+  animation: service-robot-blink 5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Печать строки в терминале (Скрипты) */
+@keyframes service-terminal-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.service-terminal-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.service-illustration-float.reveal.is-visible .service-terminal-line {
+  animation: service-terminal-draw 0.8s ease-out forwards;
+}
+.service-illustration-float.reveal.is-visible .service-terminal-line:nth-of-type(1) { animation-delay: 0.6s; }
+.service-illustration-float.reveal.is-visible .service-terminal-line:nth-of-type(2) { animation-delay: 1s; }
+
+/* Пульсация кнопки (Mini Apps) */
+@keyframes service-btn-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+.service-btn-pulse {
+  animation: service-btn-pulse 2s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+/* Появление пузырей чата по очереди (Telegram-боты) */
+@keyframes service-chat-pop {
+  from { opacity: 0; transform: translateY(4px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.service-chat-pop { opacity: 0; }
+.service-illustration-float.reveal.is-visible .service-chat-pop {
+  animation: service-chat-pop 0.35s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-animate-dash-flow,
+  .service-scan-glass,
+  .service-fly-away,
+  .service-robot-blink,
+  .service-btn-pulse {
+    animation: none;
+  }
+  .service-scan-glass {
+    transform: translate(60px, 58px);
+  }
+}

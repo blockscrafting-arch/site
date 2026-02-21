@@ -55,18 +55,18 @@ const quickNavItems = [
     direction="left"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path class="svg-draw" pathLength="1" d="M26 46h40v36c0 2-2 4-4 4H30c-2 0-4-2-4-4V46z" />
+      <path class="svg-draw service-chat-pop" pathLength="1" d="M26 46h40v36c0 2-2 4-4 4H30c-2 0-4-2-4-4V46z" style="animation-delay: 0.15s" />
       <path class="svg-draw" pathLength="1" d="M26 50h40M32 60h28M32 70h20" />
       <circle cx="38" cy="80" r="2.5" class="service-typing-dot" />
       <circle cx="46" cy="80" r="2.5" class="service-typing-dot" />
       <circle cx="54" cy="80" r="2.5" class="service-typing-dot" />
-      <rect class="svg-draw" pathLength="1" x="58" y="22" width="36" height="44" rx="4" />
+      <rect class="svg-draw service-chat-pop" pathLength="1" x="58" y="22" width="36" height="44" rx="4" style="animation-delay: 0.45s" />
       <path class="svg-draw" pathLength="1" d="M64 30h24M64 38h18M64 46h22" />
       <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M76 72v10M76 82h-6M76 82h6" stroke-width="2" />
     </svg>
   </ServiceShowcase>
 
-  <!-- 2. AI-агенты -->
+  <!-- 2. AI-агенты: робот с подмигиванием -->
   <ServiceShowcase
     id="ai-agents"
     title="AI-агенты"
@@ -80,22 +80,17 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Робот/Мозг -->
       <rect class="svg-draw" pathLength="1" x="30" y="30" width="60" height="60" rx="12" />
-      <!-- Глаза -->
       <circle class="svg-draw text-[var(--color-accent)]" pathLength="1" cx="45" cy="55" r="4" stroke-width="2" />
-      <circle class="svg-draw text-[var(--color-accent)]" pathLength="1" cx="75" cy="55" r="4" stroke-width="2" />
-      <!-- Рот-волна -->
+      <circle class="svg-draw text-[var(--color-accent)] service-robot-blink" pathLength="1" cx="75" cy="55" r="4" stroke-width="2" />
       <path class="svg-draw" pathLength="1" d="M45 75 Q 60 85 75 75" />
-      <!-- Антенна -->
       <path class="svg-draw" pathLength="1" d="M60 30 V 15" />
       <circle class="svg-draw" pathLength="1" cx="60" cy="12" r="3" />
-      <!-- Соединения по бокам -->
       <path class="svg-draw" pathLength="1" d="M30 60 H 15 M 90 60 H 105" opacity="0.5" />
     </svg>
   </ServiceShowcase>
 
-  <!-- 3. Mini Apps -->
+  <!-- 3. Mini Apps: интерфейс приложения (баланс, кнопки, список, таб-бар) -->
   <ServiceShowcase
     id="mini-apps"
     title="TG Mini Apps"
@@ -106,15 +101,22 @@ const quickNavItems = [
     direction="left"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect class="svg-draw" pathLength="1" x="34" y="16" width="52" height="88" rx="6" />
-      <circle class="svg-draw" pathLength="1" cx="60" cy="26" r="3" />
-      <path class="svg-draw" pathLength="1" d="M42 38h36M42 48h28M42 58h32M42 68h24" />
-      <rect class="svg-draw text-[var(--color-accent)]" pathLength="1" x="44" y="76" width="32" height="18" rx="3" stroke-width="2" />
-      <path class="svg-draw" pathLength="1" d="M52 84h16" opacity="0.7" />
+      <rect class="svg-draw" pathLength="1" x="28" y="12" width="64" height="96" rx="8" />
+      <circle class="svg-draw" pathLength="1" cx="60" cy="22" r="2.5" />
+      <path class="service-fade-in" pathLength="1" d="M38 32h44M38 38h28" style="animation-delay: 0.2s" />
+      <rect class="svg-draw text-[var(--color-accent)] service-fade-in service-btn-pulse" pathLength="1" x="38" y="48" width="32" height="14" rx="3" stroke-width="2" style="animation-delay: 0.3s" />
+      <path class="svg-draw" pathLength="1" d="M44 56h8M52 56h4" opacity="0.8" />
+      <rect class="svg-draw text-[var(--color-accent)] service-fade-in" pathLength="1" x="74" y="48" width="32" height="14" rx="3" stroke-width="2" style="animation-delay: 0.35s" />
+      <path class="svg-draw" pathLength="1" d="M80 56h8M90 56h4" opacity="0.8" />
+      <path class="service-fade-in" pathLength="1" d="M38 76h44M42 84h36M42 92h28" style="animation-delay: 0.45s" />
+      <path class="svg-draw" pathLength="1" d="M36 100h48" opacity="0.4" />
+      <circle cx="44" cy="104" r="1.5" fill="currentColor" class="service-fade-in" style="animation-delay: 0.5s" />
+      <circle cx="60" cy="104" r="1.5" fill="currentColor" opacity="0.5" class="service-fade-in" style="animation-delay: 0.55s" />
+      <circle cx="76" cy="104" r="1.5" fill="currentColor" opacity="0.5" class="service-fade-in" style="animation-delay: 0.6s" />
     </svg>
   </ServiceShowcase>
 
-  <!-- 4. Автоматизация -->
+  <!-- 4. Автоматизация: сигнал бежит по пунктирным линиям -->
   <ServiceShowcase
     id="automation"
     title="Автоматизация"
@@ -128,20 +130,17 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Блоки шестеренок / узлов -->
       <rect class="svg-draw" pathLength="1" x="20" y="40" width="24" height="24" rx="4" />
       <rect class="svg-draw text-[var(--color-accent)]" pathLength="1" x="65" y="20" width="30" height="30" rx="6" stroke-width="2" />
       <rect class="svg-draw" pathLength="1" x="65" y="70" width="30" height="30" rx="6" />
-      <!-- Конвейерные связи -->
-      <path d="M44 52 H 55 V 35 H 65" stroke-dasharray="4 4" opacity="0.6" />
-      <path d="M44 52 H 55 V 85 H 65" stroke-dasharray="4 4" opacity="0.6" />
-      <circle cx="55" cy="52" r="2" fill="currentColor" />
-      <!-- Символ стрелок на главном блоке -->
+      <path class="service-animate-dash-flow text-[var(--color-accent)]" d="M44 52 H 55 V 35 H 65" stroke-dasharray="4 4" stroke-width="1.5" />
+      <path class="service-animate-dash-flow text-[var(--color-accent)]" d="M44 52 H 55 V 85 H 65" stroke-dasharray="4 4" stroke-width="1.5" style="animation-delay: 0.6s" />
+      <circle class="svg-draw" pathLength="1" cx="55" cy="52" r="2" fill="currentColor" />
       <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M72 35 L 80 43 L 88 35" stroke-width="1.5" />
     </svg>
   </ServiceShowcase>
 
-  <!-- 5. Парсинг -->
+  <!-- 5. Парсинг: лупа движется, под ней строки увеличены (clipPath в координатах группы) -->
   <ServiceShowcase
     id="parsing"
     title="Парсинг"
@@ -155,14 +154,28 @@ const quickNavItems = [
     direction="left"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <circle class="svg-draw" pathLength="1" cx="48" cy="42" r="18" />
-      <path class="svg-draw" pathLength="1" d="M62 56L78 72" stroke-width="2" />
-      <path class="svg-draw" pathLength="1" d="M20 78h80M24 88h72M28 98h64" />
-      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M26 78l3 3 5-6M44 88l4 4 6-7" stroke-width="1.5" />
+      <defs>
+        <clipPath id="magnify-parsing">
+          <circle cx="0" cy="0" r="16" />
+        </clipPath>
+      </defs>
+      <path class="svg-draw" pathLength="1" d="M18 48h84M18 58h72M18 68h78" opacity="0.4" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M22 48l2 2 4-4M40 58l2 2 4-4" stroke-width="1.5" opacity="0.6" />
+      <g class="service-scan-glass">
+        <circle class="svg-draw text-[var(--color-accent)]" pathLength="1" cx="0" cy="0" r="16" stroke-width="2" />
+        <path class="svg-draw" pathLength="1" d="M12 12 L 20 20" stroke-width="2" />
+        <g clip-path="url(#magnify-parsing)">
+          <g transform="scale(1.4)">
+            <path class="text-[var(--color-accent)]" d="M-40 -10 h80 M-40 0 h70 M-40 10 h76" stroke-width="2.5" opacity="0.9" />
+          </g>
+        </g>
+      </g>
+      <path class="svg-draw" pathLength="1" d="M20 88h80M24 96h72M28 104h64" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M26 88l3 3 5-6M44 96l4 4 6-7" stroke-width="1.5" />
     </svg>
   </ServiceShowcase>
 
-  <!-- 6. Автопостинг -->
+  <!-- 6. Автопостинг: календарь, часы, самолётик, AI-звёзды -->
   <ServiceShowcase
     id="autoposting"
     title="Автопостинг"
@@ -176,21 +189,18 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Смартфон/Экран -->
-      <rect class="svg-draw text-[var(--color-accent)]" pathLength="1" x="70" y="25" width="35" height="70" rx="4" stroke-width="2" />
-      <line class="svg-draw" pathLength="1" x1="75" y1="40" x2="95" y2="40" />
-      <line class="svg-draw" pathLength="1" x1="75" y1="50" x2="90" y2="50" />
-      <!-- Мегафон -->
-      <path class="svg-draw" pathLength="1" d="M25 50 L 45 40 L 45 80 L 25 70 Z" />
-      <path class="svg-draw" pathLength="1" d="M25 55 V 65" stroke-width="3" />
-      <path class="svg-draw" pathLength="1" d="M40 80 L 35 95 H 25" />
-      <!-- Волны трансляции -->
-      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M55 45 Q 65 60 55 75" opacity="0.7" />
-      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M60 35 Q 75 60 60 85" opacity="0.4" />
+      <rect class="svg-draw" pathLength="1" x="22" y="32" width="48" height="44" rx="4" />
+      <path class="svg-draw" pathLength="1" d="M22 40h48M34 48h4M44 48h4M54 48h4M34 56h4M44 56h4M54 56h4" />
+      <circle class="svg-draw text-[var(--color-accent)]" pathLength="1" cx="72" cy="42" r="14" stroke-width="2" />
+      <path class="svg-draw" pathLength="1" d="M72 38v8M68 42h8" />
+      <path class="svg-draw text-[var(--color-accent)] service-fly-away" pathLength="1" d="M88 28 L 102 38 L 95 42 L 102 46 L 88 56" stroke-width="2" fill="none" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M28 22 L 30 26 L 28 28 L 26 26 Z" opacity="0.8" />
+      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M92 72 L 94 76 L 92 78 L 90 76 Z" opacity="0.6" class="animate-pulse" style="animation-duration: 2s" />
+      <path class="svg-draw" pathLength="1" d="M20 88h80M24 96h72M28 104h64" opacity="0.5" />
     </svg>
   </ServiceShowcase>
 
-  <!-- 7. Скрипты -->
+  <!-- 7. Скрипты: терминал с анимацией печати строк -->
   <ServiceShowcase
     id="scripts"
     title="Скрипты"
@@ -204,23 +214,18 @@ const quickNavItems = [
     direction="left"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Окно терминала -->
       <rect class="svg-draw" pathLength="1" x="15" y="25" width="90" height="70" rx="6" />
       <line class="svg-draw" pathLength="1" x1="15" y1="45" x2="105" y2="45" />
-      <!-- Кнопки управления окном -->
       <circle cx="25" cy="35" r="2" fill="currentColor" opacity="0.5" />
       <circle cx="33" cy="35" r="2" fill="currentColor" opacity="0.5" />
-      <!-- Командная строка: >_ -->
       <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M25 60 L 35 70 L 25 80" stroke-width="2.5" />
-      <g class="animate-pulse">
-        <line class="text-[var(--color-accent)]" x1="40" y1="80" x2="55" y2="80" stroke-width="2.5" />
-      </g>
-      <!-- Вывод команды -->
-      <line class="svg-draw" pathLength="1" x1="40" y1="60" x2="80" y2="60" opacity="0.4" />
+      <line class="text-[var(--color-accent)] animate-pulse" x1="40" y1="80" x2="55" y2="80" stroke-width="2.5" />
+      <path class="svg-draw service-terminal-line" pathLength="1" d="M40 58 L 85 58" opacity="0.7" />
+      <path class="svg-draw service-terminal-line" pathLength="1" d="M40 68 L 75 68" opacity="0.5" />
     </svg>
   </ServiceShowcase>
 
-  <!-- 8. Интеграции -->
+  <!-- 8. Интеграции: два сервера, связаны «веревкой» крест-накрест, сигнал по линиям -->
   <ServiceShowcase
     id="integrations"
     title="Интеграции"
@@ -231,13 +236,13 @@ const quickNavItems = [
     direction="right"
   >
     <svg class="w-full h-full" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect class="svg-draw" pathLength="1" x="20" y="28" width="36" height="64" rx="5" />
-      <path class="svg-draw" pathLength="1" d="M28 40h20M28 50h16M28 60h22" />
-      <rect class="svg-draw" pathLength="1" x="64" y="28" width="36" height="64" rx="5" />
-      <path class="svg-draw" pathLength="1" d="M72 40h20M72 50h16M72 60h22" />
-      <path class="svg-draw text-[var(--color-accent)]" pathLength="1" d="M56 60h8" stroke-width="2.5" />
-      <polyline class="svg-draw text-[var(--color-accent)]" pathLength="1" points="52,56 60,60 68,56" fill="none" />
-      <polyline class="svg-draw text-[var(--color-accent)]" pathLength="1" points="52,64 60,60 68,64" fill="none" />
+      <rect class="svg-draw" pathLength="1" x="18" y="26" width="32" height="68" rx="5" />
+      <path class="svg-draw" pathLength="1" d="M26 38h16M26 48h12M26 58h18" />
+      <rect class="svg-draw" pathLength="1" x="70" y="26" width="32" height="68" rx="5" />
+      <path class="svg-draw" pathLength="1" d="M78 38h16M78 48h12M78 58h18" />
+      <!-- Веревка крест-накрест + бегущий сигнал -->
+      <path class="svg-draw text-[var(--color-accent)] service-animate-dash-flow" pathLength="1" d="M50 38 L 70 58" stroke-width="2.5" stroke-dasharray="6 6" />
+      <path class="svg-draw text-[var(--color-accent)] service-animate-dash-flow" pathLength="1" d="M50 74 L 70 54" stroke-width="2.5" stroke-dasharray="6 6" style="animation-delay: 0.6s" />
     </svg>
   </ServiceShowcase>
 
