@@ -31,26 +31,27 @@ const categories = [
   description="Реальные проекты: автоматизация, боты, AI-агенты, n8n, Python."
 >
   <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 relative">
-    <div class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.15] w-48 h-48 left-1/2 -translate-x-1/2 top-0 -translate-y-[55%] sm:w-84 sm:h-84 sm:left-auto sm:right-0 sm:translate-x-[15%] sm:top-1/2 sm:-translate-y-1/2 animate-float-icon" aria-hidden="true">
-      <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M 30 60 L 80 60 L 100 80 L 170 80 L 170 160 L 30 160 Z" />
-        <g class="animate-doc-1">
-          <rect x="50" y="30" width="70" height="90" rx="2" />
-          <line x1="65" y1="50" x2="105" y2="50" opacity="0.6" stroke-width="4" />
-          <line x1="65" y1="70" x2="95" y2="70" opacity="0.6" stroke-width="4" />
-        </g>
-        <path d="M 20 90 L 180 90 L 170 170 L 30 170 Z" />
-      </svg>
+    <div class="relative w-full mb-4">
+      <div class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.22] w-48 h-48 left-1/2 -translate-x-1/2 top-0 -translate-y-[55%] sm:w-84 sm:h-84 sm:left-auto sm:right-0 sm:translate-x-[15%] sm:top-0 sm:translate-y-0 animate-float-icon" aria-hidden="true">
+        <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 30 60 L 80 60 L 100 80 L 170 80 L 170 160 L 30 160 Z" />
+          <g class="animate-doc-1">
+            <rect x="50" y="30" width="70" height="90" rx="2" />
+            <line x1="65" y1="50" x2="105" y2="50" opacity="0.6" stroke-width="4" />
+            <line x1="65" y1="70" x2="95" y2="70" opacity="0.6" stroke-width="4" />
+          </g>
+          <path d="M 20 90 L 180 90 L 170 170 L 30 170 Z" />
+        </svg>
+      </div>
+      <div class="relative flex justify-center sm:justify-start">
+        <h1 class="reveal cases-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl relative z-10">
+          Кейсы
+        </h1>
+      </div>
+      <p class="mt-2 text-[var(--color-text-muted)]">
+        Разборы реальных проектов с результатами и цифрами.
+      </p>
     </div>
-
-    <div class="relative flex justify-center sm:justify-start">
-      <h1 class="reveal cases-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl relative z-10">
-        Кейсы
-      </h1>
-    </div>
-    <p class="mt-2 text-[var(--color-text-muted)]">
-      Разборы реальных проектов с результатами и цифрами.
-    </p>
 
     <div class="cases-filters mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Фильтр по категории">
       {categories.map((cat) => (
