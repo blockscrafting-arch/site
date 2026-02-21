@@ -1,8 +1,13 @@
 ---
 /**
- * Навигация по сайту (десктоп).
- * На мобильных используется блок в Header на основе <details>/<summary>.
+ * Навигация по сайту (десктоп и мобильная панель).
+ * В мобильной панели передаётся проп mobile — вертикальный список без горизонтального скролла.
  */
+export interface Props {
+  mobile?: boolean;
+}
+
+const { mobile = false } = Astro.props;
 const navItems = [
   { href: '/', label: 'Главная' },
   { href: '/services', label: 'Услуги' },
@@ -14,7 +19,13 @@ const navItems = [
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="flex items-center gap-6" aria-label="Основное меню">
+<nav
+  class:list={[
+    'flex',
+    mobile ? 'flex-col gap-6 text-lg' : 'items-center gap-6',
+  ]}
+  aria-label="Основное меню"
+>
   {
     navItems.map(({ href, label }) => {
       const isActive = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
@@ -22,7 +33,8 @@ const currentPath = Astro.url.pathname;
         <a
           href={href}
           class:list={[
-            'nav-link relative text-sm font-medium transition-colors rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]',
+            'nav-link relative text-sm font-medium transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]',
+            mobile ? 'block w-full py-3 px-1' : 'px-1 py-0.5',
             isActive
               ? 'text-[var(--color-accent)] nav-link-active'
               : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]',

@@ -60,7 +60,9 @@
     background-size: 48px 48px;
   }
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -75,7 +77,7 @@
     clip-path: inset(50%);
   }
   .nav-link::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: -2px;
@@ -110,14 +112,44 @@
   }
 
   /* Prose: кейсы */
-  .case-detail .prose { color: var(--color-text-muted); }
-  .case-detail .prose h2 { font-family: Manrope, system-ui, sans-serif; font-weight: 600; color: var(--color-text); margin-top: 2rem; margin-bottom: 0.75rem; }
-  .case-detail .prose h3 { font-family: Manrope, system-ui, sans-serif; font-weight: 600; color: var(--color-text); margin-top: 1.5rem; margin-bottom: 0.5rem; }
-  .case-detail .prose p { margin-bottom: 1rem; }
-  .case-detail .prose ul, .case-detail .prose ol { margin-bottom: 1rem; padding-left: 1.5rem; }
-  .case-detail .prose a { color: var(--color-accent); text-decoration: underline; }
-  .case-detail .prose strong { color: var(--color-text); }
-  .case-detail .prose code { background: var(--color-surface-muted); padding: 0.2em 0.4em; border-radius: 0.25rem; font-size: 0.9em; }
+  .case-detail .prose {
+    color: var(--color-text-muted);
+  }
+  .case-detail .prose h2 {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .case-detail .prose h3 {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .case-detail .prose p {
+    margin-bottom: 1rem;
+  }
+  .case-detail .prose ul,
+  .case-detail .prose ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  .case-detail .prose a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+  .case-detail .prose strong {
+    color: var(--color-text);
+  }
+  .case-detail .prose code {
+    background: var(--color-surface-muted);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
 
   /* Иконки у h2 в кейсах (SVG через data-URI + mask, цвет — --case-accent) */
   .case-detail .prose h2[data-section-icon] {
@@ -126,7 +158,7 @@
     gap: 0.5rem;
   }
   .case-detail .prose h2[data-section-icon]::before {
-    content: '';
+    content: "";
     flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
@@ -138,33 +170,85 @@
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
   }
-  .case-detail .prose h2[data-section-icon="0"]::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E"); }
-  .case-detail .prose h2[data-section-icon="1"]::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z'/%3E%3Cpath d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'/%3E%3C/svg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z'/%3E%3Cpath d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'/%3E%3C/svg%3E"); }
-  .case-detail .prose h2[data-section-icon="2"]::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'/%3E%3C/svg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'/%3E%3C/svg%3E"); }
-  .case-detail .prose h2[data-section-icon="3"]::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'/%3E%3C/svg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'/%3E%3C/svg%3E"); }
-  .case-detail .prose h2[data-section-icon="4"]::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'/%3E%3C/svg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'/%3E%3C/svg%3E"); }
-  .case-detail .prose h2[data-section-icon="5"]::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'/%3E%3C/svg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'/%3E%3C/svg%3E"); }
+  .case-detail .prose h2[data-section-icon="0"]::before {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E");
+  }
+  .case-detail .prose h2[data-section-icon="1"]::before {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z'/%3E%3Cpath d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z'/%3E%3Cpath d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'/%3E%3C/svg%3E");
+  }
+  .case-detail .prose h2[data-section-icon="2"]::before {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'/%3E%3C/svg%3E");
+  }
+  .case-detail .prose h2[data-section-icon="3"]::before {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'/%3E%3C/svg%3E");
+  }
+  .case-detail .prose h2[data-section-icon="4"]::before {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'/%3E%3C/svg%3E");
+  }
+  .case-detail .prose h2[data-section-icon="5"]::before {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 24 24'%3E%3Cpath d='M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'/%3E%3C/svg%3E");
+  }
 
   /* Prose: инструкции */
-  .guide-prose { color: var(--color-text-muted); }
-  .guide-prose h2 { font-family: Manrope, system-ui, sans-serif; font-weight: 600; color: var(--color-text); margin-top: 2rem; margin-bottom: 0.75rem; }
-  .guide-prose h3 { font-family: Manrope, system-ui, sans-serif; font-weight: 600; color: var(--color-text); margin-top: 1.5rem; margin-bottom: 0.5rem; }
-  .guide-prose p { margin-bottom: 1rem; }
-  .guide-prose ul, .guide-prose ol { margin-bottom: 1rem; padding-left: 1.5rem; }
-  .guide-prose a { color: var(--color-accent); text-decoration: underline; }
-  .guide-prose strong { color: var(--color-text); }
-  .guide-prose code { background: var(--color-surface-muted); padding: 0.2em 0.4em; border-radius: 0.25rem; font-size: 0.9em; }
+  .guide-prose {
+    color: var(--color-text-muted);
+  }
+  .guide-prose h2 {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .guide-prose h3 {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .guide-prose p {
+    margin-bottom: 1rem;
+  }
+  .guide-prose ul,
+  .guide-prose ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  .guide-prose a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+  .guide-prose strong {
+    color: var(--color-text);
+  }
+  .guide-prose code {
+    background: var(--color-surface-muted);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
 
   /* Карточки: мягкий hover через border + glow, без translateY-прыжков */
   .service-card {
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
   }
   .service-card:hover {
     border-color: var(--color-accent);
     box-shadow: 0 0 20px -8px var(--color-accent-glow);
   }
   .case-preview-card {
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
   }
   .case-preview-card:hover {
     border-color: var(--color-accent);
@@ -177,7 +261,9 @@
     box-shadow: 0 0 24px -8px var(--color-accent-glow);
   }
   .guide-card a {
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
   }
   .guide-card a:hover {
     border-color: var(--color-accent);
@@ -186,8 +272,14 @@
 
   /* ===== Scroll-reveal: CSS-only с IntersectionObserver ===== */
   @keyframes reveal-up {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   .reveal {
     opacity: 0;
@@ -200,23 +292,43 @@
     opacity: 0;
     animation: reveal-up 0.45s ease-out forwards;
   }
-  .reveal-stagger.is-visible > *:nth-child(1) { animation-delay: 0s; }
-  .reveal-stagger.is-visible > *:nth-child(2) { animation-delay: 0.06s; }
-  .reveal-stagger.is-visible > *:nth-child(3) { animation-delay: 0.12s; }
-  .reveal-stagger.is-visible > *:nth-child(4) { animation-delay: 0.18s; }
-  .reveal-stagger.is-visible > *:nth-child(5) { animation-delay: 0.24s; }
-  .reveal-stagger.is-visible > *:nth-child(6) { animation-delay: 0.30s; }
+  .reveal-stagger.is-visible > *:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .reveal-stagger.is-visible > *:nth-child(2) {
+    animation-delay: 0.06s;
+  }
+  .reveal-stagger.is-visible > *:nth-child(3) {
+    animation-delay: 0.12s;
+  }
+  .reveal-stagger.is-visible > *:nth-child(4) {
+    animation-delay: 0.18s;
+  }
+  .reveal-stagger.is-visible > *:nth-child(5) {
+    animation-delay: 0.24s;
+  }
+  .reveal-stagger.is-visible > *:nth-child(6) {
+    animation-delay: 0.3s;
+  }
   /* SVG-иконки: лёгкий вход при появлении блока и hover (все инлайновые SVG с классом svg-icon-reveal) */
   @keyframes icon-reveal {
-    from { opacity: 0; transform: scale(0.92); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
   .reveal.is-visible .svg-icon-reveal,
   .reveal-stagger.is-visible .svg-icon-reveal {
     animation: icon-reveal 0.35s ease-out forwards;
   }
   .svg-icon-reveal {
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      color 0.2s ease;
   }
   .svg-icon-reveal:hover {
     transform: scale(1.05);
@@ -232,8 +344,13 @@
     transform: translateX(0.25rem);
   }
   @keyframes float-icon {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
   }
   .animate-float-icon {
     animation: float-icon 4s ease-in-out infinite;
@@ -255,32 +372,67 @@
     animation: none; /* большие иллюстрации анимируются через .svg-draw по контуру */
   }
   @media (prefers-reduced-motion: reduce) {
-    .reveal, .reveal-stagger > * { opacity: 1; animation: none !important; }
-    .svg-icon-reveal { animation: none !important; }
+    .reveal,
+    .reveal-stagger > * {
+      opacity: 1;
+      animation: none !important;
+    }
+    .svg-icon-reveal {
+      animation: none !important;
+    }
   }
 
   /* Инструкции: лёгкая анимация появления */
   @keyframes guide-fade-in {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  .guides-page-title { animation: guide-fade-in 0.5s ease-out forwards; }
-  .guides-client-block { opacity: 0; animation: guide-fade-in 0.4s ease-out 0.1s forwards; }
-  .guides-list { opacity: 0; animation: guide-fade-in 0.4s ease-out 0.15s forwards; }
+  .guides-page-title {
+    animation: guide-fade-in 0.5s ease-out forwards;
+  }
+  .guides-client-block {
+    opacity: 0;
+    animation: guide-fade-in 0.4s ease-out 0.1s forwards;
+  }
+  .guides-list {
+    opacity: 0;
+    animation: guide-fade-in 0.4s ease-out 0.15s forwards;
+  }
   .guide-detail-header .guide-back,
   .guide-detail-header .guide-title,
   .guide-detail-header .guide-desc {
     opacity: 0;
     animation: guide-fade-in 0.45s ease-out forwards;
   }
-  .guide-detail-header .guide-title { animation-delay: 0.08s; }
-  .guide-detail-header .guide-desc { animation-delay: 0.16s; }
-  .guide-detail-prose { opacity: 0; animation: guide-fade-in 0.5s ease-out 0.25s forwards; }
-  .guide-detail-cta { opacity: 0; animation: guide-fade-in 0.4s ease-out 0.4s forwards; }
+  .guide-detail-header .guide-title {
+    animation-delay: 0.08s;
+  }
+  .guide-detail-header .guide-desc {
+    animation-delay: 0.16s;
+  }
+  .guide-detail-prose {
+    opacity: 0;
+    animation: guide-fade-in 0.5s ease-out 0.25s forwards;
+  }
+  .guide-detail-cta {
+    opacity: 0;
+    animation: guide-fade-in 0.4s ease-out 0.4s forwards;
+  }
   @media (prefers-reduced-motion: reduce) {
-    .guides-page-title, .guides-client-block, .guides-list,
-    .guide-detail-header .guide-back, .guide-detail-header .guide-title, .guide-detail-header .guide-desc,
-    .guide-detail-prose, .guide-detail-cta {
+    .guides-page-title,
+    .guides-client-block,
+    .guides-list,
+    .guide-detail-header .guide-back,
+    .guide-detail-header .guide-title,
+    .guide-detail-header .guide-desc,
+    .guide-detail-prose,
+    .guide-detail-cta {
       animation: none;
       opacity: 1;
     }
@@ -288,40 +440,75 @@
 
   /* Hero: бегущая строка услуг (marquee) */
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
   .animate-marquee {
     animation: marquee 45s linear infinite;
   }
   @media (prefers-reduced-motion: reduce) {
-    .animate-marquee { animation: none; }
+    .animate-marquee {
+      animation: none;
+    }
   }
 
   /* ===== Services page: flow diagram, benefit cards, quick-nav ===== */
   @keyframes draw-line {
-    from { stroke-dashoffset: 100%; }
-    to { stroke-dashoffset: 0; }
+    from {
+      stroke-dashoffset: 100%;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
   }
   @keyframes draw-line-unit {
-    from { stroke-dashoffset: 1; }
-    to { stroke-dashoffset: 0; }
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
   }
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 0 0 var(--color-accent-glow); }
-    50% { box-shadow: 0 0 16px -4px var(--color-accent-glow); }
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 var(--color-accent-glow);
+    }
+    50% {
+      box-shadow: 0 0 16px -4px var(--color-accent-glow);
+    }
   }
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
   }
   @keyframes typing-dots {
-    0%, 80%, 100% { opacity: 0.3; }
-    40% { opacity: 1; }
+    0%,
+    80%,
+    100% {
+      opacity: 0.3;
+    }
+    40% {
+      opacity: 1;
+    }
   }
   @keyframes code-type {
-    from { width: 0; overflow: hidden; }
-    to { width: 100%; }
+    from {
+      width: 0;
+      overflow: hidden;
+    }
+    to {
+      width: 100%;
+    }
   }
   .service-flow-line {
     stroke-dasharray: 1;
@@ -329,12 +516,20 @@
   }
   .reveal.is-visible .service-flow-line,
   .service-flow-line.is-visible {
-    animation: draw-line 0.6s ease-out forwards;
+    animation: draw-line-unit 0.6s ease-out forwards;
   }
-  .reveal.is-visible .service-flow-line:nth-of-type(1) { animation-delay: 0.1s; }
-  .reveal.is-visible .service-flow-line:nth-of-type(2) { animation-delay: 0.25s; }
-  .reveal.is-visible .service-flow-line:nth-of-type(3) { animation-delay: 0.4s; }
-  .reveal.is-visible .service-flow-line:nth-of-type(4) { animation-delay: 0.55s; }
+  .reveal.is-visible .service-flow-line:nth-of-type(1) {
+    animation-delay: 0.1s;
+  }
+  .reveal.is-visible .service-flow-line:nth-of-type(2) {
+    animation-delay: 0.25s;
+  }
+  .reveal.is-visible .service-flow-line:nth-of-type(3) {
+    animation-delay: 0.4s;
+  }
+  .reveal.is-visible .service-flow-line:nth-of-type(4) {
+    animation-delay: 0.55s;
+  }
   .service-flow-node.is-visible {
     animation: pulse-glow 2s ease-in-out infinite;
   }
@@ -344,8 +539,12 @@
   .service-typing-dot {
     animation: typing-dots 1.4s ease-in-out infinite;
   }
-  .service-typing-dot:nth-child(2) { animation-delay: 0.2s; }
-  .service-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  .service-typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .service-typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
   .service-code-type {
     animation: code-type 1.5s steps(20) forwards;
   }
@@ -357,17 +556,39 @@
   .service-illustration-float.reveal.is-visible .svg-draw {
     animation: draw-line-unit 0.6s ease-out forwards;
   }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(1) { animation-delay: 0.05s; }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(2) { animation-delay: 0.1s; }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(3) { animation-delay: 0.15s; }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(4) { animation-delay: 0.2s; }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(5) { animation-delay: 0.25s; }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(6) { animation-delay: 0.3s; }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(7) { animation-delay: 0.35s; }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(8) { animation-delay: 0.4s; }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(9) { animation-delay: 0.45s; }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(10) { animation-delay: 0.5s; }
-  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(n+11) { animation-delay: 0.55s; }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(7) {
+    animation-delay: 0.35s;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(8) {
+    animation-delay: 0.4s;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(9) {
+    animation-delay: 0.45s;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(10) {
+    animation-delay: 0.5s;
+  }
+  .service-illustration-float.reveal.is-visible .svg-draw:nth-child(n + 11) {
+    animation-delay: 0.55s;
+  }
   @media (prefers-reduced-motion: reduce) {
     .service-flow-line.is-visible,
     .service-flow-node.is-visible,
@@ -376,7 +597,9 @@
     .service-code-type {
       animation: none;
     }
-    .service-flow-line { stroke-dashoffset: 0; }
+    .service-flow-line {
+      stroke-dashoffset: 0;
+    }
     .service-illustration-float .svg-draw {
       stroke-dashoffset: 0;
       animation: none;
@@ -384,7 +607,9 @@
   }
 
   .service-benefit-card {
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
   }
   .service-benefit-card:hover {
     border-color: var(--color-accent);
@@ -410,13 +635,45 @@
     scrollbar-width: thin;
     -webkit-overflow-scrolling: touch;
   }
+  /* Намёк на горизонтальный скролл справа (только на узких экранах) */
+  @media (max-width: 767px) {
+    .service-quick-nav::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 48px;
+      background: linear-gradient(to right, transparent, var(--color-bg));
+      pointer-events: none;
+    }
+  }
   .service-quick-nav a {
     flex-shrink: 0;
-    transition: color 0.2s ease, background-color 0.2s ease;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease;
   }
   .service-quick-nav a.is-active {
     color: var(--color-accent);
     background-color: var(--color-accent-muted);
+  }
+
+  /* Мобильное меню: надёжное открытие по классу (дублирует aria-expanded) */
+  @media (max-width: 767px) {
+    #mobile-menu {
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+    #mobile-menu.mobile-menu-open {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 }
 
@@ -424,8 +681,16 @@
 
 /* 1. Моргание глаз */
 @keyframes blink-eyes {
-  0%, 46%, 49%, 100% { transform: scaleY(1); }
-  47%, 48% { transform: scaleY(0.05); }
+  0%,
+  46%,
+  49%,
+  100% {
+    transform: scaleY(1);
+  }
+  47%,
+  48% {
+    transform: scaleY(0.05);
+  }
 }
 .animate-eyes {
   animation: blink-eyes 8s ease-in-out infinite;
@@ -434,44 +699,78 @@
 
 /* 2. Печатающие руки */
 @keyframes type-hand-l {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-3px) rotate(-5deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(-3deg);
+  }
 }
 @keyframes type-hand-r {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-3px) rotate(5deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(3deg);
+  }
 }
 .animate-hand-l {
-  animation: type-hand-l 0.15s infinite alternate;
+  animation: type-hand-l 0.3s infinite alternate;
   transform-origin: 30% 90%;
 }
 .animate-hand-r {
-  animation: type-hand-r 0.2s infinite alternate-reverse;
+  animation: type-hand-r 0.4s infinite alternate-reverse;
   transform-origin: 70% 90%;
 }
 
 /* 3. Плавающий кубок */
 @keyframes float-cup {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(2deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
 }
 .animate-cup {
-  animation: float-cup 5s ease-in-out infinite;
+  animation: float-cup 6s ease-in-out infinite;
 }
 
 /* 4. Вылетающие документы из чемодана */
 @keyframes fly-doc {
-  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-  100% { transform: translate(40px, -80px) rotate(25deg); opacity: 0; }
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(40px, -80px) rotate(25deg);
+    opacity: 0;
+  }
 }
-.animate-doc-1 { animation: fly-doc 2.5s infinite ease-out; }
-.animate-doc-2 { animation: fly-doc 2.5s infinite ease-out 1.25s; }
+.animate-doc-1 {
+  animation: fly-doc 2.5s infinite ease-out;
+}
+.animate-doc-2 {
+  animation: fly-doc 2.5s infinite ease-out 1.25s;
+}
 
 /* 5. Перелистывание страницы */
 @keyframes turn-page {
-  0%, 10% { transform: rotateY(0deg); }
-  40%, 60% { transform: rotateY(-180deg); }
-  90%, 100% { transform: rotateY(0deg); }
+  0%,
+  10% {
+    transform: rotateY(0deg);
+  }
+  40%,
+  60% {
+    transform: rotateY(-180deg);
+  }
+  90%,
+  100% {
+    transform: rotateY(0deg);
+  }
 }
 .animate-page {
   animation: turn-page 6s infinite ease-in-out;
@@ -481,18 +780,28 @@
 
 /* 6. Летящий самолетик по кривой */
 @keyframes airplane-fly {
-  0% { 
-    transform: translate(-20vw, 60vh) rotate(35deg); 
-    opacity: 0; 
+  0% {
+    transform: translate(-20vw, 70vh) rotate(45deg);
+    opacity: 0;
   }
-  10% { opacity: 0.3; }
-  25% { transform: translate(15vw, 35vh) rotate(25deg); }
-  50% { transform: translate(50vw, 15vh) rotate(5deg); }
-  75% { transform: translate(85vw, 5vh) rotate(-5deg); }
-  90% { opacity: 0.3; }
-  100% { 
-    transform: translate(120vw, 10vh) rotate(5deg); 
-    opacity: 0; 
+  10% {
+    opacity: 0.6;
+  }
+  30% {
+    transform: translate(20vw, 40vh) rotate(15deg);
+  }
+  50% {
+    transform: translate(50vw, 45vh) rotate(5deg);
+  }
+  70% {
+    transform: translate(80vw, 20vh) rotate(-10deg);
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(120vw, 0vh) rotate(-20deg);
+    opacity: 0;
   }
 }
 .animate-airplane {

@@ -2,6 +2,7 @@
 /**
  * Sticky-навигация по услугам на странице /services.
  * Горизонтальные pills с якорными ссылками; активный элемент подсвечивается по IntersectionObserver.
+ * На мобильных: градиент справа (global.css) и подсказка «Листайте вправо», скрываемая после первого скролла.
  */
 export interface NavItem {
   id: string;
@@ -16,25 +17,32 @@ const { items } = Astro.props;
 ---
 
 <nav class="service-quick-nav py-3 px-4 sm:px-6" aria-label="Навигация по услугам">
-  <div class="service-quick-nav-inner mx-auto max-w-6xl flex items-center gap-2">
-    {items.map((item, i) => (
-      <a
-        href={`#${item.id}`}
-        class:list={[
-          'rounded-full px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)]',
-          i === 0 && 'is-active',
-        ]}
-        data-service-id={item.id}
-      >
-        {item.label}
-      </a>
-    ))}
+  <div class="flex items-center gap-2">
+    <div class="service-quick-nav-inner mx-auto max-w-6xl flex items-center gap-2 flex-1 min-w-0">
+      {items.map((item, i) => (
+        <a
+          href={`#${item.id}`}
+          class:list={[
+            'rounded-full px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)]',
+            i === 0 && 'is-active',
+          ]}
+          data-service-id={item.id}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+    <p class="service-quick-nav-hint relative z-10 flex-shrink-0 md:hidden flex items-center gap-1.5 text-xs text-[var(--color-text-muted)] pl-2" aria-hidden="true">
+      <span>Листайте вправо</span>
+      <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+    </p>
   </div>
 </nav>
 
 <script>
   /**
    * Подсветка активного пункта по видимой секции (IntersectionObserver).
+   * Скрытие подсказки «Листайте вправо» после первого скролла или если скролл не нужен.
    */
   (function () {
     const nav = document.querySelector('.service-quick-nav');
@@ -63,5 +71,19 @@ const { items } = Astro.props;
     );
 
     sections.forEach((el) => observer.observe(el));
+
+    const inner = nav.querySelector('.service-quick-nav-inner');
+    const hint = nav.querySelector('.service-quick-nav-hint');
+    if (inner && hint) {
+      function hideHint() {
+        hint.classList.add('hidden');
+        inner.removeEventListener('scroll', hideHint);
+      }
+      if (inner.scrollWidth <= inner.clientWidth) {
+        hint.classList.add('hidden');
+      } else {
+        inner.addEventListener('scroll', hideHint, { once: true });
+      }
+    }
   })();
 </script>
