@@ -12,9 +12,9 @@ sudo cp "$SITE_ROOT/deploy/nginx-vladexecute.ru.conf" /etc/nginx/sites-available
 echo "→ Проверка nginx и перезапуск..."
 sudo nginx -t && sudo systemctl restart nginx
 
-echo "→ Перезапуск контейнера..."
-docker compose down
-docker compose build --no-cache
-docker compose up -d
+echo "→ Перезапуск контейнера (образ из ghcr.io, без сборки на сервере)..."
+docker compose -p opt -f deploy/docker-compose.prod.yml down
+docker compose -p opt -f deploy/docker-compose.prod.yml pull
+docker compose -p opt -f deploy/docker-compose.prod.yml up -d
 
 echo "Готово."

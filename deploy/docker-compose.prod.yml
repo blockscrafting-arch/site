@@ -1,0 +1,7 @@
+# Продакшн на VPS: образ собирается в CI и пушится в ghcr.io, здесь только pull и up.
+# Запуск: из /opt выполнить bash deploy/deploy.sh (используется -p opt для имени проекта).
+services:
+  web:
+    image: ghcr.io/blockscrafting-arch/site:latest
+    ports:
+      - "127.0.0.1:9080:80"

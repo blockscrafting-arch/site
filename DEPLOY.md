@@ -252,7 +252,9 @@ deploy ALL=(ALL) NOPASSWD: ALL
 
 Убедитесь, что симлинк nginx создан: `sudo ln -sf /etc/nginx/sites-available/vladexecute.ru /etc/nginx/sites-enabled/`.
 
-После этого при push в `main` workflow собирает образ, подключается по SSH, выполняет `git pull` и `bash deploy/deploy.sh`: конфиг nginx обновляется из репо (всегда 9080), nginx перезагружается, контейнер пересобирается и запускается.
+После этого при push в `main` workflow **собирает образ в CI** (не на сервере), пушит его в GitHub Container Registry (ghcr.io), подключается по SSH, выполняет `git fetch`/`reset` и `bash deploy/deploy.sh`: на сервере только **pull** образа и `up` (без тяжёлой сборки). Конфиг nginx обновляется из репо (порт 9080), nginx перезагружается, контейнер перезапускается с новым образом.
+
+**Первый раз после перехода на CI-сборку:** образ в ghcr.io по умолчанию приватный. В репозитории GitHub: **Packages** → пакет образа → **Package settings** → **Change visibility** → **Public**. Тогда сервер сможет делать `docker pull` без авторизации.
 
 ---
 
@@ -260,22 +262,9 @@ deploy ALL=(ALL) NOPASSWD: ALL
 
 1. **Nginx проксирует на нужный порт?** Конфиг лежит в репо: `deploy/nginx-vladexecute.ru.conf` (порт **9080**). При каждом деплое он копируется на сервер через `deploy/deploy.sh`. Если что-то меняли вручную на VPS — после следующего push конфиг из репо перезапишет. Проверка вручную: `proxy_pass http://127.0.0.1:9080;`, затем `sudo nginx -t && sudo systemctl restart nginx`.
 
-2. **Контейнер запущен?** На сервере: `cd /opt && docker compose ps`. Должен быть `opt-web-1` в статусе Up. Если нет — `docker compose up -d --build`.
+2. **Контейнер запущен?** На сервере: `cd /opt && docker compose -p opt -f deploy/docker-compose.prod.yml ps`. Должен быть `opt-web-1` в статусе Up. Если нет — `docker compose -p opt -f deploy/docker-compose.prod.yml pull && docker compose -p opt -f deploy/docker-compose.prod.yml up -d`.
 
-3. **Форма контактов пишет «не указан вебхук»?** URL вебхука подставляется **при сборке**, а не при запуске. В каталоге с `docker-compose.yml` (например `/opt`) создайте или отредактируйте `.env` с переменными:
-
-   ```env
-   PUBLIC_CONTACT_WEBHOOK=https://ваш-n8n.ru/webhook/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-   SITE=https://vladexecute.ru
-   ```
-
-   Затем **пересоберите образ** (без кэша, чтобы переменные попали в сборку) и перезапустите:
-
-   ```bash
-   cd /opt   # или каталог, где лежит docker-compose.yml и .env
-   docker compose build --no-cache
-   docker compose up -d
-   ```
+3. **Форма контактов пишет «не указан вебхук»?** URL вебхука подставляется **при сборке в CI**. В настройках репозитория GitHub: **Settings** → **Secrets and variables** → **Actions** — добавьте секреты `PUBLIC_CONTACT_WEBHOOK` и при необходимости `SITE` (например `https://vladexecute.ru`). Следующий push пересоберёт образ в CI с этими значениями.
 
 4. **Кэш браузера.** Сделайте жёсткое обновление: Ctrl+Shift+R (или Cmd+Shift+R). Или откройте сайт в режиме инкогнито.
 

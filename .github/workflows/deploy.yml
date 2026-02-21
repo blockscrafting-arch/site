@@ -1,14 +1,20 @@
-# Деплой на VPS: сборка и опциональный push образа / деплой по SSH.
-# Для работы добавьте секреты: VPS_HOST, VPS_USER, VPS_SSH_KEY (приватный ключ).
+# Деплой на VPS: сборка образа в CI (не на сервере), пуш в GHCR, на сервере — только pull и up.
+# Секреты: VPS_HOST, VPS_USER, VPS_SSH_KEY; для сборки: PUBLIC_CONTACT_WEBHOOK, SITE (опционально).
 name: Build and Deploy
 
 on:
   push:
     branches: [main]
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
 
@@ -27,9 +33,24 @@ jobs:
       - name: Run unit tests
         run: npm run test:unit
 
-      - name: Build Docker image
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
         run: |
-          docker build -t vlad-execute-site:${{ github.sha }} -f docker/Dockerfile .
+          IMAGE=$(echo "${{ env.REGISTRY }}/${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker build \
+            --build-arg PUBLIC_CONTACT_WEBHOOK="${{ secrets.PUBLIC_CONTACT_WEBHOOK }}" \
+            --build-arg SITE="${{ secrets.SITE }}" \
+            -t ${IMAGE}:${{ github.sha }} \
+            -t ${IMAGE}:latest \
+            -f docker/Dockerfile .
+          docker push ${IMAGE}:${{ github.sha }}
+          docker push ${IMAGE}:latest
 
   deploy:
     needs: build
@@ -41,7 +62,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          command_timeout: 30m
+          command_timeout: 5m
           script: |
             cd /opt
             git fetch origin
