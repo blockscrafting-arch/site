@@ -1,11 +1,14 @@
-import { useRef, useEffect, useState, type ReactNode } from 'react';
+import { useRef, useEffect, useState, type ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
   class?: string;
 }
 
-export default function SectionReveal({ children, class: className = '' }: Props) {
+export default function SectionReveal({
+  children,
+  class: className = "",
+}: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -16,7 +19,7 @@ export default function SectionReveal({ children, class: className = '' }: Props
       ([entry]) => {
         if (entry.isIntersecting) setVisible(true);
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -26,9 +29,7 @@ export default function SectionReveal({ children, class: className = '' }: Props
     <div
       ref={ref}
       className={`transition-all duration-700 ease-out ${
-        visible
-          ? 'opacity-100 translate-y-0'
-          : 'opacity-0 translate-y-8'
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       } ${className}`}
     >
       {children}

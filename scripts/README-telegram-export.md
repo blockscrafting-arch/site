@@ -14,13 +14,13 @@
 
 ## Соответствие сообщений и файлов
 
-| id сообщения | Файл кейса |
-|--------------|------------|
-| 27 | markus.md |
-| 29 | ai-lawyer.md |
-| 33 | voice-to-text.md |
-| 35 | telegram-roi-posting.md |
-| 36 | ai-content-conveyor.md |
-| 37 | voice-copilot.md |
+| id сообщения | Файл кейса              |
+| ------------ | ----------------------- |
+| 27           | markus.md               |
+| 29           | ai-lawyer.md            |
+| 33           | voice-to-text.md        |
+| 35           | telegram-roi-posting.md |
+| 36           | ai-content-conveyor.md  |
+| 37           | voice-copilot.md        |
 
 При добавлении нового кейса в канал: добавьте его id в `CASE_MESSAGE_IDS` в скрипте и создайте новый `.md` в `src/content/cases/`.

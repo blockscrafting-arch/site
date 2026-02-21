@@ -1,7 +1,7 @@
 /**
  * Кнопка «Скопировать»: копирует value в буфер обмена, показывает «Скопировано» 2 сек.
  */
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 export interface CopyButtonProps {
   /** Что копировать в буфер. */
@@ -15,9 +15,9 @@ export interface CopyButtonProps {
 
 export default function CopyButton({
   value,
-  label = 'Скопировать',
-  copiedLabel = 'Скопировано!',
-  className = '',
+  label = "Скопировать",
+  copiedLabel = "Скопировано!",
+  className = "",
 }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
 
@@ -28,7 +28,7 @@ export default function CopyButton({
       const t = setTimeout(() => setCopied(false), 2000);
       return () => clearTimeout(t);
     } catch (err) {
-      console.warn('[CopyButton] Clipboard write failed:', err);
+      console.warn("[CopyButton] Clipboard write failed:", err);
       setCopied(false);
     }
   }, [value]);
@@ -38,11 +38,11 @@ export default function CopyButton({
       type="button"
       onClick={handleClick}
       className={
-        'inline-flex items-center rounded-lg px-3 py-1.5 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] ' +
+        "inline-flex items-center rounded-lg px-3 py-1.5 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] " +
         (copied
-          ? 'text-[var(--color-accent)]'
-          : 'text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:bg-[var(--color-surface-muted)]') +
-        ' ' +
+          ? "text-[var(--color-accent)]"
+          : "text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:bg-[var(--color-surface-muted)]") +
+        " " +
         className
       }
       aria-live="polite"

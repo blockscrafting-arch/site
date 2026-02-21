@@ -2,7 +2,16 @@
 title: "ИИ-копайлот для звонков (VoiceCoPilot): подсказки в реальном времени в браузере"
 description: "Веб-приложение слушает разговор, распознаёт речь через Whisper, за 2 секунды выдаёт подсказку что сказать. Скрипты продаж и база знаний в контексте."
 result: "Любой звонок превращается в разговор с суфлёром: реальное время, редактирование транскрипта на лету, контекст проекта из загруженных файлов."
-stack: ["React", "FastAPI", "Whisper", "OpenRouter", "Gemini", "PostgreSQL", "WebSockets"]
+stack:
+  [
+    "React",
+    "FastAPI",
+    "Whisper",
+    "OpenRouter",
+    "Gemini",
+    "PostgreSQL",
+    "WebSockets",
+  ]
 date: 2026-02-05
 categories: [ai-agent]
 accentColor: "#10b981"

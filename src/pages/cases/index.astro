@@ -31,34 +31,37 @@ const categories = [
   description="Реальные проекты: автоматизация, боты, AI-агенты, n8n, Python."
 >
   <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 relative">
-    <div class="absolute -left-20 top-20 opacity-[0.15] w-[350px] h-[350px] pointer-events-none z-[-1] text-[var(--color-accent)]" aria-hidden="true">
-      <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Вылетающие документы -->
-        <g class="animate-doc-1">
-          <rect x="70" y="70" width="40" height="50" rx="2" />
-          <line x1="78" y1="80" x2="102" y2="80" />
-          <line x1="78" y1="90" x2="95" y2="90" />
-        </g>
-        <g class="animate-doc-2">
-          <rect x="90" y="80" width="40" height="50" rx="2" />
-          <line x1="98" y1="90" x2="122" y2="90" />
-          <line x1="98" y1="100" x2="115" y2="100" />
-        </g>
-        <!-- Открытая крышка -->
-        <path d="M 40 100 L 160 100 L 140 50 L 60 50 Z" opacity="0.5" />
-        <!-- Основание чемодана -->
-        <rect x="40" y="100" width="120" height="70" rx="5" fill="var(--color-bg)" />
-        <rect x="40" y="100" width="120" height="70" rx="5" />
-        <!-- Ручка -->
-        <path d="M 85 50 V 35 Q 85 30 90 30 H 110 Q 115 30 115 35 V 50" />
-        <!-- Замки -->
-        <rect x="60" y="100" width="15" height="10" />
-        <rect x="125" y="100" width="15" height="10" />
-      </svg>
+    <div class="relative inline-block mb-2">
+      <div class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[70%] sm:-translate-x-[90%] opacity-[0.25] w-28 h-28 sm:w-40 sm:h-40 pointer-events-none z-[-1] text-[var(--color-accent)]" aria-hidden="true">
+        <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Чемодан -->
+          <!-- Вылетающие документы -->
+          <g class="animate-doc-1">
+            <rect x="50" y="30" width="40" height="50" rx="3" fill="var(--color-bg)" />
+            <line x1="58" y1="45" x2="82" y2="45" />
+            <line x1="58" y1="60" x2="75" y2="60" />
+          </g>
+          <g class="animate-doc-2">
+            <rect x="110" y="40" width="40" height="50" rx="3" fill="var(--color-bg)" />
+            <line x1="118" y1="55" x2="142" y2="55" />
+            <line x1="118" y1="70" x2="135" y2="70" />
+          </g>
+          <!-- Основной корпус (классический дипломат) -->
+          <rect x="20" y="80" width="160" height="90" rx="10" fill="var(--color-bg)" />
+          <path d="M 20 110 L 180 110" stroke-width="2" opacity="0.5" />
+          <path d="M 20 150 L 180 150" stroke-width="2" opacity="0.5" />
+          <!-- Ручка -->
+          <path d="M 70 80 V 40 C 70 30 130 30 130 40 V 80" stroke-width="6" />
+          <path d="M 60 80 H 140" />
+          <!-- Замки -->
+          <rect x="50" y="70" width="20" height="20" rx="3" fill="currentColor" />
+          <rect x="130" y="70" width="20" height="20" rx="3" fill="currentColor" />
+        </svg>
+      </div>
+      <h1 class="reveal cases-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl relative z-10">
+        Кейсы
+      </h1>
     </div>
-    <h1 class="reveal cases-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
-      Кейсы
-    </h1>
     <p class="mt-2 text-[var(--color-text-muted)]">
       Разборы реальных проектов с результатами и цифрами.
     </p>

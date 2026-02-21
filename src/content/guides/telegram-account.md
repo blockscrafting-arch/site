@@ -13,10 +13,10 @@ category: setup
 2. Введите номер телефона, в Telegram придёт код подтверждения. Введите его.
 3. Нажмите ссылку **«API development tools»**.
 4. Заполните форму (можно любые данные):
-   - **App title:** MyParserApp  
-   - **Short name:** myparser  
-   - **URL:** http://example.com (можно не менять)  
-   - **Platform:** Desktop  
+   - **App title:** MyParserApp
+   - **Short name:** myparser
+   - **URL:** http://example.com (можно не менять)
+   - **Platform:** Desktop
 5. Нажмите **«Create application»**.
 
 **Важно:** если сайт выдаёт ошибку "ERROR" при создании — попробуйте зайти с другого браузера (инкогнито) или с мобильного интернета. Это частый глюк Telegram.

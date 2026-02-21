@@ -39,38 +39,40 @@ const sortedGroups = order.filter((k) => groups.has(k));
   description="Пошаговые инструкции для заказчиков и разработчиков: чеклист к старту, API-ключи, VPS, домен, Telegram, n8n."
 >
   <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 relative">
-    <div class="absolute right-0 sm:-right-10 top-0 opacity-[0.2] w-[250px] h-[250px] pointer-events-none z-[-1] text-[var(--color-accent)]" aria-hidden="true" style="perspective: 1000px;">
-      <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Обложка (задняя часть, видна по краям) -->
-        <path d="M 100 165 Q 45 185 10 155 L 10 55 Q 45 85 100 65 Q 155 85 190 55 L 190 155 Q 155 185 100 165 Z" fill="var(--color-accent-muted)" stroke="none" />
-        
-        <!-- Левый блок страниц (толщина) -->
-        <path d="M 15 150 L 15 60 Q 45 90 95 70 L 95 160 Q 45 180 15 150 Z" />
-        <!-- Правый блок страниц (толщина) -->
-        <path d="M 185 150 L 185 60 Q 155 90 105 70 L 105 160 Q 155 180 185 150 Z" />
-        
-        <!-- Центральный корешок -->
-        <line x1="100" y1="65" x2="100" y2="165" />
-        
-        <!-- Несколько декоративных линий текста на левой странице -->
-        <line x1="30" y1="80" x2="80" y2="70" opacity="0.4" />
-        <line x1="30" y1="95" x2="85" y2="85" opacity="0.4" />
-        <line x1="30" y1="110" x2="75" y2="100" opacity="0.4" />
+    <div class="relative inline-block mb-2">
+      <div class="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[40%] sm:translate-x-[50%] opacity-[0.25] w-28 h-28 sm:w-40 sm:h-40 pointer-events-none z-[-1] text-[var(--color-accent)]" aria-hidden="true" style="perspective: 1000px;">
+        <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Классическая открытая книга -->
+          <!-- Страницы слева -->
+          <path d="M 100 160 Q 60 180 20 150 V 50 Q 60 80 100 60 Z" fill="var(--color-bg)" />
+          <!-- Страницы справа -->
+          <path d="M 100 160 Q 140 180 180 150 V 50 Q 140 80 100 60 Z" fill="var(--color-bg)" />
+          <!-- Линии толщины страниц -->
+          <path d="M 20 150 V 160 Q 60 190 100 170 V 160" opacity="0.5" />
+          <path d="M 180 150 V 160 Q 140 190 100 170" opacity="0.5" />
+          <!-- Корешок -->
+          <line x1="100" y1="60" x2="100" y2="170" />
+          
+          <!-- Закладка -->
+          <path d="M 60 70 V 110 L 70 100 L 80 110 V 65" fill="currentColor" opacity="0.3" />
 
-        <!-- Перелистываемая страница -->
-        <g class="animate-page" style="transform-origin: 100px 110px;">
-          <!-- Сама страница -->
-          <path d="M 100 160 Q 155 180 185 150 L 185 60 Q 155 90 100 70 Z" fill="var(--color-bg)" />
-          <!-- Текст на перелистываемой странице -->
-          <line x1="115" y1="85" x2="170" y2="95" stroke-width="2" opacity="0.5" />
-          <line x1="115" y1="100" x2="160" y2="110" stroke-width="2" opacity="0.5" />
-          <line x1="115" y1="115" x2="165" y2="125" stroke-width="2" opacity="0.5" />
-        </g>
-      </svg>
+          <!-- Текст на правой странице -->
+          <line x1="120" y1="90" x2="160" y2="75" stroke-width="3" opacity="0.5" />
+          <line x1="120" y1="110" x2="155" y2="95" stroke-width="3" opacity="0.5" />
+          <line x1="120" y1="130" x2="145" y2="115" stroke-width="3" opacity="0.5" />
+
+          <!-- Перелистываемая страница -->
+          <g class="animate-page" style="transform-origin: 100px 100px;">
+            <path d="M 100 160 Q 140 180 180 150 V 50 Q 140 80 100 60 Z" fill="var(--color-bg)" />
+            <line x1="120" y1="90" x2="160" y2="75" stroke-width="3" opacity="0.3" />
+            <line x1="120" y1="110" x2="155" y2="95" stroke-width="3" opacity="0.3" />
+          </g>
+        </svg>
+      </div>
+      <h1 class="guides-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl relative z-10">
+        Инструкции
+      </h1>
     </div>
-    <h1 class="guides-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
-      Инструкции
-    </h1>
     <p class="mt-2 text-[var(--color-text-muted)] max-w-2xl">
       Часть материалов — <strong class="text-[var(--color-text)]">для заказчиков</strong>: что сделать и что подготовить перед стартом. Остальное — технические гайды по настройке и интеграциям.
     </p>

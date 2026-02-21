@@ -3,18 +3,18 @@
  * Циклически печатает и стирает цепляющие фразы — выгода и результат.
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 // @ts-expect-error — пакет typeit не экспортирует типы в @types
-import TypeIt from 'typeit';
+import TypeIt from "typeit";
 
 /** Фразы для главного экрана: выгода и результат, без воды. */
 const PHRASES = [
-  'Рутину — в ноль',
-  'Боты, которые работают за вас',
-  '10+ часов в неделю — обратно вам',
-  'AI вместо трёх менеджеров',
-  'От заявки до сделки — на автопилоте',
-  'Автоматизирую. Вы растёте.',
+  "Рутину — в ноль",
+  "Боты, которые работают за вас",
+  "10+ часов в неделю — обратно вам",
+  "AI вместо трёх менеджеров",
+  "От заявки до сделки — на автопилоте",
+  "Автоматизирую. Вы растёте.",
 ];
 
 const OPTIONS = {
@@ -23,7 +23,7 @@ const OPTIONS = {
   deleteSpeed: 45,
   lifeLike: true,
   cursor: true,
-  cursorChar: '|',
+  cursorChar: "|",
   breakLines: false,
   nextStringDelay: [1400, 900],
   loop: true,
@@ -47,7 +47,7 @@ export default function TypewriterHero({ className }: TypewriterHeroProps) {
   return (
     <span
       ref={elRef}
-      className={`min-h-[1.2em] inline-block ${className ?? 'text-[var(--color-accent)] font-semibold'}`}
+      className={`min-h-[1.2em] inline-block ${className ?? "text-[var(--color-accent)] font-semibold"}`}
       aria-live="polite"
       aria-label="Главный заголовок: рутина в ноль, боты за вас, экономия времени, AI вместо менеджеров, автопилот заявок"
     />

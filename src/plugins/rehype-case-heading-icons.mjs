@@ -5,15 +5,15 @@
  */
 function isCaseContent(file) {
   if (!file) return false;
-  const path = file.path ?? file.history?.[0] ?? '';
-  return String(path).includes('cases');
+  const path = file.path ?? file.history?.[0] ?? "";
+  return String(path).includes("cases");
 }
 
 function visit(node, h2IndexRef) {
-  if (!node || typeof node !== 'object') return;
-  if (node.type === 'element' && node.tagName === 'h2') {
+  if (!node || typeof node !== "object") return;
+  if (node.type === "element" && node.tagName === "h2") {
     node.properties = node.properties || {};
-    node.properties['data-section-icon'] = String(h2IndexRef.current % 6);
+    node.properties["data-section-icon"] = String(h2IndexRef.current % 6);
     h2IndexRef.current += 1;
   }
   if (Array.isArray(node.children)) {

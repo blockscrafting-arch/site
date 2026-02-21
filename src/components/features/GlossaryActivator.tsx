@@ -3,10 +3,10 @@
  * Обходит текстовые узлы, оборачивает термины в <span>, инициализирует Tippy.
  */
 
-import { useEffect } from 'react';
-import tippy, { type Props as TippyProps } from 'tippy.js';
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/themes/light-border.css';
+import { useEffect } from "react";
+import tippy, { type Props as TippyProps } from "tippy.js";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light-border.css";
 
 export interface GlossaryEntry {
   term: string;
@@ -14,9 +14,9 @@ export interface GlossaryEntry {
 }
 
 const TIPPY_OPTIONS: Partial<TippyProps> = {
-  theme: 'light-border',
-  placement: 'top',
-  trigger: 'mouseenter focus',
+  theme: "light-border",
+  placement: "top",
+  trigger: "mouseenter focus",
   interactive: false,
   maxWidth: 320,
   allowHTML: false,
@@ -41,9 +41,10 @@ function getWordEnd(text: string, start: number): number {
  */
 function findTermRanges(
   text: string,
-  terms: GlossaryEntry[]
+  terms: GlossaryEntry[],
 ): Array<{ start: number; end: number; entry: GlossaryEntry }> {
-  const ranges: Array<{ start: number; end: number; entry: GlossaryEntry }> = [];
+  const ranges: Array<{ start: number; end: number; entry: GlossaryEntry }> =
+    [];
   const used = new Set<number>();
 
   for (const entry of terms) {
@@ -93,9 +94,9 @@ function findTermRanges(
 
 function wrapTextNode(
   textNode: Text,
-  terms: GlossaryEntry[]
+  terms: GlossaryEntry[],
 ): HTMLSpanElement[] {
-  const text = textNode.textContent ?? '';
+  const text = textNode.textContent ?? "";
   const sorted = [...terms].sort((a, b) => b.term.length - a.term.length);
   const ranges = findTermRanges(text, sorted);
   if (ranges.length === 0) return [];
@@ -110,14 +111,14 @@ function wrapTextNode(
     if (start > lastEnd) {
       parent.insertBefore(
         document.createTextNode(text.slice(lastEnd, start)),
-        textNode
+        textNode,
       );
     }
-    const span = document.createElement('span');
-    span.setAttribute('data-term', entry.term);
-    span.setAttribute('data-description', entry.description);
+    const span = document.createElement("span");
+    span.setAttribute("data-term", entry.term);
+    span.setAttribute("data-description", entry.description);
     span.className =
-      'border-b border-dotted border-emerald-500 dark:border-emerald-400 cursor-help';
+      "border-b border-dotted border-emerald-500 dark:border-emerald-400 cursor-help";
     span.textContent = text.slice(start, end);
     parent.insertBefore(span, textNode);
     spans.push(span);
@@ -131,7 +132,16 @@ function wrapTextNode(
 }
 
 const EXCLUDE_TAG_NAMES = new Set([
-  'CODE', 'PRE', 'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT', 'OPTION', 'SCRIPT', 'STYLE',
+  "CODE",
+  "PRE",
+  "A",
+  "BUTTON",
+  "INPUT",
+  "TEXTAREA",
+  "SELECT",
+  "OPTION",
+  "SCRIPT",
+  "STYLE",
 ]);
 
 /**
@@ -142,25 +152,31 @@ function isInsideExcluded(node: Node): boolean {
   while (el && el.nodeType === Node.ELEMENT_NODE) {
     const tag = (el as Element).tagName;
     if (EXCLUDE_TAG_NAMES.has(tag)) return true;
-    if ((el as Element).getAttribute?.('data-glossary') === 'false') return true;
+    if ((el as Element).getAttribute?.("data-glossary") === "false")
+      return true;
     el = el.parentElement;
   }
   return false;
 }
 
 function processContainer(container: Element, glossary: GlossaryEntry[]): void {
-  if (container.getAttribute('data-glossary-processed') === 'true') return;
-  container.setAttribute('data-glossary-processed', 'true');
+  if (container.getAttribute("data-glossary-processed") === "true") return;
+  container.setAttribute("data-glossary-processed", "true");
 
   const walker = document.createTreeWalker(
     container,
     NodeFilter.SHOW_TEXT,
-    null
+    null,
   );
   const textNodes: Text[] = [];
   let n: Text | null;
   while ((n = walker.nextNode() as Text | null)) {
-    if (n && n.textContent && n.textContent.trim().length > 0 && !isInsideExcluded(n))
+    if (
+      n &&
+      n.textContent &&
+      n.textContent.trim().length > 0 &&
+      !isInsideExcluded(n)
+    )
       textNodes.push(n);
   }
 
@@ -171,7 +187,7 @@ function processContainer(container: Element, glossary: GlossaryEntry[]): void {
   }
 
   allSpans.forEach((el) => {
-    const desc = el.getAttribute('data-description');
+    const desc = el.getAttribute("data-description");
     if (desc) {
       tippy(el, {
         ...TIPPY_OPTIONS,
@@ -183,24 +199,26 @@ function processContainer(container: Element, glossary: GlossaryEntry[]): void {
 
 export default function GlossaryActivator() {
   useEffect(() => {
-    const el = document.getElementById('glossary-data');
+    const el = document.getElementById("glossary-data");
     let glossary: GlossaryEntry[] | undefined;
-    if (el?.tagName === 'SCRIPT' && el.textContent) {
+    if (el?.tagName === "SCRIPT" && el.textContent) {
       try {
         glossary = JSON.parse(el.textContent) as GlossaryEntry[];
       } catch (err) {
-        console.error('[GlossaryActivator] Invalid glossary JSON:', err);
+        console.error("[GlossaryActivator] Invalid glossary JSON:", err);
         glossary = undefined;
       }
     }
     if (!glossary || !Array.isArray(glossary) || glossary.length === 0) return;
 
-    const containers = document.querySelectorAll('[data-glossary]');
+    const containers = document.querySelectorAll("[data-glossary]");
     containers.forEach((el) => processContainer(el, glossary));
 
     return () => {
-      document.querySelectorAll('[data-term]').forEach((el) => {
-        const instance = (el as HTMLElement & { _tippy?: { destroy: () => void } })._tippy;
+      document.querySelectorAll("[data-term]").forEach((el) => {
+        const instance = (
+          el as HTMLElement & { _tippy?: { destroy: () => void } }
+        )._tippy;
         if (instance) instance.destroy();
       });
     };

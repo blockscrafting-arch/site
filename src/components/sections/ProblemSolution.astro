@@ -13,29 +13,31 @@ const items = [
 ---
 
 <section class="py-20 sm:py-28 overflow-hidden relative" aria-labelledby="problem-solution-heading">
-  <div class="absolute right-0 sm:right-10 top-20 opacity-[0.15] w-[250px] h-[250px] pointer-events-none z-[-1] text-[var(--color-accent)]" aria-hidden="true">
-    <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4">
-      <g class="animate-eyes">
-        <!-- Левый глаз: овал вытянутый по вертикали -->
-        <ellipse cx="60" cy="100" rx="30" ry="45" />
-        <!-- Зрачок -->
-        <circle cx="60" cy="100" r="14" fill="currentColor" />
-        <!-- Блик (отверстие) -->
-        <circle cx="64" cy="94" r="4" fill="var(--color-bg)" />
-        
-        <!-- Правый глаз -->
-        <ellipse cx="140" cy="100" rx="30" ry="45" />
-        <!-- Зрачок -->
-        <circle cx="140" cy="100" r="14" fill="currentColor" />
-        <!-- Блик -->
-        <circle cx="144" cy="94" r="4" fill="var(--color-bg)" />
-      </g>
-    </svg>
-  </div>
   <div class="problem-solution-header mb-12 px-4 sm:px-6 text-center">
-    <h2 id="problem-solution-heading" class="reveal problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl" aria-label="Узнаёте себя?">
-      <GlitchHeading text="Узнаёте себя?" client:visible preset="encrypted" />
-    </h2>
+    <div class="relative inline-block mx-auto">
+      <div class="absolute left-1/2 top-1/2 -translate-y-[60%] translate-x-[20%] sm:translate-x-[30%] opacity-[0.35] w-24 h-24 sm:w-36 sm:h-36 pointer-events-none z-[-1] text-[var(--color-accent)]" aria-hidden="true">
+        <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4">
+          <g class="animate-eyes">
+            <!-- Левый глаз: овал вытянутый по вертикали -->
+            <ellipse cx="60" cy="100" rx="30" ry="45" fill="var(--color-bg)" />
+            <!-- Зрачок -->
+            <circle cx="60" cy="100" r="14" fill="currentColor" />
+            <!-- Блик (отверстие) -->
+            <circle cx="64" cy="94" r="4" fill="var(--color-bg)" />
+            
+            <!-- Правый глаз -->
+            <ellipse cx="140" cy="100" rx="30" ry="45" fill="var(--color-bg)" />
+            <!-- Зрачок -->
+            <circle cx="140" cy="100" r="14" fill="currentColor" />
+            <!-- Блик -->
+            <circle cx="144" cy="94" r="4" fill="var(--color-bg)" />
+          </g>
+        </svg>
+      </div>
+      <h2 id="problem-solution-heading" class="reveal problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl relative z-10" aria-label="Узнаёте себя?">
+        <GlitchHeading text="Узнаёте себя?" client:visible preset="encrypted" />
+      </h2>
+    </div>
     <p class="reveal problem-solution-desc mt-4 text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
       Проблемы, которые я решаю автоматизацией и ботами.
     </p>

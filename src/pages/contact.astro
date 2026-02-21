@@ -19,21 +19,17 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
 >
   <!-- Анимированный самолетик на заднем фоне -->
   <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden" aria-hidden="true">
-    <div class="absolute animate-airplane w-[250px] h-[250px] text-[var(--color-accent)]">
-      <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Бумажный самолетик (вид сбоку-сверху, нос вправо) -->
-        <!-- Правое крыло -->
-        <path d="M 20 120 L 170 40 L 130 160 Z" fill="var(--color-bg)" />
-        <!-- Левое крыло (нижнее) -->
-        <path d="M 20 120 L 170 40 L 70 80 Z" />
-        <!-- Сгиб/Дно -->
-        <path d="M 70 80 L 130 160 L 90 110 Z" fill="currentColor" opacity="0.1" />
-        <!-- Линии крыльев и центра -->
-        <path d="M 20 120 L 90 110 L 170 40" />
-        <path d="M 90 110 L 130 160" />
-        <!-- Маленький след-ветер позади -->
-        <path d="M 10 130 Q 0 140 -10 150" stroke-width="3" stroke-dasharray="4 4" opacity="0.4" />
-        <path d="M 30 145 Q 15 160 5 170" stroke-width="3" stroke-dasharray="4 4" opacity="0.4" />
+    <div class="absolute animate-airplane w-[200px] h-[200px] text-[var(--color-accent)]">
+      <svg viewBox="0 0 200 200" fill="currentColor" stroke="none">
+        <!-- Telegram-style paper plane -->
+        <!-- Right Wing (Top part) -->
+        <path d="M 20 80 L 180 20 L 100 110 Z" opacity="0.8" />
+        <!-- Left Wing (Bottom part) -->
+        <path d="M 180 20 L 130 160 L 100 110 Z" opacity="1.0" />
+        <!-- Fold / Shadow -->
+        <path d="M 100 110 L 130 160 L 95 180 Z" fill="var(--color-bg)" opacity="0.3" />
+        <!-- Bottom Fin -->
+        <path d="M 100 110 L 95 180 L 115 130 Z" opacity="0.6" />
       </svg>
     </div>
   </div>

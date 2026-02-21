@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from "react";
 
 interface Metric {
   value: string;
@@ -23,21 +23,27 @@ export default function AnimatedTrustMetrics({ metrics }: Props) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !animated) {
-          const key = 'trust-metrics-animated';
+          const key = "trust-metrics-animated";
           try {
-            if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem(key)) {
+            if (
+              typeof sessionStorage !== "undefined" &&
+              sessionStorage.getItem(key)
+            ) {
               setAnimated(true);
               return;
             }
             setAnimated(true);
-            sessionStorage.setItem(key, '1');
+            sessionStorage.setItem(key, "1");
           } catch (err) {
-            console.warn('[AnimatedTrustMetrics] sessionStorage unavailable:', err);
+            console.warn(
+              "[AnimatedTrustMetrics] sessionStorage unavailable:",
+              err,
+            );
             setAnimated(true);
           }
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
     observer.observe(el);
     return () => observer.disconnect();

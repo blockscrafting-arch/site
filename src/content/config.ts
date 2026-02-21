@@ -1,10 +1,10 @@
 /**
  * Конфигурация коллекций контента (кейсы, инструкции).
  */
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const casesCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -18,20 +18,30 @@ const casesCollection = defineCollection({
           label: z.string(),
           prefix: z.string().optional(),
           suffix: z.string().optional(),
-        })
+        }),
       )
       .optional(),
     client: z.string().optional(),
     /** Кейс может относиться к нескольким категориям сразу. */
     categories: z
-      .array(z.enum(['bot', 'ai-agent', 'automation', 'mini-app', 'parser', 'script', 'autoposting']))
+      .array(
+        z.enum([
+          "bot",
+          "ai-agent",
+          "automation",
+          "mini-app",
+          "parser",
+          "script",
+          "autoposting",
+        ]),
+      )
       .default([]),
-    accentColor: z.string().default('#10b981'),
+    accentColor: z.string().default("#10b981"),
     layout: z
-      .enum(['default', 'split', 'fullwidth', 'timeline'])
-      .default('default'),
+      .enum(["default", "split", "fullwidth", "timeline"])
+      .default("default"),
     heroImage: z.string().optional(),
-    heroStyle: z.enum(['dark', 'light', 'gradient']).optional(),
+    heroStyle: z.enum(["dark", "light", "gradient"]).optional(),
     problem: z.string().optional(),
     testimonial: z
       .object({
@@ -45,12 +55,12 @@ const casesCollection = defineCollection({
 });
 
 const guidesCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
     order: z.number().optional(),
-    category: z.enum(['setup', 'integrations', 'faq']).optional(),
+    category: z.enum(["setup", "integrations", "faq"]).optional(),
     /** Инструкция для заказчика (без тех.фона): что сделать перед стартом проекта. */
     forClient: z.boolean().optional(),
   }),
