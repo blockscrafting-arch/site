@@ -1,6 +1,6 @@
 ---
 /**
- * Секция «Проблема — Решение»: горизонтальный скролл с карточками.
+ * Секция «Проблема — Решение»: на мобильных — вертикальная колонка (без горизонтального скролла); с sm — горизонтальный скролл с карточками.
  */
 import GlitchHeading from '../features/GlitchHeading';
 const items = [
@@ -41,13 +41,8 @@ const items = [
     <p class="reveal problem-solution-desc mt-4 text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
       Проблемы, которые я решаю автоматизацией и ботами.
     </p>
-    <p class="problem-solution-swipe-hint sm:hidden mt-3 text-sm text-[var(--color-text-muted)] flex items-center justify-center gap-2" aria-hidden="true">
-      <span>Листайте</span>
-      <svg class="h-4 w-4 shrink-0 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-    </p>
   </div>
   <div class="problem-solution-wrap relative px-4 sm:px-6">
-    <div class="problem-solution-fade sm:hidden pointer-events-none absolute right-4 top-0 bottom-8 w-12 z-[1]" style="background: linear-gradient(to left, var(--color-bg) 0%, transparent 100%);" aria-hidden="true"></div>
     <button
       type="button"
       class="problem-solution-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] shadow-lg transition-colors hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
@@ -62,10 +57,10 @@ const items = [
     >
       <svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
     </button>
-    <div class="problem-solution-track flex gap-6 pb-4 pl-4 pr-4 sm:pl-14 sm:pr-14 overflow-x-auto snap-x snap-mandatory scrollbar-hide cursor-grab" style="scrollbar-width: none; -ms-overflow-style: none;" data-horizontal-scroll>
+    <div class="problem-solution-track flex flex-col gap-4 max-w-xl mx-auto sm:max-w-none sm:mx-0 sm:flex-row sm:gap-6 sm:pb-4 sm:pl-14 sm:pr-14 sm:overflow-x-auto sm:snap-x sm:snap-mandatory scrollbar-hide sm:cursor-grab" style="scrollbar-width: none; -ms-overflow-style: none;" data-horizontal-scroll>
     {items.map((item, i) => (
       <article
-        class="problem-solution-card flex-shrink-0 w-[85vw] sm:w-[400px] snap-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 shadow-lg"
+        class="problem-solution-card w-full sm:flex-shrink-0 sm:w-[400px] sm:snap-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 sm:p-6 sm:p-8 shadow-lg"
         style={`animation-delay: ${i * 0.1}s`}
       >
         <div class="flex items-start gap-4">
@@ -84,17 +79,19 @@ const items = [
       </article>
     ))}
     </div>
-    <div class="problem-solution-bar mt-2 h-1 w-full overflow-hidden rounded-full bg-[var(--color-surface-muted)]" role="presentation">
+    <div class="problem-solution-bar hidden sm:block mt-2 h-1 w-full max-w-6xl mx-auto overflow-hidden rounded-full bg-[var(--color-surface-muted)]" role="presentation">
       <div class="problem-solution-bar-fill h-full rounded-full bg-[var(--color-accent)] transition-[width] duration-150" style="width: 0%"></div>
     </div>
   </div>
 </section>
 
 <script>
-  // На ПК: колёсико мыши — горизонтальный скролл, перетаскивание — листание
+  // Горизонтальный скролл только с sm: на мобильных карточки в колонке, без листания
   const track = document.querySelector('[data-horizontal-scroll]');
+  const useHorizontal = () => window.matchMedia('(min-width: 640px)').matches;
   if (track) {
     track.addEventListener('wheel', function (e) {
+      if (!useHorizontal()) return;
       const canScrollLeft = track.scrollLeft > 0;
       const maxScroll = track.scrollWidth - track.clientWidth;
       const canScrollRight = track.scrollLeft < maxScroll;
@@ -106,7 +103,7 @@ const items = [
 
     let isDown = false, startX, startScrollLeft;
     track.addEventListener('mousedown', function (e) {
-      if (e.button !== 0) return;
+      if (e.button !== 0 || !useHorizontal()) return;
       isDown = true;
       startX = e.clientX;
       startScrollLeft = track.scrollLeft;
@@ -131,6 +128,7 @@ const items = [
     const nextBtn = document.querySelector('.problem-solution-next');
     const barFill = document.querySelector('.problem-solution-bar-fill');
     const step = () => {
+      if (!useHorizontal()) return;
       const maxScroll = track.scrollWidth - track.clientWidth;
       if (prevBtn) {
         prevBtn.disabled = track.scrollLeft <= 0;
@@ -145,6 +143,7 @@ const items = [
     };
     step();
     track.addEventListener('scroll', step);
+    window.matchMedia('(min-width: 640px)').addEventListener('change', () => { step(); });
     if (prevBtn) {
       prevBtn.addEventListener('click', () => {
         track.scrollBy({ left: -track.clientWidth * 0.85, behavior: 'smooth' });
