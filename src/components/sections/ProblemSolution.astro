@@ -20,14 +20,16 @@ const items = [
         <div class="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[15%] sm:translate-x-[25%] lg:translate-x-[35%] w-52 h-52 sm:w-72 sm:h-72 opacity-[0.35] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
           <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor">
             <g class="animate-blink" style="transform-origin: 100px 100px;">
-              <!-- Левый глаз -->
+              <!-- Форма глаз -->
               <ellipse cx="65" cy="100" rx="30" ry="45" stroke-width="6" fill="var(--color-bg)" />
-              <circle cx="55" cy="100" r="14" fill="currentColor" />
-              <circle cx="51" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
-              <!-- Правый глаз -->
               <ellipse cx="135" cy="100" rx="30" ry="45" stroke-width="6" fill="var(--color-bg)" />
-              <circle cx="125" cy="100" r="14" fill="currentColor" />
-              <circle cx="121" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
+              <!-- Зрачки и блики — осматриваются -->
+              <g class="animate-eyes-look">
+                <circle cx="55" cy="100" r="14" fill="currentColor" />
+                <circle cx="51" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
+                <circle cx="125" cy="100" r="14" fill="currentColor" />
+                <circle cx="121" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
+              </g>
             </g>
           </svg>
         </div>

@@ -17,18 +17,22 @@ const steps = [
       <div class="relative inline-flex items-center justify-center">
         <!-- SVG: шестеренка справа от заголовка, на одной линии с остальными блоками -->
         <div class="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[15%] sm:translate-x-[25%] lg:translate-x-[35%] w-52 h-52 sm:w-72 sm:h-72 opacity-[0.35] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
-          <svg class="w-full h-full animate-spin-slow" viewBox="0 0 200 200" fill="none" stroke="currentColor">
-            <g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
-              <!-- Зубья (перекрестие) -->
-              <line x1="100" y1="25" x2="100" y2="175" />
-              <line x1="25" y1="100" x2="175" y2="100" />
-              <line x1="47" y1="47" x2="153" y2="153" />
-              <line x1="47" y1="153" x2="153" y2="47" />
-              <!-- Тело шестеренки -->
-              <circle cx="100" cy="100" r="45" fill="var(--color-bg)" />
-              <!-- Внутренняя дырка -->
-              <circle cx="100" cy="100" r="20" stroke-width="10" />
+          <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+            <!-- Внешнее кольцо — крутится в обратную сторону -->
+            <circle cx="100" cy="100" r="75" stroke-width="4" stroke-dasharray="10 15" class="animate-spin-slow-reverse" opacity="0.5" style="transform-origin: 100px 100px;" />
+            <!-- Основная шестерёнка -->
+            <g class="animate-spin-slow" style="transform-origin: 100px 100px;">
+              <g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="100" y1="25" x2="100" y2="175" />
+                <line x1="25" y1="100" x2="175" y2="100" />
+                <line x1="47" y1="47" x2="153" y2="153" />
+                <line x1="47" y1="153" x2="153" y2="47" />
+                <circle cx="100" cy="100" r="45" fill="var(--color-bg)" />
+                <circle cx="100" cy="100" r="20" stroke-width="10" />
+              </g>
             </g>
+            <!-- Пульсирующее ядро -->
+            <circle cx="100" cy="100" r="8" fill="currentColor" class="animate-glow-pulse" />
           </svg>
         </div>
         <h2 id="process-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center relative z-10">

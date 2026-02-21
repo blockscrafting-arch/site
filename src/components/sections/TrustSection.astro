@@ -16,10 +16,10 @@ const metrics = [
       <div class="relative inline-flex items-center justify-center">
         <!-- SVG: молния справа от заголовка, на одной линии с остальными блоками -->
         <div class="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[15%] sm:translate-x-[25%] lg:translate-x-[35%] w-52 h-52 sm:w-72 sm:h-72 opacity-[0.35] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
-          <svg class="w-full h-full animate-slow-breath" viewBox="0 0 200 200" fill="none" stroke="currentColor">
-            <!-- Central sharp lightning -->
-            <path d="M115 20 L55 105 H105 L90 180 L155 90 H100 Z" stroke-width="2" stroke-linejoin="round" />
-            <!-- Geometric accents -->
+          <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+            <!-- Молния — вспышка -->
+            <path class="animate-lightning-strike" d="M115 20 L55 105 H105 L90 180 L155 90 H100 Z" stroke-width="2" stroke-linejoin="round" />
+            <!-- Геометрические акценты -->
             <circle cx="100" cy="100" r="85" stroke-width="1" stroke-dasharray="1 8" opacity="0.3" />
             <path d="M150 40 L160 30 M40 150 L50 140 M40 50 L50 60" stroke-width="2" stroke-linecap="round" opacity="0.5" />
           </svg>

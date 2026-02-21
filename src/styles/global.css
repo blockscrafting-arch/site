@@ -883,3 +883,62 @@
   animation: spin-slow 15s linear infinite;
   transform-origin: center;
 }
+
+/* Обратное вращение (шестерёнка — внешнее кольцо) */
+@keyframes spin-slow-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+.animate-spin-slow-reverse {
+  animation: spin-slow-reverse 20s linear infinite;
+  transform-origin: center;
+}
+
+/* Бегающие зрачки (Узнаёте себя?) */
+@keyframes eyes-look {
+  0%, 20% { transform: translate(0, 0); }
+  25%, 45% { transform: translate(-8px, 0); }
+  50%, 70% { transform: translate(8px, -4px); }
+  75%, 95% { transform: translate(0, 4px); }
+  100% { transform: translate(0, 0); }
+}
+.animate-eyes-look {
+  animation: eyes-look 8s ease-in-out infinite;
+}
+
+/* Отрисовка графика (Результаты в деле) */
+@keyframes draw-chart-loop {
+  0% { stroke-dashoffset: 150; }
+  40%, 80% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 150; }
+}
+@keyframes dot-pop-loop {
+  0%, 35% { transform: scale(0); opacity: 0; }
+  40%, 80% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+.animate-draw-chart {
+  animation: draw-chart-loop 6s ease-in-out infinite;
+}
+.animate-dot-pop {
+  animation: dot-pop-loop 6s ease-in-out infinite;
+}
+
+/* Поток данных (Чем занимаюсь — n8n) */
+@keyframes data-flow-loop {
+  from { stroke-dashoffset: 18; }
+  to { stroke-dashoffset: 0; }
+}
+.animate-data-flow {
+  animation: data-flow-loop 1s linear infinite;
+}
+
+/* Вспышка молнии (Результаты в цифрах) */
+@keyframes lightning-strike-loop {
+  0%, 90%, 100% { opacity: 0.3; filter: none; }
+  92%, 96% { opacity: 1; filter: drop-shadow(0 0 12px var(--color-accent)); }
+  94% { opacity: 0.5; }
+}
+.animate-lightning-strike {
+  animation: lightning-strike-loop 5s ease-in-out infinite;
+}

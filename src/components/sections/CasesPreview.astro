@@ -16,15 +16,16 @@ const featured = cases.slice(0, 4);
       <div class="relative inline-flex items-center justify-center">
         <!-- SVG: график с сеткой справа от заголовка, на одной линии с остальными блоками -->
         <div class="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[15%] sm:translate-x-[25%] lg:translate-x-[35%] w-52 h-52 sm:w-72 sm:h-72 opacity-[0.35] text-[var(--color-accent)] pointer-events-none -z-10" aria-hidden="true">
-          <svg class="w-full h-full animate-float-slow" viewBox="0 0 100 100" fill="none">
+          <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
             <!-- Сетка -->
             <pattern id="cases-grid" width="10" height="10" patternUnits="userSpaceOnUse">
               <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
             </pattern>
             <rect width="100" height="100" fill="url(#cases-grid)" />
-            <!-- Ломаная линия роста -->
-            <path d="M 5 90 L 30 60 L 55 75 L 95 20" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-            <circle cx="95" cy="20" r="4" fill="currentColor" />
+            <!-- Ломаная линия роста — рисуется по контуру -->
+            <path class="animate-draw-chart" d="M 5 90 L 30 60 L 55 75 L 95 20" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="150" stroke-dashoffset="150" />
+            <!-- Точка результата — появляется с попом -->
+            <circle class="animate-dot-pop" cx="95" cy="20" r="5" fill="currentColor" style="transform-origin: 95px 20px;" />
           </svg>
         </div>
         <h2 id="cases-preview-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center relative z-10">
