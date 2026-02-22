@@ -53,12 +53,12 @@ const categories = [
       </p>
     </div>
 
-    <div id="cases-filters-inflow">
-      <div class="cases-filters mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Фильтр по категории">
+    <div id="cases-filters-inflow" class="relative mt-8 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div class="cases-filters-scroll-inner flex items-center gap-2 overflow-x-auto pb-2" style="scrollbar-width: thin;" role="tablist" aria-label="Фильтр по категории">
         {categories.map((cat) => (
           <button
             type="button"
-            class="cases-filter-btn rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text)] data-[active]:border-[var(--color-accent)] data-[active]:bg-[var(--color-accent-muted)] data-[active]:text-[var(--color-accent)]"
+            class="cases-filter-btn flex-shrink-0 rounded-full px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)] data-[active]:bg-[var(--color-accent-muted)] data-[active]:text-[var(--color-accent)]"
             data-category={cat.id}
             data-active={cat.id === 'all' ? 'true' : undefined}
           >
@@ -66,15 +66,16 @@ const categories = [
           </button>
         ))}
       </div>
+      <div class="absolute right-0 top-0 bottom-2 w-14 pointer-events-none sm:hidden bg-[linear-gradient(to_right,transparent_0%,var(--color-accent-muted)_35%,var(--color-bg)_100%)]"></div>
     </div>
 
     <div class="cases-filters-fixed-wrap" id="cases-filters-fixed" aria-hidden="true">
-      <div class="cases-filters-fixed-inner">
-        <div class="cases-filters flex flex-wrap gap-2" role="tablist" aria-label="Фильтр по категории (закреплено)">
+      <div class="cases-filters-fixed-inner relative">
+        <div class="cases-filters flex items-center gap-2 overflow-x-auto pb-1" style="scrollbar-width: thin;" role="tablist" aria-label="Фильтр по категории (закреплено)">
           {categories.map((cat) => (
             <button
               type="button"
-              class="cases-filter-btn rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text)] data-[active]:border-[var(--color-accent)] data-[active]:bg-[var(--color-accent-muted)] data-[active]:text-[var(--color-accent)]"
+              class="cases-filter-btn flex-shrink-0 rounded-full px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)] data-[active]:bg-[var(--color-accent-muted)] data-[active]:text-[var(--color-accent)]"
               data-category={cat.id}
               data-active={cat.id === 'all' ? 'true' : undefined}
             >
@@ -82,6 +83,7 @@ const categories = [
             </button>
           ))}
         </div>
+        <div class="absolute right-0 top-0 bottom-1 w-14 pointer-events-none sm:hidden bg-[linear-gradient(to_right,transparent_0%,var(--color-accent-muted)_35%,var(--color-bg)_100%)]"></div>
       </div>
     </div>
 
