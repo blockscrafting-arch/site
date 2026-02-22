@@ -763,6 +763,9 @@
   .cases-hero {
     overflow: visible;
   }
+  main:has(.cases-page-wrap) {
+    overflow: visible;
+  }
 
   /* Мобильное меню: надёжное открытие по классу (дублирует aria-expanded) */
   @media (max-width: 767px) {
