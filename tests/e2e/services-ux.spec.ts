@@ -10,7 +10,7 @@ test.describe("Услуги: UX горизонтальной навигации"
     await page.setViewportSize(MOBILE_VIEWPORT);
     await page.goto("/services");
 
-    const quickNav = page.locator(".service-quick-nav");
+    const quickNav = page.locator(".service-quick-nav").first();
     await expect(quickNav).toBeVisible();
     await expect(quickNav.getByRole("link").first()).toBeVisible();
   });

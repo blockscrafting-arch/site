@@ -667,7 +667,29 @@
     background-color: var(--color-accent-muted);
   }
 
-  /* Липкая полоса фильтров на странице Кейсы */
+  /* Fixed-полоса навигации по услугам: показывается, когда полоса в потоке уехала вверх */
+  .service-quick-nav-fixed-wrap {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+  .service-quick-nav-fixed-wrap.is-stuck {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Липкая полоса фильтров на странице Кейсы (в потоке; fixed-копия — .cases-filters-fixed-wrap) */
   .cases-filters-sticky {
     position: sticky;
     top: 4rem;
@@ -696,6 +718,50 @@
       padding-left: 2rem;
       padding-right: 2rem;
     }
+  }
+
+  /* Fixed-полоса фильтров на Кейсах: показывается, когда полоса в потоке уехала вверх */
+  .cases-filters-fixed-wrap {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+  .cases-filters-fixed-wrap.is-stuck {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .cases-filters-fixed-inner {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 72rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+  }
+  @media (min-width: 640px) {
+    .cases-filters-fixed-inner {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .cases-filters-fixed-inner {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* Кейсы: hero и контейнер — overflow visible, чтобы декоративный SVG не обрезался */
+  .cases-page-wrap,
+  .cases-hero {
+    overflow: visible;
   }
 
   /* Мобильное меню: надёжное открытие по классу (дублирует aria-expanded) */

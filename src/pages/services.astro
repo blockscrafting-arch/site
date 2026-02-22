@@ -38,8 +38,11 @@ const quickNavItems = [
     </div>
   </section>
 
-  <!-- Sticky quick-nav -->
+  <!-- Quick-nav в потоке + fixed-копия при скролле -->
   <ServiceQuickNav items={quickNavItems} />
+  <div class="service-quick-nav-fixed-wrap" id="services-quick-nav-fixed" aria-hidden="true">
+    <ServiceQuickNav items={quickNavItems} />
+  </div>
 
   <!-- 1. Telegram-боты -->
   <ServiceShowcase
@@ -301,4 +304,31 @@ const quickNavItems = [
       </div>
     </div>
   </section>
+
+  <script>
+    /**
+     * Показ fixed-полосы навигации по услугам, когда полоса в потоке уехала вверх.
+     */
+    (function () {
+      const fixedWrap = document.getElementById('services-quick-nav-fixed');
+      const inFlowNav = document.querySelector('.service-quick-nav');
+      if (!fixedWrap || !inFlowNav) return;
+      const stickTop = 64; // 4rem
+      let raf = null;
+      function update() {
+        raf = null;
+        const top = inFlowNav.getBoundingClientRect().top;
+        const stuck = top < stickTop;
+        fixedWrap.classList.toggle('is-stuck', stuck);
+        fixedWrap.setAttribute('aria-hidden', String(!stuck));
+      }
+      function onScroll() {
+        if (raf == null) raf = requestAnimationFrame(update);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', update);
+      document.addEventListener('astro:page-load', update);
+      update();
+    })();
+  </script>
 </BaseLayout>

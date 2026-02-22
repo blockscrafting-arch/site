@@ -30,9 +30,9 @@ const categories = [
   title="Кейсы — vlad.execute(_)"
   description="Реальные проекты: автоматизация, боты, AI-агенты, n8n, Python."
 >
-  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 relative">
-    <div class="relative w-full mb-4">
-      <div class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.22] w-48 h-48 left-1/2 -translate-x-1/2 top-0 -translate-y-[55%] sm:w-64 sm:h-64 sm:left-auto sm:right-0 sm:translate-x-0 sm:top-1/2 sm:-translate-y-[42%]" aria-hidden="true">
+  <div class="cases-page-wrap mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 relative">
+    <div class="cases-hero relative w-full mb-4 pt-16 sm:pt-20">
+      <div class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.22] w-48 h-48 left-1/2 -translate-x-1/2 top-0 -translate-y-[40%] sm:w-64 sm:h-64 sm:left-auto sm:right-0 sm:translate-x-0 sm:top-1/2 sm:-translate-y-[35%]" aria-hidden="true">
         <svg class="w-full h-full animate-float-icon" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M 30 60 L 80 60 L 100 80 L 170 80 L 170 160 L 30 160 Z" />
           <g class="animate-doc-1">
@@ -53,7 +53,7 @@ const categories = [
       </p>
     </div>
 
-    <div class="cases-filters-sticky">
+    <div class="cases-filters-sticky" id="cases-filters-inflow">
       <div class="cases-filters mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Фильтр по категории">
         {categories.map((cat) => (
           <button
@@ -65,6 +65,23 @@ const categories = [
             {cat.label}
           </button>
         ))}
+      </div>
+    </div>
+
+    <div class="cases-filters-fixed-wrap" id="cases-filters-fixed" aria-hidden="true">
+      <div class="cases-filters-fixed-inner">
+        <div class="cases-filters flex flex-wrap gap-2" role="tablist" aria-label="Фильтр по категории (закреплено)">
+          {categories.map((cat) => (
+            <button
+              type="button"
+              class="cases-filter-btn rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text)] data-[active]:border-[var(--color-accent)] data-[active]:bg-[var(--color-accent-muted)] data-[active]:text-[var(--color-accent)]"
+              data-category={cat.id}
+              data-active={cat.id === 'all' ? 'true' : undefined}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
 
@@ -124,16 +141,38 @@ const categories = [
 </BaseLayout>
 
 <script>
-  document.querySelectorAll('.cases-filter-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const cat = (btn as HTMLElement).dataset.category;
-      document.querySelectorAll('.cases-filter-btn').forEach((b) => b.removeAttribute('data-active'));
-      btn.setAttribute('data-active', 'true');
-      document.querySelectorAll('.case-card-item').forEach((el) => {
-        const itemCats = ((el as HTMLElement).dataset.category ?? '').split(' ').filter(Boolean);
-        const show = cat === 'all' || itemCats.includes(cat);
-        (el as HTMLElement).style.display = show ? '' : 'none';
+  (function () {
+    const stickTop = 64;
+    const fixedWrap = document.getElementById('cases-filters-fixed');
+    const inFlowBar = document.getElementById('cases-filters-inflow');
+
+    document.querySelectorAll('.cases-filter-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cat = (btn as HTMLElement).dataset.category;
+        document.querySelectorAll('.cases-filter-btn').forEach((b) => {
+          b.removeAttribute('data-active');
+          if ((b as HTMLElement).dataset.category === cat) b.setAttribute('data-active', 'true');
+        });
+        document.querySelectorAll('.case-card-item').forEach((el) => {
+          const itemCats = ((el as HTMLElement).dataset.category ?? '').split(' ').filter(Boolean);
+          (el as HTMLElement).style.display = cat === 'all' || itemCats.includes(cat) ? '' : 'none';
+        });
       });
     });
-  });
+
+    if (fixedWrap && inFlowBar) {
+      let raf: number | null = null;
+      function update() {
+        raf = null;
+        const top = inFlowBar.getBoundingClientRect().top;
+        const stuck = top < stickTop;
+        fixedWrap.classList.toggle('is-stuck', stuck);
+        fixedWrap.setAttribute('aria-hidden', String(!stuck));
+      }
+      window.addEventListener('scroll', () => { if (raf == null) raf = requestAnimationFrame(update); }, { passive: true });
+      window.addEventListener('resize', update);
+      document.addEventListener('astro:page-load', update);
+      update();
+    }
+  })();
 </script>

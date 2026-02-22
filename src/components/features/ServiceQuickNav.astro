@@ -37,12 +37,13 @@ const { items } = Astro.props;
 <script>
   /**
    * Подсветка активного пункта по видимой секции (IntersectionObserver).
-   * Один активный id по максимальной доле видимости — без дёргания при скролле с телефона.
+   * Один активный id по максимальной доле видимости; обновляет все .service-quick-nav на странице (в потоке и fixed-копию).
    */
   (function () {
-    const nav = document.querySelector('.service-quick-nav');
-    if (!nav) return;
-    const links = nav.querySelectorAll('a[data-service-id]');
+    const navs = document.querySelectorAll('.service-quick-nav');
+    if (!navs.length) return;
+    const firstNav = navs[0];
+    const links = firstNav.querySelectorAll('a[data-service-id]');
     const sectionIds = [];
     const idToSection = new Map();
     links.forEach((link) => {
@@ -70,8 +71,10 @@ const { items } = Astro.props;
         }
       });
       if (!bestId && sectionIds.length) bestId = sectionIds[0];
-      links.forEach((link) => {
-        link.classList.toggle('is-active', link.getAttribute('data-service-id') === bestId);
+      navs.forEach((nav) => {
+        nav.querySelectorAll('a[data-service-id]').forEach((link) => {
+          link.classList.toggle('is-active', link.getAttribute('data-service-id') === bestId);
+        });
       });
     }
 
