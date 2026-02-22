@@ -32,12 +32,6 @@ const stack = [
 >
   <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 relative">
     <div class="relative w-full mb-4">
-      <div class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.22] w-48 h-48 left-1/2 -translate-x-1/2 top-0 -translate-y-[55%] sm:w-64 sm:h-64 sm:left-auto sm:right-0 sm:translate-x-0 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true">
-        <svg class="w-full h-full animate-float-icon" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="100" cy="85" r="25" />
-          <path d="M 40 180 C 40 120 160 120 160 180" />
-        </svg>
-      </div>
       <div class="relative flex justify-center sm:justify-start mb-2">
         <h1 class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl relative z-10">
           Обо мне
@@ -45,12 +39,20 @@ const stack = [
       </div>
     </div>
 
-    <!-- Цитата-манифест -->
-    <blockquote class="reveal mt-10 border-l-4 border-[var(--color-accent)] pl-6 py-2 min-h-[100px] flex items-center" style="animation-delay:.08s">
-      <p class="text-xl font-medium text-[var(--color-text)] sm:text-2xl leading-relaxed italic">
-        «<span id="typewriter-quote"></span>»
-      </p>
-    </blockquote>
+    <!-- Цитата-манифест: декоративный SVG справа от цитаты -->
+    <div class="relative mt-10">
+      <div class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.22] w-48 h-48 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 sm:left-auto sm:right-0 sm:translate-x-[15%] sm:w-64 sm:h-64 sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true">
+        <svg class="w-full h-full animate-float-icon" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="100" cy="85" r="25" />
+          <path d="M 40 180 C 40 120 160 120 160 180" />
+        </svg>
+      </div>
+      <blockquote class="reveal relative z-10 border-l-4 border-[var(--color-accent)] pl-6 py-2 min-h-[100px] flex items-center pr-24 sm:pr-40" style="animation-delay:.08s">
+        <p class="text-xl font-medium text-[var(--color-text)] sm:text-2xl leading-relaxed italic">
+          «<span id="typewriter-quote"></span>»
+        </p>
+      </blockquote>
+    </div>
 
     <!-- Основной текст -->
     <div class="reveal mt-12 space-y-6 text-[var(--color-text-muted)] text-lg leading-relaxed" style="animation-delay:.14s">
