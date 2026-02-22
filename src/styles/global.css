@@ -689,37 +689,6 @@
     pointer-events: auto;
   }
 
-  /* Липкая полоса фильтров на странице Кейсы (в потоке; fixed-копия — .cases-filters-fixed-wrap) */
-  .cases-filters-sticky {
-    position: sticky;
-    top: 4rem;
-    z-index: 40;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
-    margin-left: -1rem;
-    margin-right: -1rem;
-    margin-bottom: -1px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-bottom: 0.5rem;
-  }
-  @media (min-width: 640px) {
-    .cases-filters-sticky {
-      margin-left: -1.5rem;
-      margin-right: -1.5rem;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-  @media (min-width: 1024px) {
-    .cases-filters-sticky {
-      margin-left: -2rem;
-      margin-right: -2rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-  }
-
   /* Fixed-полоса фильтров на Кейсах: показывается, когда полоса в потоке уехала вверх */
   .cases-filters-fixed-wrap {
     position: fixed;
@@ -758,9 +727,8 @@
     }
   }
 
-  /* Кейсы: hero и контейнер — overflow visible, чтобы декоративный SVG не обрезался */
-  .cases-page-wrap,
-  .cases-hero {
+  /* Кейсы: контейнер и main — overflow visible, чтобы декоративный SVG не обрезался */
+  .cases-page-wrap {
     overflow: visible;
   }
   main:has(.cases-page-wrap) {
