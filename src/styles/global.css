@@ -623,6 +623,7 @@
     scroll-margin-top: 7rem;
   }
 
+  /* Липкая шторка: всегда на виду при скролле (родители без overflow/transform). */
   .service-quick-nav {
     position: sticky;
     top: 4rem;
@@ -664,6 +665,37 @@
   .service-quick-nav a.is-active {
     color: var(--color-accent);
     background-color: var(--color-accent-muted);
+  }
+
+  /* Липкая полоса фильтров на странице Кейсы */
+  .cases-filters-sticky {
+    position: sticky;
+    top: 4rem;
+    z-index: 40;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    margin-left: -1rem;
+    margin-right: -1rem;
+    margin-bottom: -1px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .cases-filters-sticky {
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .cases-filters-sticky {
+      margin-left: -2rem;
+      margin-right: -2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 
   /* Мобильное меню: надёжное открытие по классу (дублирует aria-expanded) */
