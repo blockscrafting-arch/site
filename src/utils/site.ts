@@ -5,7 +5,7 @@ export const site = {
   name: "vlad.execute(_)",
   /** Краткое описание для meta, соцсетей и AI-поиска (AEO/SEO). До ~160 символов. */
   description:
-    "Разработка и автоматизация: Telegram-боты, AI-агенты, n8n, Python. Кейсы с результатами. Заказать автоматизацию под ключ — отвечу в течение дня.",
+    "Разработка и автоматизация: боты и Mini Apps в Telegram, MAX, VK; AI-агенты, n8n, Python. Кейсы с результатами. Заказать под ключ — отвечу в течение дня.",
   /** Базовый URL сайта (без слэша в конце). При сборке задаётся через SITE (или по умолчанию vladexecute.ru). */
   url:
     typeof import.meta.env.SITE === "string" && import.meta.env.SITE
