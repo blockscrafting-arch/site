@@ -256,6 +256,9 @@
     border-color: var(--color-accent);
     box-shadow: 0 0 20px -8px var(--color-accent-glow);
   }
+  .case-product-card__link:hover {
+    box-shadow: 0 0 24px -8px var(--case-accent-glow, var(--color-accent-glow));
+  }
   .problem-solution-card {
     transition: box-shadow 0.25s ease;
   }

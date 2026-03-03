@@ -16,6 +16,9 @@ metrics:
 problem: "Запрос: бот, чтобы студенты кидали фото конспектов или сканы и получали текст. Задача простая на словах, но потребовала лимитов, оплаты, учёта персданных и админки без отдельного интерфейса."
 featured: true
 draft: false
+productLogo: "/images/cases/scantextpro-logo.png"
+productLink: "https://t.me/ScanTextPro_bot"
+productName: "Scan Text"
 ---
 
 ## Было
@@ -25,10 +28,6 @@ draft: false
 ## Что построено
 
 Единый контур: пользователь отправляет фото или PDF в Telegram — бот возвращает распознанный текст. Под капотом: лимиты (бесплатные страницы сбрасываются по расписанию, платные пакеты — отдельный баланс), оплата через ЮKassa, обязательное согласие на обработку персданных по 152-ФЗ, UTM-метки из deep link и админка в самом Telegram.
-
-Прод-версия бота: [@ScanTextPro_bot](https://t.me/ScanTextPro_bot)
-
-![Логотип ScanTextPro](/images/cases/scantextpro-logo.png)
 
 ### 1. OCR через Vision LLM (OpenRouter)
 

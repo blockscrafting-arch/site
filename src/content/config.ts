@@ -51,6 +51,10 @@ const casesCollection = defineCollection({
       .optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
+    /** Блок «продукт»: логотип + ссылка (например на бота). */
+    productLogo: z.string().optional(),
+    productLink: z.string().optional(),
+    productName: z.string().optional(),
   }),
 });
 
