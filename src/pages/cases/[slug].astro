@@ -50,6 +50,39 @@ const layoutType = layout ?? 'default';
         {description && (
           <p class="case-desc mt-4 text-lg text-[var(--color-text-muted)]">{description}</p>
         )}
+        {showProductCard && (
+          <section class="case-product-card mt-6" aria-labelledby="case-product-heading">
+            <h2 id="case-product-heading" class="sr-only">Продукт</h2>
+            <a
+              href={productLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="case-product-card__link group flex flex-col sm:flex-row items-center gap-4 sm:gap-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all duration-300 hover:border-[var(--case-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--case-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
+            >
+              <div class="case-product-card__logo flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-[var(--color-surface-muted)] flex items-center justify-center p-2 ring-1 ring-[var(--color-border)]">
+                <img
+                  src={productLogo}
+                  alt={productName ?? 'Логотип продукта'}
+                  class="max-w-full max-h-full object-contain"
+                  width="96"
+                  height="96"
+                  loading="lazy"
+                />
+              </div>
+              <div class="case-product-card__body flex-1 text-center sm:text-left min-w-0">
+                {productName && (
+                  <span class="font-display text-xl font-semibold text-[var(--color-text)] block">{productName}</span>
+                )}
+                <span class="inline-flex items-center gap-1.5 mt-1 text-sm font-medium text-[var(--case-accent)] group-hover:underline">
+                  Открыть в Telegram
+                  <svg class="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </section>
+        )}
         {((stack ?? []).length > 0) && (
           <div class="case-stack mt-6 flex flex-wrap gap-2">
             {(stack ?? []).map((s) => (
@@ -87,39 +120,6 @@ const layoutType = layout ?? 'default';
         <section class="case-problem mb-10 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
           <h2 class="font-display text-lg font-semibold text-[var(--color-text)]">Проблема</h2>
           <p class="mt-2 text-[var(--color-text-muted)]">{problem}</p>
-        </section>
-      )}
-      {showProductCard && (
-        <section class="case-product-card mb-10" aria-labelledby="case-product-heading">
-          <h2 id="case-product-heading" class="sr-only">Продукт</h2>
-          <a
-            href={productLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="case-product-card__link group flex flex-col sm:flex-row items-center gap-4 sm:gap-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all duration-300 hover:border-[var(--case-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--case-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
-          >
-            <div class="case-product-card__logo flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-[var(--color-surface-muted)] flex items-center justify-center p-2 ring-1 ring-[var(--color-border)]">
-              <img
-                src={productLogo}
-                alt={productName ?? 'Логотип продукта'}
-                class="max-w-full max-h-full object-contain"
-                width="96"
-                height="96"
-                loading="lazy"
-              />
-            </div>
-            <div class="case-product-card__body flex-1 text-center sm:text-left min-w-0">
-              {productName && (
-                <span class="font-display text-xl font-semibold text-[var(--color-text)] block">{productName}</span>
-              )}
-              <span class="inline-flex items-center gap-1.5 mt-1 text-sm font-medium text-[var(--case-accent)] group-hover:underline">
-                Открыть в Telegram
-                <svg class="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </span>
-            </div>
-          </a>
         </section>
       )}
       <div class="prose prose-invert max-w-none prose-headings:font-display prose-a:text-[var(--color-accent)]">
