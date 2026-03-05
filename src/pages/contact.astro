@@ -1,6 +1,6 @@
 ---
 /**
- * Контакты: Telegram, блог, Kwork и форма обратной связи.
+ * Контакты: Telegram, блог, Kwork, e-mail и форма обратной связи.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/common/Button.astro';
@@ -15,7 +15,7 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
 
 <BaseLayout
   title="Контакты — vlad.execute(_)"
-  description={`Связаться с Владом: Telegram ${site.tgChannelHandle}, блог ${site.tgChannelContentHandle}, Kwork. Форма обратной связи.`}
+  description={`Связаться с Владом: Telegram ${site.tgChannelHandle}, e-mail, блог ${site.tgChannelContentHandle}, Kwork. Форма обратной связи.`}
 >
   <!-- Анимированный самолетик (FontAwesome paper-plane), физика полёта через wobble -->
   <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden" aria-hidden="true">
@@ -30,7 +30,7 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
       Контакты
     </h1>
     <p class="contact-intro mt-2 text-[var(--color-text-muted)]">
-      Напишите в Telegram, закажите на Kwork или через форму — отвечу в течение дня.
+      Напишите в Telegram, на e-mail, закажите на Kwork или через форму — отвечу в течение дня.
     </p>
 
     <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:gap-6" aria-label="Связь и ресурсы">
@@ -59,7 +59,7 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
             </Button>
             <div class="flex items-center gap-2">
               <span class="text-sm font-medium text-[var(--color-text)] bg-[var(--color-background)] border border-[var(--color-border)] px-3 py-[9px] rounded-lg select-all">{site.tgChannelHandle}</span>
-              <CopyButton client:load value={site.tgChannelHandle} label="Скопировать" copiedLabel="Скопировано!" />
+              <CopyButton client:load value={site.tgChannelHandle} iconOnly copiedLabel="Скопировано!" />
             </div>
           </div>
         </div>
@@ -106,6 +106,30 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
           {site.kworkHandle} <span class="ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
         </div>
       </a>
+
+      <!-- E-mail -->
+      <div class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-glow-sm">
+        <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[var(--color-accent)] opacity-5 blur-2xl pointer-events-none transition-opacity group-hover:opacity-10"></div>
+        <div class="relative z-10">
+          <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent)]/10 text-[var(--color-accent)] mb-4 transition-transform group-hover:scale-110">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="font-display text-lg font-bold text-[var(--color-text)]">
+            E-mail
+          </h3>
+          <p class="mt-2 text-[var(--color-text-muted)] text-sm leading-relaxed">
+            Для писем и официальных запросов.
+          </p>
+        </div>
+        <div class="relative z-10 mt-6 flex flex-wrap items-center gap-2">
+          <a href={`mailto:${site.email}`} class="text-[var(--color-accent)] font-medium text-sm hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)] rounded">
+            {site.email}
+          </a>
+          <CopyButton client:load value={site.email} iconOnly copiedLabel="Скопировано!" />
+        </div>
+      </div>
     </div>
 
     <section class="contact-form-section mt-10" aria-labelledby="form-heading">

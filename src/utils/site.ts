@@ -22,4 +22,6 @@ export const site = {
   /** Профиль на Kwork (услуги и отзывы). */
   kwork: "https://kwork.ru/user/goutach",
   kworkHandle: "goutach",
+  /** E-mail для писем и официальных запросов. */
+  email: "vlad-popovich@mail.ru",
 } as const;
