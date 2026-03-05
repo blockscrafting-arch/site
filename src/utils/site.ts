@@ -19,4 +19,7 @@ export const site = {
   /** Канал Telegram (кейсы, экспертика, решения). */
   tgChannelContent: "https://t.me/vladexecute",
   tgChannelContentHandle: "@vladexecute",
+  /** Профиль на Kwork (услуги и отзывы). */
+  kwork: "https://kwork.ru/user/goutach",
+  kworkHandle: "goutach",
 } as const;
