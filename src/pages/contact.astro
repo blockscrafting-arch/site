@@ -107,6 +107,25 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
         </div>
       </a>
 
+      <!-- MAX -->
+      <a href={site.max} target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[#4F46E5] hover:shadow-[0_0_15px_rgba(79,70,229,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]">
+        <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#4F46E5] opacity-5 blur-2xl pointer-events-none transition-opacity group-hover:opacity-10"></div>
+        <div class="relative z-10">
+          <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#4F46E5]/10 mb-4 transition-transform group-hover:scale-110">
+            <img src="/max-logo.png" alt="МАХ" class="w-6 h-6 object-contain drop-shadow-sm rounded-[4px]" />
+          </div>
+          <h3 class="font-display text-lg font-bold text-[var(--color-text)] transition-colors group-hover:text-[#4F46E5]">
+            Я в МАХ
+          </h3>
+          <p class="mt-2 text-[var(--color-text-muted)] text-sm leading-relaxed">
+            Мой профиль на платформе МАХ — свяжитесь со мной или посмотрите портфолио.
+          </p>
+        </div>
+        <div class="relative z-10 mt-6 flex items-center text-[#4F46E5] font-medium text-sm">
+          {site.maxHandle} <span class="ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </div>
+      </a>
+
       <!-- E-mail -->
       <div class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-glow-sm">
         <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[var(--color-accent)] opacity-5 blur-2xl pointer-events-none transition-opacity group-hover:opacity-10"></div>

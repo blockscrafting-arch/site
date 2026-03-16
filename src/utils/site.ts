@@ -22,6 +22,9 @@ export const site = {
   /** Профиль на Kwork (услуги и отзывы). */
   kwork: "https://kwork.ru/user/goutach",
   kworkHandle: "goutach",
+  /** Профиль в МАХ. */
+  max: "https://max.ru/u/f9LHodD0cOKoPchozPI8Bd1QVxJcUAbooDut1B5VWFVVq-TT2SEFVimcV6s",
+  maxHandle: "vladexecute",
   /** E-mail для писем и официальных запросов. */
   email: "vlad-popovich@mail.ru",
 } as const;
