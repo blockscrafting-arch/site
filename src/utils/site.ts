@@ -27,4 +27,17 @@ export const site = {
   maxHandle: "vladexecute",
   /** E-mail для писем и официальных запросов. */
   email: "vlad-popovich@mail.ru",
+  /** Код верификации Яндекс.Вебмастер (meta name="yandex-verification"). Заполнить после добавления сайта. */
+  yandexVerification: undefined as string | undefined,
+  /** Номер счётчика Яндекс.Метрики. Если задан — в layout подключается скрипт счётчика. */
+  yandexMetrikaId: undefined as number | undefined,
+  /** Реквизиты для страницы «Реквизиты» и футера (плательщик НПД). Паспортные данные — только в договоре, на сайте не публикуются. */
+  legal: {
+    /** Плательщик налога на профессиональный доход (самозанятый). */
+    payerName: "Попович Владислав Павлович",
+    inn: "910606798766",
+    address: "г. Симферополь, ул. Киевская, 67, кв. 23",
+    bankAccount: "40817810300076604584",
+    bankName: 'АО "ТБанк"',
+  },
 } as const;

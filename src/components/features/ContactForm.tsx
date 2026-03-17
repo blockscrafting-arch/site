@@ -154,7 +154,16 @@ export default function ContactForm({ webhookUrl }: ContactFormProps) {
           htmlFor="contact-consent"
           className="text-sm text-[var(--color-text-muted)]"
         >
-          Согласен на обработку указанных данных для ответа.
+          Даю согласие на обработку персональных данных в соответствии с{" "}
+          <a
+            href="/legal/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded"
+          >
+            Политикой конфиденциальности
+          </a>
+          .
         </label>
       </div>
       {status === "error" && errorMessage && (

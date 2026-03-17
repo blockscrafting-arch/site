@@ -1,0 +1,62 @@
+---
+/**
+ * Реквизиты исполнителя (плательщик НПД). Паспортные данные на сайте не размещаются — только в договоре.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../utils/site';
+import CopyButton from '../../components/features/CopyButton';
+---
+
+<BaseLayout
+  title="Реквизиты — vlad.execute(_)"
+  description={`Исполнитель: плательщик НПД ${site.legal.payerName}, ИНН ${site.legal.inn}. Банковские реквизиты для оплаты услуг.`}
+>
+  <article class="legal-page mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <header class="mb-10">
+      <a href="/" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors">
+        ← Главная
+      </a>
+      <h1 class="mt-4 font-display text-3xl font-bold text-[var(--color-text)]">
+        Реквизиты
+      </h1>
+      <p class="mt-2 text-[var(--color-text-muted)]">
+        Для договоров и оплаты услуг
+      </p>
+    </header>
+
+    <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 space-y-6">
+      <section>
+        <h2 class="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Исполнитель</h2>
+        <p class="mt-2 font-display text-lg font-semibold text-[var(--color-text)]">
+          Плательщик налога на профессиональный доход
+        </p>
+        <p class="mt-1 text-[var(--color-text)]">{site.legal.payerName}</p>
+        <p class="mt-2 text-[var(--color-text-muted)] text-sm flex items-center gap-2 flex-wrap">
+          ИНН: <span class="text-[var(--color-text)] select-all">{site.legal.inn}</span>
+          <CopyButton client:load value={site.legal.inn} iconOnly copiedLabel="Скопировано" />
+        </p>
+        <p class="mt-1 text-[var(--color-text-muted)] text-sm">
+          Адрес: {site.legal.address}
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Банковские реквизиты</h2>
+        <p class="mt-2 text-[var(--color-text)] flex items-center gap-2 flex-wrap">
+          Р/с: <span class="select-all">{site.legal.bankAccount}</span>
+          <CopyButton client:load value={site.legal.bankAccount} iconOnly copiedLabel="Скопировано" />
+        </p>
+        <p class="mt-1 text-[var(--color-text)]">Банк: {site.legal.bankName}</p>
+      </section>
+    </div>
+
+    <p class="mt-8 text-sm text-[var(--color-text-muted)]">
+      Паспортные данные предоставляются при заключении договора. По вопросам заказа и оплаты: <a href={site.tgChannel} class="text-[var(--color-accent)] hover:underline">{site.tgChannelHandle}</a>, <a href={`mailto:${site.email}`} class="text-[var(--color-accent)] hover:underline">{site.email}</a>.
+    </p>
+
+    <p class="mt-8 text-sm text-[var(--color-text-muted)]">
+      <a href="/legal/privacy" class="text-[var(--color-accent)] hover:underline">Политика конфиденциальности</a> ·
+      <a href="/contact" class="text-[var(--color-accent)] hover:underline ml-2">Контакты</a>
+    </p>
+  </article>
+</BaseLayout>

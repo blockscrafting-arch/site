@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import Button from '../../components/common/Button.astro';
+import { site } from '../../utils/site';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const guides = await getCollection('guides');
@@ -17,9 +18,28 @@ if (!entry) throw new Error('Guide not found: ' + slug);
 
 const { Content } = await entry.render();
 const { title, description } = entry.data;
+
+const guideUrl = `${site.url}/guides/${slug}`;
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: site.url },
+    { '@type': 'ListItem', position: 2, name: 'Инструкции', item: `${site.url}/guides` },
+    { '@type': 'ListItem', position: 3, name: title, item: guideUrl },
+  ],
+};
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description ?? undefined,
+  url: guideUrl,
+  author: { '@type': 'Person', name: 'Влад', url: site.url },
+};
 ---
 
-<BaseLayout title={`${title} — Инструкции | vlad.execute(_)`} description={description ?? undefined}>
+<BaseLayout title={`${title} — Инструкции | vlad.execute(_)`} description={description ?? undefined} schema={[breadcrumbSchema, articleSchema]}>
   <article class="guide-detail mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
     <header class="guide-detail-header">
       <a

@@ -17,14 +17,36 @@ export interface CopyButtonProps {
 }
 
 const CopyIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-2m-6 12a2 2 0 01-2-2V6a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2z" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-2m-6 12a2 2 0 01-2-2V6a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2z"
+    />
   </svg>
 );
 
 const CheckIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M5 13l4 4L19 7"
+    />
   </svg>
 );
 
@@ -71,7 +93,7 @@ export default function CopyButton({
       }
       aria-live="polite"
     >
-      {iconOnly ? (copied ? <CheckIcon /> : <CopyIcon />) : labelText}
+      {iconOnly ? copied ? <CheckIcon /> : <CopyIcon /> : labelText}
     </button>
   );
 }

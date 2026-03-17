@@ -15,14 +15,19 @@ import BackToTop from '../components/features/BackToTop.astro';
 import glossaryData from '../content/glossary.json';
 import { site } from '../utils/site';
 
+/** Один или несколько JSON-LD объектов для страницы (Article, BreadcrumbList, FAQPage и т.д.). */
+type SchemaObject = Record<string, unknown>;
+
 interface Props {
   title: string;
   description?: string;
   /** Путь к OG-картинке (от корня) или полный URL. По умолчанию site.ogImage */
   image?: string;
+  /** Дополнительные JSON-LD схемы для вывода в head (кейсы, инструкции, FAQ). */
+  schema?: SchemaObject | SchemaObject[];
 }
 
-const { title, description = site.description, image } = Astro.props;
+const { title, description = site.description, image, schema: pageSchema } = Astro.props;
 const desc = description ?? site.description;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const canonical = `${site.url}${path}`;
@@ -48,6 +53,11 @@ const schemaOrg = path === '/' ? {
     },
   ],
 } : null;
+
+/** Объединяем главную схему и страничные (Article, BreadcrumbList и т.д.). */
+const schemaList: SchemaObject[] = [];
+if (schemaOrg) schemaList.push(schemaOrg);
+if (pageSchema) schemaList.push(...(Array.isArray(pageSchema) ? pageSchema : [pageSchema]));
 
 /** Экранирует </script> в JSON для безопасной вставки в тег script (защита от XSS). */
 const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\u003c/script');
@@ -79,8 +89,19 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={desc} />
     <meta name="twitter:image" content={ogImageUrl} />
-    {schemaOrg && (
-      <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+    {site.yandexVerification && (
+      <meta name="yandex-verification" content={site.yandexVerification} />
+    )}
+    {schemaList.length > 0 && schemaList.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+    {site.yandexMetrikaId && (
+      <script is:inline define:vars={{ counterId: site.yandexMetrikaId }}>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(counterId, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+      </script>
+    )}
+    {site.yandexMetrikaId && (
+      <noscript><div><img src={`https://mc.yandex.ru/watch/${site.yandexMetrikaId}`} alt="" style="position:absolute;left:-9999px" width="1" height="1" /></div></noscript>
     )}
     <ClientRouter fallback="swap" />
   </head>

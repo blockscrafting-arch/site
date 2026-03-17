@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import rehypeCaseHeadingIcons from "./src/plugins/rehype-case-heading-icons.mjs";
 
 /** @type {import('astro').AstroConfig} */
@@ -11,7 +12,7 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [rehypeCaseHeadingIcons],
   },
-  integrations: [tailwind(), react()],
+  integrations: [tailwind(), react(), sitemap()],
   output: "static",
   vite: {
     build: {

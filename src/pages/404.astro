@@ -1,0 +1,27 @@
+---
+/**
+ * Кастомная страница 404. Улучшает UX и снижает негатив для поисковиков по сравнению с дефолтной заглушкой сервера.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/common/Button.astro';
+---
+
+<BaseLayout
+  title="Страница не найдена — vlad.execute(_)"
+  description="Запрашиваемая страница не существует или была перемещена. Вернуться на главную или в раздел кейсов и инструкций."
+>
+  <section class="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 text-center">
+    <h1 class="font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl">
+      404 — страница не найдена
+    </h1>
+    <p class="mt-4 text-[var(--color-text-muted)]">
+      Такой страницы нет или она была перемещена. Перейдите на главную или выберите раздел ниже.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <Button href="/" variant="primary">На главную</Button>
+      <Button href="/cases" variant="ghost">Кейсы</Button>
+      <Button href="/guides" variant="ghost">Инструкции</Button>
+      <Button href="/contact" variant="ghost">Контакты</Button>
+    </div>
+  </section>
+</BaseLayout>

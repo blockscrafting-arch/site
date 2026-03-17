@@ -684,7 +684,9 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
   }
   .service-quick-nav-fixed-wrap.is-stuck {
     opacity: 1;
@@ -704,7 +706,9 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
   }
   .cases-filters-fixed-wrap.is-stuck {
     opacity: 1;
@@ -760,26 +764,60 @@
 
 /* Премиальные медленные анимации для фоновых SVG (главная страница) */
 @keyframes slow-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes slow-spin-reverse {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 @keyframes slow-breath {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 @keyframes glow-pulse {
-  0%, 100% { opacity: 0.15; filter: drop-shadow(0 0 0px var(--color-accent)); transform: scale(1); }
-  50% { opacity: 0.3; filter: drop-shadow(0 0 8px var(--color-accent)); transform: scale(1.02); }
+  0%,
+  100% {
+    opacity: 0.15;
+    filter: drop-shadow(0 0 0px var(--color-accent));
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    filter: drop-shadow(0 0 8px var(--color-accent));
+    transform: scale(1.02);
+  }
 }
 
-.animate-slow-spin { animation: slow-spin 45s linear infinite; transform-origin: center; }
-.animate-slow-spin-reverse { animation: slow-spin-reverse 45s linear infinite; transform-origin: center; }
-.animate-slow-breath { animation: slow-breath 8s ease-in-out infinite; transform-origin: center; }
-.animate-glow-pulse { animation: glow-pulse 6s ease-in-out infinite; transform-origin: center; }
+.animate-slow-spin {
+  animation: slow-spin 45s linear infinite;
+  transform-origin: center;
+}
+.animate-slow-spin-reverse {
+  animation: slow-spin-reverse 45s linear infinite;
+  transform-origin: center;
+}
+.animate-slow-breath {
+  animation: slow-breath 8s ease-in-out infinite;
+  transform-origin: center;
+}
+.animate-glow-pulse {
+  animation: glow-pulse 6s ease-in-out infinite;
+  transform-origin: center;
+}
 
 /* 1. Моргание глаз */
 @keyframes blink-eyes {
@@ -940,8 +978,15 @@
 
 /* Моргание глаз (сплющивание по Y) */
 @keyframes blink {
-  0%, 96%, 98%, 100% { transform: scaleY(1); }
-  97% { transform: scaleY(0.1); }
+  0%,
+  96%,
+  98%,
+  100% {
+    transform: scaleY(1);
+  }
+  97% {
+    transform: scaleY(0.1);
+  }
 }
 .animate-blink {
   animation: blink 4s ease-in-out infinite;
@@ -950,8 +995,12 @@
 
 /* Медленное вращение для шестеренки (план) */
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .animate-spin-slow {
   animation: spin-slow 15s linear infinite;
@@ -960,8 +1009,12 @@
 
 /* Обратное вращение (шестерёнка — внешнее кольцо) */
 @keyframes spin-slow-reverse {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 .animate-spin-slow-reverse {
   animation: spin-slow-reverse 20s linear infinite;
@@ -970,11 +1023,25 @@
 
 /* Бегающие зрачки (Узнаёте себя?) */
 @keyframes eyes-look {
-  0%, 20% { transform: translate(0, 0); }
-  25%, 45% { transform: translate(-8px, 0); }
-  50%, 70% { transform: translate(8px, -4px); }
-  75%, 95% { transform: translate(0, 4px); }
-  100% { transform: translate(0, 0); }
+  0%,
+  20% {
+    transform: translate(0, 0);
+  }
+  25%,
+  45% {
+    transform: translate(-8px, 0);
+  }
+  50%,
+  70% {
+    transform: translate(8px, -4px);
+  }
+  75%,
+  95% {
+    transform: translate(0, 4px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 .animate-eyes-look {
   animation: eyes-look 8s ease-in-out infinite;
@@ -982,17 +1049,47 @@
 
 /* Отрисовка графика (Результаты в деле) */
 @keyframes draw-chart-loop {
-  0% { stroke-dashoffset: 150; opacity: 0; }
-  5% { stroke-dashoffset: 150; opacity: 1; }
-  45% { stroke-dashoffset: 0; opacity: 1; }
-  85% { stroke-dashoffset: 0; opacity: 1; }
-  90% { stroke-dashoffset: 0; opacity: 0; }
-  100% { stroke-dashoffset: 150; opacity: 0; }
+  0% {
+    stroke-dashoffset: 150;
+    opacity: 0;
+  }
+  5% {
+    stroke-dashoffset: 150;
+    opacity: 1;
+  }
+  45% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  85% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  90% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 150;
+    opacity: 0;
+  }
 }
 @keyframes dot-pop-loop {
-  0%, 40% { transform: scale(0); opacity: 0; }
-  45%, 85% { transform: scale(1); opacity: 1; }
-  90%, 100% { transform: scale(0); opacity: 0; }
+  0%,
+  40% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  45%,
+  85% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  90%,
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
 }
 .animate-draw-chart {
   animation: draw-chart-loop 6s ease-in-out infinite;
@@ -1003,8 +1100,12 @@
 
 /* Поток данных (Чем занимаюсь — n8n) */
 @keyframes data-flow-loop {
-  from { stroke-dashoffset: 18; }
-  to { stroke-dashoffset: 0; }
+  from {
+    stroke-dashoffset: 18;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 .animate-data-flow {
   animation: data-flow-loop 1s linear infinite;
@@ -1012,9 +1113,20 @@
 
 /* Вспышка молнии (Результаты в цифрах) */
 @keyframes lightning-strike-loop {
-  0%, 90%, 100% { opacity: 0.3; filter: none; }
-  92%, 96% { opacity: 1; filter: drop-shadow(0 0 12px var(--color-accent)); }
-  94% { opacity: 0.5; }
+  0%,
+  90%,
+  100% {
+    opacity: 0.3;
+    filter: none;
+  }
+  92%,
+  96% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px var(--color-accent));
+  }
+  94% {
+    opacity: 0.5;
+  }
 }
 .animate-lightning-strike {
   animation: lightning-strike-loop 3s ease-in-out infinite;
@@ -1024,7 +1136,9 @@
 
 /* Бегущий сигнал по пунктирной линии (Автоматизация, Интеграции) */
 @keyframes dash-flow {
-  to { stroke-dashoffset: -24; }
+  to {
+    stroke-dashoffset: -24;
+  }
 }
 .service-animate-dash-flow {
   animation: dash-flow 1.2s linear infinite;
@@ -1032,8 +1146,12 @@
 
 /* Парсинг: Галочка появляется после проезда лупы */
 @keyframes service-draw-check {
-  from { stroke-dashoffset: 1; }
-  to { stroke-dashoffset: 0; }
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 .service-draw-check {
   stroke-dasharray: 1;
@@ -1046,8 +1164,13 @@
 
 /* Движение лупы влево-вправо (Парсинг) */
 @keyframes scan-glass {
-  0%, 100% { transform: translate(60px, 58px); }
-  50% { transform: translate(84px, 58px); }
+  0%,
+  100% {
+    transform: translate(60px, 58px);
+  }
+  50% {
+    transform: translate(84px, 58px);
+  }
 }
 .service-scan-glass {
   transform: translate(60px, 58px);
@@ -1056,8 +1179,13 @@
 
 /* Противовес: контент внутри лупы остаётся на месте (лупа едет, контент компенсирует) */
 @keyframes scan-glass-reverse {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(-24px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-24px);
+  }
 }
 .service-scan-glass-reverse {
   animation: scan-glass-reverse 4s ease-in-out infinite;
@@ -1065,19 +1193,36 @@
 
 /* Появление элементов по очереди (Mini Apps) */
 @keyframes service-fade-in {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-.service-fade-in { opacity: 0; }
+.service-fade-in {
+  opacity: 0;
+}
 .service-illustration-float.reveal.is-visible .service-fade-in {
   animation: service-fade-in 0.4s ease-out forwards;
 }
 
 /* Полёт бумажного самолётика (Автопостинг) */
 @keyframes service-fly-away {
-  0% { opacity: 1; transform: translate(0, 0) rotate(-20deg); }
-  70% { opacity: 1; transform: translate(35px, -25px) rotate(5deg); }
-  100% { opacity: 0; transform: translate(50px, -40px) rotate(10deg); }
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(-20deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(35px, -25px) rotate(5deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(50px, -40px) rotate(10deg);
+  }
 }
 .service-fly-away {
   animation: service-fly-away 3s ease-in-out infinite;
@@ -1085,8 +1230,15 @@
 
 /* Подмигивание одного глаза робота (AI-агенты) */
 @keyframes service-robot-blink {
-  0%, 92%, 96%, 100% { transform: scaleY(1); }
-  94% { transform: scaleY(0.08); }
+  0%,
+  92%,
+  96%,
+  100% {
+    transform: scaleY(1);
+  }
+  94% {
+    transform: scaleY(0.08);
+  }
 }
 .service-robot-blink {
   animation: service-robot-blink 5s ease-in-out infinite;
@@ -1095,8 +1247,12 @@
 
 /* Печать строки в терминале (Скрипты) */
 @keyframes service-terminal-draw {
-  from { stroke-dashoffset: 1; }
-  to { stroke-dashoffset: 0; }
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 .service-terminal-line {
   stroke-dasharray: 1;
@@ -1105,13 +1261,26 @@
 .service-illustration-float.reveal.is-visible .service-terminal-line {
   animation: service-terminal-draw 0.8s ease-out forwards;
 }
-.service-illustration-float.reveal.is-visible .service-terminal-line:nth-of-type(1) { animation-delay: 0.6s; }
-.service-illustration-float.reveal.is-visible .service-terminal-line:nth-of-type(2) { animation-delay: 1s; }
+.service-illustration-float.reveal.is-visible
+  .service-terminal-line:nth-of-type(1) {
+  animation-delay: 0.6s;
+}
+.service-illustration-float.reveal.is-visible
+  .service-terminal-line:nth-of-type(2) {
+  animation-delay: 1s;
+}
 
 /* Пульсация кнопки (Mini Apps) */
 @keyframes service-btn-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.05); opacity: 1; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
 }
 .service-btn-pulse {
   animation: service-btn-pulse 2s ease-in-out infinite;
@@ -1120,10 +1289,18 @@
 
 /* Появление пузырей чата по очереди (Telegram-боты) */
 @keyframes service-chat-pop {
-  from { opacity: 0; transform: translateY(4px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
-.service-chat-pop { opacity: 0; }
+.service-chat-pop {
+  opacity: 0;
+}
 .service-illustration-float.reveal.is-visible .service-chat-pop {
   animation: service-chat-pop 0.35s ease-out forwards;
 }

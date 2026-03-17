@@ -7,6 +7,7 @@ import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import Badge from '../../components/common/Badge.astro';
 import Button from '../../components/common/Button.astro';
+import { site } from '../../utils/site';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const cases = await getCollection('cases');
@@ -21,13 +22,33 @@ if (!entry) throw new Error(`Case not found: ${slug}`);
 
 const { Content } = await entry.render();
 const data = entry.data;
-const { title, description, result, stack, metrics, accentColor, layout, problem, testimonial, productLogo, productLink, productName } = data;
+const { title, description, result, stack, metrics, accentColor, layout, problem, testimonial, productLogo, productLink, productName, date } = data;
 const showProductCard = productLogo && productLink;
 const accent = accentColor ?? '#10b981';
 const layoutType = layout ?? 'default';
+
+const caseUrl = `${site.url}/cases/${slug}`;
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: site.url },
+    { '@type': 'ListItem', position: 2, name: 'Кейсы', item: `${site.url}/cases` },
+    { '@type': 'ListItem', position: 3, name: title, item: caseUrl },
+  ],
+};
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description ?? undefined,
+  url: caseUrl,
+  author: { '@type': 'Person', name: 'Влад', url: site.url },
+  ...(date && { datePublished: date.toISOString().slice(0, 10) }),
+};
 ---
 
-<BaseLayout title={`${title} — Кейсы | vlad.execute(_)`} description={description}>
+<BaseLayout title={`${title} — Кейсы | vlad.execute(_)`} description={description} schema={[breadcrumbSchema, articleSchema]}>
   <article
     class="case-detail"
     style={`--case-accent: ${accent}; --case-accent-glow: ${accent}40`}

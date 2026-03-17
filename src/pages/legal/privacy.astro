@@ -1,0 +1,97 @@
+---
+/**
+ * Политика конфиденциальности (152-ФЗ). Оператор — владелец сайта (плательщик НПД).
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../utils/site';
+---
+
+<BaseLayout
+  title="Политика конфиденциальности — vlad.execute(_)"
+  description="Обработка персональных данных на сайте vlad.execute(_). Цели, категории данных, сроки хранения, права субъектов."
+>
+  <article class="legal-page mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <header class="mb-10">
+      <a href="/" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors">
+        ← Главная
+      </a>
+      <h1 class="mt-4 font-display text-3xl font-bold text-[var(--color-text)]">
+        Политика конфиденциальности
+      </h1>
+      <p class="mt-2 text-[var(--color-text-muted)]">
+        В отношении обработки персональных данных на сайте {site.url}
+      </p>
+    </header>
+
+    <div class="prose prose-invert max-w-none prose-p:text-[var(--color-text-muted)] prose-headings:text-[var(--color-text)] prose-headings:font-display">
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-[var(--color-text)]">1. Оператор</h2>
+        <p>
+          Оператор персональных данных — {site.legal.payerName}, плательщик налога на профессиональный доход (самозанятый).
+          Сайт: {site.url}. Связаться: <a href={site.tgChannel} class="text-[var(--color-accent)] hover:underline">{site.tgChannelHandle}</a>, <a href={`mailto:${site.email}`} class="text-[var(--color-accent)] hover:underline">{site.email}</a>.
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-[var(--color-text)]">2. Цели обработки</h2>
+        <p>
+          Обработка персональных данных осуществляется в целях: ответа на обращения, направленные через форму обратной связи или по указанным контактам; заключения и исполнения договоров на оказание услуг; связи с заказчиками и исполнителями обязательств.
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-[var(--color-text)]">3. Категории и перечень данных</h2>
+        <p>
+          Обрабатываются данные, которые вы добровольно указываете: имя (или псевдоним), контакт для связи (e-mail, ник в мессенджере), текст сообщения. При заключении договора — данные, необходимые для договора и расчётов (в объёме, согласованном с вами). Технические данные (IP, cookie, данные об использовании сайта) могут обрабатываться в объёме, необходимом для работы сайта и аналитики (при вашем согласии, если применимо).
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-[var(--color-text)]">4. Правовые основания</h2>
+        <p>
+          Обработка осуществляется на основании согласия субъекта персональных данных (ст. 6 152-ФЗ), а также в целях исполнения договора, стороной которого является субъект, и по иным основаниям, предусмотренным законом.
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-[var(--color-text)]">5. Сроки хранения и уничтожение</h2>
+        <p>
+          Данные из формы обратной связи и переписки хранятся в течение срока, необходимого для ответа и ведения переговоров, после чего удаляются или обезличиваются, если иное не требуется для исполнения договора или по закону. По запросу субъекта данные могут быть удалены досрочно, за исключением случаев, когда хранение обязательно по закону.
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-[var(--color-text)]">6. Меры защиты</h2>
+        <p>
+          Оператор принимает организационные и технические меры для защиты персональных данных от неправомерного доступа, уничтожения, изменения, блокирования, копирования и распространения, в соответствии с требованиями законодательства РФ.
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-[var(--color-text)]">7. Передача данных третьим лицам</h2>
+        <p>
+          Персональные данные не передаются третьим лицам, за исключением случаев, предусмотренных законом, или при наличии вашего согласия. Данные из формы могут передаваться на сервер обработки (вебхук), указанный в настройках сайта, исключительно для доставки обращения оператору.
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-[var(--color-text)]">8. Права субъекта</h2>
+        <p>
+          Вы вправе запросить доступ к своим персональным данным, их уточнение, блокирование или уничтожение, отозвать согласие на обработку, а также обжаловать действия оператора в Роскомнадзоре или в суде. Для этого напишите на контакт, указанный в разделе 1.
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-[var(--color-text)]">9. Изменения</h2>
+        <p>
+          Оператор вправе обновлять настоящую политику. Актуальная версия всегда доступна по адресу {site.url}/legal/privacy. Продолжение использования сайта после публикации изменений означает принятие обновлённой политики, если иное не оговорено.
+        </p>
+      </section>
+    </div>
+
+    <p class="mt-12 text-sm text-[var(--color-text-muted)]">
+      <a href="/legal/requisites" class="text-[var(--color-accent)] hover:underline">Реквизиты</a> ·
+      <a href="/contact" class="text-[var(--color-accent)] hover:underline ml-2">Контакты</a>
+    </p>
+  </article>
+</BaseLayout>
