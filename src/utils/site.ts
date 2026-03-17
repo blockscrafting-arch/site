@@ -27,8 +27,8 @@ export const site = {
   maxHandle: "vladexecute",
   /** E-mail для писем и официальных запросов. */
   email: "vlad-popovich@mail.ru",
-  /** Код верификации Яндекс.Вебмастер (meta name="yandex-verification"). Заполнить после добавления сайта. */
-  yandexVerification: undefined as string | undefined,
+  /** Код верификации Яндекс.Вебмастер (meta name="yandex-verification"). */
+  yandexVerification: "977b0e42dd55bff5",
   /** Номер счётчика Яндекс.Метрики. Если задан — в layout подключается скрипт счётчика. */
   yandexMetrikaId: undefined as number | undefined,
   /** Реквизиты для страницы «Реквизиты» и футера (плательщик НПД). Паспортные данные — только в договоре, на сайте не публикуются. */
