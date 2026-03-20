@@ -3,6 +3,7 @@
  * Состояния: idle, sending, success, error. Honeypot против ботов.
  */
 import { useState, useCallback } from "react";
+import { reachYandexMetrikaGoal } from "../../lib/metrika";
 
 export interface ContactFormProps {
   /** URL вебхука для POST-запроса (например n8n). Пустая строка — форма не отправляет. */
@@ -51,6 +52,7 @@ export default function ContactForm({ webhookUrl }: ContactFormProps) {
         if (!res.ok) throw new Error(`Ошибка ${res.status}`);
         setStatus("success");
         setForm(INITIAL);
+        reachYandexMetrikaGoal("form_sent");
       } catch (err) {
         setStatus("error");
         setErrorMessage(

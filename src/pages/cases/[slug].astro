@@ -23,6 +23,28 @@ if (!entry) throw new Error(`Case not found: ${slug}`);
 const { Content } = await entry.render();
 const data = entry.data;
 const { title, description, result, stack, metrics, accentColor, layout, problem, testimonial, productLogo, productLink, productName, date } = data;
+
+/** Похожие кейсы: пересечение категорий, добор по дате. */
+const published = cases.filter((c) => !c.data.draft && c.slug !== slug);
+const myCats = new Set(data.categories ?? []);
+const withScore = published.map((c) => {
+  const overlap = (c.data.categories ?? []).filter((cat) => myCats.has(cat)).length;
+  const t = c.data.date?.getTime() ?? 0;
+  return { entry: c, overlap, t };
+});
+withScore.sort((a, b) => {
+  if (b.overlap !== a.overlap) return b.overlap - a.overlap;
+  return b.t - a.t;
+});
+let relatedCases = withScore.filter((x) => x.overlap > 0).slice(0, 3).map((x) => x.entry);
+if (relatedCases.length < 3) {
+  const taken = new Set(relatedCases.map((c) => c.slug));
+  const filler = withScore
+    .map((x) => x.entry)
+    .filter((c) => !taken.has(c.slug))
+    .slice(0, 3 - relatedCases.length);
+  relatedCases = [...relatedCases, ...filler];
+}
 const showProductCard = productLogo && productLink;
 const accent = accentColor ?? '#10b981';
 const layoutType = layout ?? 'default';
@@ -154,11 +176,34 @@ const articleSchema = {
           "{testimonial.text}" — {testimonial.author}
         </blockquote>
       )}
+      {relatedCases.length > 0 && (
+        <section class="case-related mt-14" aria-labelledby="case-related-heading">
+          <h2 id="case-related-heading" class="font-display text-lg font-semibold text-[var(--color-text)]">
+            Похожие кейсы
+          </h2>
+          <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
+            {relatedCases.map((rel) => (
+              <li>
+                <a
+                  href={`/cases/${rel.slug}`}
+                  data-ym-goal="case_related_click"
+                  class="block h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all hover:border-[var(--color-accent)]/50 hover:shadow-glow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+                >
+                  <span class="font-display font-semibold text-[var(--color-text)]">{rel.data.title}</span>
+                  {rel.data.description && (
+                    <span class="mt-2 block text-sm text-[var(--color-text-muted)] line-clamp-2">{rel.data.description}</span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       <div class="case-cta mt-14 flex flex-wrap gap-4">
-        <Button href="/contact" variant="primary">
+        <Button href="/contact" variant="primary" dataYmGoal="cta_contact">
           Обсудить похожий проект
         </Button>
-        <Button href="/cases" variant="ghost">
+        <Button href="/cases" variant="ghost" dataYmGoal="cta_cases">
           Все кейсы
         </Button>
       </div>

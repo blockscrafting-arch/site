@@ -1,69 +1,123 @@
-import { useRef, useEffect, useState } from "react";
+/**
+ * Анимированные карточки метрик блока доверия: появление при скролле (Framer Motion).
+ * Стили согласованы с темой сайта (CSS-переменные).
+ */
+import { motion } from "framer-motion";
 
-interface Metric {
+export type TrustMetricIcon = "clock" | "chart" | "zap";
+
+export interface TrustMetric {
   value: string;
   label: string;
+  icon: TrustMetricIcon;
 }
 
 interface Props {
-  metrics: Metric[];
+  metrics: TrustMetric[];
 }
 
-function isNumeric(s: string): boolean {
-  return /^\d+$/.test(s.trim()) || /^[\d\s/]+$/.test(s.trim());
+const listVariants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+function Icon({ type }: { type: TrustMetricIcon }) {
+  const cls = "h-6 w-6 svg-icon-reveal";
+  if (type === "clock") {
+    return (
+      <svg
+        className={cls}
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    );
+  }
+  if (type === "chart") {
+    return (
+      <svg
+        className={cls}
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+        />
+      </svg>
+    );
+  }
+  return (
+    <svg
+      className={cls}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M13 10V3L4 14h7v7l9-11h-7z"
+      />
+    </svg>
+  );
 }
 
 export default function AnimatedTrustMetrics({ metrics }: Props) {
-  const ref = useRef<HTMLUListElement>(null);
-  const [animated, setAnimated] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !animated) {
-          const key = "trust-metrics-animated";
-          try {
-            if (
-              typeof sessionStorage !== "undefined" &&
-              sessionStorage.getItem(key)
-            ) {
-              setAnimated(true);
-              return;
-            }
-            setAnimated(true);
-            sessionStorage.setItem(key, "1");
-          } catch (err) {
-            console.warn(
-              "[AnimatedTrustMetrics] sessionStorage unavailable:",
-              err,
-            );
-            setAnimated(true);
-          }
-        }
-      },
-      { threshold: 0.2 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [animated]);
-
   return (
-    <ul ref={ref} className="grid gap-8 sm:grid-cols-3 mt-12" role="list">
+    <motion.ul
+      className="mt-14 grid gap-6 sm:grid-cols-3"
+      role="list"
+      variants={listVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       {metrics.map((m, i) => (
-        <li
+        <motion.li
           key={`${m.value}-${i}`}
-          className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 text-center shadow-sm"
+          variants={itemVariants}
+          className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-center"
         >
-          <span className="block text-2xl font-bold text-emerald-600 dark:text-emerald-400 sm:text-3xl">
+          <span
+            className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-accent-muted)] text-[var(--color-accent)] animate-float-icon"
+            aria-hidden
+          >
+            <Icon type={m.icon} />
+          </span>
+          <span className="mt-5 block font-display text-4xl font-black text-[var(--color-accent)] sm:text-5xl tracking-tight">
             {m.value}
           </span>
-          <span className="mt-2 block text-sm text-gray-600 dark:text-gray-400">
+          <span className="mt-3 block text-sm text-[var(--color-text-muted)] leading-relaxed">
             {m.label}
           </span>
-        </li>
+        </motion.li>
       ))}
-    </ul>
+    </motion.ul>
   );
 }

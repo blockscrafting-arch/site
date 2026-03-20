@@ -95,13 +95,58 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
     {schemaList.length > 0 && schemaList.map((s) => (
       <script type="application/ld+json" set:html={JSON.stringify(s)} />
     ))}
-    {site.yandexMetrikaId && (
+    {site.yandexMetrikaId != null && (
       <script is:inline define:vars={{ counterId: site.yandexMetrikaId }}>
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(counterId, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+        window.__YM_COUNTER_ID__ = counterId;
+        window.dataLayer = window.dataLayer || [];
+        (function (m, e, t, r, i, k, a) {
+          m[i] =
+            m[i] ||
+            function () {
+              (m[i].a = m[i].a || []).push(arguments);
+            };
+          m[i].l = 1 * new Date();
+          for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === r) {
+              return;
+            }
+          }
+          k = e.createElement(t);
+          a = e.getElementsByTagName(t)[0];
+          k.async = 1;
+          k.src = r;
+          a.parentNode.insertBefore(k, a);
+        })(
+          window,
+          document,
+          "script",
+          "https://mc.yandex.ru/metrika/tag.js?id=" + counterId,
+          "ym",
+        );
+        ym(counterId, "init", {
+          ssr: true,
+          webvisor: true,
+          clickmap: true,
+          ecommerce: "dataLayer",
+          referrer: document.referrer,
+          url: location.href,
+          accurateTrackBounce: true,
+          trackLinks: true,
+        });
       </script>
     )}
-    {site.yandexMetrikaId && (
-      <noscript><div><img src={`https://mc.yandex.ru/watch/${site.yandexMetrikaId}`} alt="" style="position:absolute;left:-9999px" width="1" height="1" /></div></noscript>
+    {site.yandexMetrikaId != null && (
+      <noscript>
+        <div>
+          <img
+            src={`https://mc.yandex.ru/watch/${site.yandexMetrikaId}`}
+            alt=""
+            style="position:absolute;left:-9999px"
+            width="1"
+            height="1"
+          />
+        </div>
+      </noscript>
     )}
     <ClientRouter fallback="swap" />
   </head>
@@ -144,5 +189,73 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
         window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
       });
     </script>
+    {site.yandexMetrikaId != null && (
+      <script is:inline>
+        (function () {
+          var scrollMarks = { 25: false, 50: false, 75: false, 100: false };
+          function ymReach(target) {
+            var id = window.__YM_COUNTER_ID__;
+            if (typeof window.ym !== 'function' || typeof id !== 'number') return;
+            try {
+              window.ym(id, 'reachGoal', target);
+            } catch (e) {
+              console.warn('[metrika]', e);
+            }
+          }
+          function onDocClick(e) {
+            var el = e.target && e.target.closest && e.target.closest('[data-ym-goal]');
+            if (!el) return;
+            var g = el.getAttribute('data-ym-goal');
+            if (g) ymReach(g);
+          }
+          var scrollTimer = null;
+          function onScroll() {
+            if (scrollTimer) return;
+            scrollTimer = requestAnimationFrame(function () {
+              scrollTimer = null;
+              var doc = document.documentElement;
+              var h = doc.scrollHeight - doc.clientHeight;
+              if (h <= 0) return;
+              var p = ((doc.scrollTop || 0) / h) * 100;
+              [25, 50, 75, 100].forEach(function (th) {
+                if (!scrollMarks[th] && p >= th - 0.5) {
+                  scrollMarks[th] = true;
+                  ymReach('scroll_depth_' + th);
+                }
+              });
+              var path = location.pathname;
+              if (/^\/guides\/.+/.test(path) && p >= 90) {
+                try {
+                  var key = 'ym_guide_read_' + path;
+                  if (!sessionStorage.getItem(key)) {
+                    sessionStorage.setItem(key, '1');
+                    ymReach('guide_read');
+                  }
+                } catch (err) {
+                  console.warn('[metrika] guide_read', err);
+                }
+              }
+            });
+          }
+          function bind() {
+            document.addEventListener('click', onDocClick, true);
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+          }
+          function resetScrollMarks() {
+            scrollMarks = { 25: false, 50: false, 75: false, 100: false };
+          }
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', bind);
+          } else {
+            bind();
+          }
+          document.addEventListener('astro:after-swap', function () {
+            resetScrollMarks();
+            requestAnimationFrame(onScroll);
+          });
+        })();
+      </script>
+    )}
   </body>
 </html>

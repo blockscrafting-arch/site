@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import Button from '../../components/common/Button.astro';
+import CtaContact from '../../components/sections/CtaContact.astro';
 import { site } from '../../utils/site';
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -17,7 +18,32 @@ const entry = guides.find((e) => e.slug === slug);
 if (!entry) throw new Error('Guide not found: ' + slug);
 
 const { Content } = await entry.render();
-const { title, description } = entry.data;
+const { title, description, category } = entry.data;
+
+const sortedGuides = [...guides].sort((a, b) => {
+  const oa = a.data.order ?? 1e9;
+  const ob = b.data.order ?? 1e9;
+  if (oa !== ob) return oa - ob;
+  return a.data.title.localeCompare(b.data.title, 'ru');
+});
+const guideIndex = sortedGuides.findIndex((g) => g.slug === slug);
+const prevGuide = guideIndex > 0 ? sortedGuides[guideIndex - 1] : null;
+const nextGuide =
+  guideIndex >= 0 && guideIndex < sortedGuides.length - 1
+    ? sortedGuides[guideIndex + 1]
+    : null;
+
+const sameCategory = category
+  ? sortedGuides.filter((g) => g.slug !== slug && g.data.category === category)
+  : [];
+let relatedGuides = sameCategory.slice(0, 3);
+if (relatedGuides.length < 3) {
+  const need = 3 - relatedGuides.length;
+  const more = sortedGuides.filter(
+    (g) => g.slug !== slug && !relatedGuides.some((r) => r.slug === g.slug),
+  );
+  relatedGuides = [...relatedGuides, ...more.slice(0, need)];
+}
 
 const guideUrl = `${site.url}/guides/${slug}`;
 const breadcrumbSchema = {
@@ -56,8 +82,62 @@ const articleSchema = {
     <div class="guide-prose guide-detail-prose mt-8 prose prose-invert max-w-none">
       <Content />
     </div>
-    <div class="guide-detail-cta mt-12">
-      <Button href="/guides" variant="ghost">Все инструкции</Button>
+    {(prevGuide || nextGuide) && (
+      <nav
+        class="guide-detail-nav mt-12 flex flex-col gap-4 sm:flex-row sm:items-stretch sm:justify-between border-t border-[var(--color-border)] pt-10"
+        aria-label="Соседние инструкции"
+      >
+        {prevGuide ? (
+          <a
+            href={`/guides/${prevGuide.slug}`}
+            data-ym-goal="guide_nav_prev"
+            class="group flex flex-1 flex-col rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition-colors hover:border-[var(--color-accent)]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+          >
+            <span class="text-xs font-medium uppercase tracking-wide text-[var(--color-text-muted)]">Назад</span>
+            <span class="mt-1 font-display font-semibold text-[var(--color-text)] group-hover:text-[var(--color-accent)]">
+              {prevGuide.data.title}
+            </span>
+          </a>
+        ) : (
+          <span class="hidden flex-1 sm:block" aria-hidden="true" />
+        )}
+        {nextGuide ? (
+          <a
+            href={`/guides/${nextGuide.slug}`}
+            data-ym-goal="guide_nav_next"
+            class="group flex flex-1 flex-col rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 text-left sm:text-right transition-colors hover:border-[var(--color-accent)]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+          >
+            <span class="text-xs font-medium uppercase tracking-wide text-[var(--color-text-muted)]">Далее</span>
+            <span class="mt-1 font-display font-semibold text-[var(--color-text)] group-hover:text-[var(--color-accent)]">
+              {nextGuide.data.title}
+            </span>
+          </a>
+        ) : null}
+      </nav>
+    )}
+    {relatedGuides.length > 0 && (
+      <section class="guide-related mt-12" aria-labelledby="guide-related-heading">
+        <h2 id="guide-related-heading" class="font-display text-lg font-semibold text-[var(--color-text)]">
+          Ещё инструкции
+        </h2>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list">
+          {relatedGuides.map((g) => (
+            <li>
+              <a
+                href={`/guides/${g.slug}`}
+                data-ym-goal="guide_related_click"
+                class="block rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 text-sm transition-colors hover:border-[var(--color-accent)]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+              >
+                <span class="font-medium text-[var(--color-text)]">{g.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+    <CtaContact />
+    <div class="guide-detail-cta mt-8 flex flex-wrap gap-4">
+      <Button href="/guides" variant="ghost" dataYmGoal="cta_guides_list">Все инструкции</Button>
     </div>
   </article>
 </BaseLayout>

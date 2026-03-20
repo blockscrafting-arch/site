@@ -26,11 +26,12 @@ import { site } from '../../utils/site';
         Опишите задачу — подберу решение и назову сроки. Отвечу в течение дня.
       </p>
       <div class="relative mt-10 flex flex-wrap items-center justify-center gap-4">
-        <Button href="/contact" variant="primary">Обсудить задачу</Button>
+        <Button href="/contact" variant="primary" dataYmGoal="cta_contact">Обсудить задачу</Button>
         <a
           href={site.tgChannel}
           target="_blank"
           rel="noopener noreferrer"
+          data-ym-goal="telegram_click"
           class="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
         >
           Написать в Telegram

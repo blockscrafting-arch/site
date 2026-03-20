@@ -13,9 +13,19 @@ interface Props {
   type?: 'submit' | 'button';
   class?: string;
   disabled?: boolean;
+  /** Идентификатор цели Яндекс.Метрики (атрибут data-ym-goal). */
+  dataYmGoal?: string;
 }
 
-const { variant = 'primary', href, external = false, type = 'button', class: className = '', disabled = false } = Astro.props;
+const {
+  variant = 'primary',
+  href,
+  external = false,
+  type = 'button',
+  class: className = '',
+  disabled = false,
+  dataYmGoal,
+} = Astro.props;
 
 const base =
   'inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)] disabled:pointer-events-none disabled:opacity-50 hover:scale-[1.02] active:scale-[0.98]';
@@ -33,14 +43,15 @@ const variants = {
 
 const classes = [base, variants[variant], className].filter(Boolean).join(' ');
 const linkAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' as const } : {};
+const ymAttrs = dataYmGoal ? { 'data-ym-goal': dataYmGoal } : {};
 ---
 
 {href ? (
-  <a href={href} class={classes} {...linkAttrs}>
+  <a href={href} class={classes} {...linkAttrs} {...ymAttrs}>
     <slot />
   </a>
 ) : (
-  <button type={type} class={classes} disabled={disabled}>
+  <button type={type} class={classes} disabled={disabled} {...ymAttrs}>
     <slot />
   </button>
 )}
