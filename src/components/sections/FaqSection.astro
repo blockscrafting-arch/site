@@ -1,16 +1,70 @@
 ---
+/**
+ * Секция «Частые вопросы» (FAQ).
+ * JSON-LD FAQPage для расширенных сниппетов в Яндексе и Google.
+ * Визуал: нумерованные вопросы с категорией-бейджем, левый акцент при раскрытии.
+ */
 import FaqItem from '../features/FaqItem';
 
-const faqs = [
-  { question: 'Сколько стоит проект?', answer: 'Зависит от объёма: от разового скрипта до полноценного бота или пайплайна. После описания задачи назову ориентир по срокам и бюджету.' },
-  { question: 'Какие сроки на типичный проект?', answer: 'Простой бот или сценарий в n8n — от нескольких дней. Сложные интеграции и AI-агенты — от 1–2 недель. Точные сроки фиксируем после уточнения объёма.' },
-  { question: 'Работаете по договору и с НДС/самозанятым?', answer: 'Работаю как самозанятый (НПД): чек через приложение «Мой налог». Договор или оферта — по согласованию под ваш процесс закупки.' },
-  { question: 'Работаете с n8n и Telegram?', answer: 'Да. n8n, боты и Mini Apps в Telegram, MAX и VK, интеграции с CRM и мессенджерами — основной стек.' },
-  { question: 'Можно ли доработать существующий проект?', answer: 'Да. Подключусь к вашему репозиторию или n8n, доработаю логику, добавлю функции или перенесу на новый стек.' },
-  { question: 'Как связаться?', answer: 'Напишите в Telegram (@goutach) или через форму на странице Контакты. Отвечу в течение дня.' },
+interface FaqEntry {
+  question: string;
+  answer: string;
+  /** Краткий лейбл категории, отображается над вопросом */
+  category: string;
+}
+
+const faqs: FaqEntry[] = [
+  {
+    category: 'Стоимость',
+    question: 'Как понять стоимость ещё до начала работы? Есть хотя бы ориентир?',
+    answer:
+      'Да. Простой Telegram-бот — от 8 000 ₽, автоматизация через n8n — от 20 000 ₽, AI-агент со сложной логикой и интеграциями — от 40 000 ₽. После короткого описания задачи (в Telegram или по форме) называю конкретную вилку ещё до созвона. Если задача нестандартная — сначала небольшое ТЗ, потом цена без сюрпризов.',
+  },
+  {
+    category: 'Сроки',
+    question: 'Сколько реально ждать и не растянется ли это на месяцы?',
+    answer:
+      'Простой бот или воркфлоу в n8n — 3–7 рабочих дней после утверждения ТЗ. AI-агент с несколькими интеграциями — 1–3 недели. Задержки, как правило, случаются не из-за технической части, а из-за ожидания доступов или долгой обратной связи по демо. Объём фиксируем до старта, чтобы не было «сделали одно, а нужно другое».',
+  },
+  {
+    category: 'Интеграции',
+    question: 'У нас уже есть Bitrix24 / amoCRM / Google-таблицы / 1С — подключитесь?',
+    answer:
+      'В большинстве случаев — да. Bitrix24, amoCRM, Google Sheets, Notion, Airtable — работал напрямую. С 1С зависит от версии и наличия модуля выгрузки. Если у сервиса нет API — есть варианты через парсинг или обмен файлами. Скажите, что используете, и я оценю возможность подключения ещё на этапе брифа.',
+  },
+  {
+    category: 'Технологии',
+    question: 'Зачем n8n, если есть Make или Zapier? Чем это выгоднее для бизнеса?',
+    answer:
+      'Make и Zapier — подписки в $ и ограничения по числу операций в месяц. n8n разворачивается на вашем VPS: платите только за сервер (~5–10 $/мес), операций — без лимита, данные остаются у вас. Для сложных процессов с циклами, условиями и JavaScript-кодом n8n существенно гибче. Make выбираю, когда важна скорость запуска и своего сервера нет.',
+  },
+  {
+    category: 'Поддержка',
+    question: 'Если бот или автоматизация сломается после сдачи — что произойдёт?',
+    answer:
+      'После запуска — бесплатная гарантийная поддержка 14 дней: исправляю баги, которые проявились в реальной эксплуатации (не изменение требований). Дальше — разовые правки по часовой ставке или абонентское сопровождение. Критичные сбои стараюсь отрабатывать в течение нескольких часов, даже за рамками гарантии.',
+  },
+  {
+    category: 'Процесс',
+    question: 'Нужно ли нам разбираться в технологиях, чтобы сформулировать задачу?',
+    answer:
+      'Нет. Достаточно описать словами: что сейчас делается вручную, сколько это занимает времени и какой результат нужен. Всё техническое — моя работа. При необходимости показываю рабочий прототип раньше, чем финальную версию — это помогает выровнять понимание ещё до того, как потрачен основной бюджет.',
+  },
+  {
+    category: 'Юридика',
+    question: 'Вы передаёте исходный код? Можем потом развивать его своими разработчиками?',
+    answer:
+      'Да. По умолчанию вы получаете все файлы, n8n-экспорт (JSON), инструкции по деплою. Работаю как самозанятый: чек через «Мой налог», договор или оферта по запросу под ваш процесс закупки. Код не привязан ко мне — любой разработчик сможет продолжить проект без потери контекста.',
+  },
+  {
+    category: 'Оплата',
+    question: 'Работаете по предоплате? Как устроена оплата?',
+    answer:
+      'Стандартная схема: 50% предоплата перед стартом, 50% после приёмки результата. На небольшие задачи до 5 000 ₽ — постоплата после сдачи. Оплата через СБП, переводом на счёт самозанятого или по реквизитам. Никаких скрытых комиссий.',
+  },
 ];
 
-/** JSON-LD FAQPage для расширенных сниппетов в Яндексе и Google. */
+/** JSON-LD FAQPage для расширенных сниппетов. */
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -24,12 +78,54 @@ const faqSchema = {
 
 <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="faq-heading">
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <h2 id="faq-heading" class="reveal text-2xl font-bold text-[var(--color-text)] sm:text-3xl text-center">
-    Частые вопросы
-  </h2>
-  <div class="reveal mt-12 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-sm overflow-hidden">
-    {faqs.map((faq) => (
-      <FaqItem client:load question={faq.question} answer={faq.answer} />
+
+  <div class="relative w-full mb-4">
+    <!-- Декоративный вопросительный знак — как SVG-акцент на других секциях -->
+    <div
+      class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.12] w-40 h-40 right-0 top-1/2 -translate-y-1/2 translate-x-[15%] hidden sm:block"
+      aria-hidden="true"
+    >
+      <svg class="w-full h-full" viewBox="0 0 120 160" fill="none" stroke="currentColor">
+        <path
+          d="M30 45 C30 20 90 20 90 55 C90 80 60 80 60 105"
+          stroke-width="14"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle cx="60" cy="135" r="8" fill="currentColor" stroke="none" />
+      </svg>
+    </div>
+
+    <h2 id="faq-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl text-center">
+      Частые вопросы
+    </h2>
+  </div>
+
+  <p class="reveal mt-4 text-center text-[var(--color-text-muted)] max-w-xl mx-auto" style="animation-delay:.06s">
+    То, что обычно спрашивают до начала работы — честно и по существу.
+  </p>
+
+  <div class="reveal mt-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-sm overflow-hidden" style="animation-delay:.1s">
+    {faqs.map((faq, i) => (
+      <FaqItem
+        client:load
+        question={faq.question}
+        answer={faq.answer}
+        category={faq.category}
+        index={i}
+      />
     ))}
   </div>
+
+  <!-- CTA под FAQ -->
+  <p class="reveal mt-8 text-center text-sm text-[var(--color-text-muted)]" style="animation-delay:.15s">
+    Не нашли ответ?{' '}
+    <a
+      href="/contact"
+      class="font-medium text-[var(--color-accent)] underline underline-offset-2 hover:opacity-80 transition-opacity"
+      data-ym-goal="faq_contact_click"
+    >
+      Напишите напрямую →
+    </a>
+  </p>
 </section>

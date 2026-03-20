@@ -3,16 +3,30 @@ import { useState, useId } from "react";
 interface Props {
   question: string;
   answer: string;
+  /** Категория вопроса: отображается как бейдж над вопросом */
+  category: string;
+  /** Порядковый номер (0-based) */
+  index: number;
 }
 
-export default function FaqItem({ question, answer }: Props) {
+/**
+ * Интерактивный элемент FAQ-аккордеона.
+ * Анимация раскрытия через grid-rows (плавнее max-height).
+ * При раскрытии показывает левый акцентный бордер.
+ */
+export default function FaqItem({ question, answer, category, index }: Props) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const answerId = `faq-answer-${id}`;
   const buttonId = `faq-button-${id}`;
+  const num = String(index + 1).padStart(2, "0");
 
   return (
-    <div className="border-b border-[var(--color-border)] last:border-b-0">
+    <div
+      className={`border-b border-[var(--color-border)] last:border-b-0 transition-colors duration-200 ${
+        open ? "bg-[var(--color-surface-muted,var(--color-surface))]" : ""
+      }`}
+    >
       <h3>
         <button
           id={buttonId}
@@ -20,20 +34,35 @@ export default function FaqItem({ question, answer }: Props) {
           aria-expanded={open}
           aria-controls={answerId}
           onClick={() => setOpen((v) => !v)}
-          className="flex w-full items-center justify-between py-4 text-left text-base font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)] rounded"
+          className="group flex w-full items-start gap-4 px-5 py-5 sm:px-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-inset"
         >
-          {question}
+          {/* Порядковый номер */}
           <span
-            className={`ml-2 shrink-0 transition-transform duration-200 ${
-              open ? "rotate-180" : ""
-            }`}
-            aria-hidden
+            className="shrink-0 w-7 pt-0.5 font-mono text-xs font-semibold text-[var(--color-text-muted)] opacity-50 select-none"
+            aria-hidden="true"
+          >
+            {num}
+          </span>
+
+          {/* Категория + вопрос */}
+          <span className="flex-1 min-w-0">
+            <span className="block mb-1 text-[10px] font-semibold uppercase tracking-widest text-[var(--color-accent)] opacity-70">
+              {category}
+            </span>
+            <span className="block text-[0.9375rem] font-medium leading-snug text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors duration-150">
+              {question}
+            </span>
+          </span>
+
+          {/* Шеврон */}
+          <span
+            className={`shrink-0 mt-1 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+            aria-hidden="true"
           >
             <svg
-              className="h-5 w-5 shrink-0 svg-icon-reveal text-[var(--color-text-muted)]"
+              className="h-5 w-5 text-[var(--color-text-muted)] group-hover:text-[var(--color-accent)] transition-colors duration-150"
               viewBox="0 0 20 20"
               fill="currentColor"
-              aria-hidden
             >
               <path
                 fillRule="evenodd"
@@ -44,15 +73,26 @@ export default function FaqItem({ question, answer }: Props) {
           </span>
         </button>
       </h3>
+
+      {/* Ответ: grid-rows анимация для плавного открытия */}
       <div
         id={answerId}
         role="region"
         aria-labelledby={buttonId}
-        className={`overflow-hidden transition-all duration-200 ${
-          open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        className={`grid transition-all duration-300 ease-in-out ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         }`}
       >
-        <p className="pb-4 text-sm text-[var(--color-text-muted)]">{answer}</p>
+        <div className="overflow-hidden">
+          <div className="pl-[2.75rem] pr-5 pb-5 sm:pl-[3.25rem] sm:pr-6">
+            {/* Левый акцентный бордер — как у quote */}
+            <div className="border-l-2 border-[var(--color-accent)] pl-4 opacity-90">
+              <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
+                {answer}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
