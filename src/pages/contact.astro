@@ -54,7 +54,7 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
             </p>
           </div>
           <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <Button href={site.tgChannel} variant="primary" external class="shadow-glow-sm flex-shrink-0 w-full sm:w-auto justify-center">
+            <Button href={site.tgChannel} variant="primary" external dataYmGoal="telegram_click" class="shadow-glow-sm flex-shrink-0 w-full sm:w-auto justify-center">
               Перейти в Telegram
             </Button>
             <div class="flex items-center gap-2">
@@ -66,7 +66,7 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
       </section>
 
       <!-- Блог -->
-      <a href={site.tgChannelContent} target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-glow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]">
+      <a href={site.tgChannelContent} target="_blank" rel="noopener noreferrer" data-ym-goal="telegram_channel_click" class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-glow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]">
         <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[var(--color-accent)] opacity-5 blur-2xl pointer-events-none transition-opacity group-hover:opacity-10"></div>
         <div class="relative z-10">
           <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent)]/10 text-[var(--color-accent)] mb-4 transition-transform group-hover:scale-110">
@@ -87,7 +87,7 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
       </a>
 
       <!-- Kwork -->
-      <a href={site.kwork} target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[#11B23C] hover:shadow-[0_0_15px_rgba(17,178,60,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11B23C] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]">
+      <a href={site.kwork} target="_blank" rel="noopener noreferrer" data-ym-goal="outbound_kwork" class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[#11B23C] hover:shadow-[0_0_15px_rgba(17,178,60,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11B23C] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]">
         <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#11B23C] opacity-5 blur-2xl pointer-events-none transition-opacity group-hover:opacity-10"></div>
         <div class="relative z-10">
           <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#11B23C]/10 text-[#11B23C] mb-4 transition-transform group-hover:scale-110">
@@ -108,7 +108,7 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
       </a>
 
       <!-- MAX -->
-      <a href={site.max} target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[#4F46E5] hover:shadow-[0_0_15px_rgba(79,70,229,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]">
+      <a href={site.max} target="_blank" rel="noopener noreferrer" data-ym-goal="outbound_max" class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[#4F46E5] hover:shadow-[0_0_15px_rgba(79,70,229,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]">
         <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#4F46E5] opacity-5 blur-2xl pointer-events-none transition-opacity group-hover:opacity-10"></div>
         <div class="relative z-10">
           <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#4F46E5]/10 mb-4 transition-transform group-hover:scale-110">
@@ -143,7 +143,7 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
           </p>
         </div>
         <div class="relative z-10 mt-6 flex flex-wrap items-center gap-2">
-          <a href={`mailto:${site.email}`} class="text-[var(--color-accent)] font-medium text-sm hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)] rounded">
+          <a href={`mailto:${site.email}`} data-ym-goal="mailto_click" class="text-[var(--color-accent)] font-medium text-sm hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)] rounded">
             {site.email}
           </a>
           <CopyButton client:load value={site.email} iconOnly copiedLabel="Скопировано!" />

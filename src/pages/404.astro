@@ -18,10 +18,10 @@ import Button from '../components/common/Button.astro';
       Такой страницы нет или она была перемещена. Перейдите на главную или выберите раздел ниже.
     </p>
     <div class="mt-10 flex flex-wrap justify-center gap-4">
-      <Button href="/" variant="primary">На главную</Button>
-      <Button href="/cases" variant="ghost">Кейсы</Button>
-      <Button href="/guides" variant="ghost">Инструкции</Button>
-      <Button href="/contact" variant="ghost">Контакты</Button>
+      <Button href="/" variant="primary" dataYmGoal="error404_home">На главную</Button>
+      <Button href="/cases" variant="ghost" dataYmGoal="cta_cases">Кейсы</Button>
+      <Button href="/guides" variant="ghost" dataYmGoal="nav_guides">Инструкции</Button>
+      <Button href="/contact" variant="ghost" dataYmGoal="nav_contact">Контакты</Button>
     </div>
   </section>
 </BaseLayout>

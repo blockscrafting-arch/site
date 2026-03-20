@@ -28,7 +28,7 @@ import { site } from '../../utils/site';
         <h2 class="text-xl font-semibold text-[var(--color-text)]">1. Оператор</h2>
         <p>
           Оператор персональных данных — {site.legal.payerName}, плательщик налога на профессиональный доход (самозанятый).
-          Сайт: {site.url}. Связаться: <a href={site.tgChannel} class="text-[var(--color-accent)] hover:underline">{site.tgChannelHandle}</a>, <a href={`mailto:${site.email}`} class="text-[var(--color-accent)] hover:underline">{site.email}</a>.
+          Сайт: {site.url}. Связаться: <a href={site.tgChannel} data-ym-goal="telegram_click" class="text-[var(--color-accent)] hover:underline">{site.tgChannelHandle}</a>, <a href={`mailto:${site.email}`} data-ym-goal="mailto_click" class="text-[var(--color-accent)] hover:underline">{site.email}</a>.
         </p>
       </section>
 
@@ -91,7 +91,7 @@ import { site } from '../../utils/site';
 
     <p class="mt-12 text-sm text-[var(--color-text-muted)]">
       <a href="/legal/requisites" class="text-[var(--color-accent)] hover:underline">Реквизиты</a> ·
-      <a href="/contact" class="text-[var(--color-accent)] hover:underline ml-2">Контакты</a>
+      <a href="/contact" data-ym-goal="nav_contact" class="text-[var(--color-accent)] hover:underline ml-2">Контакты</a>
     </p>
   </article>
 </BaseLayout>

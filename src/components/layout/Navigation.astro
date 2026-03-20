@@ -29,9 +29,11 @@ const currentPath = Astro.url.pathname;
   {
     navItems.map(({ href, label }) => {
       const isActive = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+      const ymAttrs = href === '/contact' ? { 'data-ym-goal': 'nav_contact' } : {};
       return (
         <a
           href={href}
+          {...ymAttrs}
           class:list={[
             'nav-link relative text-sm font-medium transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]',
             mobile ? 'block w-full py-3 px-1' : 'px-1 py-0.5',

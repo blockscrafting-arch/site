@@ -51,12 +51,12 @@ import CopyButton from '../../components/features/CopyButton';
     </div>
 
     <p class="mt-8 text-sm text-[var(--color-text-muted)]">
-      Паспортные данные предоставляются при заключении договора. По вопросам заказа и оплаты: <a href={site.tgChannel} class="text-[var(--color-accent)] hover:underline">{site.tgChannelHandle}</a>, <a href={`mailto:${site.email}`} class="text-[var(--color-accent)] hover:underline">{site.email}</a>.
+      Паспортные данные предоставляются при заключении договора. По вопросам заказа и оплаты: <a href={site.tgChannel} data-ym-goal="telegram_click" class="text-[var(--color-accent)] hover:underline">{site.tgChannelHandle}</a>, <a href={`mailto:${site.email}`} data-ym-goal="mailto_click" class="text-[var(--color-accent)] hover:underline">{site.email}</a>.
     </p>
 
     <p class="mt-8 text-sm text-[var(--color-text-muted)]">
       <a href="/legal/privacy" class="text-[var(--color-accent)] hover:underline">Политика конфиденциальности</a> ·
-      <a href="/contact" class="text-[var(--color-accent)] hover:underline ml-2">Контакты</a>
+      <a href="/contact" data-ym-goal="nav_contact" class="text-[var(--color-accent)] hover:underline ml-2">Контакты</a>
     </p>
   </article>
 </BaseLayout>
