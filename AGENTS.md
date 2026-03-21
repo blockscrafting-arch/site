@@ -10,13 +10,17 @@
 - User prefers a visible plan first, then says "выполняй" to execute — do not collapse planning and execution into one unsolicited step.
 - When user says "проверь" or "проверь ещё", re-read and verify the last changes before moving on.
 - Short confirmations like "хватит ли этого?", "готово?" are typical; answer concisely and proceed.
+- When adding Hero section elements, each must be independently justified — avoid stacking multiple "intro" layers before the main headline (e.g., eyebrow badge + "Вы по адресу." was flagged as overloaded).
 
 ## Learned Workspace Facts
 
-- **Portfolio site** path: `D:\vladexecute\proj\Сайт`. Stack: Astro 5 + TypeScript + Tailwind CSS 4 + React islands. Static build deployed via Docker → Nginx → VPS. CI/CD: GitHub Actions pushes image to `ghcr.io/blockscrafting-arch/site`.
+- **Portfolio site** path: `D:\vladexecute\proj\Сайт`. Stack: Astro 5 + TypeScript + Tailwind CSS 3.4 + React islands. Static build deployed via Docker → Nginx → VPS. CI/CD: GitHub Actions pushes image to `ghcr.io/blockscrafting-arch/site`. No CMS — content lives in Astro Content Collections (markdown in repo).
 - **Contact form webhook**: configured via `PUBLIC_CONTACT_WEBHOOK` env var, which is a build-time variable passed as Docker `--build-arg` from GitHub Actions Secret `PUBLIC_CONTACT_WEBHOOK`. Empty string → form shows "Форма не настроена" error.
+- **Layout padding**: `<main id="main-content">` in BaseLayout already applies `pt-16` (compensates for the fixed `h-16` header). Inner page sections should add only `pt-4`–`pt-8` for breathing room — never re-add `pt-20+`.
+- **Flex container text nodes**: Direct `{variable}` text nodes inside `flex` containers create anonymous flex items causing broken/stretched text. Always wrap in `<span class="min-w-0">`. Also: `hyphens: none; -webkit-hyphens: none` is set on `html` in `global.css` to prevent auto-hyphenation from `lang="ru"`.
 - **SEO already integrated**: `@astrojs/sitemap`, `robots.txt` (static `public/`), JSON-LD schema (in `BaseLayout`), Yandex Metrika (ID in `site.yandexMetrikaId`, init с `webvisor`, `clickmap`, `dataLayer` для ecommerce, цели через `data-ym-goal` и `reachGoal` — список идентификаторов в `docs/METRIKA_GOALS.md`).
 - **SEO + ИИ (GEO/AEO) — обязательный чеклист**: при добавлении/изменении страниц, контента или разметки агент следует правилам в `.cursor/rules/project.mdc` (раздел «SEO, классические поисковики и ИИ»): title/description/sitemap/robots, цитируемый HTML, JSON-LD, обновление `public/llms.txt` при новых важных URL; контекст — `docs/GEO_AI_VISIBILITY.md`.
+- **Kwork brand color**: `#F5A500` (orange) — used for Kwork card accent on `/contact` page; do not use site green for third-party brand elements.
 - **Content Factory project** lives at `~/rostok/content-factory` on VPS (separate repo). Stack: Node.js + TypeScript, PostgreSQL, Redis, BullMQ (workers: semantics, generation, image, regenerateImage, publish), NocoDB, Google Drive OAuth (user-based, not JWT service account).
 - **Content Factory known bug**: `cost_records` FK violation when `clientId` is empty string or undefined — seed must create a 'default' client row; use `||` not `??` to guard against empty strings.
 - **Active client projects in scope**: (1) Whisper API video-to-content pipeline (~15K RUB); (2) Portfolio site for Kushnerev Kirill (~25K RUB, ~10 hours, frontend + design + categories, future app integration).
