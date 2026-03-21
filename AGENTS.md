@@ -23,6 +23,6 @@
 - **Kwork brand color**: `#F5A500` (orange) — used for Kwork card accent on `/contact` page; do not use site green for third-party brand elements.
 - **Content Factory project** lives at `~/rostok/content-factory` on VPS (separate repo). Stack: Node.js + TypeScript, PostgreSQL, Redis, BullMQ (workers: semantics, generation, image, regenerateImage, publish), NocoDB, Google Drive OAuth (user-based, not JWT service account).
 - **Content Factory known bug**: `cost_records` FK violation when `clientId` is empty string or undefined — seed must create a 'default' client row; use `||` not `??` to guard against empty strings.
-- **Active client projects in scope**: (1) Whisper API video-to-content pipeline (~15K RUB); (2) Portfolio site for Kushnerev Kirill (~25K RUB, ~10 hours, frontend + design + categories, future app integration).
+- **Active client projects in scope**: (1) Whisper API video-to-content pipeline (~15K RUB); (2) Kushnerev Kirill — интернет-магазин «Щенок Игруля» (~25K RUB, ~10 дней): Next.js + PostgreSQL, ЮKassa и СДЭК, деплой на Beget VPS; позже возможна связка с приложением.
 - **Freelance platforms**: Kwork (orders via safe transaction), МАХ (profile + portfolio), Telegram channels for blog and personal contact.
 - **n8n webhook in portfolio**: Must be in Production mode (not Test) and publicly accessible; toggling Test↔Production changes the URL.
