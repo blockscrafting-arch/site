@@ -171,18 +171,29 @@ const articleSchema = {
         <section class="case-screenshots mb-10" aria-label="Скриншоты проекта">
           <div class={`grid gap-4 ${screenshots.length === 1 ? '' : 'sm:grid-cols-2'}`}>
             {screenshots.map((src, i) => (
-              <div
-                class="group relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-sm transition-all duration-300 hover:shadow-[0_0_24px_var(--case-accent-glow)]"
-                style={{ borderColor: `${accent}25` }}
+              <button
+                type="button"
+                class="case-screenshot-thumb group relative block w-full overflow-hidden rounded-2xl ring-1 ring-[var(--color-border)] cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--case-accent)]"
+                data-src={src}
+                data-alt={`${title} — скриншот ${i + 1}`}
+                aria-label={`Открыть скриншот ${i + 1} на весь экран`}
               >
                 <img
                   src={src}
                   alt={`${title} — скриншот ${i + 1}`}
-                  class="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-[1.02]"
+                  class="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.04]"
                   loading="lazy"
                   decoding="async"
                 />
-              </div>
+                <span class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/30">
+                  <span class="flex items-center gap-2 rounded-full bg-black/70 px-4 py-2 text-sm font-medium text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                    <svg class="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0zm-3-3v6m-3-3h6" />
+                    </svg>
+                    Открыть
+                  </span>
+                </span>
+              </button>
             ))}
           </div>
         </section>
@@ -232,3 +243,70 @@ const articleSchema = {
     </div>
   </article>
 </BaseLayout>
+
+<!-- Лайтбокс для скриншотов кейса -->
+<div
+  id="case-lightbox"
+  class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/92 backdrop-blur-md p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Просмотр скриншота"
+>
+  <button
+    id="case-lightbox-close"
+    type="button"
+    class="absolute right-4 top-4 rounded-full p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+    aria-label="Закрыть"
+  >
+    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  <img
+    id="case-lightbox-img"
+    src=""
+    alt=""
+    class="max-h-[92vh] max-w-full rounded-2xl object-contain shadow-2xl"
+  />
+</div>
+
+<script>
+  (function () {
+    const lb = document.getElementById('case-lightbox');
+    const img = document.getElementById('case-lightbox-img') as HTMLImageElement | null;
+    const closeBtn = document.getElementById('case-lightbox-close');
+
+    function open(src: string, alt: string) {
+      if (!lb || !img) return;
+      img.src = src;
+      img.alt = alt;
+      lb.classList.remove('hidden');
+      lb.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      if (!lb || !img) return;
+      lb.classList.add('hidden');
+      lb.classList.remove('flex');
+      document.body.style.overflow = '';
+      setTimeout(() => { img.src = ''; }, 200);
+    }
+
+    document.querySelectorAll<HTMLButtonElement>('.case-screenshot-thumb').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        open(btn.dataset.src ?? '', btn.dataset.alt ?? '');
+      });
+    });
+
+    closeBtn?.addEventListener('click', close);
+
+    lb?.addEventListener('click', (e) => {
+      if (e.target === lb) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  })();
+</script>
