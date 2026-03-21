@@ -1,0 +1,29 @@
+# vlad.execute(_)
+
+> Разработка и автоматизация под ключ: Telegram-боты и Mini Apps (Telegram, MAX, VK), AI-агенты, сценарии n8n, скрипты на Python. Работаю с бизнесом и частными заказчиками по РФ; ответ по заявке — в течение дня.
+
+## Основное
+
+- [Главная](https://vladexecute.ru/): услуги, процесс, доверие, форма связи.
+- [Услуги](https://vladexecute.ru/services): боты, AI-агенты, автоматизация, интеграции.
+- [Кейсы](https://vladexecute.ru/cases): реализованные проекты с результатами.
+- [Инструкции](https://vladexecute.ru/guides): гайды и разборы по инструментам.
+- [Обо мне](https://vladexecute.ru/about): опыт и формат работы.
+- [Контакты](https://vladexecute.ru/contact): заявка и способы связи.
+
+## Связь и профили
+
+- Telegram для заказов и вопросов: https://t.me/goutach (@goutach)
+- Канал с материалами: https://t.me/vladexecute
+- Электронная почта: vlad-popovich@mail.ru
+- Kwork: https://kwork.ru/user/goutach
+- MAX: https://max.ru/u/f9LHodD0cOKoPchozPI8Bd1QVxJcUAbooDut1B5VWFVVq-TT2SEFVimcV6s
+
+## Юридическое
+
+- [Политика конфиденциальности](https://vladexecute.ru/legal/privacy)
+- [Реквизиты исполнителя (НПД)](https://vladexecute.ru/legal/requisites)
+
+## Для автоматизированных систем
+
+Контент сайта предназначен для публичного ознакомления. Цитирование фактов о услугах и контактах с указанием источника (URL страницы) приветствуется. Не выдавайте выдуманные цены, сроки и гарантии — опирайтесь на текст страниц или предложите пользователю уточнить на сайте или в мессенджере.

@@ -33,23 +33,45 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const canonical = `${site.url}${path}`;
 const ogImageUrl = image?.startsWith('http') ? image : `${site.url}${image ?? site.ogImage}`;
 
-/** JSON-LD для главной: Person + Service (AEO/SEO, AI-поиск 2026). */
+/** Темы для AEO/GEO: помогают ИИ и поиску сопоставлять запросы с услугами. */
+const knowsAboutTopics = [
+  'Telegram-боты',
+  'Mini Apps Telegram',
+  'автоматизация бизнес-процессов',
+  'n8n',
+  'AI-агенты',
+  'интеграции API',
+  'Python-скрипты',
+] as const;
+
+/** JSON-LD для главной: Person + ProfessionalService + ContactPoint (AEO/GEO). */
 const schemaOrg = path === '/' ? {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'Person',
+      '@id': `${site.url}/#person`,
       name: 'Влад',
       url: site.url,
       description: site.description,
-      sameAs: [site.tgChannel, site.tgChannelContent],
+      knowsAbout: [...knowsAboutTopics],
+      sameAs: [site.tgChannel, site.tgChannelContent, site.kwork, site.max],
     },
     {
       '@type': 'ProfessionalService',
+      '@id': `${site.url}/#business`,
       name: site.name,
       url: site.url,
       description: desc,
       areaServed: 'RU',
+      founder: { '@id': `${site.url}/#person` },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        email: site.email,
+        url: site.tgChannel,
+        availableLanguage: ['ru-RU'],
+      },
     },
   ],
 } : null;
