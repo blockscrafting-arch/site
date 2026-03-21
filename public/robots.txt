@@ -1,4 +1,30 @@
 User-agent: *
 Allow: /
 
+# Citation bots (link back to source) — explicitly welcome
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Training bots — allowed; block individually only if needed for legal reasons
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
 Sitemap: https://vladexecute.ru/sitemap-index.xml

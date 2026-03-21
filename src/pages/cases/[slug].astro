@@ -65,7 +65,7 @@ const articleSchema = {
   headline: title,
   description: description ?? undefined,
   url: caseUrl,
-  author: { '@type': 'Person', name: 'Влад', url: site.url },
+  author: { '@id': `${site.url}/#person` },
   ...(date && { datePublished: date.toISOString().slice(0, 10) }),
 };
 ---

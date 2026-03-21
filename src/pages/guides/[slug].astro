@@ -61,7 +61,7 @@ const articleSchema = {
   headline: title,
   description: description ?? undefined,
   url: guideUrl,
-  author: { '@type': 'Person', name: 'Влад', url: site.url },
+  author: { '@id': `${site.url}/#person` },
 };
 ---
 

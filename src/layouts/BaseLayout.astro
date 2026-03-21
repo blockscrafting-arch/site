@@ -36,22 +36,27 @@ const ogImageUrl = image?.startsWith('http') ? image : `${site.url}${image ?? si
 /** Темы для AEO/GEO: помогают ИИ и поиску сопоставлять запросы с услугами. */
 const knowsAboutTopics = [
   'Telegram-боты',
-  'Mini Apps Telegram',
+  'Mini Apps для Telegram, MAX и VK',
   'автоматизация бизнес-процессов',
   'n8n',
   'AI-агенты',
   'интеграции API',
   'Python-скрипты',
+  'парсинг данных',
+  'автопостинг',
 ] as const;
 
-/** JSON-LD для главной: Person + ProfessionalService + ContactPoint (AEO/GEO). */
+/** JSON-LD для главной: Person + ProfessionalService + ContactPoint (AEO/GEO 2026). */
 const schemaOrg = path === '/' ? {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'Person',
       '@id': `${site.url}/#person`,
-      name: 'Влад',
+      name: 'Влад Попович',
+      givenName: 'Влад',
+      familyName: 'Попович',
+      jobTitle: 'Разработчик и автоматизатор',
       url: site.url,
       description: site.description,
       knowsAbout: [...knowsAboutTopics],
@@ -67,10 +72,10 @@ const schemaOrg = path === '/' ? {
       founder: { '@id': `${site.url}/#person` },
       contactPoint: {
         '@type': 'ContactPoint',
-        contactType: 'sales',
+        contactType: 'customer service',
         email: site.email,
         url: site.tgChannel,
-        availableLanguage: ['ru-RU'],
+        availableLanguage: 'Russian',
       },
     },
   ],
