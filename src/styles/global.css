@@ -48,6 +48,9 @@
     @apply scroll-smooth;
     overflow-x: hidden;
     width: 100%;
+    /* Отключаем авто-перенос слов: lang="ru" в Safari/Chrome включает hyphens: auto */
+    hyphens: none;
+    -webkit-hyphens: none;
   }
   body {
     overflow-x: hidden;

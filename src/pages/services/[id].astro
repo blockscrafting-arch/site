@@ -101,13 +101,13 @@ const serviceJsonLd = {
         <h2 class="font-display text-xl font-bold text-[var(--color-text)] mb-4">Что входит</h2>
         <ul class="space-y-3" role="list">
           {svc.features.map((f) => (
-            <li class="flex items-start gap-3 text-base text-[var(--color-text-muted)]">
+            <li class="flex items-start gap-3">
               <span class="mt-1 shrink-0 text-[var(--color-accent)]" aria-hidden="true">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                 </svg>
               </span>
-              {f}
+              <span class="text-base text-[var(--color-text-muted)] min-w-0">{f}</span>
             </li>
           ))}
         </ul>
