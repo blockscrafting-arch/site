@@ -5,6 +5,8 @@ result: "Автономная система, отправляющая перс�
 stack: ["n8n", "Google Sheets", "OpenRouter (AI)", "smtp.bz", "Telegram API"]
 date: 2026-03-10
 client: "Домсканер"
+screenshots:
+  - "/images/cases/domscanner-email-ai-preview.png"
 categories: ["automation", "ai-agent"]
 accentColor: "#3b82f6"
 metrics:

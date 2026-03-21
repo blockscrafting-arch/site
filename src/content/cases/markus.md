@@ -4,6 +4,8 @@ description: "Автономная система на базе n8n и Gemini с
 result: "Аутсорс планирования: расписание составляется по голосовому потоку сознания за секунды."
 stack: ["Telegram", "n8n", "Supabase", "Gemini", "PostgreSQL"]
 date: 2025-12-23
+screenshots:
+  - "/images/cases/markus-preview.png"
 categories: [ai-agent]
 accentColor: "#06b6d4"
 metrics:

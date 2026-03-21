@@ -55,6 +55,8 @@ const casesCollection = defineCollection({
     productLogo: z.string().optional(),
     productLink: z.string().optional(),
     productName: z.string().optional(),
+    /** Скриншоты продукта/результата для галереи на странице кейса. */
+    screenshots: z.array(z.string()).optional(),
   }),
 });
 

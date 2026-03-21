@@ -2,6 +2,8 @@
 title: "Telegram Parser & Publisher: контент на автопилоте"
 description: "Как я убрал редактора из петли: мониторинг, AI-саммари и публикация без ручного труда для канала о психологии."
 date: 2026-02-18
+screenshots:
+  - "/images/cases/telegram-parser-publisher-preview.png"
 result: "Полный цикл от источника до поста. Время на пост сократилось с 60 до 2 минут."
 metrics:
   - value: "60 → 2 мин"

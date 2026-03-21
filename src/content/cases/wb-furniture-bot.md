@@ -7,6 +7,8 @@ date: 2026-03-18
 categories: ["bot", "automation"]
 accentColor: "#f59e0b"
 client: "Velvet Mebel"
+screenshots:
+  - "/images/cases/wb-furniture-bot-preview.png"
 metrics:
   - { value: "100", label: "%", suffix: " перехват негатива в личные сообщения" }
   - { value: "10x", label: "понятнее", suffix: " процесс сборки по видеоинструкции" }

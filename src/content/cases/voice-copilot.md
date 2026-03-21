@@ -13,6 +13,8 @@ stack:
     "WebSockets",
   ]
 date: 2026-02-05
+screenshots:
+  - "/images/cases/voice-copilot-preview.png"
 categories: [ai-agent]
 accentColor: "#10b981"
 metrics:

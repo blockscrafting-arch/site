@@ -17,6 +17,8 @@ stack:
     "Nginx",
   ]
 date: 2026-03-02
+screenshots:
+  - "/images/cases/telegram-ocr-monetization-preview.png"
 categories: ["bot", "automation"]
 accentColor: "#0ea5e9"
 metrics:
