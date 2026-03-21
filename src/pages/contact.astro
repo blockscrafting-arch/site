@@ -90,8 +90,8 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
       <a href={site.kwork} target="_blank" rel="noopener noreferrer" data-ym-goal="outbound_kwork" class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[#F5A500] hover:shadow-[0_0_15px_rgba(245,165,0,0.2)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A500] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]">
         <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#F5A500] opacity-5 blur-2xl pointer-events-none transition-opacity group-hover:opacity-15"></div>
         <div class="relative z-10">
-          <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl overflow-hidden mb-4 transition-transform group-hover:scale-110">
-            <img src="/kwork-logo.png" alt="Kwork" class="w-10 h-10 object-cover" />
+          <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#1c1c1e] border border-[#F5A500]/25 mb-4 transition-transform group-hover:scale-110" aria-hidden="true">
+            <span class="font-black text-xl text-[#F5A500]" style="font-family:sans-serif;line-height:1;">K</span>
           </div>
           <h3 class="font-display text-lg font-bold text-[var(--color-text)] transition-colors group-hover:text-[#F5A500]">
             Я на Kwork
