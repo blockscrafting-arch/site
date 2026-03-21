@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog>
+    <shop>
+        <name>vlad.execute(_)</name>
+        <company>Попович Владислав Павлович</company>
+        <url>https://vladexecute.ru</url>
+        <currencies>
+            <currency id="RUR" rate="1"/>
+        </currencies>
+        <categories>
+            <category id="1">Боты и приложения</category>
+            <category id="2">AI и автоматизация</category>
+            <category id="3">Данные и интеграции</category>
+        </categories>
+        <offers>
+
+            <!-- Боты в мессенджерах -->
+            <offer id="1" available="true">
+                <name>Боты в мессенджерах</name>
+                <vendor>vlad.execute(_)</vendor>
+                <price>8000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>1</categoryId>
+                <url>https://vladexecute.ru/services/telegram-bots</url>
+                <description>
+                    Многофункциональный бот под ваши процессы: приём заявок и запись, ответы по FAQ,
+                    передача диалога менеджеру, рассылки и проверка подписок.
+                    Делаю боты для Telegram, MAX и VK. Админ-панель прямо в чате: модерация,
+                    настройки, отчёты и запуск скриптов без отдельных сервисов.
+                </description>
+                <shortDescription>
+                    Один бот — приём заявок, поддержка, рассылки и админка прямо в чате
+                </shortDescription>
+                <param name="Платформы">Telegram, MAX, VK</param>
+                <param name="Функции">Приём заявок, FAQ, рассылки, передача менеджеру, публикация в каналы</param>
+                <param name="Тип работы">Под ключ</param>
+            </offer>
+
+            <!-- Mini Apps -->
+            <offer id="2" available="true">
+                <name>Mini Apps для мессенджеров</name>
+                <vendor>vlad.execute(_)</vendor>
+                <price>15000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>1</categoryId>
+                <url>https://vladexecute.ru/services/mini-apps</url>
+                <description>
+                    Веб-приложение в одном стиле с ботом: каталог, запись на приём, личный кабинет,
+                    калькулятор, оплата. Делаю Mini Apps для Telegram, MAX и VK.
+                    Клиент открывает по кнопке в чате, пользуется и платит — не выходя из мессенджера.
+                    Кастомный дизайн под ваш бренд, а не шаблон.
+                </description>
+                <shortDescription>
+                    Приложение под ваш бренд внутри мессенджера — без отдельной установки
+                </shortDescription>
+                <param name="Платформы">Telegram, MAX, VK</param>
+                <param name="Функции">Каталог, запись, личный кабинет, оплата ЮKassa / Telegram Payments</param>
+                <param name="Тип работы">Под ключ</param>
+            </offer>
+
+            <!-- AI-агенты -->
+            <offer id="3" available="true">
+                <name>AI-агенты</name>
+                <vendor>vlad.execute(_)</vendor>
+                <price>10000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>2</categoryId>
+                <url>https://vladexecute.ru/services/ai-agents</url>
+                <description>
+                    Агент на базе LLM и RAG: анализирует документы, отвечает клиентам по вашим правилам,
+                    готовит черновики и отчёты. Помнит контекст разговора, работает с вашей базой знаний,
+                    не устаёт и не забывает инструкции. Вы тратите время на решение задач — рутину делает агент.
+                </description>
+                <shortDescription>
+                    Цифровой сотрудник с памятью и вашими регламентами
+                </shortDescription>
+                <param name="Технологии">LLM, RAG, OpenAI, Gemini, OpenRouter</param>
+                <param name="Функции">База знаний, контекст диалога, черновики, анализ документов</param>
+                <param name="Тип работы">Под ключ</param>
+            </offer>
+
+            <!-- Автоматизация -->
+            <offer id="4" available="true">
+                <name>Автоматизация бизнес-процессов</name>
+                <vendor>vlad.execute(_)</vendor>
+                <price>5000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>2</categoryId>
+                <url>https://vladexecute.ru/services/automation</url>
+                <description>
+                    Заявка ушла в CRM, клиенту улетело письмо, отчёт собрался по расписанию —
+                    без вашего участия. Собираю воронки в n8n: триггер (форма, webhook, расписание) →
+                    обработка по правилам → действия (таблицы, почта, мессенджеры).
+                    Один раз настроил — работает 24/7 без сбоев.
+                </description>
+                <shortDescription>
+                    Рутину ведёт система — вы только проверяете результат
+                </shortDescription>
+                <param name="Технологии">n8n</param>
+                <param name="Триггеры">Webhook, расписание, форма, событие</param>
+                <param name="Действия">CRM, Google Sheets, email, Telegram</param>
+                <param name="Режим работы">24/7</param>
+            </offer>
+
+            <!-- Автопостинг -->
+            <offer id="5" available="true">
+                <name>Автопостинг в соцсети</name>
+                <vendor>vlad.execute(_)</vendor>
+                <price>4000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>2</categoryId>
+                <url>https://vladexecute.ru/services/autoposting</url>
+                <description>
+                    Идея или источник → AI генерирует текст и картинку → вы проверяете одной кнопкой →
+                    публикация в Telegram, VK, Дзен. Кросс-постинг в несколько каналов одновременно.
+                    Вместо часа на пост — пара минут на контроль.
+                </description>
+                <shortDescription>
+                    Контент по расписанию: AI пишет и рисует, вы только нажимаете «опубликовать»
+                </shortDescription>
+                <param name="Платформы">Telegram, VK, Дзен</param>
+                <param name="Технологии">n8n, Python</param>
+                <param name="Функции">AI-генерация текста и изображений, кросс-постинг, массовый постинг в 50+ групп</param>
+            </offer>
+
+            <!-- Парсинг -->
+            <offer id="6" available="true">
+                <name>Парсинг данных</name>
+                <vendor>vlad.execute(_)</vendor>
+                <price>10000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>3</categoryId>
+                <url>https://vladexecute.ru/services/parsing</url>
+                <description>
+                    Цены конкурентов, контакты, новости, посты из каналов — собираю откуда нужно
+                    и отдаю в удобном виде: Google Sheets, CSV, база. Запуск по кнопке или по расписанию.
+                    Мониторинг с уведомлениями в Telegram. Обход базовых защит (Cloudflare, JS-рендеринг).
+                </description>
+                <shortDescription>
+                    Данные из сайтов и каналов — в таблицу или базу по расписанию
+                </shortDescription>
+                <param name="Технологии">Python, Playwright</param>
+                <param name="Источники">Сайты, маркетплейсы, Telegram-каналы и чаты</param>
+                <param name="Выгрузка">Google Sheets, CSV, PostgreSQL</param>
+            </offer>
+
+            <!-- Скрипты -->
+            <offer id="7" available="true">
+                <name>Python-скрипты под задачу</name>
+                <vendor>vlad.execute(_)</vendor>
+                <price>4000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>3</categoryId>
+                <url>https://vladexecute.ru/services/scripts</url>
+                <description>
+                    Когда не нужен целый воркфлоу или бот — пишу скрипт на Python под одну задачу.
+                    Обработка и конвертация файлов, генерация отчётов из таблиц и баз,
+                    массовая выгрузка или рассылка. Запуск вручную одной кнопкой или по расписанию (cron).
+                    С комментариями и инструкцией.
+                </description>
+                <shortDescription>
+                    Точечный код под задачу: файлы, отчёты, конвертация — без лишних систем
+                </shortDescription>
+                <param name="Технологии">Python</param>
+                <param name="Функции">Конвертация файлов (PDF, Excel, CSV), отчёты, массовые операции</param>
+                <param name="Запуск">По кнопке или расписанию (cron)</param>
+                <param name="Комплектация">Код + инструкция по запуску</param>
+            </offer>
+
+            <!-- Интеграции -->
+            <offer id="8" available="true">
+                <name>Интеграции между сервисами</name>
+                <vendor>vlad.execute(_)</vendor>
+                <price>5000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>3</categoryId>
+                <url>https://vladexecute.ru/services/integrations</url>
+                <description>
+                    CRM не видит заявки из мессенджера? Таблица не обновляется из базы?
+                    Собираю мосты между системами: Telegram, 1C, Bitrix, Google Sheets, любые API.
+                    Двусторонняя синхронизация или односторонняя выгрузка — под вашу схему работы.
+                    Документация к каждой интеграции.
+                </description>
+                <shortDescription>
+                    Связываю сервисы: данные текут туда, куда нужно, без ручного переноса
+                </shortDescription>
+                <param name="Технологии">Webhook, REST API</param>
+                <param name="Системы">Telegram / MAX / VK, CRM, Bitrix, 1C, Google Sheets</param>
+                <param name="Синхронизация">Двусторонняя или односторонняя</param>
+                <param name="Комплектация">Интеграция + документация</param>
+            </offer>
+
+        </offers>
+    </shop>
+</yml_catalog>
