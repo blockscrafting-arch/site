@@ -30,7 +30,6 @@ problem: "Запрос: бот, чтобы студенты кидали фот�
 featured: true
 draft: false
 productLogo: "/images/cases/scantextpro-logo.png"
-productLink: "https://t.me/ScanTextPro_bot"
 productName: "Scan Text"
 ---
 
