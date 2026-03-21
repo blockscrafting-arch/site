@@ -1,193 +1,79 @@
 ---
 /**
- * Секция «Проблема — Решение»: на мобильных — вертикальная колонка (без горизонтального скролла); с sm — горизонтальный скролл с карточками.
+ * Секция «Знакомо?»: три строки боль → решение.
+ * Сканируется за 3 секунды: зачёркнутая/приглушённая боль, жирное решение.
+ * Никакого горизонтального скролла, никаких карточек.
  */
-import GlitchHeading from '../features/GlitchHeading';
+import Button from '../common/Button.astro';
+
 const items = [
-  { problem: 'Менеджеры тонут в заявках', solution: 'AI-бот квалифицирует и распределяет за секунды', icon: 'inbox' },
-  { problem: 'Рутина съедает часы каждый день', solution: 'n8n-воркфлоу делает рутину за вас 24/7', icon: 'clock' },
-  { problem: 'Клиенты ждут ответа часами', solution: 'Чат-бот отвечает мгновенно и передаёт живому менеджеру', icon: 'chat' },
-  { problem: 'Данные размазаны по таблицам и чатам', solution: 'Один бот или агент собирает всё в CRM и отчёты', icon: 'db' },
-  { problem: 'Нужно масштабировать, но руки не доходят', solution: 'Автоматизация под ключ: от брифа до запуска', icon: 'rocket' },
+  {
+    problem: 'Менеджеры тонут в заявках',
+    solution: 'Бот сам квалифицирует заявки',
+  },
+  {
+    problem: 'Рутина съедает 20+ часов в неделю',
+    solution: 'Автоматизация делает это 24/7',
+  },
+  {
+    problem: 'Клиенты ждут ответа часами',
+    solution: 'Бот отвечает за 5 секунд',
+  },
 ];
 ---
 
-<section class="py-20 sm:py-28 overflow-hidden relative" aria-labelledby="problem-solution-heading">
-  <div class="problem-solution-header mb-12 px-4 sm:px-6 text-center">
-    <div class="relative w-full max-w-3xl mx-auto mb-4">
-      <!-- SVG: глаза. Контекст — вся ширина; sm+ — справа -->
-      <div class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.15] w-48 h-48 left-1/2 -translate-x-1/2 top-0 -translate-y-[55%] sm:w-84 sm:h-84 sm:left-auto sm:right-0 sm:translate-x-[20%] sm:top-1/2 sm:-translate-y-1/2" aria-hidden="true">
-        <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" stroke="currentColor">
-          <g class="animate-blink" style="transform-origin: 100px 100px;">
-            <ellipse cx="65" cy="100" rx="30" ry="45" stroke-width="6" fill="var(--color-bg)" />
-            <ellipse cx="135" cy="100" rx="30" ry="45" stroke-width="6" fill="var(--color-bg)" />
-            <g class="animate-eyes-look">
-              <circle cx="55" cy="100" r="14" fill="currentColor" />
-              <circle cx="51" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
-              <circle cx="125" cy="100" r="14" fill="currentColor" />
-              <circle cx="121" cy="95" r="4" fill="var(--color-bg)" stroke="none" />
-            </g>
-          </g>
-        </svg>
-      </div>
-      <div class="flex justify-center">
-        <h2 id="problem-solution-heading" class="reveal problem-solution-heading font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl relative z-10" aria-label="Узнаёте себя?">
-          <GlitchHeading text="Узнаёте себя?" client:visible preset="encrypted" />
-        </h2>
-      </div>
-    </div>
-    <p class="reveal problem-solution-desc mt-4 text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
-      Проблемы, которые я решаю автоматизацией и ботами.
+<section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="problem-solution-heading">
+  <div class="mx-auto max-w-3xl">
+
+    <h2
+      id="problem-solution-heading"
+      class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl"
+    >
+      Знакомо?
+    </h2>
+    <p class="reveal mt-4 text-base sm:text-lg text-[var(--color-text-muted)]" style="animation-delay:.06s">
+      Проблемы, которые я закрываю автоматизацией.
     </p>
-  </div>
-  <div class="problem-solution-wrap relative px-4 sm:px-6">
-    <button
-      type="button"
-      class="problem-solution-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] shadow-lg transition-colors hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
-      aria-label="Предыдущая карточка"
-    >
-      <svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-    </button>
-    <button
-      type="button"
-      class="problem-solution-next absolute right-0 top-1/2 z-10 -translate-y-1/2 hidden sm:flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] shadow-lg transition-colors hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
-      aria-label="Листать вправо"
-    >
-      <svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-    </button>
-    <div class="problem-solution-track flex flex-col gap-4 max-w-xl mx-auto sm:max-w-none sm:mx-0 sm:flex-row sm:gap-6 sm:pb-4 sm:pl-14 sm:pr-14 sm:overflow-x-auto sm:snap-x sm:snap-mandatory scrollbar-hide sm:cursor-grab" style="scrollbar-width: none; -ms-overflow-style: none;" data-horizontal-scroll>
-    {items.map((item, i) => (
-      <article
-        class="problem-solution-card w-full sm:flex-shrink-0 sm:w-[380px] sm:snap-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden shadow-lg"
-        style={`animation-delay: ${i * 0.1}s`}
-      >
-        {/* Зона БОЛИ */}
-        <div class="px-5 pt-5 pb-4" style="background: rgba(239,68,68,0.06);">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full" style="background: rgba(239,68,68,0.18);" aria-hidden="true">
-              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round">
-                <line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/>
+
+    <ul class="reveal-stagger mt-10 sm:mt-14" role="list">
+      {items.map((item) => (
+        <li class="problem-solution-row flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8 py-6 sm:py-7 border-b border-[var(--color-border)] last:border-0">
+          <!-- Боль -->
+          <p class="flex items-center gap-3 sm:flex-1 text-base sm:text-xl text-[var(--color-text-muted)]">
+            <span
+              class="inline-flex flex-shrink-0 h-5 w-5 items-center justify-center rounded-full"
+              style="background: rgba(239,68,68,0.14);"
+              aria-hidden="true"
+            >
+              <svg class="h-2.5 w-2.5" viewBox="0 0 10 10" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round">
+                <line x1="2" y1="2" x2="8" y2="8"/>
+                <line x1="8" y1="2" x2="2" y2="8"/>
               </svg>
             </span>
-            <span class="text-[10px] uppercase tracking-widest font-semibold" style="color: #f87171; letter-spacing: 0.12em;">Боль</span>
-          </div>
-          <p class="text-[var(--color-text-muted)] text-sm leading-snug">{item.problem}</p>
-        </div>
+            {item.problem}
+          </p>
 
-        {/* Разделитель-трансформация */}
-        <div class="relative flex items-center px-5" style="height: 32px; background: linear-gradient(to bottom, rgba(239,68,68,0.04), rgba(16,185,129,0.06));">
-          <div class="flex-1 h-px" style="background: linear-gradient(to right, rgba(248,113,113,0.3), transparent 40%, transparent 60%, rgba(16,185,129,0.4))"></div>
-          <span class="mx-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-[var(--color-accent)] bg-[var(--color-bg)]" aria-hidden="true">
-            <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 6h8M7 3l3 3-3 3"/>
-            </svg>
-          </span>
-          <div class="flex-1 h-px" style="background: linear-gradient(to right, transparent, rgba(16,185,129,0.3))"></div>
-        </div>
+          <!-- Стрелка — только на десктопе -->
+          <span class="hidden sm:block text-[var(--color-accent)] font-bold text-2xl flex-shrink-0 select-none" aria-hidden="true">→</span>
 
-        {/* Зона РЕШЕНИЯ */}
-        <div class="px-5 pt-4 pb-5" style="background: rgba(16,185,129,0.05);">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent-muted)] text-[var(--color-accent)] animate-float-icon" aria-hidden="true">
-              {item.icon === 'inbox' && (<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>)}
-              {item.icon === 'clock' && (<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>)}
-              {item.icon === 'chat' && (<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>)}
-              {item.icon === 'db' && (<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>)}
-              {item.icon === 'rocket' && (<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>)}
+          <!-- Решение -->
+          <p class="flex items-center gap-3 sm:flex-1 font-semibold text-base sm:text-xl text-[var(--color-text)] pl-8 sm:pl-0">
+            <span
+              class="inline-flex sm:hidden flex-shrink-0 h-5 w-5 items-center justify-center rounded-full text-[var(--color-accent)] flex-shrink-0"
+              aria-hidden="true"
+            >
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 6h8M7 3l3 3-3 3"/>
+              </svg>
             </span>
-            <span class="text-[10px] uppercase tracking-widest font-semibold text-[var(--color-accent)]" style="letter-spacing: 0.12em;">Решение</span>
-          </div>
-          <p class="text-[var(--color-text)] font-semibold text-sm leading-snug">{item.solution}</p>
-        </div>
-      </article>
-    ))}
-    </div>
-    <div class="problem-solution-bar hidden sm:block mt-2 h-1 w-full max-w-6xl mx-auto overflow-hidden rounded-full bg-[var(--color-surface-muted)]" role="presentation">
-      <div class="problem-solution-bar-fill h-full rounded-full bg-[var(--color-accent)] transition-[width] duration-150" style="width: 0%"></div>
+            {item.solution}
+          </p>
+        </li>
+      ))}
+    </ul>
+
+    <div class="reveal mt-10 sm:mt-12" style="animation-delay:.2s">
+      <Button href="/contact" variant="outline" dataYmGoal="cta_problems">Хочу решить эти задачи</Button>
     </div>
   </div>
 </section>
-
-<script>
-  // Горизонтальный скролл только с sm: на мобильных карточки в колонке, без листания
-  const track = document.querySelector('[data-horizontal-scroll]');
-  const useHorizontal = () => window.matchMedia('(min-width: 640px)').matches;
-  if (track) {
-    track.addEventListener('wheel', function (e) {
-      if (!useHorizontal()) return;
-      const canScrollLeft = track.scrollLeft > 0;
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      const canScrollRight = track.scrollLeft < maxScroll;
-      if (e.deltaY !== 0 && (e.deltaY > 0 ? canScrollRight : canScrollLeft)) {
-        track.scrollLeft += e.deltaY;
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    let isDown = false, startX, startScrollLeft;
-    track.addEventListener('mousedown', function (e) {
-      if (e.button !== 0 || !useHorizontal()) return;
-      isDown = true;
-      startX = e.clientX;
-      startScrollLeft = track.scrollLeft;
-      track.classList.add('cursor-grabbing', 'select-none');
-      track.classList.remove('cursor-grab');
-    });
-    function stopDrag() {
-      isDown = false;
-      track?.classList.remove('cursor-grabbing', 'select-none');
-      track?.classList.add('cursor-grab');
-    }
-    window.addEventListener('mouseleave', stopDrag);
-    window.addEventListener('mouseup', stopDrag);
-    track.addEventListener('mousemove', function (e) {
-      if (!isDown) return;
-      e.preventDefault();
-      track.scrollLeft = startScrollLeft - (e.clientX - startX);
-    });
-
-    // Кнопки влево/вправо и полоска прогресса
-    const prevBtn = document.querySelector('.problem-solution-prev');
-    const nextBtn = document.querySelector('.problem-solution-next');
-    const barFill = document.querySelector('.problem-solution-bar-fill');
-    const step = () => {
-      if (!useHorizontal()) return;
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      if (prevBtn) {
-        prevBtn.disabled = track.scrollLeft <= 0;
-      }
-      if (nextBtn) {
-        nextBtn.disabled = maxScroll <= 0 || track.scrollLeft >= maxScroll - 1;
-      }
-      if (barFill) {
-        const pct = maxScroll > 0 ? (track.scrollLeft / maxScroll) * 100 : 0;
-        barFill.style.width = pct + '%';
-      }
-    };
-    step();
-    track.addEventListener('scroll', step);
-    window.matchMedia('(min-width: 640px)').addEventListener('change', () => { step(); });
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        track.scrollBy({ left: -track.clientWidth * 0.85, behavior: 'smooth' });
-      });
-    }
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        track.scrollBy({ left: track.clientWidth * 0.85, behavior: 'smooth' });
-      });
-    }
-    const bar = document.querySelector('.problem-solution-bar');
-    if (bar && barFill) {
-      bar.addEventListener('click', (e) => {
-        const maxScroll = track.scrollWidth - track.clientWidth;
-        if (maxScroll <= 0) return;
-        const rect = bar.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const pct = Math.max(0, Math.min(1, x / rect.width));
-        track.scrollTo({ left: pct * maxScroll, behavior: 'smooth' });
-      });
-      bar.classList.add('cursor-pointer');
-    }
-  }
-</script>

@@ -1,41 +1,52 @@
 ---
 /**
- * Финальный CTA на главной. Минималистичный glow-блок. CSS reveal, без GSAP.
+ * Финальный CTA: конкретный заголовок, Telegram как первый призыв.
+ * Trust-строка повторяет ключевые возражения. CSS reveal, без GSAP.
  */
 import Button from '../common/Button.astro';
 import { site } from '../../utils/site';
 ---
 
-<section class="py-24 sm:py-32 px-4 sm:px-6" aria-labelledby="cta-heading">
+<section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="cta-heading">
   <div class="reveal mx-auto max-w-2xl text-center">
     <div class="relative rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-10 lg:p-14 overflow-hidden">
       <!-- Glow accent фон -->
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] rounded-full bg-[var(--color-accent)]/10 blur-[80px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] rounded-full bg-[var(--color-accent)]/10 blur-[80px]"></div>
       </div>
 
-      <h2 id="cta-heading" class="relative flex flex-wrap items-center justify-center gap-2 text-center font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl md:text-3xl lg:text-4xl">
-        <span class="shrink-0 animate-float-icon flex items-center justify-center">
-          <svg class="h-8 w-8 svg-icon-reveal text-[var(--color-accent)] sm:h-9 sm:w-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-          </svg>
-        </span>
-        Готовы снять рутину с плеч?
+      <h2
+        id="cta-heading"
+        class="relative font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl"
+      >
+        Опишите задачу — подберу решение за день
       </h2>
-      <p class="relative mt-4 text-[var(--color-text-muted)]">
-        Опишите задачу — подберу решение и назову сроки. Отвечу в течение дня.
+
+      <!-- Trust-строка -->
+      <p class="relative mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm sm:text-base text-[var(--color-text-muted)]">
+        <span>13 проектов</span>
+        <span class="text-[var(--color-border)] hidden sm:inline" aria-hidden="true">·</span>
+        <span>от 5 000 ₽</span>
+        <span class="text-[var(--color-border)] hidden sm:inline" aria-hidden="true">·</span>
+        <span>отвечаю в течение дня</span>
       </p>
-      <div class="relative mt-10 flex flex-wrap items-center justify-center gap-4">
-        <Button href="/contact" variant="primary" dataYmGoal="cta_contact">Обсудить задачу</Button>
+
+      <div class="relative mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <!-- Telegram — primary: наиболее конвертирующий канал -->
         <a
           href={site.tgChannel}
           target="_blank"
           rel="noopener noreferrer"
           data-ym-goal="telegram_click"
-          class="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+          class="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--color-accent)]/90 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
         >
+          <!-- Telegram SVG icon -->
+          <svg class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.16 14.25l-2.97-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.666.336z"/>
+          </svg>
           Написать в Telegram
         </a>
+        <Button href="/contact" variant="outline" dataYmGoal="cta_contact">Отправить заявку</Button>
       </div>
     </div>
   </div>

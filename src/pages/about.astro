@@ -1,13 +1,13 @@
 ---
 /**
- * Страница «Обо мне»: одна колонка, цитата-манифест, pill-теги стека.
- * Без сторонних иллюстраций — текст и типографика как визуал.
+ * Страница «Обо мне»: фото, цифры-блок, отзывы с Kwork, стек.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/common/Button.astro';
+import { Image } from 'astro:assets';
+import vladPortrait from '../assets/vlad-portrait.png';
 import { site } from '../utils/site';
 
-/** Стек: иконки в стиле главной (SVG), без стоковых эмодзи. */
 const stack = [
   { name: 'Telegram', icon: 'chat' },
   { name: 'n8n', icon: 'flow' },
@@ -24,68 +24,133 @@ const stack = [
   { name: 'RAG', icon: 'search' },
   { name: 'webhook', icon: 'link' },
 ];
+
+const metrics = [
+  { value: '13+', label: 'реализованных проектов' },
+  { value: '100%', label: 'положительных отзывов' },
+  { value: 'от 4 000 р', label: 'стоимость проектов' },
+];
+
+const reviews = [
+  {
+    author: 'elena_bukina',
+    project: 'Бот на Python с OCR',
+    text: 'Редкое сочетание профессионализма и скорости выполнения. Рекомендую!',
+  },
+  {
+    author: 'Nsltd',
+    project: 'Система парсинга',
+    text: 'Идеальная работа! Тот случай, один на сотню, когда человек делом подтверждает все свои слова.',
+  },
+  {
+    author: 'postlunapark',
+    project: 'Автопостинг N8N: Telegram + VK + Дзен',
+    text: 'Теперь все время могу потратить на более важные задачи, чем руками всё постить.',
+  },
+  {
+    author: 'wildtorneo',
+    project: 'Автоматизация email-рассылки',
+    text: 'Всё было сделано профессионально, быстро и именно так как нужно!',
+  },
+];
 ---
 
 <BaseLayout
-  title="Обо мне — vlad.execute(_)"
-  description="Влад — разработчик и автоматизатор. Боты и Mini Apps в Telegram, MAX, VK; AI-агенты, n8n, Python."
+  title="Обо мне — Владислав Попович — vlad.execute(_)"
+  description="Владислав Попович — разработчик AI-агентов, Telegram-ботов и автоматизации. 13+ проектов, 100% положительных отзывов. От 4 000 р."
 >
-  <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 relative">
-    <div class="relative w-full mb-4">
-      <div class="relative flex justify-center sm:justify-start mb-2">
-        <h1 class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl relative z-10">
-          Обо мне
+  <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+
+    <!-- Hero: фото + заголовок -->
+    <div class="reveal flex flex-col sm:flex-row items-start gap-8 sm:gap-12">
+      <!-- Фото -->
+      <div class="shrink-0">
+        <Image
+          src={vladPortrait}
+          alt="Владислав Попович — разработчик и автоматизатор"
+          width={160}
+          height={200}
+          format="webp"
+          quality={80}
+          class="rounded-2xl object-cover shadow-lg grayscale w-32 h-40 sm:w-40 sm:h-52"
+        />
+      </div>
+      <!-- Текст -->
+      <div>
+        <h1 class="font-display text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl md:text-5xl">
+          Владислав Попович
         </h1>
-      </div>
-    </div>
-
-    <!-- Цитата-манифест: декоративный SVG справа от цитаты -->
-    <div class="relative mt-10">
-      <div class="absolute -z-10 pointer-events-none text-[var(--color-accent)] opacity-[0.22] w-48 h-48 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 sm:left-auto sm:right-0 sm:translate-x-[15%] sm:w-64 sm:h-64 sm:top-1/2 sm:-translate-y-[65%]" aria-hidden="true">
-        <svg class="w-full h-full animate-float-icon" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="100" cy="85" r="25" />
-          <path d="M 40 180 C 40 120 160 120 160 180" />
-        </svg>
-      </div>
-      <blockquote class="reveal relative z-10 border-l-4 border-[var(--color-accent)] pl-6 py-2 min-h-[100px] flex items-center pr-24 sm:pr-40" style="animation-delay:.08s">
-        <p class="text-xl font-medium text-[var(--color-text)] sm:text-2xl leading-relaxed italic">
-          «<span id="typewriter-quote"></span>»
+        <p class="mt-3 text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+          Разработчик и автоматизатор. Собираю системы под ключ — от идеи до запуска: Telegram-боты и Mini Apps, AI-агенты, n8n-воронки, парсеры и интеграции.
         </p>
-      </blockquote>
+        <p class="mt-2 text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+          Работаю с бизнесом и частными заказчиками по РФ. Ответ в течение дня.
+        </p>
+      </div>
     </div>
 
-    <!-- Основной текст -->
-    <div class="reveal mt-12 space-y-6 text-[var(--color-text-muted)] text-lg leading-relaxed" style="animation-delay:.14s">
-      <p>
-        Я Влад — разработчик и автоматизатор. Собираю системы под ключ — от идеи до запуска на вашем сервере. Боты и Mini Apps в Telegram, MAX и VK; AI-агенты, парсинг, интеграции с CRM и таблицами.
-      </p>
-      <p>
-        Работаю на результат: от идеи до работающей системы.
-      </p>
+    <!-- Цифры -->
+    <div class="reveal mt-10 grid grid-cols-3 gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 text-center sm:p-8" style="animation-delay:.1s">
+      {metrics.map((m) => (
+        <div>
+          <p class="text-xl sm:text-2xl font-black text-[var(--color-accent)]">{m.value}</p>
+          <p class="mt-1 text-xs sm:text-sm text-[var(--color-text-muted)] leading-tight">{m.label}</p>
+        </div>
+      ))}
     </div>
+
+    <!-- Манифест (короткая цитата) -->
+    <blockquote class="reveal mt-10 border-l-4 border-[var(--color-accent)] pl-6 py-2" style="animation-delay:.14s">
+      <p class="text-lg font-medium text-[var(--color-text)] sm:text-xl leading-relaxed italic">
+        «Делаю так, чтобы рутину за вас делали боты и автоматизация — а вы занимались тем, что реально приносит деньги.»
+      </p>
+    </blockquote>
 
     <!-- Кому помогаю -->
-    <div class="reveal mt-14 grid gap-4 sm:grid-cols-2" style="animation-delay:.2s">
+    <div class="reveal mt-12 grid gap-4 sm:grid-cols-2" style="animation-delay:.18s">
       <div class="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-glow-sm">
-        <span class="inline-block text-2xl text-[var(--color-accent)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
-        <h2 class="mt-2 font-display text-lg font-semibold text-[var(--color-text)]">Бизнесу</h2>
-        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Меньше ручных операций, меньше штат на рутине. Заявки, квалификация, отчёты — в автоматизацию. Предсказуемый процесс и экономия.</p>
+        <span class="inline-block text-xl text-[var(--color-accent)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+        <h2 class="mt-2 font-display text-base font-semibold text-[var(--color-text)]">Бизнесу</h2>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Меньше ручных операций — предсказуемый процесс. Заявки, квалификация, отчёты — в автоматизацию.</p>
       </div>
       <div class="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-glow-sm">
-        <span class="inline-block text-2xl text-[var(--color-accent)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
-        <h2 class="mt-2 font-display text-lg font-semibold text-[var(--color-text)]">Основателям и командам</h2>
-        <p class="mt-2 text-sm text-[var(--color-text-muted)]">«Цифровой экзоскелет»: объём работы отдела — в одиночку или малой командой. Боты и агенты как усиление.</p>
+        <span class="inline-block text-xl text-[var(--color-accent)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+        <h2 class="mt-2 font-display text-base font-semibold text-[var(--color-text)]">Основателям и командам</h2>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">«Цифровой экзоскелет»: объём работы отдела в одиночку или малой командой. Боты и агенты как усиление.</p>
       </div>
     </div>
 
     <!-- Канал -->
-    <p class="reveal mt-10 text-[var(--color-text-muted)]" style="animation-delay:.24s">
-      В канале <a href={site.tgChannelContent} data-ym-goal="telegram_channel_click" class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelContentHandle}</a> разбираю кейсы, баги и решения — без рекламы, с пользой для тех, кто сам внедряет автоматизацию.
+    <p class="reveal mt-8 text-[var(--color-text-muted)]" style="animation-delay:.22s">
+      В канале <a href={site.tgChannelContent} data-ym-goal="telegram_channel_click" class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelContentHandle}</a> — кейсы, баги и решения без рекламы.
     </p>
 
-    <!-- Стек: pill-теги -->
+    <!-- Отзывы -->
+    <section class="reveal mt-14" aria-labelledby="reviews-heading" style="animation-delay:.26s">
+      <h2 id="reviews-heading" class="font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl">
+        Отзывы клиентов
+      </h2>
+      <p class="mt-1 text-sm text-[var(--color-text-muted)]">С Kwork — реальные заказы, реальные оценки.</p>
+      <ul class="mt-6 grid gap-4 sm:grid-cols-2" role="list">
+        {reviews.map((r) => (
+          <li>
+            <blockquote class="h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 flex flex-col">
+              <p class="flex-1 text-sm text-[var(--color-text)] leading-relaxed">«{r.text}»</p>
+              <footer class="mt-4 border-t border-[var(--color-border)] pt-3">
+                <cite class="not-italic">
+                  <span class="block text-sm font-semibold text-[var(--color-text)]">{r.author}</span>
+                  <span class="text-xs text-[var(--color-text-muted)]">{r.project}</span>
+                </cite>
+              </footer>
+            </blockquote>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Стек -->
     <section class="reveal mt-14" aria-labelledby="stack-heading" style="animation-delay:.3s">
-      <h2 id="stack-heading" class="font-display text-lg font-semibold text-[var(--color-text)]">
+      <h2 id="stack-heading" class="font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl">
         С чем работаю
       </h2>
       <ul class="mt-5 flex flex-wrap gap-3" role="list">
@@ -121,18 +186,23 @@ const stack = [
       </a>
     </div>
   </div>
+
+  <!-- JSON-LD: Person + Review -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://vladexecute.ru/#person",
+    "name": "Владислав Попович",
+    "jobTitle": "Разработчик AI-агентов и Telegram-ботов",
+    "url": "https://vladexecute.ru",
+    "image": "https://vladexecute.ru/images/vlad-portrait.png",
+    "sameAs": ["https://t.me/goutach", "https://kwork.ru/user/goutach"],
+    "description": "Разработчик и автоматизатор: Telegram-боты, AI-агенты, n8n, Python. 13+ проектов.",
+    "review": reviews.map((r) => ({
+      "@type": "Review",
+      "reviewBody": r.text,
+      "author": { "@type": "Person", "name": r.author },
+      "itemReviewed": { "@type": "ProfessionalService", "name": "vlad.execute(_)" },
+    })),
+  })} />
 </BaseLayout>
-
-<script>
-  import TypeIt from 'typeit';
-
-  document.addEventListener('DOMContentLoaded', () => {
-    new TypeIt('#typewriter-quote', {
-      strings: ['Делаю так, чтобы рутину за вас делали боты и воркфлоу, а вы — только то, что реально приносит деньги.'],
-      speed: 15,
-      waitUntilVisible: true,
-      cursor: true,
-      lifeLike: true
-    }).go();
-  });
-</script>

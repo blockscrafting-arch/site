@@ -1,0 +1,64 @@
+---
+/**
+ * Sticky CTA для мобильных: появляется после скролла из Hero,
+ * исчезает когда видна финальная CTA-секция. Thumb zone.
+ * sm:hidden — на десктопе не показывается.
+ */
+import { site } from '../../utils/site';
+---
+
+<div
+  id="sticky-cta-mobile"
+  class="fixed bottom-0 left-0 right-0 z-40 sm:hidden translate-y-full transition-transform duration-300 ease-in-out"
+  aria-hidden="true"
+>
+  <div class="mx-4 mb-4">
+    <a
+      href={site.tgChannel}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-ym-goal="sticky_cta_telegram"
+      class="flex items-center justify-center gap-2 w-full rounded-xl bg-[var(--color-accent)] px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[var(--color-accent)]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+    >
+      <svg class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c-.242-.213-.054-.333-.373-.12L7.16 14.25l-2.97-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.666.336z"/>
+      </svg>
+      Написать в Telegram
+    </a>
+  </div>
+</div>
+
+<script>
+  /**
+   * Показываем sticky CTA после скролла на 60% высоты viewport (прошли hero).
+   * Скрываем когда финальный CTA (#cta-heading) входит в зону видимости.
+   */
+  function initStickyCta() {
+    const cta = document.getElementById('sticky-cta-mobile');
+    if (!cta) return;
+
+    const finalCtaSection = document.getElementById('cta-heading')?.closest('section') as HTMLElement | null;
+    let finalCtaVisible = false;
+    const scrollThreshold = window.innerHeight * 0.6;
+
+    const update = () => {
+      const shouldShow = window.scrollY > scrollThreshold && !finalCtaVisible;
+      cta.classList.toggle('translate-y-full', !shouldShow);
+      cta.toggleAttribute('aria-hidden', !shouldShow);
+    };
+
+    if (finalCtaSection) {
+      const io = new IntersectionObserver((entries) => {
+        finalCtaVisible = entries[0]?.isIntersecting ?? false;
+        update();
+      }, { threshold: 0.3 });
+      io.observe(finalCtaSection);
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  initStickyCta();
+  document.addEventListener('astro:after-swap', initStickyCta);
+</script>

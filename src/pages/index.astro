@@ -2,26 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/sections/Hero.astro';
 import ProblemSolution from '../components/sections/ProblemSolution.astro';
-import ServicesSection from '../components/sections/ServicesSection.astro';
 import CasesPreview from '../components/sections/CasesPreview.astro';
 import ProcessTimeline from '../components/sections/ProcessTimeline.astro';
-import TrustSection from '../components/sections/TrustSection.astro';
-import CtaChannel from '../components/sections/CtaChannel.astro';
 import FaqSection from '../components/sections/FaqSection.astro';
 import CtaSection from '../components/sections/CtaSection.astro';
+import StickyCta from '../components/features/StickyCta.astro';
 ---
 
 <BaseLayout
-  title="vlad.execute(_) — Разработка и автоматизация"
-  description="Экономлю время и бюджет бизнеса: боты, AI-агенты, n8n. Кейсы с цифрами. От идеи до запуска — отвечу в течение дня."
+  title="vlad.execute(_) — Автоматизация и AI-боты под ключ"
+  description="Telegram-боты, AI-агенты и автоматизация под ключ. 13 реализованных проектов. От идеи до запуска за 1–2 недели — отвечу в течение дня."
 >
   <Hero />
   <ProblemSolution />
-  <ServicesSection />
   <CasesPreview />
   <ProcessTimeline />
-  <TrustSection />
-  <CtaChannel />
   <FaqSection />
   <CtaSection />
+  <StickyCta />
 </BaseLayout>

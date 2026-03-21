@@ -1,0 +1,104 @@
+---
+/**
+ * Обзорная страница услуг: компактный каталог 8 карточек с ценами и CTA.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/common/Button.astro';
+import { SERVICES } from '../../data/services';
+---
+
+<BaseLayout
+  title="Услуги и цены — vlad.execute(_)"
+  description="Telegram-боты, AI-агенты, Mini Apps, автоматизация, парсинг, автопостинг, скрипты и интеграции. Готовые решения от 4 000 р. Реальные проекты, реальные цифры."
+>
+  <!-- Hero -->
+  <section class="pt-24 pb-8 sm:pt-32 sm:pb-10 px-4 sm:px-6" aria-labelledby="services-hero-h1">
+    <div class="mx-auto max-w-3xl">
+      <h1
+        id="services-hero-h1"
+        class="reveal font-display text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl md:text-5xl"
+      >
+        Услуги и цены
+      </h1>
+      <p class="reveal mt-3 text-lg text-[var(--color-text-muted)] leading-snug" style="animation-delay:.06s">
+        Готовые решения от 4 000 р. Результат — не обещания.
+      </p>
+    </div>
+  </section>
+
+  <!-- 8-карточный каталог -->
+  <section class="px-4 sm:px-6 pb-16 sm:pb-20" aria-label="Каталог услуг">
+    <div class="mx-auto max-w-5xl">
+      <ul
+        class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 reveal-stagger"
+        role="list"
+      >
+        {SERVICES.map((svc, i) => (
+          <li>
+            <a
+              href={`/services/${svc.id}`}
+              class="group flex flex-col h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-glow-sm"
+            >
+              <h2 class="font-display font-bold text-base text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
+                {svc.title}
+              </h2>
+              <p class="mt-2 flex-1 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                {svc.pitch}
+              </p>
+              <div class="mt-5 flex items-center justify-between gap-2">
+                <span class="text-base font-black text-[var(--color-accent)]">
+                  {svc.price}
+                </span>
+                <span class="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-accent)] transition-colors flex items-center gap-1">
+                  Подробнее
+                  <span class="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+                </span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA под каталогом -->
+      <div class="reveal mt-14 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 sm:p-10 text-center" style="animation-delay:.2s">
+        <p class="font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl">
+          Не нашли свою задачу?
+        </p>
+        <p class="mt-2 text-[var(--color-text-muted)]">
+          Опишите — подберу решение и назову цену за один день.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <Button href="https://t.me/goutach" variant="primary" dataYmGoal="cta_telegram" external>
+            Написать в Telegram
+          </Button>
+          <Button href="/contact" variant="outline" dataYmGoal="cta_contact">
+            Отправить заявку
+          </Button>
+        </div>
+        <p class="mt-4 text-sm text-[var(--color-text-muted)]">
+          13 проектов
+          <span class="mx-2 opacity-40" aria-hidden="true">·</span>
+          от 4 000 р
+          <span class="mx-2 opacity-40" aria-hidden="true">·</span>
+          ответ в течение дня
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Структурированные данные: каталог услуг -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Услуги vlad.execute(_)",
+    "description": "Telegram-боты, AI-агенты, Mini Apps, автоматизация, парсинг, автопостинг, скрипты и интеграции.",
+    "numberOfItems": SERVICES.length,
+    "itemListElement": SERVICES.map((svc, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": svc.title,
+      "description": svc.seoDescription,
+      "url": `https://vladexecute.ru/services/${svc.id}`,
+    })),
+  })} />
+</BaseLayout>

@@ -25,6 +25,8 @@ const payerShort = site.legal.payerName.split(' ').map((p, i) => (i === 0 ? p : 
     </div>
     <p class="mt-4 text-center text-sm text-[var(--color-text-muted)]">
       Telegram: <a href={site.tgChannel} data-ym-goal="telegram_click" class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelHandle}</a>
+      <span class="mx-2 opacity-40" aria-hidden="true">·</span>
+      Канал: <a href={site.tgChannelContent} data-ym-goal="telegram_channel_click" class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelContentHandle}</a>
     </p>
     <p class="mt-2 text-center text-xs text-[var(--color-text-muted)]">
       Исполнитель: <a href="/legal/requisites" class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded">плательщик НПД {payerShort}</a>

@@ -24,13 +24,13 @@ const featured = cases.slice(0, 4);
         </svg>
       </div>
       <div class="flex justify-center">
-        <h2 id="cases-preview-heading" class="reveal font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl text-center relative z-10">
-          Результаты в деле
+        <h2 id="cases-preview-heading" class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl text-center relative z-10">
+          Результаты, а не обещания
         </h2>
       </div>
     </div>
-    <p class="reveal mt-4 text-center text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
-      Реальные проекты: боты, агенты, автоматизация.
+    <p class="reveal mt-4 text-center text-base sm:text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
+      Реальные проекты: цифры, не слова.
     </p>
 
     <div class="reveal-stagger mt-16 grid gap-4 sm:grid-cols-2">
@@ -59,7 +59,7 @@ const featured = cases.slice(0, 4);
             )}
 
             <h3 class="mt-6 font-display font-semibold text-[var(--color-text)] text-lg">{c.data.title}</h3>
-            <p class="mt-2 text-sm text-[var(--color-text-muted)] line-clamp-2">{c.data.description}</p>
+            <p class="mt-2 text-base text-[var(--color-text-muted)] line-clamp-2">{c.data.description}</p>
 
             {/* Glow при hover */}
             <div class="absolute -bottom-24 -right-24 w-48 h-48 rounded-full bg-[var(--color-accent)]/0 group-hover:bg-[var(--color-accent)]/5 blur-3xl transition-all duration-500 pointer-events-none" aria-hidden="true"></div>
@@ -75,6 +75,7 @@ const featured = cases.slice(0, 4);
         <span class="text-xl font-display font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
           Все кейсы <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
         </span>
+        <span class="mt-2 text-sm text-[var(--color-text-muted)]">13 проектов</span>
         <div class="absolute -bottom-24 -right-24 w-48 h-48 rounded-full bg-[var(--color-accent)]/0 group-hover:bg-[var(--color-accent)]/5 blur-3xl transition-all duration-500 pointer-events-none" aria-hidden="true"></div>
       </a>
     </div>

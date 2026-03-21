@@ -7,14 +7,14 @@ import { useEffect, useRef } from "react";
 // @ts-expect-error — пакет typeit не экспортирует типы в @types
 import TypeIt from "typeit";
 
-/** Фразы для главного экрана: выгода и результат, без воды. */
+/** Фразы для главного экрана: конкретные результаты из реальных кейсов. */
 const PHRASES = [
-  "Рутину — в ноль",
-  "Боты, которые работают за вас",
-  "10+ часов в неделю — обратно вам",
-  "AI вместо трёх менеджеров",
-  "От заявки до сделки — на автопилоте",
-  "Автоматизирую. Вы растёте.",
+  "Личный AI-ассистент",
+  "Контент-завод 24/7",
+  "Бот вместо саппорта",
+  "Автоматизация рутины",
+  "Парсер без выходных",
+  "ИИ-аналитик за вас",
 ];
 
 const OPTIONS = {
@@ -47,9 +47,9 @@ export default function TypewriterHero({ className }: TypewriterHeroProps) {
   return (
     <span
       ref={elRef}
-      className={`min-h-[1.2em] inline-block ${className ?? "text-[var(--color-accent)] font-semibold"}`}
+      className={`min-h-[1.2em] inline-block ${className ?? "text-[var(--color-accent)] font-black"}`}
       aria-live="polite"
-      aria-label="Главный заголовок: рутина в ноль, боты за вас, экономия времени, AI вместо менеджеров, автопилот заявок"
+      aria-label="Разработка на заказ: личный AI-ассистент, контент-завод, боты, автоматизация, парсеры, ИИ-аналитика"
     />
   );
 }

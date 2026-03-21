@@ -4,6 +4,7 @@
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import Button from '../../components/common/Button.astro';
 
 const guides = await getCollection('guides');
 const sorted = [...guides].sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
@@ -58,11 +59,11 @@ const sortedGroups = order.filter((k) => groups.has(k));
         </svg>
       </div>
       <div class="relative flex justify-center sm:justify-start mb-2">
-        <h1 class="guides-page-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl relative z-10">
+        <h1 class="guides-page-title font-display text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl md:text-5xl relative z-10">
           Инструкции
         </h1>
       </div>
-      <p class="mt-2 text-[var(--color-text-muted)] max-w-2xl">
+      <p class="mt-3 text-base sm:text-lg text-[var(--color-text-muted)] max-w-2xl">
         Часть материалов — <strong class="text-[var(--color-text)]">для заказчиков</strong>: что сделать и что подготовить перед стартом. Остальное — технические гайды по настройке и интеграциям.
       </p>
     </div>
@@ -97,13 +98,20 @@ const sortedGroups = order.filter((k) => groups.has(k));
       </section>
     )}
 
+    <!-- CTA под блоком для заказчика -->
+    <div class="reveal mt-8 flex flex-wrap items-center gap-3" style="animation-delay:.1s">
+      <Button href="https://t.me/goutach" variant="primary" dataYmGoal="cta_telegram" external>
+        Остались вопросы? Написать в Telegram
+      </Button>
+    </div>
+
     <div class="mt-10">
       <label for="guides-search" class="sr-only">Поиск по инструкциям</label>
       <input
         id="guides-search"
         type="search"
         placeholder="Найти инструкцию..."
-        class="guides-search w-full max-w-md rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20"
+        class="guides-search w-full max-w-md rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-base text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20"
         autocomplete="off"
       />
     </div>
@@ -120,7 +128,7 @@ const sortedGroups = order.filter((k) => groups.has(k));
             const intro = categoryIntro[catKey];
             return (
               <section aria-labelledby={`guide-cat-${catKey}`} class="guide-cat-section">
-                <h3 id={`guide-cat-${catKey}`} class="text-lg font-display font-semibold text-[var(--color-text)] mb-1">
+                <h3 id={`guide-cat-${catKey}`} class="text-xl font-display font-bold text-[var(--color-text)] mb-2">
                   {label}
                 </h3>
                 {intro && (
