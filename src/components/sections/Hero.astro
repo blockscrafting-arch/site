@@ -1,7 +1,7 @@
 ---
 /**
  * Hero главной: контент по центру, full-bleed marquee внизу.
- * Trust-bar — чистый текст без иконок. Акцент на typewriter.
+ * Trust-bar — flex-wrap чипы: «Ответ в тот же день» выделен как зелёный badge. Акцент на typewriter.
  */
 import Button from '../common/Button.astro';
 import TypewriterHero from '../features/TypewriterHero';
@@ -15,24 +15,30 @@ import TypewriterHero from '../features/TypewriterHero';
   </div>
 
   <!-- Основной контент героя — занимает всё пространство кроме ленты -->
-  <div class="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-16 sm:py-20 sm:px-6 text-center">
-    <h1 class="reveal font-display text-[clamp(2.4rem,8vw,6rem)] font-black tracking-tighter leading-[1.05] min-h-[1.15em] flex items-center justify-center max-w-4xl">
+  <div class="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-8 sm:py-16 sm:px-6 text-center">
+    <h1 class="reveal font-display text-[clamp(2rem,7vw,6rem)] font-black tracking-tighter leading-[1.05] min-h-[1.15em] flex items-center justify-center max-w-4xl w-full">
       <TypewriterHero client:load />
     </h1>
 
-    <div class="reveal mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4" style="animation-delay:.08s;">
+    <div class="reveal mt-6 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4" style="animation-delay:.08s;">
       <Button href="/contact" variant="primary" dataYmGoal="cta_contact">Обсудить задачу</Button>
       <Button href="/cases" variant="ghost" dataYmGoal="cta_cases">Смотреть кейсы</Button>
     </div>
 
-    <!-- Trust-bar: скорость как ключевое УТП -->
-    <p class="reveal mt-6 sm:mt-8 text-sm sm:text-base text-[var(--color-text-muted)]" style="animation-delay:.24s;">
-      MVP за 1–3 дня
-      <span class="mx-3 opacity-40" aria-hidden="true">·</span>
-      от 5 000 ₽
-      <span class="mx-3 opacity-40" aria-hidden="true">·</span>
-      ответ за 1 день
-    </p>
+    <!-- Trust-bar: flex-wrap чипы, «Ответ в тот же день» выделен -->
+    <div class="reveal mt-5 sm:mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:gap-x-4" style="animation-delay:.24s;">
+      <span class="text-xs sm:text-sm text-[var(--color-text-muted)]">MVP за 1–3 дня</span>
+      <span class="h-3.5 w-px bg-[var(--color-border)] hidden sm:block" aria-hidden="true"></span>
+      <span class="text-xs sm:text-sm text-[var(--color-text-muted)]">от 5 000 ₽</span>
+      <span class="h-3.5 w-px bg-[var(--color-border)] hidden sm:block" aria-hidden="true"></span>
+      <span class="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/[0.08] px-2.5 py-0.5 text-xs sm:text-sm font-medium text-[var(--color-accent)]">
+        <svg class="h-3 w-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke-width="2"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7v5l3 2"/>
+        </svg>
+        Ответ в тот же день
+      </span>
+    </div>
   </div>
 
   <!-- Full-bleed marquee strip — снизу, перед следующей секцией -->

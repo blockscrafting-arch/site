@@ -42,17 +42,17 @@ const steps = [
       4 шага до запуска
     </h2>
 
-    <ol class="reveal-stagger mt-12 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" role="list">
+    <ol class="reveal-stagger mt-12 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6" role="list">
       {steps.map((step) => (
-        <li class="relative flex flex-col items-center text-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-7 gap-3 h-full">
+        <li class="relative flex flex-col items-center text-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 sm:p-7 gap-2 sm:gap-3 h-full">
           <!-- Номер шага -->
           <span
-            class="font-display text-4xl sm:text-5xl font-black text-[var(--color-accent)] leading-none select-none"
+            class="font-display text-3xl sm:text-5xl font-black text-[var(--color-accent)] leading-none select-none"
             aria-hidden="true"
           >{step.num}</span>
 
-          <!-- Иконка -->
-          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent-muted)] text-[var(--color-accent)] animate-float-icon" aria-hidden="true">
+          <!-- Иконка — скрыта на мобилке для компактности -->
+          <span class="hidden sm:flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent-muted)] text-[var(--color-accent)] animate-float-icon" aria-hidden="true">
             {step.icon === 'brief' && (
               <svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -76,11 +76,11 @@ const steps = [
           </span>
 
           <!-- Заголовок шага -->
-          <h3 class="font-display font-semibold text-[var(--color-text)] text-base sm:text-lg leading-snug">
+          <h3 class="font-display font-semibold text-[var(--color-text)] text-xs sm:text-lg leading-snug">
             {step.title}
           </h3>
           {step.sub && (
-            <p class="text-xs sm:text-sm text-[var(--color-text-muted)] leading-snug">
+            <p class="text-xs text-[var(--color-text-muted)] leading-snug">
               {step.sub}
             </p>
           )}
