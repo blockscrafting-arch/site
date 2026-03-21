@@ -1,23 +1,35 @@
 ---
 /**
- * Секция «Знакомо?»: три строки боль → решение.
- * Сканируется за 3 секунды: зачёркнутая/приглушённая боль, жирное решение.
+ * Секция «Знакомо?»: 4 строки боль → решение с реальными числами из кейсов.
+ * Каждая строка — отдельная категория услуг.
  * Никакого горизонтального скролла, никаких карточек.
  */
 import Button from '../common/Button.astro';
 
 const items = [
   {
-    problem: 'Менеджеры тонут в заявках',
-    solution: 'Бот сам квалифицирует заявки',
+    problem: '40+ войсов в рабочем чате — слушать это два часа в день',
+    solution: 'AI транскрибирует в текст за секунды',
+    caseSlug: 'voice-to-text',
+    caseMetric: '−100 мин/день',
   },
   {
-    problem: 'Рутина съедает 20+ часов в неделю',
-    solution: 'Автоматизация делает это 24/7',
+    problem: 'Пост в Telegram + VK + Дзен занимает 40 минут редактора',
+    solution: 'AI-конвейер: 2 минуты на проверку и кнопку «опубликовать»',
+    caseSlug: 'ai-content-conveyor',
+    caseMetric: '30–40 мин → 2 мин',
   },
   {
-    problem: 'Клиенты ждут ответа часами',
-    solution: 'Бот отвечает за 5 секунд',
+    problem: 'Покупатель не разобрался со сборкой — поставил 1★ на Wildberries',
+    solution: 'Бот с QR-кодом перехватывает негатив до карточки',
+    caseSlug: 'wb-furniture-bot',
+    caseMetric: '100% перехват негатива',
+  },
+  {
+    problem: 'Поиск заказов: часы скролла, 99% ТЗ — мусор',
+    solution: 'Агент мониторит 24/7 и шлёт только подходящие',
+    caseSlug: 'freelance-radar',
+    caseMetric: '0 ч на ручной поиск',
   },
 ];
 ---
@@ -32,48 +44,61 @@ const items = [
       Знакомо?
     </h2>
     <p class="reveal mt-4 text-base sm:text-lg text-[var(--color-text-muted)]" style="animation-delay:.06s">
-      Проблемы, которые я закрываю автоматизацией.
+      Реальные задачи из реальных проектов — с цифрами.
     </p>
 
     <ul class="reveal-stagger mt-10 sm:mt-14" role="list">
       {items.map((item) => (
-        <li class="problem-solution-row flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8 py-6 sm:py-7 border-b border-[var(--color-border)] last:border-0">
-          <!-- Боль -->
-          <p class="flex items-center gap-3 sm:flex-1 text-base sm:text-xl text-[var(--color-text-muted)]">
-            <span
-              class="inline-flex flex-shrink-0 h-5 w-5 items-center justify-center rounded-full"
-              style="background: rgba(239,68,68,0.14);"
-              aria-hidden="true"
-            >
-              <svg class="h-2.5 w-2.5" viewBox="0 0 10 10" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round">
-                <line x1="2" y1="2" x2="8" y2="8"/>
-                <line x1="8" y1="2" x2="2" y2="8"/>
-              </svg>
-            </span>
-            {item.problem}
-          </p>
+        <li class="problem-solution-row py-6 sm:py-7 border-b border-[var(--color-border)] last:border-0">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8">
+            <!-- Боль -->
+            <p class="flex items-start gap-3 sm:flex-1 text-base sm:text-xl text-[var(--color-text-muted)]">
+              <span
+                class="mt-0.5 inline-flex flex-shrink-0 h-5 w-5 items-center justify-center rounded-full"
+                style="background: rgba(239,68,68,0.14);"
+                aria-hidden="true"
+              >
+                <svg class="h-2.5 w-2.5" viewBox="0 0 10 10" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round">
+                  <line x1="2" y1="2" x2="8" y2="8"/>
+                  <line x1="8" y1="2" x2="2" y2="8"/>
+                </svg>
+              </span>
+              {item.problem}
+            </p>
 
-          <!-- Стрелка — только на десктопе -->
-          <span class="hidden sm:block text-[var(--color-accent)] font-bold text-2xl flex-shrink-0 select-none" aria-hidden="true">→</span>
+            <!-- Стрелка — только на десктопе -->
+            <span class="hidden sm:block text-[var(--color-accent)] font-bold text-2xl flex-shrink-0 select-none pt-0.5" aria-hidden="true">→</span>
 
-          <!-- Решение -->
-          <p class="flex items-center gap-3 sm:flex-1 font-semibold text-base sm:text-xl text-[var(--color-text)] pl-8 sm:pl-0">
-            <span
-              class="inline-flex sm:hidden flex-shrink-0 h-5 w-5 items-center justify-center rounded-full text-[var(--color-accent)] flex-shrink-0"
-              aria-hidden="true"
-            >
-              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 6h8M7 3l3 3-3 3"/>
-              </svg>
-            </span>
-            {item.solution}
-          </p>
+            <!-- Решение + ссылка на кейс -->
+            <div class="sm:flex-1 pl-8 sm:pl-0">
+              <p class="flex items-start gap-3 font-semibold text-base sm:text-xl text-[var(--color-text)]">
+                <span
+                  class="mt-0.5 inline-flex sm:hidden flex-shrink-0 h-5 w-5 items-center justify-center rounded-full text-[var(--color-accent)]"
+                  aria-hidden="true"
+                >
+                  <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 6h8M7 3l3 3-3 3"/>
+                  </svg>
+                </span>
+                {item.solution}
+              </p>
+              <!-- Метрика + ссылка на кейс -->
+              <a
+                href={`/cases/${item.caseSlug}`}
+                class="group mt-2 inline-flex items-center gap-1.5 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
+                aria-label={`Читать кейс`}
+              >
+                <span class="font-medium text-[var(--color-accent)]">{item.caseMetric}</span>
+                <span class="opacity-50 group-hover:opacity-100 transition-opacity">→ кейс</span>
+              </a>
+            </div>
+          </div>
         </li>
       ))}
     </ul>
 
     <div class="reveal mt-10 sm:mt-12" style="animation-delay:.2s">
-      <Button href="/contact" variant="outline" dataYmGoal="cta_problems">Хочу решить эти задачи</Button>
+      <Button href="/contact" variant="outline" dataYmGoal="cta_problems">Хочу решить свою задачу</Button>
     </div>
   </div>
 </section>
