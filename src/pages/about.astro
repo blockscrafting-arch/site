@@ -61,31 +61,54 @@ const reviews = [
 >
   <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
 
-    <!-- Hero: фото + заголовок -->
-    <div class="reveal flex flex-col sm:flex-row items-start gap-8 sm:gap-12">
-      <!-- Фото -->
-      <div class="shrink-0">
-        <Image
-          src={vladPortrait}
-          alt="Владислав Попович — разработчик и автоматизатор"
-          width={160}
-          height={200}
-          format="webp"
-          quality={80}
-          class="rounded-2xl object-cover shadow-lg grayscale w-32 h-40 sm:w-40 sm:h-52"
-        />
-      </div>
-      <!-- Текст -->
-      <div>
-        <h1 class="font-display text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl md:text-5xl">
-          Владислав Попович
-        </h1>
-        <p class="mt-3 text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
-          Разработчик и автоматизатор. Собираю системы под ключ — от идеи до запуска: Telegram-боты и Mini Apps, AI-агенты, n8n-воронки, парсеры и интеграции.
-        </p>
-        <p class="mt-2 text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
-          Работаю с бизнесом и частными заказчиками по РФ. Ответ в течение дня.
-        </p>
+    <!-- Hero: большое фото с градиентом исчезания, текст выплывает из зоны фейда -->
+    <div class="reveal -mx-4 sm:-mx-0">
+      <div class="flex flex-col sm:flex-row sm:items-center">
+
+        <!-- Фото: без рамки, фадится снизу (mobile) / вправо (desktop) -->
+        <div class="relative shrink-0 sm:w-[300px] lg:w-[340px]">
+          <Image
+            src={vladPortrait}
+            alt="Владислав Попович — разработчик и автоматизатор"
+            width={400}
+            height={560}
+            format="webp"
+            quality={85}
+            class="block w-full h-[300px] sm:w-[300px] sm:h-[440px] lg:w-[340px] lg:h-[490px] object-cover object-[50%_6%] grayscale"
+          />
+          <!-- Mobile: фейд снизу -->
+          <div
+            class="sm:hidden absolute inset-0 pointer-events-none"
+            style="background: linear-gradient(to bottom, transparent 50%, var(--color-bg) 98%);"
+            aria-hidden="true"
+          />
+          <!-- Desktop: фейд вправо -->
+          <div
+            class="hidden sm:block absolute inset-0 pointer-events-none"
+            style="background: linear-gradient(to right, transparent 35%, var(--color-bg) 90%);"
+            aria-hidden="true"
+          />
+          <!-- Desktop: мягкий фейд снизу (убираем жёсткий нижний край) -->
+          <div
+            class="hidden sm:block absolute inset-0 pointer-events-none"
+            style="background: linear-gradient(to bottom, transparent 70%, var(--color-bg) 100%);"
+            aria-hidden="true"
+          />
+        </div>
+
+        <!-- Текст: выплывает из зоны фейда -->
+        <div class="relative z-10 px-4 sm:px-0 sm:-ml-14 lg:-ml-18 pt-0 pb-6 sm:pb-0 sm:pt-4">
+          <h1 class="font-display text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl md:text-5xl">
+            Владислав Попович
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed max-w-sm">
+            Разработчик и автоматизатор. Telegram-боты, AI-агенты, n8n-воронки, парсеры — под ключ.
+          </p>
+          <p class="mt-2 text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
+            Работаю с бизнесом по РФ. Ответ в течение дня.
+          </p>
+        </div>
+
       </div>
     </div>
 
