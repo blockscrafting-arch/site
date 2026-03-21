@@ -90,10 +90,8 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
       <a href={site.kwork} target="_blank" rel="noopener noreferrer" data-ym-goal="outbound_kwork" class="group relative overflow-hidden flex flex-col justify-between rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[#11B23C] hover:shadow-[0_0_15px_rgba(17,178,60,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#11B23C] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)]">
         <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#11B23C] opacity-5 blur-2xl pointer-events-none transition-opacity group-hover:opacity-10"></div>
         <div class="relative z-10">
-          <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#11B23C]/10 text-[#11B23C] mb-4 transition-transform group-hover:scale-110">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
+          <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl overflow-hidden mb-4 transition-transform group-hover:scale-110">
+            <img src="/kwork-logo.png" alt="Kwork" class="w-10 h-10 object-cover" />
           </div>
           <h3 class="font-display text-lg font-bold text-[var(--color-text)] transition-colors group-hover:text-[#11B23C]">
             Я на Kwork
@@ -112,7 +110,7 @@ const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
         <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#4F46E5] opacity-5 blur-2xl pointer-events-none transition-opacity group-hover:opacity-10"></div>
         <div class="relative z-10">
           <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#4F46E5]/10 mb-4 transition-transform group-hover:scale-110">
-            <img src="/max-logo.png" alt="МАХ" class="w-6 h-6 object-contain drop-shadow-sm rounded-[4px]" />
+            <img src="/max-logo.png" alt="МАХ" class="w-6 h-6 object-contain mix-blend-screen" />
           </div>
           <h3 class="font-display text-lg font-bold text-[var(--color-text)] transition-colors group-hover:text-[#4F46E5]">
             Я в МАХ

@@ -58,21 +58,46 @@ const items = [
     <div class="problem-solution-track flex flex-col gap-4 max-w-xl mx-auto sm:max-w-none sm:mx-0 sm:flex-row sm:gap-6 sm:pb-4 sm:pl-14 sm:pr-14 sm:overflow-x-auto sm:snap-x sm:snap-mandatory scrollbar-hide sm:cursor-grab" style="scrollbar-width: none; -ms-overflow-style: none;" data-horizontal-scroll>
     {items.map((item, i) => (
       <article
-        class="problem-solution-card w-full sm:flex-shrink-0 sm:w-[400px] sm:snap-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 sm:p-6 sm:p-8 shadow-lg"
+        class="problem-solution-card w-full sm:flex-shrink-0 sm:w-[380px] sm:snap-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden shadow-lg"
         style={`animation-delay: ${i * 0.1}s`}
       >
-        <div class="flex items-start gap-4">
-          <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent-muted)] text-[var(--color-accent)] animate-float-icon" aria-hidden="true">
-            {item.icon === 'inbox' && (<svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293H7.586a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 003.586 13H2" /></svg>)}
-            {item.icon === 'clock' && (<svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>)}
-            {item.icon === 'chat' && (<svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>)}
-            {item.icon === 'db' && (<svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>)}
-            {item.icon === 'rocket' && (<svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>)}
-          </span>
-          <div>
-            <p class="text-[var(--color-text-muted)] text-sm font-medium">{item.problem}</p>
-            <p class="mt-2 text-[var(--color-text)] font-semibold">{item.solution}</p>
+        {/* Зона БОЛИ */}
+        <div class="px-5 pt-5 pb-4" style="background: rgba(239,68,68,0.06);">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full" style="background: rgba(239,68,68,0.18);" aria-hidden="true">
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round">
+                <line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/>
+              </svg>
+            </span>
+            <span class="text-[10px] uppercase tracking-widest font-semibold" style="color: #f87171; letter-spacing: 0.12em;">Боль</span>
           </div>
+          <p class="text-[var(--color-text-muted)] text-sm leading-snug">{item.problem}</p>
+        </div>
+
+        {/* Разделитель-трансформация */}
+        <div class="relative flex items-center px-5" style="height: 32px; background: linear-gradient(to bottom, rgba(239,68,68,0.04), rgba(16,185,129,0.06));">
+          <div class="flex-1 h-px" style="background: linear-gradient(to right, rgba(248,113,113,0.3), transparent 40%, transparent 60%, rgba(16,185,129,0.4))"></div>
+          <span class="mx-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-[var(--color-accent)] bg-[var(--color-bg)]" aria-hidden="true">
+            <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M7 3l3 3-3 3"/>
+            </svg>
+          </span>
+          <div class="flex-1 h-px" style="background: linear-gradient(to right, transparent, rgba(16,185,129,0.3))"></div>
+        </div>
+
+        {/* Зона РЕШЕНИЯ */}
+        <div class="px-5 pt-4 pb-5" style="background: rgba(16,185,129,0.05);">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent-muted)] text-[var(--color-accent)] animate-float-icon" aria-hidden="true">
+              {item.icon === 'inbox' && (<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293H7.586a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 003.586 13H2" /></svg>)}
+              {item.icon === 'clock' && (<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>)}
+              {item.icon === 'chat' && (<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>)}
+              {item.icon === 'db' && (<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>)}
+              {item.icon === 'rocket' && (<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>)}
+            </span>
+            <span class="text-[10px] uppercase tracking-widest font-semibold text-[var(--color-accent)]" style="letter-spacing: 0.12em;">Решение</span>
+          </div>
+          <p class="text-[var(--color-text)] font-semibold text-sm leading-snug">{item.solution}</p>
         </div>
       </article>
     ))}
