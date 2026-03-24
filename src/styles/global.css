@@ -1,3 +1,7 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/jetbrains-mono";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -121,14 +125,14 @@
     color: var(--color-text-muted);
   }
   .case-detail .prose h2 {
-    font-family: Manrope, system-ui, sans-serif;
+    font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
     font-weight: 600;
     color: var(--color-text);
     margin-top: 2rem;
     margin-bottom: 0.75rem;
   }
   .case-detail .prose h3 {
-    font-family: Manrope, system-ui, sans-serif;
+    font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
     font-weight: 600;
     color: var(--color-text);
     margin-top: 1.5rem;
@@ -205,14 +209,14 @@
     color: var(--color-text-muted);
   }
   .guide-prose h2 {
-    font-family: Manrope, system-ui, sans-serif;
+    font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
     font-weight: 600;
     color: var(--color-text);
     margin-top: 2rem;
     margin-bottom: 0.75rem;
   }
   .guide-prose h3 {
-    font-family: Manrope, system-ui, sans-serif;
+    font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
     font-weight: 600;
     color: var(--color-text);
     margin-top: 1.5rem;

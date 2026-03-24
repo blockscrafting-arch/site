@@ -92,6 +92,13 @@ const schemaOrg = path === '/' ? {
         url: site.tgChannel,
         availableLanguage: 'Russian',
       },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+        bestRating: '5',
+        ratingCount: '6',
+        reviewCount: '6',
+      },
     },
   ],
 } : null;
@@ -116,10 +123,7 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
     <meta name="theme-color" content="#0a0a0a" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+    <meta name="author" content="Владислав Попович" />
     <title>{title}</title>
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />

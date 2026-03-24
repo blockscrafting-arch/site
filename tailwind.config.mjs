@@ -8,9 +8,9 @@ export default {
         84: "21rem", // для фоновых SVG в заголовках (sm:w-84 sm:h-84)
       },
       fontFamily: {
-        sans: ["Inter", "Manrope", "system-ui", "sans-serif"],
-        display: ["Manrope", "system-ui", "sans-serif"],
-        mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
+        sans: ['"Inter Variable"', "Inter", "system-ui", "sans-serif"],
+        display: ['"Manrope Variable"', "Manrope", "system-ui", "sans-serif"],
+        mono: ['"JetBrains Mono Variable"', '"JetBrains Mono"', "ui-monospace", "monospace"],
       },
       colors: {
         surface: {
