@@ -31,7 +31,7 @@ services:
         price: 19 000 р
         metric: Оцифровка 40 страниц/сек
     review:
-      author: elena_bukina
+      author: Елена Б.
       project: Бот на Python с OCR
       text: Редкое сочетание профессионализма и скорости выполнения. Рекомендую!
 
@@ -144,7 +144,7 @@ services:
         price: 25 000 р
         metric: 60 мин → 2 мин на пост
     review:
-      author: evgenijjstrannik
+      author: Евгений С.
       project: Парсер закрытых Telegram-чатов
       text: Всё выполнено на высшем уровне, всем рекомендую.
 
@@ -180,7 +180,7 @@ services:
         price: 14 000 р
         metric: 50+ групп одновременно
     review:
-      author: postlunapark
+      author: Анна П.
       project: "Автопостинг N8N: Telegram + VK + Дзен"
       text: Теперь все время могу потратить на более важные задачи, чем руками всё постить.
 

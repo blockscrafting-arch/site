@@ -104,7 +104,7 @@ export const SERVICES: Service[] = [
       { slug: 'telegram-ocr-monetization', title: 'Telegram-бот для OCR с монетизацией', price: '19 000 р', metric: 'Оцифровка 40 страниц/сек' },
     ],
     review: {
-      author: 'elena_bukina',
+      author: 'Елена Б.',
       project: 'Бот на Python с OCR',
       text: 'Редкое сочетание профессионализма и скорости выполнения. Рекомендую!',
     },
@@ -251,7 +251,7 @@ export const SERVICES: Service[] = [
       { slug: 'voice-to-text', title: 'Голосовые в текст: 40 войсов в день без потери времени', price: '5 000 р', metric: '−100 мин/день' },
     ],
     review: {
-      author: 'wildtorneo',
+      author: 'Дмитрий В.',
       project: 'Автоматизация персонализированной email-рассылки',
       text: 'Всё было сделано профессионально, быстро и именно так как нужно! Рекомендую!',
     },
@@ -315,7 +315,7 @@ export const SERVICES: Service[] = [
       { slug: 'telegram-parser-publisher', title: 'Telegram Parser & Publisher: контент на автопилоте', price: '25 000 р', metric: '60 мин → 2 мин на пост' },
     ],
     review: {
-      author: 'evgenijjstrannik',
+      author: 'Евгений С.',
       project: 'Парсер закрытых Telegram-чатов',
       text: 'Всё выполнено на высшем уровне, всем рекомендую.',
     },
@@ -343,7 +343,7 @@ export const SERVICES: Service[] = [
       { slug: 'telegram-roi-posting', title: 'Постинг в 50+ Telegram-групп: рой аккаунтов', price: '14 000 р', metric: '50+ групп одновременно' },
     ],
     review: {
-      author: 'postlunapark',
+      author: 'Анна П.',
       project: 'Автопостинг N8N: Telegram + VK + Дзен',
       text: 'Теперь все время могу потратить на более важные задачи, чем руками всё постить.',
     },
