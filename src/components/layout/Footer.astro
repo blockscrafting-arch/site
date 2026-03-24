@@ -9,27 +9,35 @@ const payerShort = site.legal.payerName.split(' ').map((p, i) => (i === 0 ? p : 
 
 <footer class="footer-animate border-t border-[var(--color-border)] bg-[var(--color-surface)]">
   <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-    <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
-      <p class="text-sm text-[var(--color-text-muted)]">
-        © {year} vlad.execute(_). Разработка и автоматизация.
-      </p>
-      <nav class="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm" aria-label="Подвал">
-        <a href="/services" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded">Услуги</a>
-        <a href="/cases" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded">Кейсы</a>
-        <a href="/guides" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded">Инструкции</a>
-        <a href="/about" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded">Обо мне</a>
-        <a href="/contact" data-ym-goal="nav_contact" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded">Контакты</a>
-        <a href="/legal/privacy" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded">Конфиденциальность</a>
-        <a href="/legal/requisites" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded">Реквизиты</a>
-      </nav>
+    <div class="grid gap-8 sm:grid-cols-3">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-3">Навигация</p>
+        <nav class="flex flex-col gap-2 text-sm" aria-label="Подвал — навигация">
+          <a href="/services" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]">Услуги</a>
+          <a href="/cases" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]">Кейсы</a>
+          <a href="/guides" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]">Инструкции</a>
+          <a href="/about" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]">Обо мне</a>
+        </nav>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-3">Связь</p>
+        <nav class="flex flex-col gap-2 text-sm" aria-label="Подвал — связь">
+          <a href="/contact" data-ym-goal="nav_contact" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]">Контакты</a>
+          <a href={site.tgChannel} data-ym-goal="telegram_click" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]" target="_blank" rel="noopener noreferrer">{site.tgChannelHandle}</a>
+          <a href={site.tgChannelContent} data-ym-goal="telegram_channel_click" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]" target="_blank" rel="noopener noreferrer">{site.tgChannelContentHandle}</a>
+        </nav>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-3">Юридика</p>
+        <nav class="flex flex-col gap-2 text-sm" aria-label="Подвал — юридика">
+          <a href="/legal/privacy" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]">Конфиденциальность</a>
+          <a href="/legal/requisites" class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]">Реквизиты</a>
+        </nav>
+      </div>
     </div>
-    <p class="mt-4 text-center text-sm text-[var(--color-text-muted)]">
-      Telegram: <a href={site.tgChannel} data-ym-goal="telegram_click" class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelHandle}</a>
-      <span class="mx-2 opacity-40" aria-hidden="true">·</span>
-      Канал: <a href={site.tgChannelContent} data-ym-goal="telegram_channel_click" class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelContentHandle}</a>
-    </p>
-    <p class="mt-2 text-center text-xs text-[var(--color-text-muted)]">
-      Исполнитель: <a href="/legal/requisites" class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded">самозанятый {payerShort}</a>
-    </p>
+    <div class="mt-8 pt-6 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[var(--color-text-muted)]">
+      <p>© {year} vlad.execute(_)</p>
+      <p>Исполнитель: <a href="/legal/requisites" class="text-[var(--color-accent)] hover:underline rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]">самозанятый {payerShort}</a></p>
+    </div>
   </div>
 </footer>

@@ -62,7 +62,7 @@ const totalReviews = reviews.length;
         <span class="text-lg font-bold text-[var(--color-text)]">{avgRating}</span>
       </div>
       <h2 id="reviews-section-heading" class="font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
-        {totalReviews} отзывов — все на 5 из 5
+        Каждый проект — на 5 из 5
       </h2>
       <p class="mt-2 text-sm text-[var(--color-text-muted)]">
         Реальные отзывы с
@@ -78,10 +78,7 @@ const totalReviews = reviews.length;
     <div class="reveal-stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {reviews.map((r, i) => (
         <blockquote
-          class:list={[
-            'relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 flex flex-col',
-            i === 1 && 'lg:row-span-2',
-          ]}
+          class="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 flex flex-col"
         >
           <div class="flex gap-0.5 mb-3" aria-label={`Оценка: ${r.rating} из 5`}>
             {Array.from({ length: r.rating }).map(() => (
