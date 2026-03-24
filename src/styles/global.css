@@ -483,6 +483,31 @@
     }
   }
 
+  /* Hero: proof-metric rotator (CSS-only, 4 items × 5s = 20s cycle) */
+  .hero-proof-rotator {
+    display: grid;
+    min-height: 3.5rem;
+  }
+  .hero-proof-rotator__item {
+    grid-area: 1 / 1;
+    opacity: 0;
+    animation: hero-proof-cycle 20s ease-in-out infinite;
+  }
+  @keyframes hero-proof-cycle {
+    0%, 2%    { opacity: 0; transform: translateY(8px); }
+    5%, 22%   { opacity: 1; transform: translateY(0); }
+    27%, 100% { opacity: 0; transform: translateY(-8px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-proof-rotator__item {
+      animation: none;
+      opacity: 0;
+    }
+    .hero-proof-rotator__item:first-child {
+      opacity: 1;
+    }
+  }
+
   /* Marquee (ServicesSection) */
   @keyframes marquee {
     0% {

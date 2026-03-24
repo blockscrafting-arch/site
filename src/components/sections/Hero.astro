@@ -6,6 +6,15 @@
 import Button from '../common/Button.astro';
 
 const rotatorWords = ['заявки', 'поддержку', 'контент', 'рассылки'] as const;
+
+const proofCases = [
+  { metric: '120 ч → 2 ч', label: 'Постинг в 50+ групп Telegram', slug: 'telegram-roi-posting' },
+  { metric: '−100 мин/день', label: 'Расшифровка войсов клиентов', slug: 'voice-to-text' },
+  { metric: '10 мин → 1 сек', label: 'Публикация поста в VK', slug: 'vk-autoposter' },
+  { metric: '10 статей/день', label: 'Контент-конвейер без копирайтера', slug: 'dzen-content-pipeline' },
+] as const;
+
+const proofCycleDuration = proofCases.length * 5;
 ---
 
 <section class="relative flex flex-col overflow-hidden py-8 sm:py-12 lg:py-14">
@@ -35,13 +44,24 @@ const rotatorWords = ['заявки', 'поддержку', 'контент', '�
       <Button href="/cases" variant="ghost" dataYmGoal="cta_cases">Кейсы с цифрами</Button>
     </div>
 
-    <!-- Proof-метрика из лучшего кейса -->
-    <div class="reveal mt-6 sm:mt-8 inline-flex items-center gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-3" style="animation-delay:.85s">
-      <div>
-        <span class="block font-display text-2xl sm:text-3xl font-black text-[var(--color-accent)] leading-none">120 ч → 2 ч</span>
-        <span class="block mt-1 text-xs sm:text-sm text-[var(--color-text-muted)]">Постинг в 50+ групп Telegram</span>
+    <!-- Proof-метрика: CSS-ротация между кейсами (zero JS) -->
+    <div class="reveal mt-6 sm:mt-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-3" style="animation-delay:.85s">
+      <div class="hero-proof-rotator">
+        {proofCases.map((pc, i) => (
+          <div
+            class="hero-proof-rotator__item"
+            style={`animation-delay:${i * 5}s; animation-duration:${proofCycleDuration}s`}
+          >
+            <div class="flex items-center gap-4">
+              <div>
+                <span class="block font-display text-2xl sm:text-3xl font-black text-[var(--color-accent)] leading-none">{pc.metric}</span>
+                <span class="block mt-1 text-xs sm:text-sm text-[var(--color-text-muted)]">{pc.label}</span>
+              </div>
+              <a href={`/cases/${pc.slug}`} class="text-sm font-medium text-[var(--color-accent)] hover:underline whitespace-nowrap">Кейс →</a>
+            </div>
+          </div>
+        ))}
       </div>
-      <a href="/cases/telegram-roi-posting" class="text-sm font-medium text-[var(--color-accent)] hover:underline whitespace-nowrap">Кейс →</a>
     </div>
 
     <div class="reveal mt-5 sm:mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:gap-x-4" style="animation-delay:1s;">
