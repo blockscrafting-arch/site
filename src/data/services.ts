@@ -104,9 +104,9 @@ export const SERVICES: Service[] = [
       { slug: 'telegram-ocr-monetization', title: 'Telegram-бот для OCR с монетизацией', price: '19 000 р', metric: 'Оцифровка 40 страниц/сек' },
     ],
     review: {
-      author: 'vitaly1303',
-      project: 'Разработка бота для MAX',
-      text: 'Все круто!',
+      author: 'elena_bukina',
+      project: 'Бот на Python с OCR',
+      text: 'Редкое сочетание профессионализма и скорости выполнения. Рекомендую!',
     },
     seoDescription:
       'Разработка ботов для Telegram, MAX и VK: приём заявок, поддержка клиентов, рассылки, админ-панель в чате. Под ключ, от 8 000 р.',

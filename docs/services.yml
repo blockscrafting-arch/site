@@ -31,9 +31,9 @@ services:
         price: 19 000 р
         metric: Оцифровка 40 страниц/сек
     review:
-      author: vitaly1303
-      project: Разработка бота для MAX
-      text: Все круто!
+      author: elena_bukina
+      project: Бот на Python с OCR
+      text: Редкое сочетание профессионализма и скорости выполнения. Рекомендую!
 
   - id: ai-agents
     title: AI-агенты

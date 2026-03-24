@@ -9,7 +9,7 @@
 /* ===== Design tokens (dark-first) ===== */
 :root {
   --color-bg: #0a0a0a;
-  --color-surface: #111111;
+  --color-surface: #151515;
   --color-surface-muted: #1a1a1a;
   --color-text: #fafafa;
   --color-text-muted: #a1a1aa;
@@ -36,7 +36,7 @@
 
 .dark {
   --color-bg: #0a0a0a;
-  --color-surface: #111111;
+  --color-surface: #151515;
   --color-surface-muted: #1a1a1a;
   --color-text: #fafafa;
   --color-text-muted: #a1a1aa;
@@ -61,12 +61,6 @@
     width: 100%;
     background-color: var(--color-bg);
     color: var(--color-text);
-    background-image: radial-gradient(
-      circle at 50% 50%,
-      var(--color-accent-glow) 1.2px,
-      transparent 1.2px
-    );
-    background-size: 48px 48px;
   }
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -242,6 +236,11 @@
     padding: 0.2em 0.4em;
     border-radius: 0.25rem;
     font-size: 0.9em;
+  }
+
+  /* FAQ: нативный details/summary */
+  .faq-item[open] {
+    background-color: var(--color-surface-muted, var(--color-surface));
   }
 
   /* Карточки: мягкий hover через border + glow, без translateY-прыжков */
@@ -450,7 +449,33 @@
     }
   }
 
-  /* Hero: бегущая строка услуг (marquee) */
+  /* Hero: CSS-only text rotator (zero JS, replaces Framer Motion ~100KB) */
+  .hero-rotator {
+    display: inline-grid;
+    overflow: hidden;
+    vertical-align: baseline;
+  }
+  .hero-rotator__word {
+    grid-area: 1 / 1;
+    opacity: 0;
+    animation: hero-word-cycle 14s ease-in-out infinite;
+  }
+  @keyframes hero-word-cycle {
+    0%, 2%  { opacity: 0; transform: translateY(0.3em); }
+    5%, 20% { opacity: 1; transform: translateY(0); }
+    25%, 100% { opacity: 0; transform: translateY(-0.3em); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-rotator__word {
+      animation: none;
+      opacity: 0;
+    }
+    .hero-rotator__word:first-child {
+      opacity: 1;
+    }
+  }
+
+  /* Marquee (ServicesSection) */
   @keyframes marquee {
     0% {
       transform: translateX(0);
