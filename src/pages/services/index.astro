@@ -5,11 +5,28 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Button from '../../components/common/Button.astro';
 import { SERVICES } from '../../data/services';
+import { site } from '../../utils/site';
+
+const servicesListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Услуги vlad.execute(_)',
+  description: 'Telegram-боты, AI-агенты, Mini Apps, автоматизация, парсинг, автопостинг, скрипты и интеграции.',
+  numberOfItems: SERVICES.length,
+  itemListElement: SERVICES.map((svc, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: svc.title,
+    description: svc.seoDescription,
+    url: `${site.url}/services/${svc.id}`,
+  })),
+};
 ---
 
 <BaseLayout
   title="Услуги и цены — vlad.execute(_)"
-  description="Telegram-боты, AI-агенты, Mini Apps, автоматизация, парсинг, автопостинг, скрипты и интеграции. Готовые решения от 4 000 р. Реальные проекты, реальные цифры."
+  description="Telegram-боты, AI-агенты, Mini Apps, автоматизация, парсинг, автопостинг, скрипты и интеграции. Готовые решения от 5 000 р. Реальные проекты, реальные цифры."
+  schema={servicesListSchema}
 >
   <!-- Hero -->
   <section class="pt-6 pb-8 sm:pt-10 sm:pb-10 px-4 sm:px-6" aria-labelledby="services-hero-h1">
@@ -21,7 +38,7 @@ import { SERVICES } from '../../data/services';
         Услуги и цены
       </h1>
       <p class="reveal mt-3 text-lg text-[var(--color-text-muted)] leading-snug" style="animation-delay:.06s">
-        Готовые решения от 4 000 р. Результат — не обещания.
+        Готовые решения от 5 000 р. Результат — не обещания.
       </p>
     </div>
   </section>
@@ -78,7 +95,7 @@ import { SERVICES } from '../../data/services';
         <p class="mt-4 text-sm text-[var(--color-text-muted)]">
           Реальные кейсы
           <span class="mx-2 opacity-40" aria-hidden="true">·</span>
-          от 4 000 р
+          от 5 000 р
           <span class="mx-2 opacity-40" aria-hidden="true">·</span>
           ответ в течение дня
         </p>
@@ -86,19 +103,5 @@ import { SERVICES } from '../../data/services';
     </div>
   </section>
 
-  <!-- Структурированные данные: каталог услуг -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Услуги vlad.execute(_)",
-    "description": "Telegram-боты, AI-агенты, Mini Apps, автоматизация, парсинг, автопостинг, скрипты и интеграции.",
-    "numberOfItems": SERVICES.length,
-    "itemListElement": SERVICES.map((svc, i) => ({
-      "@type": "ListItem",
-      "position": i + 1,
-      "name": svc.title,
-      "description": svc.seoDescription,
-      "url": `https://vladexecute.ru/services/${svc.id}`,
-    })),
-  })} />
+
 </BaseLayout>

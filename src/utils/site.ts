@@ -11,8 +11,8 @@ export const site = {
     typeof import.meta.env.SITE === "string" && import.meta.env.SITE
       ? import.meta.env.SITE.replace(/\/$/, "")
       : "https://vladexecute.ru",
-  /** Путь к изображению для OG (от корня сайта). Для лучшей совместимости соцсетей замените на og.png 1200×630. */
-  ogImage: "/og.svg",
+  /** Путь к изображению для OG (от корня сайта). PNG 1200×630 — стандарт для всех платформ. */
+  ogImage: "/og.png",
   /** Личный аккаунт Telegram для связи (написать мне). */
   tgChannel: "https://t.me/goutach",
   tgChannelHandle: "@goutach",
@@ -29,6 +29,8 @@ export const site = {
   email: "vlad-popovich@mail.ru",
   /** Код верификации Яндекс.Вебмастер (meta name="yandex-verification"). */
   yandexVerification: "2765e3c7efaaaa7f",
+  /** Код верификации Google Search Console (meta name="google-site-verification"). Задать после регистрации в GSC. */
+  googleVerification: "",
   /** Номер счётчика Яндекс.Метрики. Если задан — в layout подключается скрипт счётчика. */
   yandexMetrikaId: 108173739,
   /** Реквизиты для страницы «Реквизиты» и футера (плательщик НПД). Паспортные данные — только в договоре, на сайте не публикуются. */

@@ -1,6 +1,6 @@
 # vlad.execute(_)
 
-> Автоматизация и AI-боты под ключ: 13 реализованных проектов, от 4 000 р. Telegram-боты и Mini Apps (Telegram, MAX, VK), AI-агенты, n8n-сценарии, Python-скрипты, интеграции API. Работаю с бизнесом и частными заказчиками по РФ; ответ в течение дня.
+> Автоматизация и AI-боты под ключ. Telegram-боты и Mini Apps (Telegram, MAX, VK), AI-агенты, n8n-сценарии, Python-скрипты, интеграции API. Работаю с бизнесом и частными заказчиками по РФ; ответ в течение дня. Цены от 5 000 р.
 
 ## Contact
 
@@ -11,19 +11,19 @@
 
 ## Services
 
-- [Услуги и цены (каталог)](https://vladexecute.ru/services): все 8 направлений с ценами от 4 000 р
+- [Услуги и цены (каталог)](https://vladexecute.ru/services): все 8 направлений с ценами от 5 000 р
 - [Боты в мессенджерах](https://vladexecute.ru/services/telegram-bots): Telegram, MAX, VK — приём заявок, FAQ, уведомления, от 8 000 р
 - [AI-агенты](https://vladexecute.ru/services/ai-agents): LLM + RAG, память, регламенты, от 10 000 р
 - [Mini Apps](https://vladexecute.ru/services/mini-apps): встроенные веб-приложения внутри мессенджеров, от 15 000 р
 - [Автоматизация (n8n)](https://vladexecute.ru/services/automation): воркфлоу 24/7, данные остаются у заказчика, от 5 000 р
 - [Парсинг](https://vladexecute.ru/services/parsing): сбор данных с сайтов, маркетплейсов, Telegram-каналов, от 10 000 р
-- [Автопостинг](https://vladexecute.ru/services/autoposting): AI-генерация + кросс-постинг Telegram/VK/Дзен, от 4 000 р
-- [Скрипты на Python](https://vladexecute.ru/services/scripts): разовые задачи, конвертация файлов, отчёты, от 4 000 р
+- [Автопостинг](https://vladexecute.ru/services/autoposting): AI-генерация + кросс-постинг Telegram/VK/Дзен, от 5 000 р
+- [Скрипты на Python](https://vladexecute.ru/services/scripts): разовые задачи, конвертация файлов, отчёты, от 5 000 р
 - [Интеграции API](https://vladexecute.ru/services/integrations): CRM, таблицы, платёжки, сторонние сервисы, от 5 000 р
 
 ## Portfolio
 
-- [Все кейсы — 13 проектов](https://vladexecute.ru/cases): реализованные проекты с результатами, метриками и ценами
+- [Все кейсы](https://vladexecute.ru/cases): реализованные проекты с результатами, метриками и ценами
 - [Инструкции и гайды](https://vladexecute.ru/guides): разборы по инструментам — n8n, Telegram, VPS, OpenAI
 
 ## Optional

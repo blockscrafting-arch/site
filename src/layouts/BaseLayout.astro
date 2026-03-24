@@ -25,9 +25,15 @@ interface Props {
   image?: string;
   /** Дополнительные JSON-LD схемы для вывода в head (кейсы, инструкции, FAQ). */
   schema?: SchemaObject | SchemaObject[];
+  /** og:type — "website" по умолчанию, "article" для кейсов/гайдов. */
+  ogType?: string;
+  /** ISO-дата публикации для article:published_time (только при ogType="article"). */
+  publishedTime?: string;
+  /** Запрещает индексацию страницы (404 и т.п.). */
+  noindex?: boolean;
 }
 
-const { title, description = site.description, image, schema: pageSchema } = Astro.props;
+const { title, description = site.description, image, schema: pageSchema, ogType = 'website', publishedTime, noindex } = Astro.props;
 const desc = description ?? site.description;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const canonical = `${site.url}${path}`;
@@ -46,10 +52,18 @@ const knowsAboutTopics = [
   'автопостинг',
 ] as const;
 
-/** JSON-LD для главной: Person + ProfessionalService + ContactPoint (AEO/GEO 2026). */
+/** JSON-LD для главной: WebSite + Person + ProfessionalService + ContactPoint (AEO/GEO 2026). */
 const schemaOrg = path === '/' ? {
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${site.url}/#website`,
+      name: site.name,
+      url: site.url,
+      publisher: { '@id': `${site.url}/#person` },
+      inLanguage: 'ru',
+    },
     {
       '@type': 'Person',
       '@id': `${site.url}/#person`,
@@ -58,6 +72,7 @@ const schemaOrg = path === '/' ? {
       familyName: 'Попович',
       jobTitle: 'Разработчик и автоматизатор',
       url: site.url,
+      image: `${site.url}/images/vlad-portrait.png`,
       description: site.description,
       knowsAbout: [...knowsAboutTopics],
       sameAs: [site.tgChannel, site.tgChannelContent, site.kwork, site.max],
@@ -96,6 +111,7 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={desc} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#0a0a0a" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -105,19 +121,28 @@ const safeGlossaryJson = JSON.stringify(glossaryData).replace(/<\/script/gi, '\\
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" /></noscript>
     <title>{title}</title>
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:locale" content="ru_RU" />
+    {ogType === 'article' && publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={desc} />
     <meta name="twitter:image" content={ogImageUrl} />
     {site.yandexVerification && (
       <meta name="yandex-verification" content={site.yandexVerification} />
+    )}
+    {site.googleVerification && (
+      <meta name="google-site-verification" content={site.googleVerification} />
     )}
     {schemaList.length > 0 && schemaList.map((s) => (
       <script type="application/ld+json" set:html={JSON.stringify(s)} />

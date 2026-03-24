@@ -22,7 +22,8 @@ if (!entry) throw new Error(`Case not found: ${slug}`);
 
 const { Content } = await entry.render();
 const data = entry.data;
-const { title, description, result, stack, metrics, accentColor, layout, problem, testimonial, productLogo, productLink, productName, screenshots, date } = data;
+const { title, description, result, stack, metrics, accentColor, layout, problem, testimonial, productLogo, productLink, productName, screenshots, date, heroImage } = data;
+const caseOgImage = heroImage ?? (screenshots && screenshots.length > 0 ? screenshots[0] : undefined);
 
 /** Похожие кейсы: пересечение категорий, добор по дате. */
 const published = cases.filter((c) => !c.data.draft && c.slug !== slug);
@@ -70,7 +71,7 @@ const articleSchema = {
 };
 ---
 
-<BaseLayout title={`${title} — Кейсы | vlad.execute(_)`} description={description} schema={[breadcrumbSchema, articleSchema]}>
+<BaseLayout title={`${title} — Кейсы | vlad.execute(_)`} description={description} schema={[breadcrumbSchema, articleSchema]} image={caseOgImage} ogType="article" publishedTime={date ? date.toISOString().slice(0, 10) : undefined}>
   <article
     class="case-detail"
     style={`--case-accent: ${accent}; --case-accent-glow: ${accent}40`}
