@@ -69,7 +69,9 @@ const sortedGroups = order.filter((k) => groups.has(k));
     {clientGuides.length > 0 && (
       <section class="guides-client-block mt-10 rounded-2xl border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/5 p-6 sm:p-8" aria-labelledby="guides-for-client">
         <h2 id="guides-for-client" class="text-xl font-display font-semibold text-[var(--color-text)] flex items-center gap-2">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent)]/20 text-[var(--color-accent)]" aria-hidden="true">✓</span>
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent)]/20 text-[var(--color-accent)]" aria-hidden="true">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+          </span>
           Для заказчика: что подготовить к старту
         </h2>
         <p class="mt-2 text-sm text-[var(--color-text-muted)] max-w-xl">

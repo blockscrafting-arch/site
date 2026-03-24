@@ -1,8 +1,8 @@
 ## Learned User Preferences
 
-- Before implementing anything new, always do research + Context7 lookup; user explicitly requests "ресерч + context7" at the start of tasks.
+- Before implementing anything new, always do research + Context7 lookup; user explicitly requests "ресерч + context7" at the start of tasks. When user says "уверен на 100%?" — do extra research/cross-check, not just affirm.
 - "Выполняй" is the trigger to start full plan execution without further questions.
-- Quality standard is "10/10" — user frequently says "сделай на 10/10"; production-ready, polished results expected every time.
+- Quality standard is "10/10" — production-ready, polished. Always benchmark against industry leaders (Vercel, Linear, Cal.com) — user says "равняться на лидеров", not internal guesses.
 - Always commit and push (`git add -A`, meaningful message, `git push`) after completing any feature or session without being asked.
 - User prices projects at minimum (делает с Cursor); when estimating effort/cost, take that into account.
 - Never use Unicode emoji in UI or content — SVG icons only, or neutral typography (→, •).
@@ -10,7 +10,8 @@
 - User prefers a visible plan first, then says "выполняй" to execute — do not collapse planning and execution into one unsolicited step.
 - When user says "проверь" or "проверь ещё", re-read and verify the last changes before moving on.
 - Short confirmations like "хватит ли этого?", "готово?" are typical; answer concisely and proceed.
-- When adding Hero section elements, each must be independently justified — avoid stacking multiple "intro" layers before the main headline (e.g., eyebrow badge + "Вы по адресу." was flagged as overloaded).
+- Never display metrics that make the portfolio look small (e.g., project count "13 проектов" was explicitly removed); show qualitative trust signals instead.
+- When adding Hero section elements, each must be independently justified — avoid stacking multiple "intro" layers before the main headline.
 
 ## Learned Workspace Facts
 
@@ -18,11 +19,11 @@
 - **Contact form webhook**: configured via `PUBLIC_CONTACT_WEBHOOK` env var, which is a build-time variable passed as Docker `--build-arg` from GitHub Actions Secret `PUBLIC_CONTACT_WEBHOOK`. Empty string → form shows "Форма не настроена" error.
 - **Layout padding**: `<main id="main-content">` in BaseLayout already applies `pt-16` (compensates for the fixed `h-16` header). Inner page sections should add only `pt-4`–`pt-8` for breathing room — never re-add `pt-20+`.
 - **Flex container text nodes**: Direct `{variable}` text nodes inside `flex` containers create anonymous flex items causing broken/stretched text. Always wrap in `<span class="min-w-0">`. Also: `hyphens: none; -webkit-hyphens: none` is set on `html` in `global.css` to prevent auto-hyphenation from `lang="ru"`.
-- **SEO already integrated**: `@astrojs/sitemap`, `robots.txt` (static `public/`), JSON-LD schema (in `BaseLayout`), Yandex Metrika (ID in `site.yandexMetrikaId`, init с `webvisor`, `clickmap`, `dataLayer` для ecommerce, цели через `data-ym-goal` и `reachGoal` — список идентификаторов в `docs/METRIKA_GOALS.md`).
-- **SEO + ИИ (GEO/AEO) — обязательный чеклист**: при добавлении/изменении страниц, контента или разметки агент следует правилам в `.cursor/rules/project.mdc` (раздел «SEO, классические поисковики и ИИ»): title/description/sitemap/robots, цитируемый HTML, JSON-LD, обновление `public/llms.txt` при новых важных URL; контекст — `docs/GEO_AI_VISIBILITY.md`.
+- **SEO infrastructure (2026-03 audit)**: OG PNG 1200x630 (`public/og.png`), `og:image:width/height/type`, per-page `ogType`/`publishedTime`/`noindex` props in BaseLayout, WebSite JSON-LD in `@graph`, sitemap with filter/priority/changefreq, `google-site-verification` ready (set code in `site.googleVerification`), all JSON-LD in `<head>` via `schema` prop. Yandex Metrika (IDs in `docs/METRIKA_GOALS.md`). При добавлении/изменении страниц/контента — обязательный чеклист в `.cursor/rules/project.mdc` (SEO + GEO/AEO): title/description/sitemap/robots, JSON-LD, `public/llms.txt`; контекст — `docs/GEO_AI_VISIBILITY.md`.
+- **Public-facing minimum price**: «от 5 000 р» — синхронизировано на Hero, about, services, cases, llms.txt. Реальные цены отдельных услуг (автопостинг от 4 000) не менять.
 - **Kwork brand color**: `#F5A500` (orange) — used for Kwork card accent on `/contact` page; do not use site green for third-party brand elements.
 - **Content Factory project** lives at `~/rostok/content-factory` on VPS (separate repo). Stack: Node.js + TypeScript, PostgreSQL, Redis, BullMQ (workers: semantics, generation, image, regenerateImage, publish), NocoDB, Google Drive OAuth (user-based, not JWT service account).
 - **Content Factory known bug**: `cost_records` FK violation when `clientId` is empty string or undefined — seed must create a 'default' client row; use `||` not `??` to guard against empty strings.
-- **Active client projects in scope**: (1) Whisper API video-to-content pipeline (~15K RUB); (2) Kushnerev Kirill — интернет-магазин «Щенок Игруля» (~25K RUB, ~10 дней): Next.js + PostgreSQL, ЮKassa и СДЭК, деплой на Beget VPS; позже возможна связка с приложением.
+- **Active client projects in scope**: (1) Whisper API video-to-content pipeline (~15K RUB); (2) Kushnerev Kirill — интернет-магазин «Щенок Игруля» (~25K RUB, ~10 дней): Next.js + PostgreSQL, ЮKassa и СДЭК, деплой на Beget VPS; (3) MAX-бот подписок для йога-инструктора (Prodamus оплата, dev.max.ru, управление тарифами/подписчиками).
 - **Freelance platforms**: Kwork (orders via safe transaction), МАХ (profile + portfolio), Telegram channels for blog and personal contact.
 - **n8n webhook in portfolio**: Must be in Production mode (not Test) and publicly accessible; toggling Test↔Production changes the URL.
