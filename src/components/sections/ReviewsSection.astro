@@ -30,16 +30,16 @@ const reviews = [
     text: 'Всё было сделано профессионально, быстро и именно так как нужно! Рекомендую!',
   },
   {
-    author: 'evgenijjstrannik',
-    project: 'Парсер закрытых Telegram-чатов',
-    rating: 5,
-    text: 'Всё выполнено на высшем уровне, всем рекомендую.',
-  },
-  {
     author: 'vitaly1303',
     project: 'Разработка бота для MAX',
     rating: 5,
     text: 'Все круто!',
+  },
+  {
+    author: 'evgenijjstrannik',
+    project: 'Парсер закрытых Telegram-чатов',
+    rating: 5,
+    text: 'Всё выполнено на высшем уровне, всем рекомендую.',
   },
 ];
 
@@ -62,7 +62,7 @@ const totalReviews = reviews.length;
         <span class="text-lg font-bold text-[var(--color-text)]">{avgRating}</span>
       </div>
       <h2 id="reviews-section-heading" class="font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
-        Каждый проект — на 5 из 5
+        Что говорят клиенты
       </h2>
       <p class="mt-2 text-sm text-[var(--color-text-muted)]">
         Реальные отзывы с
@@ -78,7 +78,7 @@ const totalReviews = reviews.length;
     <div class="reveal-stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {reviews.map((r, i) => (
         <blockquote
-          class="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 flex flex-col"
+          class="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 flex flex-col min-h-[200px]"
         >
           <div class="flex gap-0.5 mb-3" aria-label={`Оценка: ${r.rating} из 5`}>
             {Array.from({ length: r.rating }).map(() => (
