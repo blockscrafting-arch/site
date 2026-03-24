@@ -10,10 +10,10 @@ const cases = allCases.filter((c) => !c.data.draft).sort((a, b) => (b.data.date?
 const featured = cases.slice(0, 4);
 ---
 
-<section class="py-12 sm:py-16 px-4 sm:px-6 relative overflow-hidden" aria-labelledby="cases-preview-heading">
+<section class="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden bg-[var(--color-surface)]" aria-labelledby="cases-preview-heading">
   <div class="mx-auto max-w-6xl">
     <h2 id="cases-preview-heading" class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl text-center">
-      Результаты, а не обещания
+      Проекты с цифрами
     </h2>
     <p class="reveal mt-4 text-center text-base sm:text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
       Каждый кейс — с метрикой до и после.
@@ -27,9 +27,10 @@ const featured = cases.slice(0, 4);
           <a
             href={`/cases/${c.slug}`}
             class:list={[
-              'case-preview-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 relative overflow-hidden',
+              'case-preview-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)] p-6 sm:p-8 relative overflow-hidden border-t-2',
               isWide && 'sm:col-span-2',
             ]}
+            style={c.data.accentColor ? `border-top-color: ${c.data.accentColor}` : ''}
           >
             {/* Верхняя часть: крупная метрика */}
             {metric && (

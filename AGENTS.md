@@ -10,8 +10,8 @@
 - User prefers a visible plan first, then says "выполняй" to execute — do not collapse planning and execution into one unsolicited step.
 - When user says "проверь" or "проверь ещё", re-read and verify the last changes before moving on.
 - Short confirmations like "хватит ли этого?", "готово?" are typical; answer concisely and proceed.
-- Never display metrics that make the portfolio look small (e.g., project count "13 проектов" was explicitly removed); show qualitative trust signals instead.
-- When adding Hero section elements, each must be independently justified — avoid stacking multiple "intro" layers before the main headline.
+- Never display metrics that make the portfolio look small (e.g., project count "13 проектов" was explicitly removed, exact Kwork review count "6 отзывов" highlights smallness); show qualitative trust signals instead.
+- Case studies on the portfolio site must include screenshots/visuals and an external link to the result — never leave cases as bare text.
 
 ## Learned Workspace Facts
 
@@ -23,7 +23,7 @@
 - **Public-facing minimum price**: «от 5 000 р» — синхронизировано на Hero, about, services, cases, llms.txt. Реальные цены отдельных услуг (автопостинг от 4 000) не менять.
 - **Kwork brand color**: `#F5A500` (orange) — used for Kwork card accent on `/contact` page; do not use site green for third-party brand elements.
 - **Content Factory project** lives at `~/rostok/content-factory` on VPS (separate repo). Stack: Node.js + TypeScript, PostgreSQL, Redis, BullMQ (workers: semantics, generation, image, regenerateImage, publish), NocoDB, Google Drive OAuth (user-based, not JWT service account).
-- **Content Factory known bug**: `cost_records` FK violation when `clientId` is empty string or undefined — seed must create a 'default' client row; use `||` not `??` to guard against empty strings.
+- **Content Factory known bug**: `cost_records` FK violation when `clientId` is empty string or undefined — seed must create a 'default' client row; use `||` not `??` to guard against empty strings. Onboarding bot token env var is `ONBOARDING_BOT_TOKEN` (not `TELEGRAM_ONBOARDING_BOT_TOKEN`).
 - **Active client projects in scope**: (1) Whisper API video-to-content pipeline (~15K RUB); (2) Kushnerev Kirill — интернет-магазин «Щенок Игруля» (~25K RUB, ~10 дней): Next.js + PostgreSQL, ЮKassa и СДЭК, деплой на Beget VPS; (3) MAX-бот подписок для йога-инструктора (Prodamus оплата, dev.max.ru, управление тарифами/подписчиками).
 - **Freelance platforms**: Kwork (orders via safe transaction), МАХ (profile + portfolio), Telegram channels for blog and personal contact.
 - **n8n webhook in portfolio**: Must be in Production mode (not Test) and publicly accessible; toggling Test↔Production changes the URL.

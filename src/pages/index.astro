@@ -9,18 +9,20 @@ import ReviewsSection from '../components/sections/ReviewsSection.astro';
 import FaqSection from '../components/sections/FaqSection.astro';
 import CtaSection from '../components/sections/CtaSection.astro';
 import StickyCta from '../components/features/StickyCta.astro';
+import { faqSchema } from '../data/faq';
 ---
 
 <BaseLayout
   title="vlad.execute(_) — Автоматизация и AI-боты под ключ"
   description="Telegram-боты, AI-агенты и автоматизация под ключ. Реальные кейсы с цифрами. MVP за 1–3 дня, от 5 000 ₽ — отвечу в тот же день."
+  schema={faqSchema}
 >
   <Hero />
   <ProblemSolution />
-  <ServicesSection />
   <CasesPreview />
-  <ProcessTimeline />
+  <ServicesSection />
   <ReviewsSection />
+  <ProcessTimeline />
   <FaqSection />
   <CtaSection />
   <StickyCta />

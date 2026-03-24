@@ -4,8 +4,6 @@
  * Каждая строка — отдельная категория услуг.
  * Никакого горизонтального скролла, никаких карточек.
  */
-import Button from '../common/Button.astro';
-
 const items = [
   {
     problem: 'Вы слушаете 40+ войсов в день — два часа на расшифровку',
@@ -26,25 +24,25 @@ const items = [
     caseMetric: '100% перехват негатива',
   },
   {
-    problem: 'Вы скроллите заказы часами — 99% ТЗ не подходят',
-    solution: 'Агент мониторит 24/7 и шлёт только ваши',
-    caseSlug: 'freelance-radar',
-    caseMetric: '0 ч на ручной поиск',
+    problem: 'Вы вручную пишете каждому клиенту уникальное предложение — по часу на письмо',
+    solution: 'AI генерирует персонализированное предложение за секунды',
+    caseSlug: 'domscanner-email-ai',
+    caseMetric: 'AI-персонализация каждого письма',
   },
 ];
 ---
 
-<section class="py-12 sm:py-16 px-4 sm:px-6" aria-labelledby="problem-solution-heading">
+<section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="problem-solution-heading">
   <div class="mx-auto max-w-3xl">
 
     <h2
       id="problem-solution-heading"
       class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl"
     >
-      Где ваш бизнес теряет время
+      Вот на что уходит ваше время
     </h2>
     <p class="reveal mt-4 text-base sm:text-lg text-[var(--color-text-muted)]" style="animation-delay:.06s">
-      Проблемы, которые стоят вам часов каждый день — и как их решить.
+      Каждая из этих задач решается за 1–3 дня. С реальными числами.
     </p>
 
     <ul class="reveal-stagger mt-10 sm:mt-14" role="list">
@@ -97,8 +95,5 @@ const items = [
       ))}
     </ul>
 
-    <div class="reveal mt-10 sm:mt-12" style="animation-delay:.2s">
-      <Button href="/contact" variant="primary" dataYmGoal="cta_problems">Решить мою задачу</Button>
-    </div>
   </div>
 </section>

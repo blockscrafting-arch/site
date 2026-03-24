@@ -449,6 +449,14 @@
     }
   }
 
+  /* Hero: subtle dot-grid background (Linear/Raycast style) */
+  .hero-bg-dots {
+    background-image: radial-gradient(circle, var(--color-border) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 30%, transparent 70%);
+  }
+
   /* Hero: CSS-only text rotator (zero JS, replaces Framer Motion ~100KB) */
   .hero-rotator {
     display: inline-grid;
@@ -656,74 +664,6 @@
   /* Якоря секций услуг: при скролле по клику заголовок не уходит под sticky-нав */
   .service-section-anchor {
     scroll-margin-top: 7rem;
-  }
-
-  /* Липкая шторка: всегда на виду при скролле (родители без overflow/transform). */
-  .service-quick-nav {
-    position: sticky;
-    top: 4rem;
-    z-index: 40;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-  .service-quick-nav-inner {
-    overflow-x: auto;
-    scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
-  }
-  /* Зелёный градиент справа — намёк, что контент продолжается (только на узких экранах) */
-  @media (max-width: 767px) {
-    .service-quick-nav::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 56px;
-      background: linear-gradient(
-        to right,
-        transparent 0%,
-        var(--color-accent-muted) 35%,
-        var(--color-bg) 100%
-      );
-      pointer-events: none;
-    }
-  }
-  .service-quick-nav a {
-    flex-shrink: 0;
-    transition:
-      color 0.28s ease-out,
-      background-color 0.28s ease-out;
-  }
-  .service-quick-nav a.is-active {
-    color: var(--color-accent);
-    background-color: var(--color-accent-muted);
-  }
-
-  /* Fixed-полоса навигации по услугам: показывается, когда полоса в потоке уехала вверх */
-  .service-quick-nav-fixed-wrap {
-    position: fixed;
-    top: 4rem;
-    left: 0;
-    right: 0;
-    z-index: 40;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-      opacity 0.2s ease,
-      visibility 0.2s ease;
-  }
-  .service-quick-nav-fixed-wrap.is-stuck {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
   }
 
   /* Fixed-полоса фильтров на Кейсах: показывается, когда полоса в потоке уехала вверх */

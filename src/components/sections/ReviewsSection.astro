@@ -47,7 +47,7 @@ const avgRating = '5.0';
 const totalReviews = reviews.length;
 ---
 
-<section class="reveal py-12 sm:py-16 px-4 sm:px-6" aria-labelledby="reviews-section-heading">
+<section class="reveal py-20 sm:py-28 px-4 sm:px-6 bg-[var(--color-surface)]" aria-labelledby="reviews-section-heading">
   <div class="mx-auto max-w-5xl">
 
     <div class="text-center mb-12">
@@ -62,7 +62,7 @@ const totalReviews = reviews.length;
         <span class="text-lg font-bold text-[var(--color-text)]">{avgRating}</span>
       </div>
       <h2 id="reviews-section-heading" class="font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
-        Что говорят клиенты
+        Все заказы — 5.0
       </h2>
       <p class="mt-2 text-sm text-[var(--color-text-muted)]">
         Реальные отзывы с
@@ -76,9 +76,16 @@ const totalReviews = reviews.length;
     </div>
 
     <div class="reveal-stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {reviews.map((r, i) => (
+      {reviews.map((r, i) => {
+        const isFeatured = r.author === 'Nsltd';
+        return (
         <blockquote
-          class="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 flex flex-col min-h-[200px]"
+          class:list={[
+            'relative rounded-2xl border p-6 flex flex-col min-h-[200px]',
+            isFeatured
+              ? 'sm:col-span-2 border-[var(--color-accent)]/30 bg-[var(--color-bg)]'
+              : 'border-[var(--color-border)] bg-[var(--color-bg)]',
+          ]}
         >
           <div class="flex gap-0.5 mb-3" aria-label={`Оценка: ${r.rating} из 5`}>
             {Array.from({ length: r.rating }).map(() => (
@@ -87,7 +94,7 @@ const totalReviews = reviews.length;
               </svg>
             ))}
           </div>
-          <p class="text-base text-[var(--color-text)] leading-relaxed flex-1">«{r.text}»</p>
+          <p class:list={['leading-relaxed flex-1', isFeatured ? 'text-lg text-[var(--color-text)]' : 'text-base text-[var(--color-text)]']}>«{r.text}»</p>
           <footer class="mt-4 flex items-center gap-3 border-t border-[var(--color-border)] pt-4">
             <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]/15 text-sm font-bold text-[var(--color-accent)]">
               {r.author.charAt(0)}
@@ -98,7 +105,8 @@ const totalReviews = reviews.length;
             </cite>
           </footer>
         </blockquote>
-      ))}
+        );
+      })}
     </div>
 
   </div>

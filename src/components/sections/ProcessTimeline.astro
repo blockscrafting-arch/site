@@ -1,95 +1,58 @@
 ---
 /**
- * Секция «Как работаю»: 4 шага в сетке, акцент на скорость и отсутствие бюрократии.
- * Сканируется за 3 секунды. CTA после. CSS reveal, без GSAP.
+ * Секция «Как работаю»: 4 шага в виде timeline.
+ * Desktop: горизонтальная линия с точками.
+ * Mobile: вертикальная линия с текстом справа.
  */
-import Button from '../common/Button.astro';
-
 const steps = [
-  {
-    num: '01',
-    title: 'Описываете задачу',
-    sub: 'Текстом, голосом или ТЗ — как удобно',
-    icon: 'brief',
-  },
-  {
-    num: '02',
-    title: 'Предлагаю варианты',
-    sub: '3 пакета с ценами — за 1 день',
-    icon: 'proto',
-  },
-  {
-    num: '03',
-    title: 'Запускаем MVP',
-    sub: 'Рабочий прототип за 1–3 дня',
-    icon: 'code',
-  },
-  {
-    num: '04',
-    title: 'Гарантирую работу',
-    sub: 'Баги по ТЗ правлю бесплатно',
-    icon: 'launch',
-  },
+  { num: '01', title: 'Описываете задачу', sub: 'Текстом, голосом или ТЗ — как удобно' },
+  { num: '02', title: 'Предлагаю варианты', sub: 'Варианты с ценами — в тот же день' },
+  { num: '03', title: 'Запускаем MVP', sub: 'Рабочая версия за 1–3 дня' },
+  { num: '04', title: 'Гарантирую работу', sub: 'Баги по ТЗ правлю бесплатно' },
 ];
 ---
 
-<section class="py-12 sm:py-16 px-4 sm:px-6" aria-labelledby="process-heading">
+<section class="py-20 sm:py-28 px-4 sm:px-6" aria-labelledby="process-heading">
   <div class="mx-auto max-w-5xl">
     <h2
       id="process-heading"
       class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl text-center"
     >
-      4 шага до запуска
+      Запуск за 4 шага
     </h2>
 
-    <ol class="reveal-stagger mt-12 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6" role="list">
-      {steps.map((step) => (
-        <li class="relative flex flex-col items-center text-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 sm:p-7 gap-2 sm:gap-3 h-full">
-          <!-- Номер шага -->
-          <span
-            class="font-display text-3xl sm:text-5xl font-black text-[var(--color-accent)] leading-none select-none"
-            aria-hidden="true"
-          >{step.num}</span>
-
-          <!-- Иконка — скрыта на мобилке для компактности -->
-          <span class="hidden sm:flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent-muted)] text-[var(--color-accent)] animate-float-icon" aria-hidden="true">
-            {step.icon === 'brief' && (
-              <svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+    <!-- Mobile: vertical timeline -->
+    <ol class="reveal-stagger mt-12 sm:mt-16 flex flex-col gap-0 lg:hidden" role="list">
+      {steps.map((step, i) => (
+        <li class="relative flex gap-4">
+          <div class="flex flex-col items-center">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-bg)]">
+              <span class="font-display text-sm font-black text-[var(--color-accent)]">{step.num}</span>
+            </div>
+            {i < steps.length - 1 && (
+              <div class="w-px flex-1 bg-[var(--color-border)] my-1" aria-hidden="true"></div>
             )}
-            {step.icon === 'proto' && (
-              <svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
-            )}
-            {step.icon === 'code' && (
-              <svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-            )}
-            {step.icon === 'launch' && (
-              <svg class="h-5 w-5 svg-icon-reveal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            )}
-          </span>
-
-          <!-- Заголовок шага -->
-          <h3 class="font-display font-semibold text-[var(--color-text)] text-sm sm:text-lg leading-snug">
-            {step.title}
-          </h3>
-          {step.sub && (
-            <p class="text-xs text-[var(--color-text-muted)] leading-snug">
-              {step.sub}
-            </p>
-          )}
+          </div>
+          <div class="pb-8 pt-1.5">
+            <h3 class="font-display font-semibold text-[var(--color-text)] text-base">{step.title}</h3>
+            <p class="mt-1 text-sm text-[var(--color-text-muted)]">{step.sub}</p>
+          </div>
         </li>
       ))}
     </ol>
 
-    <div class="reveal mt-10 sm:mt-12 text-center" style="animation-delay:.25s">
-      <Button href="/contact" variant="primary" dataYmGoal="cta_process">Начать с шага 1</Button>
-    </div>
+    <!-- Desktop: horizontal timeline -->
+    <ol class="reveal-stagger mt-12 sm:mt-16 hidden lg:grid lg:grid-cols-4 gap-0 relative" role="list">
+      <div class="absolute top-5 left-[12.5%] right-[12.5%] h-px bg-[var(--color-border)]" aria-hidden="true"></div>
+      {steps.map((step) => (
+        <li class="relative flex flex-col items-center text-center px-4">
+          <div class="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-bg)]">
+            <span class="font-display text-sm font-black text-[var(--color-accent)]">{step.num}</span>
+          </div>
+          <h3 class="mt-4 font-display font-semibold text-[var(--color-text)] text-lg">{step.title}</h3>
+          <p class="mt-1 text-sm text-[var(--color-text-muted)]">{step.sub}</p>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>
