@@ -170,6 +170,7 @@ export const SERVICES: Service[] = [
       { slug: 'moex-ai-radar', title: 'MOEX AI Radar: ИИ-аналитик фондового рынка', price: '15 000 р', metric: 'Анализ 500+ акций/день' },
       { slug: 'markus', title: 'Маркус — эффективный AI-ассистент', price: '14 000 р', metric: 'Замена ручного поиска' },
       { slug: 'voice-copilot', title: 'ИИ-копайлот для звонков (VoiceCoPilot)', price: '20 000 р', metric: 'Подсказки в реальном времени' },
+      { slug: 'dzen-content-pipeline', title: 'Контент-конвейер для Яндекс.Дзена: 3 AI-модели + ДНК бренда', price: '15 000 р', metric: '10 статей/день без копирайтера' },
     ],
     seoDescription:
       'AI-агенты на базе LLM и RAG: анализ документов, ответы по регламентам, черновики и отчёты. Под ключ, от 10 000 р.',
@@ -341,6 +342,7 @@ export const SERVICES: Service[] = [
       { slug: 'vk-autoposter', title: 'Автопостер для ВКонтакте: скрипт вместо рутины', price: '4 000 р', metric: '10 мин → 1 сек на публикацию' },
       { slug: 'ai-content-conveyor', title: 'AI-конвейер для автопостинга в Telegram, VK и Дзен', price: '9 000 р', metric: '30–40 мин → 2 мин на пост' },
       { slug: 'telegram-roi-posting', title: 'Постинг в 50+ Telegram-групп: рой аккаунтов', price: '14 000 р', metric: '50+ групп одновременно' },
+      { slug: 'dzen-content-pipeline', title: 'Контент-конвейер для Яндекс.Дзена: 3 AI-модели + ДНК бренда', price: '15 000 р', metric: '10 статей/день без копирайтера' },
     ],
     review: {
       author: 'postlunapark',

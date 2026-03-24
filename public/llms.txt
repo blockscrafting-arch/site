@@ -24,6 +24,7 @@
 ## Portfolio
 
 - [Все кейсы](https://vladexecute.ru/cases): реализованные проекты с результатами, метриками и ценами
+- [Контент-конвейер для Яндекс.Дзена](https://vladexecute.ru/cases/dzen-content-pipeline): автоматизация SEO-статей для питомника — 3 AI-модели, ДНК бренда, до 10 статей/день
 - [Инструкции и гайды](https://vladexecute.ru/guides): разборы по инструментам — n8n, Telegram, VPS, OpenAI
 
 ## Optional
