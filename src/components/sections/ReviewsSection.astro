@@ -6,39 +6,40 @@
  */
 const reviews = [
   {
-    author: 'Елена Б.',
-    handle: 'elena_bukina',
+    author: 'elena_bukina',
     project: 'Бот на Python с OCR',
     rating: 5,
     text: 'Редкое сочетание профессионализма и скорости выполнения. Рекомендую!',
   },
   {
-    author: 'Команда Nsltd',
-    handle: 'Nsltd',
+    author: 'Nsltd',
     project: 'Система парсинга',
     rating: 5,
     text: 'Идеальная работа! Тот случай, один на сотню, когда человек делом подтверждает все свои слова.',
   },
   {
-    author: 'Анна П.',
-    handle: 'postlunapark',
+    author: 'postlunapark',
     project: 'Автопостинг: Telegram + VK + Дзен',
     rating: 5,
     text: 'Теперь все время могу потратить на более важные задачи, чем руками всё постить.',
   },
   {
-    author: 'Дмитрий В.',
-    handle: 'wildtorneo',
+    author: 'wildtorneo',
     project: 'Автоматизация email-рассылки',
     rating: 5,
     text: 'Всё было сделано профессионально, быстро и именно так как нужно! Рекомендую!',
   },
   {
-    author: 'Евгений С.',
-    handle: 'evgenijjstrannik',
+    author: 'evgenijjstrannik',
     project: 'Парсер закрытых Telegram-чатов',
     rating: 5,
     text: 'Всё выполнено на высшем уровне, всем рекомендую.',
+  },
+  {
+    author: 'vitaly1303',
+    project: 'Разработка бота для MAX',
+    rating: 5,
+    text: 'Все круто!',
   },
 ];
 
@@ -61,7 +62,7 @@ const totalReviews = reviews.length;
         <span class="text-lg font-bold text-[var(--color-text)]">{avgRating}</span>
       </div>
       <h2 id="reviews-section-heading" class="font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl">
-        {totalReviews} из {totalReviews} клиентов довольны
+        {totalReviews} отзывов — все на 5 из 5
       </h2>
       <p class="mt-2 text-sm text-[var(--color-text-muted)]">
         Реальные отзывы с
