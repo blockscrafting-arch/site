@@ -1,55 +1,67 @@
 /**
- * Hero: печатающийся главный заголовок (TypeIt).
- * Циклически печатает и стирает цепляющие фразы — выгода и результат.
+ * HeroRotator — ротация ключевых услуг внутри H1.
+ * Framer Motion AnimatePresence mode="wait": fade+slide, ~3.5 сек/слово.
+ * Первое слово видно мгновенно (initial={false}), ноль пустого экрана.
  */
 
-import { useEffect, useRef } from "react";
-// @ts-expect-error — пакет typeit не экспортирует типы в @types
-import TypeIt from "typeit";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-/** Фразы для главного экрана: конкретные результаты из реальных кейсов. */
-const PHRASES = [
-  "Личный AI-ассистент",
-  "Контент-завод 24/7",
-  "Бот вместо саппорта",
-  "Автоматизация рутины",
-  "Парсер без выходных",
-  "ИИ-аналитик за вас",
-];
+/** Услуги в винительном падеже — каждая ЦА видит своё. */
+const SERVICES = ["бота", "AI-агента", "парсер", "автоматизацию"] as const;
 
-const OPTIONS = {
-  strings: PHRASES,
-  speed: 70,
-  deleteSpeed: 45,
-  lifeLike: true,
-  cursor: true,
-  cursorChar: "|",
-  breakLines: false,
-  nextStringDelay: [1400, 900],
-  loop: true,
-  loopDelay: [1200, 600],
-};
+const CYCLE_MS = 3500;
 
-interface TypewriterHeroProps {
-  /** Классы для обёртки (например цвет и размер под Hero). */
-  className?: string;
-}
-
-export default function TypewriterHero({ className }: TypewriterHeroProps) {
-  const elRef = useRef<HTMLSpanElement>(null);
+/** Определяет prefers-reduced-motion без зависимости от framer-motion internals. */
+function usePrefersReducedMotion(): boolean {
+  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    if (!elRef.current) return;
-    const instance = new TypeIt(elRef.current, OPTIONS).go();
-    return () => instance.destroy();
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
+  return reduced;
+}
+
+export default function HeroRotator() {
+  const [index, setIndex] = useState(0);
+  const reduced = usePrefersReducedMotion();
+
+  useEffect(() => {
+    if (reduced) return;
+    const id = setInterval(
+      () => setIndex((i) => (i + 1) % SERVICES.length),
+      CYCLE_MS,
+    );
+    return () => clearInterval(id);
+  }, [reduced]);
+
+  if (reduced) {
+    return (
+      <span className="text-[var(--color-accent)]">{SERVICES[0]}</span>
+    );
+  }
+
+  const word = SERVICES[index];
+
   return (
-    <span
-      ref={elRef}
-      className={`min-h-[1.2em] inline-block ${className ?? "text-[var(--color-accent)] font-black"}`}
-      aria-live="polite"
-      aria-label="Разработка на заказ: личный AI-ассистент, контент-завод, боты, автоматизация, парсеры, ИИ-аналитика"
-    />
+    <span className="inline-block align-baseline" aria-live="polite">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={word}
+          className="inline-block text-[var(--color-accent)]"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          {word}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   );
 }
