@@ -11,6 +11,15 @@ export default defineConfig({
   prefetch: { prefetchAll: false },
   markdown: {
     rehypePlugins: [rehypeCaseHeadingIcons],
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+      /** Отключает inline color/bg — управляем темой через CSS-переменные --shiki-light/--shiki-dark */
+      defaultColor: false,
+      wrap: false,
+    },
   },
   integrations: [
     tailwind(),
