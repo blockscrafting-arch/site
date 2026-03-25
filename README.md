@@ -37,6 +37,7 @@ npm run lint
 ## Структура
 
 - `src/components/` — common, layout, features, sections
+- **Первый экран главной:** в `Hero.astro` у секции задано `min-h-[calc(100svh-4rem)]` (вьюпорт минус высота фиксированного хедера). При смене высоты шапки обновить и эту формулу.
 - `src/content/cases/` — кейсы (Markdown, Astro Content Collections)
 - `src/content/guides/` — инструкции (Markdown)
 - `src/content/glossary.json` — термины для тултипов
