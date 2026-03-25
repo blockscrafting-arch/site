@@ -1,54 +1,107 @@
 ---
 /**
- * Страница одного кейса с уникальным оформлением (accentColor, layout).
+ * Страница одного кейса — world-class оформление.
+ * Hero (fullbleed / accent-bg), snapshot strip, impact metrics с counter-анимацией,
+ * pull-quote проблема, standalone testimonial, next-case card, lightbox prev/next.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
-import Badge from '../../components/common/Badge.astro';
 import Button from '../../components/common/Button.astro';
 import { site } from '../../utils/site';
 
+type CaseEntry = CollectionEntry<'cases'>;
+
+/** Человекочитаемые названия категорий */
+const CAT_LABELS: Record<string, string> = {
+  bot: 'Telegram-бот',
+  'ai-agent': 'AI-агент',
+  automation: 'Автоматизация',
+  'mini-app': 'Mini App',
+  parser: 'Парсинг',
+  script: 'Скрипт',
+  autoposting: 'Автопостинг',
+};
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const cases = await getCollection('cases');
-  return cases.filter((c) => !c.data.draft).map((entry) => ({ params: { slug: entry.slug } }));
+  return cases.filter((c: CaseEntry) => !c.data.draft).map((entry: CaseEntry) => ({ params: { slug: entry.slug } }));
 };
 
 const { slug } = Astro.params;
 if (!slug) throw new Error('Missing slug');
 const cases = await getCollection('cases');
-const entry = cases.find((e) => e.slug === slug);
+const entry = cases.find((e: CaseEntry) => e.slug === slug);
 if (!entry) throw new Error(`Case not found: ${slug}`);
 
 const { Content } = await entry.render();
 const data = entry.data;
-const { title, description, result, stack, metrics, accentColor, layout, problem, testimonial, productLogo, productLink, productName, screenshots, date, heroImage } = data;
+const {
+  title,
+  description,
+  result,
+  stack,
+  metrics,
+  accentColor,
+  layout,
+  problem,
+  testimonial,
+  productLogo,
+  productLink,
+  productName,
+  client,
+  screenshots,
+  date,
+  heroImage,
+  categories,
+  duration,
+} = data;
+
+/** Время чтения по количеству слов в теле кейса */
+const wordCount = entry.body.split(/\s+/).filter(Boolean).length;
+const readTime = Math.max(1, Math.ceil(wordCount / 200));
+
 const caseOgImage = heroImage ?? (screenshots && screenshots.length > 0 ? screenshots[0] : undefined);
 
-/** Похожие кейсы: пересечение категорий, добор по дате. */
-const published = cases.filter((c) => !c.data.draft && c.slug !== slug);
+/** Похожие кейсы: по пересечению категорий, затем по дате */
+const published = cases.filter((c: CaseEntry) => !c.data.draft && c.slug !== slug);
 const myCats = new Set(data.categories ?? []);
-const withScore = published.map((c) => {
-  const overlap = (c.data.categories ?? []).filter((cat) => myCats.has(cat)).length;
+const withScore = published.map((c: CaseEntry) => {
+  const overlap = (c.data.categories ?? []).filter((cat: string) => myCats.has(cat as CaseEntry['data']['categories'][number])).length;
   const t = c.data.date?.getTime() ?? 0;
   return { entry: c, overlap, t };
 });
-withScore.sort((a, b) => {
+withScore.sort((a: typeof withScore[number], b: typeof withScore[number]) => {
   if (b.overlap !== a.overlap) return b.overlap - a.overlap;
   return b.t - a.t;
 });
-let relatedCases = withScore.filter((x) => x.overlap > 0).slice(0, 3).map((x) => x.entry);
+let relatedCases = withScore.filter((x: typeof withScore[number]) => x.overlap > 0).slice(0, 3).map((x: typeof withScore[number]) => x.entry);
 if (relatedCases.length < 3) {
-  const taken = new Set(relatedCases.map((c) => c.slug));
+  const taken = new Set(relatedCases.map((c: CaseEntry) => c.slug));
   const filler = withScore
-    .map((x) => x.entry)
-    .filter((c) => !taken.has(c.slug))
+    .map((x: typeof withScore[number]) => x.entry)
+    .filter((c: CaseEntry) => !taken.has(c.slug))
     .slice(0, 3 - relatedCases.length);
   relatedCases = [...relatedCases, ...filler];
 }
+
+/** Следующий кейс: циклически по дате убывания */
+const allPublished = cases.filter((c: CaseEntry) => !c.data.draft);
+const allSorted = [...allPublished].sort(
+  (a: CaseEntry, b: CaseEntry) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0),
+);
+const currIdx = allSorted.findIndex((c: CaseEntry) => c.slug === slug);
+const nextCase = allSorted.length > 1 ? allSorted[(currIdx + 1) % allSorted.length] : null;
+
 const showProductCard = productLogo && productLink;
 const accent = accentColor ?? '#10b981';
 const layoutType = layout ?? 'default';
+
+/** Snapshot strip: показывать если есть хотя бы одно значимое поле */
+const snapClient = client ?? productName;
+const snapStack = (stack ?? []).slice(0, 5);
+const showSnapshot = !!(snapClient || snapStack.length > 0 || duration || result);
 
 const caseUrl = `${site.url}/cases/${slug}`;
 const breadcrumbSchema = {
@@ -71,121 +124,251 @@ const articleSchema = {
 };
 ---
 
-<BaseLayout title={`${title} — Кейсы | vlad.execute(_)`} description={description} schema={[breadcrumbSchema, articleSchema]} image={caseOgImage} ogType="article" publishedTime={date ? date.toISOString().slice(0, 10) : undefined}>
+<BaseLayout
+  title={`${title} — Кейсы | vlad.execute(_)`}
+  description={description}
+  schema={[breadcrumbSchema, articleSchema]}
+  image={caseOgImage}
+  ogType="article"
+  publishedTime={date ? date.toISOString().slice(0, 10) : undefined}
+>
+  <!-- Полоска прогресса прокрутки -->
+  <div id="case-progress-bar" aria-hidden="true"></div>
+
   <article
     class="case-detail"
     style={`--case-accent: ${accent}; --case-accent-glow: ${accent}40`}
     data-layout={layoutType}
   >
-    <header
-      class="case-hero rounded-b-3xl border-b border-[var(--color-border)] px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
-      style={{ backgroundColor: `${accent}12`, borderColor: `${accent}30` }}
-    >
-      <div class="mx-auto max-w-3xl case-hero-inner reveal-stagger is-visible">
-        <a
-          href="/cases"
-          data-ym-goal="cta_cases"
-          class="group case-back mb-6 inline-flex items-center text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
-        >
-          <span class="mr-1 inline-block transition-transform duration-300 group-hover:-translate-x-1">←</span> Кейсы
-        </a>
-        <h1 class="case-title font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl">
-          {title}
-        </h1>
-        {description && (
-          <p class="case-desc mt-4 text-lg text-[var(--color-text-muted)]">{description}</p>
-        )}
-        {showProductCard && (
-          <section class="case-product-card mt-6" aria-labelledby="case-product-heading">
-            <h2 id="case-product-heading" class="sr-only">Продукт</h2>
+    <!-- ========== HERO ========== -->
+    {heroImage ? (
+      <!-- Fullbleed hero с изображением -->
+      <header class="case-hero-fullbleed">
+        <img
+          src={heroImage}
+          alt={`${title} — превью`}
+          class="case-hero-fullbleed__img"
+          width="1200"
+          height="630"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="case-hero-fullbleed__overlay" aria-hidden="true"></div>
+        <div class="case-hero-fullbleed__content px-4 pb-14 pt-20 sm:px-6 sm:pb-18 lg:px-8">
+          <div class="mx-auto max-w-3xl reveal-stagger is-visible">
             <a
-              href={productLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-ym-goal="case_product_open"
-              class="case-product-card__link group flex flex-col sm:flex-row items-center gap-4 sm:gap-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 transition-all duration-300 hover:border-[var(--case-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--case-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
+              href="/cases"
+              data-ym-goal="cta_cases"
+              class="group mb-5 inline-flex items-center text-sm text-white/60 transition-colors hover:text-white"
             >
-              <div class="case-product-card__logo flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-[var(--color-surface-muted)] flex items-center justify-center p-2 ring-1 ring-[var(--color-border)]">
-                <img
-                  src={productLogo}
-                  alt={productName ?? 'Логотип продукта'}
-                  class="max-w-full max-h-full object-contain"
-                  width="96"
-                  height="96"
-                  loading="lazy"
-                />
-              </div>
-              <div class="case-product-card__body flex-1 text-center sm:text-left min-w-0">
-                {productName && (
-                  <span class="font-display text-xl font-semibold text-[var(--color-text)] block">{productName}</span>
-                )}
-                <span class="inline-flex items-center gap-1.5 mt-1 text-sm font-medium text-[var(--case-accent)] group-hover:underline">
-                  Открыть в Telegram
-                  <svg class="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </span>
-              </div>
+              <span class="mr-1 inline-block transition-transform duration-300 group-hover:-translate-x-1">←</span> Кейсы
             </a>
-          </section>
-        )}
-        {((stack ?? []).length > 0) && (
-          <div class="case-stack mt-6 flex flex-wrap gap-2">
-            {(stack ?? []).map((s) => (
-              <Badge variant="emerald">{s}</Badge>
-            ))}
+            {(categories ?? []).length > 0 && (
+              <div class="mb-3 flex flex-wrap gap-2">
+                {(categories ?? []).map((cat: string) => (
+                  <span
+                    class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold"
+                    style={`background:${accent}25;color:${accent};border-color:${accent}50`}
+                  >
+                    {CAT_LABELS[cat] ?? cat}
+                  </span>
+                ))}
+              </div>
+            )}
+            <h1 class="font-display text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+              {title}
+            </h1>
+            {description && (
+              <p class="mt-4 text-lg leading-relaxed text-white/70">{description}</p>
+            )}
+            <div class="case-meta-strip mt-5 text-white/50">
+              {date && (
+                <>
+                  <span>{date.getFullYear()}</span>
+                  <span class="case-meta-strip__sep"></span>
+                </>
+              )}
+              <span>{readTime} мин. чтения</span>
+            </div>
           </div>
-        )}
-        {result && (
-          <p
-            class="case-result mt-6 rounded-xl px-4 py-3 text-sm font-medium"
-            style={{ backgroundColor: `${accent}20`, color: accent }}
+        </div>
+      </header>
+    ) : (
+      <!-- Hero без изображения — accent-bg -->
+      <header
+        class="case-hero rounded-b-3xl border-b px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        style={{ backgroundColor: `${accent}12`, borderColor: `${accent}30` }}
+      >
+        <div class="mx-auto max-w-3xl reveal-stagger is-visible">
+          <a
+            href="/cases"
+            data-ym-goal="cta_cases"
+            class="group mb-5 inline-flex items-center text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent)]"
           >
-            <strong>Результат:</strong> {result}
-          </p>
-        )}
-        {metrics && metrics.length > 0 && (
-          <ul class="case-metrics mt-6 flex flex-wrap gap-3" role="list">
-            {metrics.map((m) => (
-              <li
-                class="rounded-xl border px-4 py-3 text-sm bg-[var(--color-surface)] border-[var(--color-border)]"
-              >
-                <span class="font-bold" style={{ color: accent }}>
+            <span class="mr-1 inline-block transition-transform duration-300 group-hover:-translate-x-1">←</span> Кейсы
+          </a>
+          {(categories ?? []).length > 0 && (
+            <div class="mb-3 flex flex-wrap gap-2">
+              {(categories ?? []).map((cat: string) => (
+                <span
+                  class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold"
+                  style={`background:${accent}18;color:${accent};border-color:${accent}40`}
+                >
+                  {CAT_LABELS[cat] ?? cat}
+                </span>
+              ))}
+            </div>
+          )}
+          <h1 class="font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl">
+            {title}
+          </h1>
+          {description && (
+            <p class="mt-4 text-lg leading-relaxed text-[var(--color-text-muted)]">{description}</p>
+          )}
+          <div class="case-meta-strip mt-5">
+            {date && (
+              <>
+                <span>{date.getFullYear()}</span>
+                <span class="case-meta-strip__sep"></span>
+              </>
+            )}
+            <span>{readTime} мин. чтения</span>
+          </div>
+        </div>
+      </header>
+    )}
+
+    <!-- ========== SNAPSHOT STRIP ========== -->
+    {showSnapshot && (
+      <div class="case-snapshot-strip">
+        <div class="mx-auto max-w-3xl px-4 py-5 sm:px-6 lg:px-8">
+          <div class="flex flex-wrap gap-x-8 gap-y-4">
+            {snapClient && (
+              <div class="case-snapshot-item">
+                <span class="case-snapshot-item__label">Клиент</span>
+                <span class="case-snapshot-item__value">{snapClient}</span>
+              </div>
+            )}
+            {duration && (
+              <div class="case-snapshot-item">
+                <span class="case-snapshot-item__label">Срок</span>
+                <span class="case-snapshot-item__value">{duration}</span>
+              </div>
+            )}
+            {snapStack.length > 0 && (
+              <div class="case-snapshot-item">
+                <span class="case-snapshot-item__label">Стек</span>
+                <span class="case-snapshot-item__value">{snapStack.join(' · ')}</span>
+              </div>
+            )}
+            {result && (
+              <div class="case-snapshot-item min-w-[180px] flex-1">
+                <span class="case-snapshot-item__label">Результат</span>
+                <span class="case-snapshot-item__value" style={`color:${accent}`}>{result}</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- ========== BODY ========== -->
+    <div class="case-body mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+
+      <!-- Карточка продукта (если есть лого + ссылка) -->
+      {showProductCard && (
+        <section class="mb-12" aria-labelledby="case-product-heading">
+          <h2 id="case-product-heading" class="sr-only">Продукт</h2>
+          <a
+            href={productLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ym-goal="case_product_open"
+            class="case-product-card__link group flex flex-col items-center gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--case-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--case-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)] sm:flex-row sm:gap-6 sm:p-8"
+          >
+            <div class="flex h-20 w-20 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[var(--color-surface-muted)] p-2 ring-1 ring-[var(--color-border)] sm:h-24 sm:w-24">
+              <img
+                src={productLogo}
+                alt={productName ?? 'Логотип продукта'}
+                class="max-h-full max-w-full object-contain"
+                width="80"
+                height="80"
+                loading="lazy"
+              />
+            </div>
+            <div class="min-w-0 flex-1 text-center sm:text-left">
+              {productName && (
+                <span class="block font-display text-xl font-semibold text-[var(--color-text)]">
+                  {productName}
+                </span>
+              )}
+              <span class="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--case-accent)] group-hover:underline">
+                Открыть
+                <svg class="h-4 w-4 flex-shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        </section>
+      )}
+
+      <!-- Impact Metrics — большие числа с counter-анимацией -->
+      {metrics && metrics.length > 0 && (
+        <section class="case-metrics-section mb-14 reveal" aria-label="Ключевые метрики">
+          <ul class="case-impact-grid" role="list">
+            {metrics.map((m: { value: string; label: string; prefix?: string; suffix?: string }) => (
+              <li class="case-impact-item">
+                <span
+                  class="case-impact-num"
+                  data-target={m.value}
+                  data-prefix={m.prefix ?? ''}
+                  data-suffix={m.suffix ?? ''}
+                >
                   {m.prefix ?? ''}{m.value}{m.suffix ?? ''}
                 </span>
-                <span class="text-[var(--color-text-muted)]"> — {m.label}</span>
+                <span class="case-impact-label">{m.label}</span>
               </li>
             ))}
           </ul>
-        )}
-      </div>
-    </header>
-
-    <div class="case-body reveal-stagger mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      {problem && (
-        <section class="case-problem mb-10 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-          <h2 class="font-display text-lg font-semibold text-[var(--color-text)]">Проблема</h2>
-          <p class="mt-2 text-[var(--color-text-muted)]">{problem}</p>
         </section>
       )}
+
+      <!-- Проблема — pull-quote стиль -->
+      {problem && (
+        <section class="mb-12 reveal" aria-labelledby="case-problem-heading">
+          <h2 id="case-problem-heading" class="sr-only">Проблема</h2>
+          <div class="case-pull-quote">
+            <span class="case-pull-quote__label">Проблема</span>
+            <p class="case-pull-quote__text">{problem}</p>
+          </div>
+        </section>
+      )}
+
+      <!-- Галерея скриншотов -->
       {screenshots && screenshots.length > 0 && (
-        <section class="case-screenshots mb-10" aria-label="Скриншоты проекта">
+        <section class="case-screenshots mb-12 reveal" aria-label="Скриншоты проекта">
           <div class={`grid gap-4 ${screenshots.length === 1 ? '' : 'sm:grid-cols-2'}`}>
-            {screenshots.map((src, i) => (
+            {screenshots.map((src: string, i: number) => (
               <button
                 type="button"
-                class="case-screenshot-thumb group relative block w-full overflow-hidden rounded-2xl ring-1 ring-[var(--color-border)] cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--case-accent)]"
+                class="case-screenshot-thumb group relative block w-full cursor-zoom-in overflow-hidden rounded-2xl ring-1 ring-[var(--color-border)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--case-accent)]"
                 data-src={src}
                 data-alt={`${title} — скриншот ${i + 1}`}
+                data-index={i}
                 aria-label={`Открыть скриншот ${i + 1} на весь экран`}
               >
                 <img
                   src={src}
                   alt={`${title} — скриншот ${i + 1}`}
-                  class="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.04]"
+                  class="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.04]"
                   loading="lazy"
                   decoding="async"
                 />
+                <span class="pointer-events-none absolute bottom-2 right-2 rounded-full bg-black/60 px-2.5 py-1 text-xs font-medium tabular-nums text-white/70 backdrop-blur-sm">
+                  {i + 1} / {screenshots.length}
+                </span>
                 <span class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/30">
                   <span class="flex items-center gap-2 rounded-full bg-black/70 px-4 py-2 text-sm font-medium text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
                     <svg class="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -199,24 +382,62 @@ const articleSchema = {
           </div>
         </section>
       )}
+
+      <!-- Тело кейса (Markdown) -->
       <div class="prose prose-invert max-w-none prose-headings:font-display prose-a:text-[var(--color-accent)]">
         <Content />
       </div>
+
+      <!-- Отзыв клиента — standalone секция -->
       {testimonial && (
-        <blockquote
-          class="mt-12 rounded-2xl border-l-4 px-6 py-4 italic text-[var(--color-text-muted)]"
-          style={{ borderColor: accent }}
-        >
-          "{testimonial.text}" — {testimonial.author}
-        </blockquote>
+        <section class="mt-14 reveal" aria-label="Отзыв клиента">
+          <div class="case-testimonial">
+            <span class="case-testimonial__quote-icon" aria-hidden="true">"</span>
+            <p class="case-testimonial__text">{testimonial.text}</p>
+            <footer class="case-testimonial__author">
+              <span class="case-testimonial__name">— {testimonial.author}</span>
+              {(testimonial.role || testimonial.company) && (
+                <span class="case-testimonial__role">
+                  {[testimonial.role, testimonial.company].filter(Boolean).join(', ')}
+                </span>
+              )}
+            </footer>
+          </div>
+        </section>
       )}
+
+      <!-- Следующий кейс -->
+      {nextCase && (
+        <section class="mt-14 reveal" aria-label="Следующий кейс">
+          <a
+            href={`/cases/${nextCase.slug}`}
+            data-ym-goal="case_next_click"
+            class="case-next-card"
+          >
+            <div class="min-w-0">
+              <p class="case-next-card__eyebrow">Следующий кейс</p>
+              <p class="case-next-card__title">{nextCase.data.title}</p>
+              {nextCase.data.description && (
+                <p class="case-next-card__desc">{nextCase.data.description}</p>
+              )}
+            </div>
+            <div class="case-next-card__arrow" aria-hidden="true">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        </section>
+      )}
+
+      <!-- Похожие кейсы -->
       {relatedCases.length > 0 && (
-        <section class="case-related mt-14" aria-labelledby="case-related-heading">
+        <section class="case-related mt-12 reveal" aria-labelledby="case-related-heading">
           <h2 id="case-related-heading" class="font-display text-lg font-semibold text-[var(--color-text)]">
             Похожие кейсы
           </h2>
-          <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
-            {relatedCases.map((rel) => (
+          <ul class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
+            {relatedCases.map((rel: CaseEntry) => (
               <li>
                 <a
                   href={`/cases/${rel.slug}`}
@@ -225,7 +446,9 @@ const articleSchema = {
                 >
                   <span class="font-display font-semibold text-[var(--color-text)]">{rel.data.title}</span>
                   {rel.data.description && (
-                    <span class="mt-2 block text-sm text-[var(--color-text-muted)] line-clamp-2">{rel.data.description}</span>
+                    <span class="mt-2 block text-sm text-[var(--color-text-muted)] line-clamp-2">
+                      {rel.data.description}
+                    </span>
                   )}
                 </a>
               </li>
@@ -233,7 +456,9 @@ const articleSchema = {
           </ul>
         </section>
       )}
-      <div class="case-cta mt-14 flex flex-wrap gap-4">
+
+      <!-- CTA -->
+      <div class="case-cta mt-12 flex flex-wrap gap-4">
         <Button href="/contact" variant="primary" dataYmGoal="cta_contact">
           Обсудить похожий проект
         </Button>
@@ -245,7 +470,7 @@ const articleSchema = {
   </article>
 </BaseLayout>
 
-<!-- Лайтбокс для скриншотов кейса -->
+<!-- ========== LIGHTBOX ========== -->
 <div
   id="case-lightbox"
   class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/92 backdrop-blur-md p-4"
@@ -253,6 +478,7 @@ const articleSchema = {
   aria-modal="true"
   aria-label="Просмотр скриншота"
 >
+  <!-- Закрыть -->
   <button
     id="case-lightbox-close"
     type="button"
@@ -263,51 +489,185 @@ const articleSchema = {
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
     </svg>
   </button>
+
+  <!-- Предыдущий -->
+  <button
+    id="case-lightbox-prev"
+    type="button"
+    class="case-lightbox-nav case-lightbox-nav--prev"
+    aria-label="Предыдущий скриншот"
+  >
+    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Следующий -->
+  <button
+    id="case-lightbox-next"
+    type="button"
+    class="case-lightbox-nav case-lightbox-nav--next"
+    aria-label="Следующий скриншот"
+  >
+    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
   <img
     id="case-lightbox-img"
     src=""
     alt=""
-    class="max-h-[92vh] max-w-full rounded-2xl object-contain shadow-2xl"
+    class="max-h-[88vh] max-w-full rounded-2xl object-contain shadow-2xl"
   />
+
+  <span id="case-lightbox-counter" class="case-lightbox-counter" aria-live="polite"></span>
 </div>
 
 <script>
   (function () {
-    const lb = document.getElementById('case-lightbox');
-    const img = document.getElementById('case-lightbox-img') as HTMLImageElement | null;
-    const closeBtn = document.getElementById('case-lightbox-close');
+    /* ---- Scroll progress bar ---- */
+    const bar = document.getElementById('case-progress-bar') as HTMLDivElement | null;
+    if (bar) {
+      const barEl = bar;
+      function updateProgress() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = scrollable > 0 ? Math.min(100, (window.scrollY / scrollable) * 100) : 0;
+        barEl.style.width = pct + '%';
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    }
 
-    function open(src: string, alt: string) {
-      if (!lb || !img) return;
-      img.src = src;
-      img.alt = alt;
+    /* ---- Counter animation for impact metrics ---- */
+    function isNumericStr(s: string): boolean {
+      return /^\d+(\.\d+)?$/.test(s.trim());
+    }
+
+    function animateCounter(el: HTMLElement) {
+      const raw = (el.dataset.target ?? '').trim();
+      const prefix = el.dataset.prefix ?? '';
+      const suffix = el.dataset.suffix ?? '';
+      if (!isNumericStr(raw)) return;
+      const target = parseFloat(raw);
+      const isInt = Number.isInteger(target);
+      const duration = 1200;
+      const start = performance.now();
+
+      el.classList.add('is-counting');
+
+      function tick(now: number) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+        const current = target * ease;
+        el.textContent = prefix + (isInt ? Math.round(current).toString() : current.toFixed(1)) + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = prefix + raw + suffix;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const metricEls = document.querySelectorAll<HTMLElement>('.case-impact-num[data-target]');
+    if (metricEls.length > 0) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              animateCounter(e.target as HTMLElement);
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.4 },
+      );
+      metricEls.forEach((el) => observer.observe(el));
+    }
+
+    /* ---- Reveal (IntersectionObserver для .reveal) ---- */
+    const revealEls = document.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)');
+    if (revealEls.length > 0) {
+      const revealObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              (e.target as HTMLElement).classList.add('is-visible');
+              revealObs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      revealEls.forEach((el) => revealObs.observe(el));
+    }
+
+    /* ---- Lightbox ---- */
+    const lb = document.getElementById('case-lightbox');
+    const lbImg = document.getElementById('case-lightbox-img') as HTMLImageElement | null;
+    const lbClose = document.getElementById('case-lightbox-close');
+    const lbPrev = document.getElementById('case-lightbox-prev');
+    const lbNext = document.getElementById('case-lightbox-next');
+    const lbCounter = document.getElementById('case-lightbox-counter');
+
+    const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>('.case-screenshot-thumb'));
+    let activeIdx = 0;
+
+    function lbOpen(idx: number) {
+      if (!lb || !lbImg) return;
+      activeIdx = idx;
+      const thumb = thumbs[idx];
+      if (!thumb) return;
+      lbImg.src = thumb.dataset.src ?? '';
+      lbImg.alt = thumb.dataset.alt ?? '';
+      if (lbCounter) lbCounter.textContent = `${idx + 1} / ${thumbs.length}`;
+
+      // Показывать nav только если скриншотов > 1
+      const showNav = thumbs.length > 1;
+      if (lbPrev) lbPrev.style.display = showNav ? '' : 'none';
+      if (lbNext) lbNext.style.display = showNav ? '' : 'none';
+      if (lbCounter) lbCounter.style.display = thumbs.length > 1 ? '' : 'none';
+
       lb.classList.remove('hidden');
       lb.classList.add('flex');
       document.body.style.overflow = 'hidden';
     }
 
-    function close() {
-      if (!lb || !img) return;
+    function lbClose_() {
+      if (!lb || !lbImg) return;
       lb.classList.add('hidden');
       lb.classList.remove('flex');
       document.body.style.overflow = '';
-      setTimeout(() => { img.src = ''; }, 200);
+      setTimeout(() => { if (lbImg) lbImg.src = ''; }, 200);
     }
 
-    document.querySelectorAll<HTMLButtonElement>('.case-screenshot-thumb').forEach((btn) => {
+    function lbNavigate(delta: number) {
+      const next = (activeIdx + delta + thumbs.length) % thumbs.length;
+      lbOpen(next);
+    }
+
+    thumbs.forEach((btn) => {
       btn.addEventListener('click', () => {
-        open(btn.dataset.src ?? '', btn.dataset.alt ?? '');
+        const idx = parseInt(btn.dataset.index ?? '0', 10);
+        lbOpen(isNaN(idx) ? 0 : idx);
       });
     });
 
-    closeBtn?.addEventListener('click', close);
+    lbClose?.addEventListener('click', lbClose_);
+    lbPrev?.addEventListener('click', () => lbNavigate(-1));
+    lbNext?.addEventListener('click', () => lbNavigate(1));
 
     lb?.addEventListener('click', (e) => {
-      if (e.target === lb) close();
+      if (e.target === lb) lbClose_();
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') close();
+      if (!lb || lb.classList.contains('hidden')) return;
+      if (e.key === 'Escape') lbClose_();
+      if (e.key === 'ArrowLeft') lbNavigate(-1);
+      if (e.key === 'ArrowRight') lbNavigate(1);
     });
   })();
 </script>
