@@ -8,8 +8,7 @@ screenshots:
   - "/images/cases/freelance-radar-preview.png"
 categories: ["ai-agent", "automation", "parser"]
 accentColor: "#10b981"
-featured: true
-featuredOrder: 4
+featured: false
 metrics:
   - { value: "24/7", label: "Непрерывный мониторинг" }
   - { value: "99%", label: "Отсеивание нерелевантных ТЗ" }

@@ -9,6 +9,8 @@ screenshots:
   - "/images/cases/domscanner-email-ai-preview.png"
 categories: ["automation", "ai-agent"]
 accentColor: "#3b82f6"
+featured: true
+featuredOrder: 4
 metrics:
   - { value: "100%", label: "Автоматизация процесса" }
   - { value: "AI", label: "Уникальный текст в письмах" }
