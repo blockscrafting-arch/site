@@ -17,7 +17,7 @@
 - [Mini Apps](https://vladexecute.ru/services/mini-apps): встроенные веб-приложения внутри мессенджеров, от 15 000 р
 - [Автоматизация (n8n)](https://vladexecute.ru/services/automation): воркфлоу 24/7, данные остаются у заказчика, от 5 000 р
 - [Парсинг](https://vladexecute.ru/services/parsing): сбор данных с сайтов, маркетплейсов, Telegram-каналов, от 10 000 р
-- [Автопостинг](https://vladexecute.ru/services/autoposting): AI-генерация + кросс-постинг Telegram/VK/Дзен, от 5 000 р
+- [Автопостинг](https://vladexecute.ru/services/autoposting): AI-генерация текста/картинок/видео (Reels/Shorts) + кросс-постинг Telegram/MAX/VK/Дзен/Instagram/TikTok/YouTube + личные сайты, от 4 000 р
 - [Скрипты на Python](https://vladexecute.ru/services/scripts): разовые задачи, конвертация файлов, отчёты, от 4 000 р
 - [Интеграции API](https://vladexecute.ru/services/integrations): CRM, таблицы, платёжки, сторонние сервисы, от 5 000 р
 
