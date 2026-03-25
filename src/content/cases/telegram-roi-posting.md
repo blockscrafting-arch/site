@@ -6,6 +6,8 @@ stack: ["Python", "Telethon", "Google Sheets", "Telegram", "Userbot"]
 date: 2026-01-23
 categories: [automation, parser, autoposting]
 accentColor: "#0ea5e9"
+featured: true
+featuredOrder: 1
 metrics:
   - { value: "−118 ч/мес", label: "Время на постинг" }
   - { value: "50+", label: "Групп ежедневно" }

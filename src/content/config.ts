@@ -50,6 +50,8 @@ const casesCollection = defineCollection({
       })
       .optional(),
     featured: z.boolean().default(false),
+    /** Порядковый номер на главной (1 = wide-карточка). Только у флагманских кейсов. */
+    featuredOrder: z.number().optional(),
     draft: z.boolean().default(false),
     /** Блок «продукт»: логотип + ссылка (например на бота). */
     productLogo: z.string().optional(),

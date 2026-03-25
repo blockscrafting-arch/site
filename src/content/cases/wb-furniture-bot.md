@@ -6,6 +6,8 @@ stack: ["MAX", "n8n", "Google Sheets"]
 date: 2026-03-18
 categories: ["bot", "automation"]
 accentColor: "#f59e0b"
+featured: true
+featuredOrder: 3
 client: "Velvet Mebel"
 screenshots:
   - "/images/cases/wb-furniture-bot-preview.png"

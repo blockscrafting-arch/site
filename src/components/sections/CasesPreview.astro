@@ -7,7 +7,10 @@
 import { getCollection } from 'astro:content';
 const allCases = await getCollection('cases');
 const cases = allCases.filter((c) => !c.data.draft).sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
-const featured = cases.slice(0, 4);
+const featured = cases
+  .filter((c) => c.data.featuredOrder != null)
+  .sort((a, b) => (a.data.featuredOrder ?? 99) - (b.data.featuredOrder ?? 99))
+  .slice(0, 4);
 ---
 
 <section class="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden bg-[var(--color-surface)]" aria-labelledby="cases-preview-heading">

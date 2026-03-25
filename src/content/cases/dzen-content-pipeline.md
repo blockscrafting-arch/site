@@ -7,6 +7,8 @@ date: 2026-03-24
 client: "Питомник Росток"
 categories: [automation, ai-agent, autoposting]
 accentColor: "#16a34a"
+featured: true
+featuredOrder: 2
 productName: "Канал на Дзене"
 productLink: "https://dzen.ru/rostokpitomnik"
 screenshots:
