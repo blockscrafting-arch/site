@@ -41,9 +41,15 @@ npm run lint
 - `src/content/cases/` — кейсы (Markdown, Astro Content Collections)
 - `src/content/guides/` — инструкции (Markdown)
 - `src/content/glossary.json` — термины для тултипов
+- `src/data/services.ts` — 8 услуг для `/services` и `/services/[id]`; см. [docs/SERVICES.md](./docs/SERVICES.md)
 
 ### Кейсы и главная
 
 - Схема полей: `src/content/config.ts`.
 - На главной блок **«Проекты с цифрами»** автоматически показывает **4 новейших** кейса по полю `date` (без черновиков). Для карточки используется первая метрика `metrics[0]`; для формата «до → после» задайте у неё `before` и `after` в frontmatter.
 - Подробнее: [docs/CONTENT_CASES.md](./docs/CONTENT_CASES.md) и `.cursor/rules/content.mdc`.
+
+### Услуги
+
+- Hub и детальные страницы: `src/pages/services/`. Цены в интерфейсе не выводятся; в данных — для JSON-LD.
+- [docs/SERVICES.md](./docs/SERVICES.md) — поля, стили, отличия от старого блока тарифов.

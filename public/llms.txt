@@ -11,7 +11,7 @@
 
 ## Services
 
-- [Услуги и цены (каталог)](https://vladexecute.ru/services): все 8 направлений с ценами от 5 000 р
+- [Услуги (каталог)](https://vladexecute.ru/services): все 8 направлений; ориентир по бюджету — от 5 000 р (точная смета после описания задачи)
 - [Боты в мессенджерах](https://vladexecute.ru/services/telegram-bots): Telegram, MAX, VK — приём заявок, FAQ, уведомления, от 8 000 р
 - [AI-агенты](https://vladexecute.ru/services/ai-agents): LLM + RAG, память, регламенты, от 10 000 р
 - [Mini Apps](https://vladexecute.ru/services/mini-apps): встроенные веб-приложения внутри мессенджеров, от 15 000 р
