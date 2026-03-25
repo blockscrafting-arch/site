@@ -4,6 +4,7 @@ description: "Бот перехватывает аудио в чате, Whisper 
 result: "Было: 40 войсов = 120 минут. Стало: скан глазами = 20 минут. Высвобождено 10 часов в неделю."
 stack: ["Telegram", "n8n", "OpenAI", "Whisper"]
 date: 2026-01-12
+duration: "1 вечер"
 categories: [automation]
 accentColor: "#f59e0b"
 metrics:

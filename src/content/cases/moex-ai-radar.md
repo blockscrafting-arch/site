@@ -4,6 +4,7 @@ description: "Система мониторинга финансовых нов�
 result: "Вместо сотен сообщений — 3–5 структурированных отчетов в день. Полный отказ от ручного чтения новостей."
 stack: ["n8n", "Perplexity API", "DeepSeek", "MOEX API", "Telegram"]
 date: 2026-02-22
+duration: "1 неделя"
 screenshots:
   - "/images/cases/moex-ai-radar-preview.png"
 categories: ["ai-agent", "automation", "parser"]

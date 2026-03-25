@@ -17,6 +17,7 @@ stack:
     "Nginx",
   ]
 date: 2026-03-02
+duration: "10 дней"
 screenshots:
   - "/images/cases/telegram-ocr-monetization-preview.png"
 categories: ["bot", "automation"]

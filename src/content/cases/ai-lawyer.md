@@ -4,6 +4,7 @@ description: "Первый агент на базе GPTs — автоматиз�
 result: "Агент на актуальной модели выполняет юридический анализ и сборку КП по ГОСТу; логика обременений и лимитов переведена в алгоритмы."
 stack: ["OpenAI", "GPTs", "n8n"]
 date: 2025-12-27
+duration: "2 дня"
 categories: [ai-agent]
 accentColor: "#8b5cf6"
 metrics:

@@ -4,6 +4,7 @@ description: "Автоматизированная email-рассылка для
 result: "Автономная система, отправляющая персонализированные письма с обходом антиспам-фильтров и отчётами в Telegram."
 stack: ["n8n", "Google Sheets", "OpenRouter (AI)", "smtp.bz", "Telegram API"]
 date: 2026-03-10
+duration: "4 дня"
 client: "Домсканер"
 screenshots:
   - "/images/cases/domscanner-email-ai-preview.png"

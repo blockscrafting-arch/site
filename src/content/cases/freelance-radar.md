@@ -4,6 +4,7 @@ description: "Автономная система мониторинга бир�
 result: "Время на поиск заказов сократилось до нуля. Агент отсеивает 99% мусорных заявок и присылает только релевантные проекты с оценкой бюджета и рисков."
 stack: ["Python", "n8n", "Gemini", "Telegram"]
 date: 2026-02-22
+duration: "5 дней"
 screenshots:
   - "/images/cases/freelance-radar-preview.png"
 categories: ["ai-agent", "automation", "parser"]

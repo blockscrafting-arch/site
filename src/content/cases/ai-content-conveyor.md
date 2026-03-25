@@ -4,6 +4,7 @@ description: "Система из 5 n8n-воркфлоу: идеи → самм�
 result: "Время на пост с 30–40 минут до 2 минут; нулевые затраты на дизайнера и копирайтера; синхронная публикация в 3 соцсети."
 stack: ["n8n", "OpenRouter", "Google Sheets", "Telegram", "VK", "Дзен"]
 date: 2026-01-30
+duration: "1 неделя"
 categories: [automation]
 accentColor: "#ec4899"
 metrics:

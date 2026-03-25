@@ -1700,3 +1700,181 @@
     transform: none;
   }
 }
+
+/* ===== Case Detail: Visual Uplift Round 2 ===== */
+
+/* --- Before/After metric cell --- */
+.case-metric-ba {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.case-metric-ba__values {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  line-height: 1;
+}
+.case-metric-ba__before {
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--color-text-muted);
+  opacity: 0.55;
+  font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
+}
+.case-metric-ba__arrow {
+  font-size: 1rem;
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+.case-metric-ba__after {
+  font-size: clamp(2rem, 5.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--case-accent, var(--color-accent));
+  font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+.case-metric-ba__label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  max-width: 160px;
+}
+
+/* --- Tag metric (non-numeric value: "RAG", "ГОСТ", "24/7" etc.) --- */
+.case-metric-tag {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.case-metric-tag__value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  border: 2px solid color-mix(in srgb, var(--case-accent, var(--color-accent)) 40%, transparent);
+  background: color-mix(in srgb, var(--case-accent, var(--color-accent)) 10%, transparent);
+  font-size: clamp(0.9rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  color: var(--case-accent, var(--color-accent));
+  font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.case-metric-tag__label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  max-width: 160px;
+}
+
+/* --- Architecture / flow code blocks in prose --- */
+.case-detail .prose .case-flow-block,
+.case-flow-block {
+  background: color-mix(in srgb, var(--case-accent, var(--color-accent)) 5%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--case-accent, var(--color-accent)) 20%, var(--color-border));
+  border-left: 4px solid var(--case-accent, var(--color-accent));
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1.25rem 1.5rem;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  overflow-x: auto;
+  white-space: pre;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Result callout block --- */
+.case-result-callout {
+  position: relative;
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  background: color-mix(in srgb, var(--case-accent, var(--color-accent)) 8%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--case-accent, var(--color-accent)) 25%, transparent);
+  overflow: hidden;
+}
+.case-result-callout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 100% 50%,
+    color-mix(in srgb, var(--case-accent, var(--color-accent)) 12%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+.case-result-callout__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--case-accent, var(--color-accent));
+  margin-bottom: 0.6rem;
+  display: block;
+}
+.case-result-callout__text {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--color-text);
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Tech stack visual (for cases with no screenshots) --- */
+.case-stack-visual {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.35rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  margin-bottom: 2rem;
+}
+.case-stack-visual__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+.case-stack-visual__item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--case-accent, var(--color-accent)) 10%, var(--color-surface-muted));
+  border: 1px solid color-mix(in srgb, var(--case-accent, var(--color-accent)) 20%, var(--color-border));
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+.case-stack-visual__arrow {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+/* --- Reduced motion additions --- */
+@media (prefers-reduced-motion: reduce) {
+  .case-metric-ba__after,
+  .case-metric-tag__value {
+    animation: none;
+  }
+}

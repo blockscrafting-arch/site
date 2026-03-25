@@ -4,6 +4,7 @@ description: "Автоматизированная система генерац
 result: "До 10 экспертных статей в день без копирайтера; 3 AI-модели в конвейере; тексты проходят модерацию Дзена и выглядят как авторские."
 stack: ["Node.js", "Perplexity Sonar", "Gemini 3 Flash", "Gemini 3.1 Flash Image", "Wordstat", "Telegram", "Яндекс.Дзен"]
 date: 2026-03-24
+duration: "2 недели"
 client: "Питомник Росток"
 categories: [automation, ai-agent, autoposting]
 accentColor: "#16a34a"

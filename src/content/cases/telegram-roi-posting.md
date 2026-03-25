@@ -4,6 +4,7 @@ description: "Комплексная система на Python и Google Sheets
 result: "Экономия с 120 ч/мес до 2 ч/мес на загрузку контента; 50+ групп без ручного труда; реакция на упоминания за 5–10 минут."
 stack: ["Python", "Telethon", "Google Sheets", "Telegram", "Userbot"]
 date: 2026-01-23
+duration: "2 недели"
 categories: [automation, parser, autoposting]
 accentColor: "#0ea5e9"
 featured: true

@@ -13,6 +13,7 @@ stack:
     "WebSockets",
   ]
 date: 2026-02-05
+duration: "2 недели"
 screenshots:
   - "/images/cases/voice-copilot-preview.png"
 categories: [ai-agent]

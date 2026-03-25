@@ -314,21 +314,42 @@ const articleSchema = {
         </section>
       )}
 
-      <!-- Impact Metrics — большие числа с counter-анимацией -->
+      <!-- Impact Metrics — три режима: before/after, большое число, тег-пилюля -->
       {metrics && metrics.length > 0 && (
         <section class="case-metrics-section mb-14 reveal" aria-label="Ключевые метрики">
           <ul class="case-impact-grid" role="list">
-            {metrics.map((m: { value: string; label: string; prefix?: string; suffix?: string }) => (
+            {metrics.map((m: { value?: string; label: string; prefix?: string; suffix?: string; before?: string; after?: string }) => (
               <li class="case-impact-item">
-                <span
-                  class="case-impact-num"
-                  data-target={m.value}
-                  data-prefix={m.prefix ?? ''}
-                  data-suffix={m.suffix ?? ''}
-                >
-                  {m.prefix ?? ''}{m.value}{m.suffix ?? ''}
-                </span>
-                <span class="case-impact-label">{m.label}</span>
+                {m.before != null && m.after != null ? (
+                  /* Режим 1: before → after сравнение */
+                  <div class="case-metric-ba">
+                    <div class="case-metric-ba__values">
+                      <span class="case-metric-ba__before">{m.before}</span>
+                      <span class="case-metric-ba__arrow">→</span>
+                      <span class="case-metric-ba__after">{m.after}</span>
+                    </div>
+                    <span class="case-metric-ba__label">{m.label}</span>
+                  </div>
+                ) : m.value && /^\d+(\.\d+)?$/.test(m.value.trim()) ? (
+                  /* Режим 2: чистое число — большой кегль с counter-анимацией */
+                  <div class="case-impact-item">
+                    <span
+                      class="case-impact-num"
+                      data-target={m.value}
+                      data-prefix={m.prefix ?? ''}
+                      data-suffix={m.suffix ?? ''}
+                    >
+                      {m.prefix ?? ''}{m.value}{m.suffix ?? ''}
+                    </span>
+                    <span class="case-impact-label">{m.label}</span>
+                  </div>
+                ) : (
+                  /* Режим 3: текстовое значение — tag-pill */
+                  <div class="case-metric-tag">
+                    <span class="case-metric-tag__value">{m.prefix ?? ''}{m.value ?? ''}{m.suffix ?? ''}</span>
+                    <span class="case-metric-tag__label">{m.label}</span>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
@@ -367,8 +388,8 @@ const articleSchema = {
                   decoding="async"
                 />
                 <span class="pointer-events-none absolute bottom-2 right-2 rounded-full bg-black/60 px-2.5 py-1 text-xs font-medium tabular-nums text-white/70 backdrop-blur-sm">
-                  {i + 1} / {screenshots.length}
-                </span>
+                    {screenshots.length > 1 && `${i + 1} / ${screenshots.length}`}
+                  </span>
                 <span class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/30">
                   <span class="flex items-center gap-2 rounded-full bg-black/70 px-4 py-2 text-sm font-medium text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
                     <svg class="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -388,6 +409,21 @@ const articleSchema = {
         <Content />
       </div>
 
+      <!-- Tech Stack Visual (только когда нет скриншотов) -->
+      {(!screenshots || screenshots.length === 0) && stack && stack.length > 0 && (
+        <div class="case-stack-visual mt-8 reveal" aria-label="Технологический стек">
+          <span class="case-stack-visual__label">Технологии</span>
+          {stack.map((t: string, i: number) => (
+            <>
+              <span class="case-stack-visual__item">{t}</span>
+              {i < (stack as string[]).length - 1 && (
+                <span class="case-stack-visual__arrow" aria-hidden="true">→</span>
+              )}
+            </>
+          ))}
+        </div>
+      )}
+
       <!-- Отзыв клиента — standalone секция -->
       {testimonial && (
         <section class="mt-14 reveal" aria-label="Отзыв клиента">
@@ -402,6 +438,16 @@ const articleSchema = {
                 </span>
               )}
             </footer>
+          </div>
+        </section>
+      )}
+
+      <!-- Result Callout — итог проекта перед навигацией -->
+      {result && (
+        <section class="mt-14 reveal" aria-label="Результат проекта">
+          <div class="case-result-callout">
+            <span class="case-result-callout__eyebrow">Итог</span>
+            <p class="case-result-callout__text">{result}</p>
           </div>
         </section>
       )}

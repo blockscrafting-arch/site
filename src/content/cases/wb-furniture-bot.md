@@ -4,6 +4,7 @@ description: "QR-код на коробке переводит покупате�
 result: "Рейтинг карточки растет, нулевая трата времени менеджеров на однотипные ответы, перехват негатива и сбор обратной связи по товарам в Google Таблицу."
 stack: ["MAX", "n8n", "Google Sheets"]
 date: 2026-03-18
+duration: "1 неделя"
 categories: ["bot", "automation"]
 accentColor: "#f59e0b"
 featured: true
