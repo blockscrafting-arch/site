@@ -7,11 +7,32 @@ alwaysApply: false
 # Content — vlad.execute(_)
 
 ## Структура контента
-- **Кейсы**: `src/content/cases/*.md` — frontmatter (title, description, result, stack, date), тело в Markdown
+- **Кейсы**: `src/content/cases/*.md` — frontmatter (title, description, result, stack, date, metrics и др.), тело в Markdown
 - **Инструкции**: `src/content/guides/*.md` — frontmatter (title, description, order), тело с кодом и списками
 - **Глоссарий**: `src/content/glossary.json` — термины с полями term, description (короткое пояснение для тултипа)
 
-## Формат кейса
+## Главная: блок «Проекты с цифрами»
+- Компонент: [`src/components/sections/CasesPreview.astro`](src/components/sections/CasesPreview.astro).
+- В сетку попадают **четыре новейших** опубликованных кейса (`draft: false`), сортировка по полю **`date` по убыванию**. Первая карточка — wide (`sm:col-span-2`).
+- Поле **`featuredOrder` не задаёт порядок на главной** (оставлено в схеме для совместимости; можно не трогать при добавлении кейса).
+- На карточке показывается **первая метрика** из массива `metrics` — `metrics[0]`. Для блока «до и после» задайте у неё `before` и `after` (см. ниже).
+
+## Метрики кейса (`metrics`)
+Массив объектов; схема в [`src/content/config.ts`](src/content/config.ts).
+
+- **`label`** — подпись под числом (обязательно).
+- **Сравнение «до → после»** (для превью на главной и согласованности с текстом секции): задайте **`before`** и **`after`** (строки). В карточке рендерится зачёркнутое «до», стрелка, акцентное «после».
+- **Одиночное значение** (обратная совместимость): **`value`** — одно крупное число/текст без пары.
+- Опционально: **`prefix`**, **`suffix`** — доп. текст к значению.
+
+Пример первой метрики для главной:
+```yaml
+metrics:
+  - { label: "Статей в день", before: "1–2", after: "10" }
+  - { value: "3", label: "AI-модели в конвейере" }
+```
+
+## Формат кейса (минимум)
 ```yaml
 ---
 title: Название
@@ -19,8 +40,11 @@ description: Краткое описание проблемы/решения
 result: Результат в цифрах или фактах
 stack: [n8n, Python, Telegram]
 date: YYYY-MM-DD
+draft: false
 ---
 ```
+
+Дополнительно по желанию: `metrics`, `categories`, `accentColor`, `heroImage`, `screenshots`, `productLink`, `featured`, `featuredOrder` (не влияет на порядок на главной), `problem`, `testimonial` и т.д. — см. `config.ts`.
 
 ## Формат инструкции
 ```yaml

@@ -11,6 +11,9 @@ alwaysApply: false
 - React только для интерактивных islands (client:load)
 - Компоненты в `src/components/`: common, layout, features, sections
 
+## Секции главной (кратко)
+- **CasesPreview** — блок «Проекты с цифрами»: 4 новейших кейса по `date`, первая метрика `metrics[0]`; если заданы `before` и `after`, показывается сравнение до/после. Логика контента: `.cursor/rules/content.mdc`.
+
 ## Стиль кода
 - Все компоненты и утилиты документировать (JSDoc / docstrings)
 - Именование: PascalCase для компонентов, camelCase для функций и переменных
