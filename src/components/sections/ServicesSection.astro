@@ -6,10 +6,10 @@ import Badge from '../common/Badge.astro';
 import Button from '../common/Button.astro';
 
 const services = [
-  { title: 'Боты в мессенджерах', desc: 'Клиенты получают ответ за секунды. Вы — заявки без пропусков.', tags: ['Telegram', 'MAX', 'VK'], href: '/services/telegram-bots', icon: 'chat', price: 'от 8 000 р' },
-  { title: 'AI-агенты', desc: 'База знаний отвечает клиентам 24/7 — без вашего участия.', tags: ['AI', 'База знаний'], href: '/services/ai-agents', icon: 'brain', price: 'от 10 000 р' },
-  { title: 'Автоматизация', desc: 'Данные из CRM, таблиц и мессенджеров текут в единый поток. Без ручной работы.', tags: ['n8n', 'Интеграции'], href: '/services/automation', icon: 'flow', price: 'от 5 000 р' },
-  { title: 'Под ключ', desc: 'Ваш процесс не вписывается в шаблон — спроектирую и реализую решение с нуля.', tags: ['Нестандартные задачи'], href: '/services/integrations', icon: 'wrench', price: 'от 5 000 р' },
+  { title: 'Боты в мессенджерах', desc: 'Клиенты получают ответ за секунды. Вы — заявки без пропусков.', tags: ['Telegram', 'MAX', 'VK'], href: '/services/telegram-bots', icon: 'chat' },
+  { title: 'AI-агенты', desc: 'База знаний отвечает клиентам 24/7 — без вашего участия.', tags: ['AI', 'База знаний'], href: '/services/ai-agents', icon: 'brain' },
+  { title: 'Автоматизация', desc: 'Данные из CRM, таблиц и мессенджеров текут в единый поток. Без ручной работы.', tags: ['n8n', 'Интеграции'], href: '/services/automation', icon: 'flow' },
+  { title: 'Под ключ', desc: 'Ваш процесс не вписывается в шаблон — спроектирую и реализую решение с нуля.', tags: ['Нестандартные задачи'], href: '/services/integrations', icon: 'wrench' },
 ];
 ---
 
@@ -22,7 +22,7 @@ const services = [
       Готовые форматы от 5 000 р — или нестандартный проект с нуля.
     </p>
     <p class="reveal mt-2 text-center text-sm font-medium text-[var(--color-accent)]" style="animation-delay:.1s">
-      Бот за 8 000 р экономит 40 часов в месяц. Окупаемость — с первой недели.
+      Окупаемость — с первой недели.
     </p>
     <div class="reveal mt-4 flex flex-wrap items-center justify-center gap-2" style="animation-delay:.14s">
       <span class="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-xs text-[var(--color-text-muted)]">Интернет-магазины</span>
@@ -45,7 +45,6 @@ const services = [
           </span>
           <h3 class="font-display font-semibold text-[var(--color-text)] text-lg mt-4">{s.title}</h3>
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">{s.desc}</p>
-          <p class="mt-3 text-sm font-semibold text-[var(--color-accent)]">{s.price}</p>
           <div class="mt-3 flex flex-wrap gap-2">
             {s.tags.map((tag) => <Badge variant="gray">{tag}</Badge>)}
           </div>
