@@ -15,7 +15,7 @@
 | Механизм | Назначение |
 |----------|------------|
 | [public/robots.txt](../public/robots.txt) | `Allow: /` для всех ботов, в т.ч. типичных ИИ-краулеров; sitemap. |
-| [public/llms.txt](../public/llms.txt) | Карта ключевых URL и контактов для агентов/систем, которые читают этот файл (неофициальный, но распространённый формат). |
+| [public/llms.txt](../public/llms.txt) | Карта ключевых URL и контактов для агентов/систем, которые читают этот файл (неофициальный, но распространённый формат). При смене формулировок услуг — держать в согласовании с сайтом; см. раздел «Зеркала» в [SERVICES.md](SERVICES.md). |
 | JSON-LD в [BaseLayout](../src/layouts/BaseLayout.astro) | `Person`, `ProfessionalService`, `ContactPoint`, `knowsAbout` на главной — машиночитаемая сущность и темы. |
 | Страничные схемы | Article, FAQPage, BreadcrumbList на кейсах, гайдах, FAQ. |
 

@@ -2,6 +2,17 @@
 
 Каноничные данные — [`src/data/services.ts`](../src/data/services.ts). Страницы: [`src/pages/services/index.astro`](../src/pages/services/index.astro) (hub), [`src/pages/services/[id].astro`](../src/pages/services/[id].astro) (детальная).
 
+## Зеркала и GEO/AEO
+
+При изменении текстов услуг (особенно списков платформ, форматов контента, цен в описаниях) синхронизировать:
+
+| Файл | Назначение |
+|------|------------|
+| [`docs/services.yml`](services.yml) | Человекочитаемый каталог в YAML (не подключается к сборке); держать в соответствии с `services.ts` |
+| [`public/llms.txt`](../public/llms.txt) | Краткие формулировки для ИИ-агентов; строка услуги должна совпадать по смыслу с сайтом |
+
+Хаб `/services`: поле `description` в JSON-LD `ItemList` берётся из `seoDescription` каждой услуги — при смене позиционирования обновлять `seoDescription` в `services.ts`.
+
 ## Поведение (актуально)
 
 - **Цены в UI не показываются** ни на hub-карточках, ни в hero детальной страницы, ни в блоке «Реальные проекты» (ссылки на кейсы без сумм).
