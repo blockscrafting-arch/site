@@ -11,7 +11,7 @@
 - When user says "проверь" or "проверь ещё", re-read and verify the last changes before moving on.
 - Short confirmations like "хватит ли этого?", "готово?" are typical; answer concisely and proceed.
 - Never display metrics that make the portfolio look small (e.g., project count "13 проектов" was explicitly removed, exact Kwork review count "6 отзывов" highlights smallness); show qualitative trust signals instead.
-- Case studies on the portfolio site must include screenshots/visuals and an external link to the result — never leave cases as bare text.
+- Case studies on the portfolio site must include screenshots/visuals and an external link to the result — never leave cases as bare text. Homepage featured slots should showcase flagship work (strongest cases first), not weak placeholders. Case UI must stay readable in light theme (contrast), not only dark.
 
 ## Learned Workspace Facts
 

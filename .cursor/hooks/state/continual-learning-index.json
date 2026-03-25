@@ -17,6 +17,18 @@
       "mtimeMs": 1771664078441,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\0a778a70-44a4-4090-9939-7a1f845c8441\\0a778a70-44a4-4090-9939-7a1f845c8441.jsonl": {
+      "mtimeMs": 1774372857640,
+      "lastProcessedAt": "2026-03-24T17:30:40.094Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\0a778a70-44a4-4090-9939-7a1f845c8441\\subagents\\3feedaa5-140d-4aea-8a73-cc918fbab913.jsonl": {
+      "mtimeMs": 1774372679436,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\0a778a70-44a4-4090-9939-7a1f845c8441\\subagents\\bf1748a0-c41d-4945-b3e8-8c5cef6db970.jsonl": {
+      "mtimeMs": 1774372533449,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\0aceaf3d-1157-4a5a-83a8-52e8fcb96f53\\0aceaf3d-1157-4a5a-83a8-52e8fcb96f53.jsonl": {
       "mtimeMs": 1772456410596,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
@@ -57,6 +69,26 @@
       "mtimeMs": 1772555734558,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\193d96d1-bcc1-4cb7-af7f-ed3d5e2cce3f\\subagents\\41986250-27b7-44ad-833c-d2755bb2e7d0.jsonl": {
+      "mtimeMs": 1774367440893,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\193d96d1-bcc1-4cb7-af7f-ed3d5e2cce3f\\subagents\\5f102cc0-7656-47b3-bfbb-92b2f9bcd91d.jsonl": {
+      "mtimeMs": 1774367226661,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\193d96d1-bcc1-4cb7-af7f-ed3d5e2cce3f\\subagents\\7d971b6b-e92e-4141-8f01-610e42bb4528.jsonl": {
+      "mtimeMs": 1774367250899,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\193d96d1-bcc1-4cb7-af7f-ed3d5e2cce3f\\subagents\\c53f621f-06ce-4193-8eb4-28f638c286c7.jsonl": {
+      "mtimeMs": 1774367282178,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\193d96d1-bcc1-4cb7-af7f-ed3d5e2cce3f\\subagents\\fc90653e-9e86-4f20-b593-0bf69e0ddbc7.jsonl": {
+      "mtimeMs": 1774367263233,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\1a30c975-7af6-47e0-bbb1-8e62e18776f1\\1a30c975-7af6-47e0-bbb1-8e62e18776f1.jsonl": {
       "mtimeMs": 1772624703403,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
@@ -77,13 +109,117 @@
       "mtimeMs": 1774035664769,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\1c744ce3-1672-4c78-b31f-16f9c8ec6882\\1c744ce3-1672-4c78-b31f-16f9c8ec6882.jsonl": {
+      "mtimeMs": 1774449545773,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\1c744ce3-1672-4c78-b31f-16f9c8ec6882\\subagents\\e54cd7d6-d8c5-4ac5-af4c-660f0ede7e93.jsonl": {
+      "mtimeMs": 1774449311334,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\1cc51689-3a11-4148-8e10-bee5d75ece16\\1cc51689-3a11-4148-8e10-bee5d75ece16.jsonl": {
       "mtimeMs": 1771429003653,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\247e7aee-f535-4dbf-bd36-4d6da42433ce.jsonl": {
+      "mtimeMs": 1774376261461,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\1530a1ad-8e74-482f-a677-132ac536e80d.jsonl": {
+      "mtimeMs": 1774369885176,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\193d96d1-bcc1-4cb7-af7f-ed3d5e2cce3f.jsonl": {
+      "mtimeMs": 1774367548774,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\2b723b81-1e21-4901-82fd-edb23951b6c6.jsonl": {
+      "mtimeMs": 1774358830215,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\3836c388-c4a7-4fe3-9cd9-979f8185d97a.jsonl": {
+      "mtimeMs": 1774358850621,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\396f30b9-ee76-4c1b-a611-192d41da5cc5.jsonl": {
+      "mtimeMs": 1774370046578,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\3dc806ee-1c22-4b28-87e2-0938997a5080.jsonl": {
+      "mtimeMs": 1774369864256,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\43a04ef9-a1a8-4bff-87ad-d07f75ef1d92.jsonl": {
+      "mtimeMs": 1774363744130,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\5eb2c0c3-4aa6-441b-a79d-7788d6dbea1f.jsonl": {
+      "mtimeMs": 1774363972094,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\68ca42d0-4be5-46db-944b-08bc2269274a.jsonl": {
+      "mtimeMs": 1774369946136,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\6cc60310-747e-4ccd-bb85-f01ab40b994d.jsonl": {
+      "mtimeMs": 1774363692607,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\738a8a35-00cb-420e-9ed3-77c62356af9d.jsonl": {
+      "mtimeMs": 1774365048165,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\793d2680-f4c7-4bb8-a37c-831acacc0c30.jsonl": {
+      "mtimeMs": 1774368897751,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\800edffa-f393-490b-976d-a33759501e41.jsonl": {
+      "mtimeMs": 1774368937400,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\9780ecef-281f-4f2d-82c8-dd6ad0d71865.jsonl": {
+      "mtimeMs": 1774357649379,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\b368fa0c-2169-4853-8903-6f3a8ff1c4f5.jsonl": {
+      "mtimeMs": 1774371389565,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\b67f1055-7595-4cde-9708-b140263f63ac.jsonl": {
+      "mtimeMs": 1774368998891,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\d5ace7eb-b976-44d6-8441-a105eb24590e.jsonl": {
+      "mtimeMs": 1774371385795,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\d8afb227-f863-49f3-8210-de9896347085.jsonl": {
+      "mtimeMs": 1774357577489,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\dad7a3b5-99c4-4803-999e-8a0de0b5c6f4.jsonl": {
+      "mtimeMs": 1774365042818,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\e3610d52-4f5c-4f6c-b8a9-53fd22f61615.jsonl": {
+      "mtimeMs": 1774363709371,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\f1733e78-62f0-484c-bbc7-c17bbb7d8e2d.jsonl": {
+      "mtimeMs": 1774358770058,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\subagents\\fe03fd6c-c124-4763-a608-3f221fac7e62.jsonl": {
+      "mtimeMs": 1774357656475,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\270290e9-5720-4508-b3a8-a740ed4b70ad\\270290e9-5720-4508-b3a8-a740ed4b70ad.jsonl": {
       "mtimeMs": 1771748288049,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\2aae1942-1caa-4e1b-a8b6-e69c436566bd\\2aae1942-1caa-4e1b-a8b6-e69c436566bd.jsonl": {
+      "mtimeMs": 1774197064178,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
     },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\2ce6d100-2eb7-4a70-bd57-c2f4c84871c3\\2ce6d100-2eb7-4a70-bd57-c2f4c84871c3.jsonl": {
       "mtimeMs": 1773154627038,
@@ -145,6 +281,10 @@
       "mtimeMs": 1772555605587,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\46584032-fc54-4c67-b9e8-bb9ce7ded90a\\46584032-fc54-4c67-b9e8-bb9ce7ded90a.jsonl": {
+      "mtimeMs": 1774363684254,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\4b970e21-e3e3-4184-b474-b612fc96b83e\\4b970e21-e3e3-4184-b474-b612fc96b83e.jsonl": {
       "mtimeMs": 1773817439814,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
@@ -165,6 +305,10 @@
       "mtimeMs": 1772959219036,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\569efb35-96d3-4128-91a1-80d43d93822d\\569efb35-96d3-4128-91a1-80d43d93822d.jsonl": {
+      "mtimeMs": 1774197431217,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\56e151c1-ad0d-4801-962f-2ea782697a1d\\56e151c1-ad0d-4801-962f-2ea782697a1d.jsonl": {
       "mtimeMs": 1773065032666,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
@@ -180,6 +324,14 @@
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\5f591e07-692b-42de-af6f-51b7e90a8ec7\\5f591e07-692b-42de-af6f-51b7e90a8ec7.jsonl": {
       "mtimeMs": 1773646438661,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\650a2fd1-2043-4c4b-924b-5cf82f7a9c8c\\650a2fd1-2043-4c4b-924b-5cf82f7a9c8c.jsonl": {
+      "mtimeMs": 1774450152610,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\650a2fd1-2043-4c4b-924b-5cf82f7a9c8c\\subagents\\8a8c9078-314d-49d5-87ae-1cf126a889ec.jsonl": {
+      "mtimeMs": 1774449759645,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
     },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\66a309f9-175d-40fd-a628-f45aaabdfcba\\66a309f9-175d-40fd-a628-f45aaabdfcba.jsonl": {
       "mtimeMs": 1772011420124,
@@ -201,9 +353,17 @@
       "mtimeMs": 1772737711429,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\7507e72d-e299-413e-b5b5-0bba1704834c.jsonl": {
+      "mtimeMs": 1774434363199,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\subagents\\01c32fe5-cfa6-4255-ac14-5424eeb4622f.jsonl": {
       "mtimeMs": 1773937171024,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\subagents\\0fa98738-aa26-4612-aa25-2f2cb6f490ea.jsonl": {
+      "mtimeMs": 1774363467895,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
     },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\subagents\\184ad5fb-3fe8-4056-9140-861345b14d4e.jsonl": {
       "mtimeMs": 1773937134810,
@@ -221,9 +381,17 @@
       "mtimeMs": 1773762477539,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\subagents\\613c06c7-af50-4e54-a17b-6f072eefa7f4.jsonl": {
+      "mtimeMs": 1774363470569,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\subagents\\62f6ef22-cb9b-4021-930a-cdb951a29bf1.jsonl": {
       "mtimeMs": 1773935374589,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\subagents\\691a4701-2469-492b-8999-61c8b0b83e81.jsonl": {
+      "mtimeMs": 1774363476357,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
     },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\subagents\\75d85468-be37-4b1f-8e27-f8aac015cf2a.jsonl": {
       "mtimeMs": 1773577168996,
@@ -256,6 +424,10 @@
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\subagents\\ad665cfb-e4f5-4a16-bea4-96764b67349c.jsonl": {
       "mtimeMs": 1773762461337,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\subagents\\c94bc6fb-fab6-4561-b72a-40c756659de5.jsonl": {
+      "mtimeMs": 1774363149908,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
     },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\subagents\\d474ba41-3f68-4a27-be1c-7c8c09c682c6.jsonl": {
       "mtimeMs": 1773935299653,
@@ -421,6 +593,30 @@
       "mtimeMs": 1773230486416,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\c7ece807-f7b9-4874-8fd4-2971b3e9bb12\\c7ece807-f7b9-4874-8fd4-2971b3e9bb12.jsonl": {
+      "mtimeMs": 1774450117958,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\c7ece807-f7b9-4874-8fd4-2971b3e9bb12\\subagents\\1aaec167-4667-4879-b733-49cec76beeac.jsonl": {
+      "mtimeMs": 1774450144166,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\c7ece807-f7b9-4874-8fd4-2971b3e9bb12\\subagents\\74c51891-9239-4f47-8366-bbe405eb3bbe.jsonl": {
+      "mtimeMs": 1774449588472,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\c87c1f16-de4a-42e2-aa29-c5ad2eb4f354\\c87c1f16-de4a-42e2-aa29-c5ad2eb4f354.jsonl": {
+      "mtimeMs": 1774370403995,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\c87c1f16-de4a-42e2-aa29-c5ad2eb4f354\\subagents\\48ba6da5-854b-4b27-9174-f6653bafff05.jsonl": {
+      "mtimeMs": 1774369521893,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\c87c1f16-de4a-42e2-aa29-c5ad2eb4f354\\subagents\\ed98dc97-2518-45b1-bdf4-b3c6d995b4e1.jsonl": {
+      "mtimeMs": 1774369537820,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\c945c343-596b-4146-9ede-39bfab347eab\\c945c343-596b-4146-9ede-39bfab347eab.jsonl": {
       "mtimeMs": 1771743246095,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
@@ -489,6 +685,10 @@
       "mtimeMs": 1774077151026,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\de71bb3b-f8bb-45b2-a883-cfe136a054d2\\de71bb3b-f8bb-45b2-a883-cfe136a054d2.jsonl": {
+      "mtimeMs": 1774425041222,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\de71bb3b-f8bb-45b2-a883-cfe136a054d2\\subagents\\091b63f8-b074-4347-b8d4-d3572c85a9fc.jsonl": {
       "mtimeMs": 1773411469852,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
@@ -504,6 +704,10 @@
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\de71bb3b-f8bb-45b2-a883-cfe136a054d2\\subagents\\91c9a447-4022-42b7-8b60-cbc402fb699e.jsonl": {
       "mtimeMs": 1773765795846,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\de71bb3b-f8bb-45b2-a883-cfe136a054d2\\subagents\\9c01d1e1-6b26-4e77-8486-11692a2d5a6f.jsonl": {
+      "mtimeMs": 1774420477744,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
     },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\df77ae03-3a35-4274-9b0a-319690930082\\df77ae03-3a35-4274-9b0a-319690930082.jsonl": {
       "mtimeMs": 1773218888327,
@@ -553,6 +757,46 @@
       "mtimeMs": 1773313076799,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
     },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\ee6081c5-3b7b-4422-b47d-a90677c74006.jsonl": {
+      "mtimeMs": 1774376705264,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\subagents\\1acd4bdd-67dc-4c03-a6e0-cd197f1a621b.jsonl": {
+      "mtimeMs": 1774373258893,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\subagents\\37af62ba-42ea-4810-8e89-6425ab1937cf.jsonl": {
+      "mtimeMs": 1774371535583,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\subagents\\45066b15-f029-4436-baaa-680834014d15.jsonl": {
+      "mtimeMs": 1774373351450,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\subagents\\4ad7f24f-2fc4-4c0c-af14-ecac2bfe64d9.jsonl": {
+      "mtimeMs": 1774373329597,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\subagents\\6ffd388a-38cf-48af-a4be-2b0af13dc4a8.jsonl": {
+      "mtimeMs": 1774373289516,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\subagents\\73b86c04-bb0f-4940-b94d-ba19f2f9dc20.jsonl": {
+      "mtimeMs": 1774371565812,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\subagents\\9af21f8d-0979-43df-8477-a3bf88f0dfc8.jsonl": {
+      "mtimeMs": 1774371572634,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\subagents\\be1fb73c-8c7d-45b6-a6c1-a07398d4b058.jsonl": {
+      "mtimeMs": 1774373300781,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\subagents\\f9930af6-6c94-4606-aa98-50cff88dd428.jsonl": {
+      "mtimeMs": 1774371647255,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
+    },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\f5284152-8b8b-42f0-8243-5ee064aba3a0\\f5284152-8b8b-42f0-8243-5ee064aba3a0.jsonl": {
       "mtimeMs": 1773296286663,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
@@ -560,6 +804,10 @@
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\f6aa066b-b8f7-46ff-a70c-08de0d90c0ca\\f6aa066b-b8f7-46ff-a70c-08de0d90c0ca.jsonl": {
       "mtimeMs": 1772722374037,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
+    },
+    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\f8371876-2f8f-47d4-abbc-d6be6bccc48c\\f8371876-2f8f-47d4-abbc-d6be6bccc48c.jsonl": {
+      "mtimeMs": 1774444637188,
+      "lastProcessedAt": "2026-03-25T14:49:55.836Z"
     },
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\f898dc28-ece3-4941-ae40-4f00ba4d8214\\f898dc28-ece3-4941-ae40-4f00ba4d8214.jsonl": {
       "mtimeMs": 1771596919577,
@@ -584,30 +832,6 @@
     "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ff63a674-0e24-4a7d-a797-c648d54b96a1\\subagents\\409b43d6-4567-4551-887a-4f5d1eef6cf9.jsonl": {
       "mtimeMs": 1774035401082,
       "lastProcessedAt": "2026-03-21T15:17:38.783Z"
-    },
-    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\0a778a70-44a4-4090-9939-7a1f845c8441\\0a778a70-44a4-4090-9939-7a1f845c8441.jsonl": {
-      "mtimeMs": 1774372857640,
-      "lastProcessedAt": "2026-03-24T17:30:40.094Z"
-    },
-    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\c87c1f16-de4a-42e2-aa29-c5ad2eb4f354\\c87c1f16-de4a-42e2-aa29-c5ad2eb4f354.jsonl": {
-      "mtimeMs": 1774370403994,
-      "lastProcessedAt": "2026-03-24T17:30:40.094Z"
-    },
-    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\247e7aee-f535-4dbf-bd36-4d6da42433ce\\247e7aee-f535-4dbf-bd36-4d6da42433ce.jsonl": {
-      "mtimeMs": 1774372565117,
-      "lastProcessedAt": "2026-03-24T17:30:40.094Z"
-    },
-    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\7507e72d-e299-413e-b5b5-0bba1704834c\\7507e72d-e299-413e-b5b5-0bba1704834c.jsonl": {
-      "mtimeMs": 1774367622949,
-      "lastProcessedAt": "2026-03-24T17:30:40.094Z"
-    },
-    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\de71bb3b-f8bb-45b2-a883-cfe136a054d2\\de71bb3b-f8bb-45b2-a883-cfe136a054d2.jsonl": {
-      "mtimeMs": 1774357876890,
-      "lastProcessedAt": "2026-03-24T17:30:40.094Z"
-    },
-    "C:\\Users\\Владислав\\.cursor\\projects\\d-vladexecute-proj\\agent-transcripts\\ee6081c5-3b7b-4422-b47d-a90677c74006\\ee6081c5-3b7b-4422-b47d-a90677c74006.jsonl": {
-      "mtimeMs": 1774373173232,
-      "lastProcessedAt": "2026-03-24T17:30:40.094Z"
     }
   }
 }
