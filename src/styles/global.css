@@ -1878,3 +1878,341 @@
     animation: none;
   }
 }
+
+/* ===== Case Detail: Prose Blocks World-Class Styling ===== */
+
+/* H2 = chapter break: top rule + accent underline accent line */
+.case-detail .prose h2 {
+  position: relative;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+.case-detail .prose h2::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-top: 0.6rem;
+  background: var(--case-accent, var(--color-accent));
+  border-radius: 99px;
+}
+
+/* H3 with accent dot prefix */
+.case-detail .prose h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-top: 2rem;
+}
+.case-detail .prose h3::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--case-accent, var(--color-accent));
+  flex-shrink: 0;
+  margin-bottom: 0.1rem;
+  align-self: center;
+}
+
+/* Ordered list: big accent numbered circles */
+.case-detail .prose ol {
+  counter-reset: case-step;
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.case-detail .prose ol > li {
+  counter-increment: case-step;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.case-detail .prose ol > li::before {
+  content: counter(case-step);
+  flex-shrink: 0;
+  min-width: 2rem;
+  height: 2rem;
+  background: var(--case-accent, var(--color-accent));
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.72rem;
+  font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+  box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--case-accent, var(--color-accent)) 50%, transparent);
+}
+
+/* Blockquote → insight callout */
+.case-detail .prose blockquote {
+  border-left: 4px solid var(--case-accent, var(--color-accent));
+  background: color-mix(in srgb, var(--case-accent, var(--color-accent)) 6%, var(--color-surface));
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1rem 1.5rem;
+  font-style: normal;
+  color: var(--color-text);
+  margin-left: 0;
+  margin-right: 0;
+}
+.case-detail .prose blockquote p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.case-detail .prose blockquote p::before,
+.case-detail .prose blockquote p::after {
+  content: none;
+}
+
+/* Code blocks (Shiki .astro-code) → flow diagram style */
+.case-detail .prose .astro-code {
+  background: color-mix(in srgb, var(--case-accent, var(--color-accent)) 5%, var(--color-surface)) !important;
+  border: 1px solid color-mix(in srgb, var(--case-accent, var(--color-accent)) 18%, var(--color-border));
+  border-left: 4px solid var(--case-accent, var(--color-accent));
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-size: 0.8rem !important;
+  line-height: 1.9 !important;
+  padding: 1.25rem 1.5rem !important;
+}
+.case-detail .prose .astro-code code {
+  background: transparent !important;
+  color: var(--color-text) !important;
+  font-size: inherit !important;
+}
+/* Override Shiki's inline color styles for text/flow blocks */
+.case-detail .prose .astro-code .line .token,
+.case-detail .prose .astro-code span[style] {
+  color: var(--color-text) !important;
+}
+
+/* Strong text: brighter */
+.case-detail .prose strong {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+/* Unordered list: custom bullet dot */
+.case-detail .prose ul {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.case-detail .prose ul > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding-left: 0;
+}
+.case-detail .prose ul > li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--case-accent, var(--color-accent));
+  margin-top: 0.55rem;
+}
+
+/* ===== Services: Visual Uplift ===== */
+
+/* Pain point card */
+.svc-pain-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
+  background: var(--color-surface);
+  transition: border-color 0.2s ease;
+}
+.svc-pain-card:hover {
+  border-left-color: var(--color-accent);
+}
+.svc-pain-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: color-mix(in srgb, var(--color-accent) 70%, transparent);
+  margin-top: 0.1rem;
+}
+.svc-pain-text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* Feature grid card */
+.svc-feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.svc-feature-card:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  box-shadow: 0 0 20px -8px color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+.svc-feature-card__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+.svc-feature-card__text {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+
+}
+
+/* Service hub card */
+.svc-hub-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 1.25rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 1.5rem;
+  text-decoration: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+.svc-hub-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 32px -8px color-mix(in srgb, var(--color-accent) 30%, transparent);
+  transform: translateY(-2px);
+}
+.svc-hub-card__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface-muted));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+.svc-hub-card__title {
+  font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+.svc-hub-card:hover .svc-hub-card__title {
+  color: var(--color-accent);
+}
+.svc-hub-card__outcomes {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+.svc-hub-card__outcome {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  line-height: 1.4;
+}
+.svc-hub-card__outcome::before {
+  content: '→';
+  font-size: 0.7rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+.svc-hub-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+  margin-top: auto;
+}
+.svc-hub-card__price {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-accent);
+}
+.svc-hub-card__arrow {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.svc-hub-card:hover .svc-hub-card__arrow {
+  color: var(--color-accent);
+  transform: translateX(3px);
+}
+
+/* CTA accent gradient (services) */
+.svc-cta-accent {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-accent) 12%, var(--color-surface)) 0%,
+    var(--color-surface) 60%
+  );
+  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.svc-cta-accent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 80% at 100% 50%,
+    color-mix(in srgb, var(--color-accent) 10%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Service hero eyebrow */
+.svc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+.svc-eyebrow__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}

@@ -1,6 +1,7 @@
 ---
 /**
- * Обзорная страница услуг: компактный каталог 8 карточек с ценами и CTA.
+ * Обзорная страница услуг — world-class hub.
+ * Иконки, outcomes, social proof strip, Linear-style card grid.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Button from '../../components/common/Button.astro';
@@ -29,47 +30,78 @@ const servicesListSchema = {
   schema={servicesListSchema}
 >
   <!-- Hero -->
-  <section class="pt-6 pb-8 sm:pt-10 sm:pb-10 px-4 sm:px-6" aria-labelledby="services-hero-h1">
+  <section class="pt-6 pb-10 sm:pt-10 sm:pb-12 px-4 sm:px-6" aria-labelledby="services-hero-h1">
     <div class="mx-auto max-w-3xl">
+      <p class="svc-eyebrow reveal">
+        <span class="svc-eyebrow__dot"></span>
+        Автоматизация · Боты · AI-агенты
+      </p>
       <h1
         id="services-hero-h1"
         class="reveal font-display text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl md:text-5xl"
+        style="animation-delay:.04s"
       >
-        8 решений для автоматизации — от 5 000 р
+        Автоматизирую то,<br class="hidden sm:block" /> что занимает ваше время
       </h1>
-      <p class="reveal mt-3 text-lg text-[var(--color-text-muted)] leading-snug" style="animation-delay:.06s">
-        Готовые решения от 5 000 р. Результат — не обещания.
+      <p class="reveal mt-3 text-lg text-[var(--color-text-muted)] leading-snug max-w-xl" style="animation-delay:.08s">
+        Один разработчик — ботики, агенты, парсеры, автопостинг. Готовое решение под задачу за 1–14 дней.
       </p>
+
+      <!-- Social proof strip -->
+      <div class="reveal mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--color-text-muted)]" style="animation-delay:.12s">
+        <span class="flex items-center gap-1.5">
+          <svg class="h-4 w-4 text-[var(--color-accent)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          от 5 000 р
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="h-4 w-4 text-[var(--color-accent)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          ответ за 1 день
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="h-4 w-4 text-[var(--color-accent)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          реальные кейсы с цифрами
+        </span>
+      </div>
     </div>
   </section>
 
-  <!-- 8-карточный каталог -->
+  <!-- Service cards grid -->
   <section class="px-4 sm:px-6 pb-16 sm:pb-20" aria-label="Каталог услуг">
     <div class="mx-auto max-w-5xl">
       <ul
         class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 reveal-stagger"
         role="list"
       >
-        {SERVICES.map((svc, i) => (
+        {SERVICES.map((svc) => (
           <li>
-            <a
-              href={`/services/${svc.id}`}
-              class="group flex flex-col h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-glow-sm"
-            >
-              <h2 class="font-display font-bold text-base text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
-                {svc.title}
-              </h2>
-              <p class="mt-2 flex-1 text-sm text-[var(--color-text-muted)] leading-relaxed">
-                {svc.pitch}
-              </p>
-              <div class="mt-5 flex items-center justify-between gap-2">
-                <span class="text-base font-black text-[var(--color-accent)]">
-                  {svc.price}
-                </span>
-                <span class="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-accent)] transition-colors flex items-center gap-1">
-                  Подробнее
-                  <span class="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
-                </span>
+            <a href={`/services/${svc.id}`} class="svc-hub-card" data-ym-goal="services_card_click">
+              <!-- Icon -->
+              <div class="svc-hub-card__icon" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d={svc.iconPath} />
+                </svg>
+              </div>
+
+              <!-- Title -->
+              <p class="svc-hub-card__title">{svc.title}</p>
+
+              <!-- Outcomes -->
+              <ul class="svc-hub-card__outcomes" role="list">
+                {svc.outcomes.map((o) => (
+                  <li class="svc-hub-card__outcome">{o}</li>
+                ))}
+              </ul>
+
+              <!-- Footer: price + arrow -->
+              <div class="svc-hub-card__footer">
+                <span class="svc-hub-card__price">{svc.price}</span>
+                <span class="svc-hub-card__arrow" aria-hidden="true">→</span>
               </div>
             </a>
           </li>
@@ -77,14 +109,14 @@ const servicesListSchema = {
       </ul>
 
       <!-- CTA под каталогом -->
-      <div class="reveal mt-14 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 sm:p-10 text-center" style="animation-delay:.2s">
-        <p class="font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl">
+      <div class="svc-cta-accent reveal mt-14 p-8 sm:p-10 text-center" style="animation-delay:.2s">
+        <p class="font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl relative z-10">
           Не нашли свою задачу?
         </p>
-        <p class="mt-2 text-[var(--color-text-muted)]">
+        <p class="mt-2 text-[var(--color-text-muted)] relative z-10">
           Опишите — подберу решение и назову цену за один день.
         </p>
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3 relative z-10">
           <Button href="https://t.me/goutach" variant="primary" dataYmGoal="cta_telegram" external>
             Написать в Telegram
           </Button>
@@ -92,16 +124,7 @@ const servicesListSchema = {
             Отправить заявку
           </Button>
         </div>
-        <p class="mt-4 text-sm text-[var(--color-text-muted)]">
-          Реальные кейсы
-          <span class="mx-2 opacity-40" aria-hidden="true">·</span>
-          от 5 000 р
-          <span class="mx-2 opacity-40" aria-hidden="true">·</span>
-          ответ в течение дня
-        </p>
       </div>
     </div>
   </section>
-
-
 </BaseLayout>

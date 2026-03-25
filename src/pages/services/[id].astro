@@ -1,7 +1,8 @@
 ---
 /**
- * Детальная страница одной услуги.
- * Генерируется для каждого из 8 id через getStaticPaths.
+ * Детальная страница одной услуги — world-class редизайн.
+ * Eyebrow label, pain points секция, feature grid, accent CTA.
+ * Блок «Варианты сотрудничества» удалён.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Button from '../../components/common/Button.astro';
@@ -57,147 +58,154 @@ const serviceJsonLd = {
   <nav class="pt-4 sm:pt-6 px-4 sm:px-6" aria-label="Навигация по разделам">
     <div class="mx-auto max-w-3xl">
       <ol class="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-        <li>
-          <a href="/" class="hover:text-[var(--color-accent)] transition-colors">Главная</a>
-        </li>
+        <li><a href="/" class="hover:text-[var(--color-accent)] transition-colors">Главная</a></li>
         <li aria-hidden="true" class="opacity-40">→</li>
-        <li>
-          <a href="/services" class="hover:text-[var(--color-accent)] transition-colors">Услуги</a>
-        </li>
+        <li><a href="/services" class="hover:text-[var(--color-accent)] transition-colors">Услуги</a></li>
         <li aria-hidden="true" class="opacity-40">→</li>
         <li class="text-[var(--color-text)]" aria-current="page">{svc.title}</li>
       </ol>
     </div>
   </nav>
 
-  <!-- Hero услуги -->
-  <section class="pt-6 pb-8 sm:pt-8 sm:pb-10 px-4 sm:px-6" aria-labelledby="service-h1">
+  <!-- ===== Hero ===== -->
+  <section class="pt-6 pb-10 sm:pt-8 sm:pb-12 px-4 sm:px-6" aria-labelledby="service-h1">
     <div class="mx-auto max-w-3xl">
-      <h1
-        id="service-h1"
-        class="reveal font-display text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl md:text-5xl"
-      >
-        {svc.title}
-      </h1>
-      <p class="reveal mt-3 text-lg text-[var(--color-text-muted)] leading-snug" style="animation-delay:.06s">
+      <!-- Eyebrow label -->
+      <p class="svc-eyebrow reveal">
+        <span class="svc-eyebrow__dot"></span>
+        Услуга
+      </p>
+
+      <div class="reveal flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between" style="animation-delay:.04s">
+        <h1
+          id="service-h1"
+          class="font-display text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl md:text-5xl"
+        >
+          {svc.title}
+        </h1>
+        <!-- Цена-badge рядом с заголовком на десктопе -->
+        <div class="shrink-0 inline-flex items-center gap-2 rounded-xl border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/8 px-4 py-2.5 self-start mt-1">
+          <span class="text-xl font-black text-[var(--color-accent)]">{svc.price}</span>
+        </div>
+      </div>
+
+      <p class="reveal mt-3 text-lg text-[var(--color-text-muted)] leading-snug max-w-2xl" style="animation-delay:.08s">
         {svc.pitch}
       </p>
-      <!-- Цена крупным шрифтом -->
-      <div class="reveal mt-5 inline-flex items-center gap-3 rounded-xl border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/5 px-5 py-3" style="animation-delay:.1s">
-        <span class="text-2xl font-black text-[var(--color-accent)]">{svc.price}</span>
-        {svc.priceNote && (
-          <span class="text-sm text-[var(--color-text-muted)]">{svc.priceNote}</span>
-        )}
+
+      <!-- CTAs -->
+      <div class="reveal mt-6 flex flex-wrap gap-3" style="animation-delay:.12s">
+        <Button href="https://t.me/goutach" variant="primary" dataYmGoal="cta_telegram_hero" external>
+          Обсудить в Telegram
+        </Button>
+        <Button href="/contact" variant="outline" dataYmGoal="cta_contact_hero">
+          Оставить заявку
+        </Button>
       </div>
     </div>
   </section>
 
-  <!-- Основной блок: описание + что входит -->
-  <section class="px-4 sm:px-6 pb-12" aria-label="Описание услуги">
-    <div class="mx-auto max-w-3xl grid gap-10 lg:grid-cols-2">
-      <!-- Описание -->
-      <div class="reveal" style="animation-delay:.12s">
-        <h2 class="font-display text-xl font-bold text-[var(--color-text)] mb-4">О задаче</h2>
-        <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
-          {svc.description}
-        </p>
-      </div>
-
-      <!-- Что входит -->
-      <div class="reveal" style="animation-delay:.16s">
-        <h2 class="font-display text-xl font-bold text-[var(--color-text)] mb-4">Что входит</h2>
-        <ul class="space-y-3" role="list">
-          {svc.features.map((f) => (
-            <li class="flex items-start gap-3">
-              <span class="mt-1 shrink-0 text-[var(--color-accent)]" aria-hidden="true">
-                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
-              <span class="text-base text-[var(--color-text-muted)] min-w-0">{f}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Товарная матрица: 3 тарифа (только если заданы) -->
-  {svc.packages && svc.packages.length > 0 && (
-    <section class="px-4 sm:px-6 pb-12" aria-labelledby="packages-heading">
+  <!-- ===== «Знакомо?» — Pain Points ===== -->
+  {svc.painPoints && svc.painPoints.length > 0 && (
+    <section class="px-4 sm:px-6 pb-12" aria-labelledby="pain-heading">
       <div class="mx-auto max-w-3xl">
-        <h2 id="packages-heading" class="reveal font-display text-xl font-bold text-[var(--color-text)] mb-2" style="animation-delay:.18s">
-          Варианты сотрудничества
+        <h2
+          id="pain-heading"
+          class="reveal font-display text-xl font-bold text-[var(--color-text)] mb-2"
+          style="animation-delay:.1s"
+        >
+          Знакомо?
         </h2>
-        <p class="reveal text-sm text-[var(--color-text-muted)] mb-6" style="animation-delay:.2s">
-          Выберите формат под задачу — любой пакет можно расширить позже.
+        <p class="reveal text-sm text-[var(--color-text-muted)] mb-5" style="animation-delay:.12s">
+          Если хотя бы одно — значит, есть что автоматизировать.
         </p>
-        <ul class="reveal grid gap-4 sm:grid-cols-3" role="list" style="animation-delay:.22s">
-          {svc.packages.map((pkg) => (
-            <li class:list={[
-              'relative flex flex-col rounded-2xl border bg-[var(--color-surface)] p-6 transition-all duration-300',
-              pkg.recommended
-                ? 'border-[var(--color-accent)] shadow-glow-sm'
-                : 'border-[var(--color-border)]',
-            ]}>
-              {pkg.recommended && (
-                <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--color-accent)] px-3 py-0.5 text-xs font-semibold text-white">
-                  Популярный выбор
-                </span>
-              )}
-              <h3 class="font-display font-bold text-base text-[var(--color-text)]">{pkg.name}</h3>
-              <p class="mt-1 text-xs text-[var(--color-text-muted)] leading-snug">{pkg.description}</p>
-              <p class="mt-4 text-2xl font-black text-[var(--color-accent)]">{pkg.price}</p>
-              <ul class="mt-4 flex-1 space-y-2" role="list">
-                {pkg.items.map((item) => (
-                  <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-                    <span class="mt-0.5 shrink-0 text-[var(--color-accent)]" aria-hidden="true">
-                      <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+        <ul
+          class="reveal grid gap-3 sm:grid-cols-2"
+          role="list"
+          style="animation-delay:.14s"
+        >
+          {svc.painPoints.map((pain) => (
+            <li class="svc-pain-card">
+              <svg class="svc-pain-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <span class="svc-pain-text">{pain}</span>
             </li>
           ))}
         </ul>
-        <p class="reveal mt-5 text-xs text-[var(--color-text-muted)]" style="animation-delay:.26s">
-          Нужен нестандартный вариант?{' '}
-          <a
-            href="/contact"
-            class="text-[var(--color-accent)] underline underline-offset-2 hover:opacity-80 transition-opacity"
-            data-ym-goal="packages_custom_click"
-          >
-            Обсудим отдельно →
-          </a>
-        </p>
       </div>
     </section>
   )}
 
-  <!-- Примеры проектов -->
+  <!-- ===== О задаче ===== -->
+  <section class="px-4 sm:px-6 pb-12" aria-label="Описание услуги">
+    <div class="mx-auto max-w-3xl">
+      <div class="reveal rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8" style="animation-delay:.14s">
+        <h2 class="font-display text-xl font-bold text-[var(--color-text)] mb-3">О задаче</h2>
+        <p class="text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed">
+          {svc.description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Что входит — Feature Grid ===== -->
+  <section class="px-4 sm:px-6 pb-14" aria-labelledby="features-heading">
+    <div class="mx-auto max-w-3xl">
+      <h2
+        id="features-heading"
+        class="reveal font-display text-xl font-bold text-[var(--color-text)] mb-5"
+        style="animation-delay:.15s"
+      >
+        Что входит
+      </h2>
+      <ul class="reveal grid gap-3 sm:grid-cols-2" role="list" style="animation-delay:.18s">
+        {svc.features.map((f) => (
+          <li class="svc-feature-card">
+            <svg class="svc-feature-card__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="svc-feature-card__text">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Примеры проектов ===== -->
   {svc.relatedCases.length > 0 && (
     <section class="px-4 sm:px-6 pb-12" aria-labelledby="cases-heading">
       <div class="mx-auto max-w-3xl">
-        <h2 id="cases-heading" class="reveal font-display text-xl font-bold text-[var(--color-text)] mb-6" style="animation-delay:.2s">
-          Примеры проектов
+        <h2
+          id="cases-heading"
+          class="reveal font-display text-xl font-bold text-[var(--color-text)] mb-2"
+          style="animation-delay:.2s"
+        >
+          Реальные проекты
         </h2>
-        <ul class="reveal grid gap-4 sm:grid-cols-2" role="list" style="animation-delay:.22s">
+        <p class="reveal text-sm text-[var(--color-text-muted)] mb-5" style="animation-delay:.22s">
+          Не обещания — конкретные результаты.
+        </p>
+        <ul class="reveal grid gap-4 sm:grid-cols-2" role="list" style="animation-delay:.24s">
           {svc.relatedCases.map((c) => (
             <li>
               <a
                 href={`/cases/${c.slug}`}
-                class="group flex flex-col h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-glow-sm"
+                data-ym-goal="service_case_click"
+                class="group flex flex-col h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-glow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
               >
                 <p class="font-display font-semibold text-sm text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors leading-snug">
                   {c.title}
                 </p>
                 {c.metric && (
-                  <p class="mt-2 text-sm font-medium text-[var(--color-accent)]">{c.metric}</p>
+                  <p class="mt-2 text-sm font-bold text-[var(--color-accent)]">{c.metric}</p>
                 )}
-                <p class="mt-3 text-xs text-[var(--color-text-muted)] font-semibold">{c.price}</p>
+                <div class="mt-auto pt-4 flex items-center justify-between">
+                  <p class="text-xs text-[var(--color-text-muted)] font-semibold">{c.price}</p>
+                  <span class="text-xs text-[var(--color-accent)] opacity-0 group-hover:opacity-100 transition-opacity">
+                    Подробнее →
+                  </span>
+                </div>
               </a>
             </li>
           ))}
@@ -206,36 +214,33 @@ const serviceJsonLd = {
     </section>
   )}
 
-  <!-- Отзыв -->
+  <!-- ===== Отзыв ===== -->
   {svc.review && (
     <section class="px-4 sm:px-6 pb-12" aria-label="Отзыв клиента">
       <div class="mx-auto max-w-3xl">
-        <blockquote class="reveal rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8" style="animation-delay:.24s">
-          <p class="text-base sm:text-lg text-[var(--color-text)] leading-relaxed">
-            «{svc.review.text}»
-          </p>
-          <footer class="mt-4">
-            <cite class="not-italic">
-              <span class="block text-sm font-semibold text-[var(--color-text)]">{svc.review.author}</span>
-              <span class="text-sm text-[var(--color-text-muted)]">{svc.review.project}</span>
-            </cite>
+        <div class="reveal case-testimonial" style="animation-delay:.24s">
+          <span class="case-testimonial__quote-icon" aria-hidden="true">"</span>
+          <p class="case-testimonial__text">«{svc.review.text}»</p>
+          <footer class="case-testimonial__author">
+            <span class="case-testimonial__name">— {svc.review.author}</span>
+            <span class="case-testimonial__role">{svc.review.project}</span>
           </footer>
-        </blockquote>
+        </div>
       </div>
     </section>
   )}
 
-  <!-- CTA -->
+  <!-- ===== Accent CTA ===== -->
   <section class="px-4 sm:px-6 pb-20 sm:pb-28" aria-label="Связаться">
     <div class="mx-auto max-w-3xl">
-      <div class="reveal rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 sm:p-10 text-center" style="animation-delay:.28s">
-        <h2 class="font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl">
+      <div class="svc-cta-accent reveal p-8 sm:p-10 text-center" style="animation-delay:.28s">
+        <h2 class="font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl relative z-10">
           Готовы обсудить задачу?
         </h2>
-        <p class="mt-2 text-[var(--color-text-muted)]">
+        <p class="mt-2 text-[var(--color-text-muted)] relative z-10">
           Опишите что нужно — назову цену и сроки за один день.
         </p>
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3 relative z-10">
           <Button href="https://t.me/goutach" variant="primary" dataYmGoal="cta_telegram" external>
             Написать в Telegram
           </Button>
@@ -243,14 +248,14 @@ const serviceJsonLd = {
             Отправить заявку
           </Button>
         </div>
-        <p class="mt-4 text-sm text-[var(--color-text-muted)]">
+        <p class="mt-4 text-sm text-[var(--color-text-muted)] relative z-10">
           Ответ в течение дня
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Навигация по другим услугам -->
+  <!-- ===== Другие услуги ===== -->
   <section class="px-4 sm:px-6 pb-16 border-t border-[var(--color-border)]" aria-label="Другие услуги">
     <div class="mx-auto max-w-3xl pt-10">
       <p class="text-sm text-[var(--color-text-muted)] mb-4">Другие услуги:</p>
@@ -268,6 +273,4 @@ const serviceJsonLd = {
       </ul>
     </div>
   </section>
-
-
 </BaseLayout>
