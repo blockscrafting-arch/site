@@ -7,10 +7,8 @@
 import { getCollection } from 'astro:content';
 const allCases = await getCollection('cases');
 const cases = allCases.filter((c) => !c.data.draft).sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
-const featured = cases
-  .filter((c) => c.data.featuredOrder != null)
-  .sort((a, b) => (a.data.featuredOrder ?? 99) - (b.data.featuredOrder ?? 99))
-  .slice(0, 4);
+/** Всегда 4 новейших кейса по дате — блок обновляется автоматически при добавлении. */
+const featured = cases.slice(0, 4);
 ---
 
 <section class="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden bg-[var(--color-surface)]" aria-labelledby="cases-preview-heading">
@@ -35,8 +33,23 @@ const featured = cases
             ]}
             style={c.data.accentColor ? `border-top-color: ${c.data.accentColor}` : ''}
           >
-            {/* Верхняя часть: крупная метрика */}
-            {metric && (
+            {/* Верхняя часть: метрика до → после или одиночное значение */}
+            {metric && metric.before != null && metric.after != null ? (
+              <span class:list={[
+                'flex items-baseline flex-wrap gap-x-2 font-display font-black leading-none',
+                isWide ? 'gap-y-1' : '',
+              ]}>
+                <span class:list={[
+                  'text-[var(--color-text-muted)] opacity-50 line-through',
+                  isWide ? 'text-3xl sm:text-4xl' : 'text-2xl sm:text-3xl',
+                ]}>{metric.before}</span>
+                <span class="text-[var(--color-text-muted)] opacity-30 text-xl font-normal">→</span>
+                <span class:list={[
+                  'text-[var(--color-accent)]',
+                  isWide ? 'text-5xl sm:text-6xl' : 'text-4xl sm:text-5xl',
+                ]}>{metric.after}</span>
+              </span>
+            ) : metric && metric.value && (
               <span class:list={[
                 'block font-display font-black text-[var(--color-accent)] leading-none',
                 isWide ? 'text-5xl sm:text-6xl' : 'text-4xl sm:text-5xl',

@@ -14,8 +14,13 @@ const casesCollection = defineCollection({
     metrics: z
       .array(
         z.object({
-          value: z.string(),
+          /** Одиночное итоговое значение (backward-compatible). */
+          value: z.string().optional(),
           label: z.string(),
+          /** Значение «до» для отображения сравнения до → после. */
+          before: z.string().optional(),
+          /** Значение «после» для отображения сравнения до → после. */
+          after: z.string().optional(),
           prefix: z.string().optional(),
           suffix: z.string().optional(),
         }),
@@ -47,8 +52,14 @@ const casesCollection = defineCollection({
       .object({
         text: z.string(),
         author: z.string(),
+        /** Должность или роль автора цитаты. */
+        role: z.string().optional(),
+        /** Компания / проект автора цитаты. */
+        company: z.string().optional(),
       })
       .optional(),
+    /** Длительность проекта (напр. «2 недели», «3 дня»). */
+    duration: z.string().optional(),
     featured: z.boolean().default(false),
     /** Порядковый номер на главной (1 = wide-карточка). Только у флагманских кейсов. */
     featuredOrder: z.number().optional(),

@@ -12,9 +12,9 @@ accentColor: "#3b82f6"
 featured: true
 featuredOrder: 4
 metrics:
-  - { value: "100%", label: "Автоматизация процесса" }
-  - { value: "AI", label: "Уникальный текст в письмах" }
-  - { value: "35–65", label: "Мин. между запусками" }
+  - { label: "Уникальность письма", before: "0%", after: "100%" }
+  - { label: "Ручная работа на рассылку", before: "2–3 ч", after: "0 мин" }
+  - { value: "35–65", label: "Мин. между запусками (анти-спам)" }
 ---
 
 ## Проблема

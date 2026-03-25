@@ -14,9 +14,9 @@ productLink: "https://dzen.ru/rostokpitomnik"
 screenshots:
   - "/images/cases/dzen-content-pipeline-preview.png"
 metrics:
-  - { value: "10", label: "статей/день", suffix: " без копирайтера" }
-  - { value: "3", label: "AI-модели", suffix: " в конвейере" }
-  - { value: "3 мин", label: "От ключа до готовой статьи" }
+  - { label: "Статей в день", before: "1–2", after: "10" }
+  - { label: "Время на статью", before: "35 мин", after: "3 мин" }
+  - { value: "3", label: "AI-модели в конвейере" }
 ---
 
 ## Проблема

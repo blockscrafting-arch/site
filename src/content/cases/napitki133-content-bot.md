@@ -17,9 +17,9 @@ stack:
 categories: ["bot", "automation", "autoposting", "ai-agent"]
 accentColor: "#f59e0b"
 metrics:
+  - { label: "Постов в неделю", before: "0", after: "14" }
+  - { label: "Время на контент", before: "3–4 ч/нед", after: "0" }
   - { value: "6", label: "Каналов публикации (TG + MAX)" }
-  - { value: "6", label: "Режимов работы бота" }
-  - { value: "0", label: "Ручной работы после запуска" }
 problem: "Сайт napitki133.ru — библиотека из сотен рецептов, лайфхаков и путеводителей. Весь этот контент лежал мёртвым грузом: нет дистрибуции, нет охвата за пределами поисковиков."
 result: "Автономная контентная машина: 6 каналов, 2 поста в день, умная ротация без повторов, управление без кода."
 heroImage: "/images/cases/napitki133-bot-preview.png"

@@ -12,9 +12,9 @@ client: "Velvet Mebel"
 screenshots:
   - "/images/cases/wb-furniture-bot-preview.png"
 metrics:
-  - { value: "100", label: "%", suffix: " перехват негатива в личные сообщения" }
-  - { value: "10x", label: "понятнее", suffix: " процесс сборки по видеоинструкции" }
-  - { value: "0", label: "рутины", suffix: " менеджеров на пересылку файлов" }
+  - { label: "Негатив в карточку WB", before: "100%", after: "0%" }
+  - { label: "Ответ на вопрос покупателя", before: "2–4 ч", after: "мгновенно" }
+  - { value: "0", label: "Рутины у менеджеров" }
 ---
 
 ## Проблема
