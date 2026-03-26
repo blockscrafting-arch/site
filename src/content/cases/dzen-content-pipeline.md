@@ -6,7 +6,7 @@ stack: ["Node.js", "Perplexity Sonar", "Gemini 3 Flash", "Gemini 3.1 Flash Image
 date: 2026-03-24
 duration: "2 недели"
 client: "Питомник Росток"
-categories: [automation, ai-agent, autoposting]
+categories: [automation, ai-agent, content-factory]
 accentColor: "#16a34a"
 featured: true
 featuredOrder: 2

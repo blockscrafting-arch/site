@@ -1246,7 +1246,7 @@
   animation: service-fade-in 0.4s ease-out forwards;
 }
 
-/* Полёт бумажного самолётика (Автопостинг) */
+/* Полёт бумажного самолётика (Контент-завод) */
 @keyframes service-fly-away {
   0% {
     opacity: 1;

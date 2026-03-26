@@ -15,7 +15,7 @@ stack:
     "WordPress REST API",
     "WooCommerce",
   ]
-categories: ["bot", "automation", "autoposting", "ai-agent"]
+categories: ["bot", "automation", "content-factory", "ai-agent"]
 accentColor: "#f59e0b"
 metrics:
   - { label: "Постов в неделю", before: "0", after: "14" }

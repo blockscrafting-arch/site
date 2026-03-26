@@ -12,7 +12,7 @@ metrics:
   - value: "100%"
     label: "Стабильность"
 stack: ["Python", "VK API", "python-dotenv", "Requests"]
-categories: ["automation", "script", "autoposting"]
+categories: ["automation", "script", "content-factory"]
 accentColor: "#0077FF"
 problem: "Клиент вёл группу ВК руками: зайти, написать, выбрать фото, опубликовать. Регулярная рутина, отнимающая время и внимание."
 ---

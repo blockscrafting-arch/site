@@ -148,9 +148,9 @@ services:
       project: Парсер закрытых Telegram-чатов
       text: Всё выполнено на высшем уровне, всем рекомендую.
 
-  - id: autoposting
-    title: Автопостинг
-    pitch: "Контент по расписанию: AI пишет, рисует и нарезает видео — вы только нажимаете «опубликовать»"
+  - id: content-factory
+    title: Контент-завод
+    pitch: "Полный цикл: AI пишет тексты, рисует картинки, нарезает видео и публикует во все площадки"
     price: от 4 000 р
     description: >
       Идея или источник → AI генерирует текст, картинку или короткое видео
@@ -184,7 +184,7 @@ services:
         price: 4 000 р
         metric: 10 мин → 1 сек на публикацию
       - slug: ai-content-conveyor
-        title: "AI-конвейер для автопостинга в Telegram, VK и Дзен"
+        title: "AI-конвейер контент-завода: Telegram, VK и Дзен"
         price: 9 000 р
         metric: 30–40 мин → 2 мин на пост
       - slug: telegram-roi-posting
@@ -193,7 +193,7 @@ services:
         metric: 50+ групп одновременно
     review:
       author: postlunapark
-      project: "Автопостинг N8N: Telegram + VK + Дзен"
+      project: "Контент-завод N8N: Telegram + VK + Дзен"
       text: Теперь все время могу потратить на более важные задачи, чем руками всё постить.
 
   - id: scripts

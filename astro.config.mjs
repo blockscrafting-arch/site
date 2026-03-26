@@ -7,6 +7,9 @@ import rehypeCaseHeadingIcons from "./src/plugins/rehype-case-heading-icons.mjs"
 /** @type {import('astro').AstroConfig} */
 export default defineConfig({
   site: process.env.SITE || "https://vladexecute.ru",
+  redirects: {
+    '/services/autoposting': '/services/content-factory',
+  },
   /** Отключаем prefetchAll: известный баг Astro — prefetch идёт по http и даёт Mixed Content на HTTPS. */
   prefetch: { prefetchAll: false },
   markdown: {

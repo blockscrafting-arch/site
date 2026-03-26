@@ -393,9 +393,9 @@ export const SERVICES: Service[] = [
       'Парсинг сайтов, Telegram-каналов и маркетплейсов: данные в таблицу по расписанию. Python, Playwright. От 10 000 р.',
   },
   {
-    id: 'autoposting',
-    title: 'Автопостинг',
-    pitch: 'Контент по расписанию: AI пишет, рисует и нарезает видео — вы только нажимаете «опубликовать»',
+    id: 'content-factory',
+    title: 'Контент-завод',
+    pitch: 'Полный цикл: AI пишет тексты, рисует картинки, нарезает видео и публикует во все площадки',
     price: 'от 4 000 р',
     description:
       'Идея или источник → AI генерирует текст, картинку или короткое видео (Reels/Shorts) → вы проверяете одной кнопкой → одновременная публикация в Telegram, MAX, VK, Дзен, Instagram, TikTok, YouTube и на личный сайт. Кросс-постинг во все площадки за один клик. Вместо часа на пост — пара минут на контроль.',
@@ -422,17 +422,17 @@ export const SERVICES: Service[] = [
     ],
     relatedCases: [
       { slug: 'vk-autoposter', title: 'Автопостер для ВКонтакте: скрипт вместо рутины', price: '4 000 р', metric: '10 мин → 1 сек на публикацию' },
-      { slug: 'ai-content-conveyor', title: 'AI-конвейер для автопостинга в Telegram, VK и Дзен', price: '9 000 р', metric: '30–40 мин → 2 мин на пост' },
+      { slug: 'ai-content-conveyor', title: 'AI-конвейер для контент-завода: Telegram, VK и Дзен', price: '9 000 р', metric: '30–40 мин → 2 мин на пост' },
       { slug: 'telegram-roi-posting', title: 'Постинг в 50+ Telegram-групп: рой аккаунтов', price: '14 000 р', metric: '50+ групп одновременно' },
       { slug: 'dzen-content-pipeline', title: 'Контент-конвейер для Яндекс.Дзена: 3 AI-модели + ДНК бренда', price: '15 000 р', metric: '10 статей/день без копирайтера' },
     ],
     review: {
       author: 'postlunapark',
-      project: 'Автопостинг N8N: Telegram + VK + Дзен',
+      project: 'Контент-завод N8N: Telegram + VK + Дзен',
       text: 'Теперь все время могу потратить на более важные задачи, чем руками всё постить.',
     },
     seoDescription:
-      'Автопостинг в Telegram, MAX, VK, Дзен, Instagram, TikTok и YouTube с AI-генерацией текста, картинок и видео (Reels/Shorts). Кросс-постинг на личный сайт. n8n, Python. От 4 000 р.',
+      'Контент-завод в Telegram, MAX, VK, Дзен, Instagram, TikTok и YouTube с AI-генерацией текста, картинок и видео (Reels/Shorts). Кросс-постинг на личный сайт. n8n, Python. От 4 000 р.',
   },
   {
     id: 'scripts',

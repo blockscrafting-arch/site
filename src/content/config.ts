@@ -37,7 +37,7 @@ const casesCollection = defineCollection({
           "mini-app",
           "parser",
           "script",
-          "autoposting",
+          "content-factory",
         ]),
       )
       .default([]),
