@@ -26,7 +26,7 @@
 - [Все кейсы](https://vladexecute.ru/cases): реализованные проекты с результатами, метриками и ценами
 - [Контент-конвейер для Яндекс.Дзена](https://vladexecute.ru/cases/dzen-content-pipeline): автоматизация SEO-статей для питомника — 3 AI-модели, ДНК бренда, до 10 статей/день
 - [Контент-бот для napitki133.ru](https://vladexecute.ru/cases/napitki133-content-bot): бот-ротатор из библиотеки сайта публикует в 3 Telegram + 3 MAX канала — 6 режимов, ИИ-тексты, антидубли, управление через Google Таблицу
-- [Проверка базы на Max Messenger](https://vladexecute.ru/cases/max-messenger-checker): Python + GREEN-API, автоматическая валидация номеров в Max Messenger, результат в CSV без ручного труда
+- [Проверка базы на MAX](https://vladexecute.ru/cases/max-messenger-checker): Python + GREEN-API, автоматическая валидация номеров в MAX, результат в CSV без ручного труда
 - [Инструкции и гайды](https://vladexecute.ru/guides): разборы по инструментам — n8n, Telegram, VPS, OpenAI
 
 ## Optional
