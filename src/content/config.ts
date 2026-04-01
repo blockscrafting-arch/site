@@ -34,7 +34,7 @@ const casesCollection = defineCollection({
           "bot",
           "ai-agent",
           "automation",
-          "mini-app",
+          "web-app",
           "parser",
           "script",
           "content-factory",
