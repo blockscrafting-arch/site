@@ -20,9 +20,14 @@ accentColor: "#E5A100"
 heroImage: "/images/cases/whoop-pwa-dashboard.png"
 screenshots:
   - "/images/cases/whoop-pwa-dashboard.png"
+  - "/images/cases/whoop-pwa-review.png"
 productName: "WHOOP PWA"
 featured: false
 draft: false
+testimonial:
+  text: "ОООООоооооочень быстро сделал. Я доволен !!"
+  author: "svyat007"
+  role: "Kwork"
 metrics:
   - label: "Данные WHOOP в вебе"
     before: "только приложение (англ.)"
