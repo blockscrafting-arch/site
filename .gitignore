@@ -12,3 +12,4 @@ playwright/.cache
 
 # Прайс-лист для внешних площадок (YML/XML) — локально, не в репозитории
 price-list.xml
+CLAUDE.md
