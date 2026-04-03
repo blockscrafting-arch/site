@@ -1,0 +1,28 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "На главную" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Щенок Игруля" [ref=e6]
+        - link "Корзина" [ref=e7] [cursor=pointer]:
+          - /url: /cart
+          - img [ref=e8]
+    - main [ref=e10]:
+      - generic [ref=e11]:
+        - img [ref=e12]
+        - heading "Корзина пуста" [level=2] [ref=e14]
+        - paragraph [ref=e15]: Добавьте товар, чтобы оформить заказ и порадовать своего питомца.
+        - link "К товарам" [ref=e16] [cursor=pointer]:
+          - /url: /
+    - contentinfo [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - link "Публичная оферта" [ref=e20] [cursor=pointer]:
+            - /url: /offer
+          - link "Политика конфиденциальности" [ref=e21] [cursor=pointer]:
+            - /url: /privacy
+          - link "partners@kkushneriov.ru" [ref=e22] [cursor=pointer]:
+            - /url: mailto:partners@kkushneriov.ru
+        - paragraph [ref=e23]: © 2026 ИП Кушнерёв Кирилл.
+  - alert [ref=e24]
