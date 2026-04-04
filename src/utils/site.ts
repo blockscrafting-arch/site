@@ -30,7 +30,7 @@ export const site = {
   /** Код верификации Яндекс.Вебмастер (meta name="yandex-verification"). */
   yandexVerification: "2765e3c7efaaaa7f",
   /** Код верификации Google Search Console (meta name="google-site-verification"). Задать после регистрации в GSC. */
-  googleVerification: "",
+  googleVerification: "ZgV-FzoSzdlz74VzJdyDkzVSo5zr7oy13CTWU107B8o",
   /** Номер счётчика Яндекс.Метрики. Если задан — в layout подключается скрипт счётчика. */
   yandexMetrikaId: 108173739,
   /** Реквизиты для страницы «Реквизиты» и футера (плательщик НПД). Паспортные данные — только в договоре, на сайте не публикуются. */
