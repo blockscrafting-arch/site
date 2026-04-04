@@ -11,8 +11,8 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Продакшн: только статика через nginx
-FROM nginx:alpine
+# Продакшн: nginx с Brotli-сжатием
+FROM fholzer/nginx-brotli:latest
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80

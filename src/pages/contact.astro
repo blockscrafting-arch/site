@@ -11,11 +11,27 @@ import { site } from '../utils/site';
 const webhookUrl = typeof import.meta.env.PUBLIC_CONTACT_WEBHOOK === 'string'
   ? import.meta.env.PUBLIC_CONTACT_WEBHOOK
   : '';
+
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Контакты',
+  description: 'Связаться с Владом: Telegram, e-mail, форма обратной связи.',
+  url: `${site.url}/contact`,
+  mainEntity: {
+    '@type': 'Person',
+    '@id': `${site.url}/#person`,
+    name: 'Владислав Попович',
+    email: site.email,
+    url: site.url,
+  },
+};
 ---
 
 <BaseLayout
   title="Контакты — напишите, отвечу за день — vlad.execute(_)"
   description={`Связаться с Владом: Telegram ${site.tgChannelHandle}, e-mail, блог ${site.tgChannelContentHandle}, Kwork. Форма обратной связи.`}
+  schema={contactSchema}
 >
   <!-- Анимированный самолетик (FontAwesome paper-plane), физика полёта через wobble -->
   <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden" aria-hidden="true">
