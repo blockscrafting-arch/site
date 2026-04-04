@@ -13,8 +13,9 @@ echo "→ Проверка nginx и перезапуск..."
 sudo nginx -t && sudo systemctl restart nginx
 
 echo "→ Перезапуск контейнера (образ из ghcr.io, без сборки на сервере)..."
-docker compose -p opt -f deploy/docker-compose.prod.yml down
+docker compose -p opt -f deploy/docker-compose.prod.yml down --remove-orphans || true
+docker rm -f opt-web-1 2>/dev/null || true
 docker compose -p opt -f deploy/docker-compose.prod.yml pull
-docker compose -p opt -f deploy/docker-compose.prod.yml up -d
+docker compose -p opt -f deploy/docker-compose.prod.yml up -d --force-recreate
 
 echo "Готово."
