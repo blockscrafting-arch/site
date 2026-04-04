@@ -27,8 +27,27 @@ const stack = [
 
 const metrics = [
   { value: '100%', label: 'положительных отзывов' },
+  { value: '20+', label: 'проектов для бизнеса' },
   { value: 'от 5 000 р', label: 'стоимость проектов' },
   { value: '1–3 дня', label: 'MVP под ключ' },
+];
+
+const inlineReviews = [
+  {
+    author: 'Nsltd',
+    project: 'Система парсинга',
+    text: 'Тот случай, один на сотню, когда человек делом подтверждает все свои слова.',
+  },
+  {
+    author: 'postlunapark',
+    project: 'Контент-завод',
+    text: 'Теперь все время могу потратить на более важные задачи, чем руками всё постить.',
+  },
+  {
+    author: 'elena_bukina',
+    project: 'Бот с OCR',
+    text: 'Редкое сочетание профессионализма и скорости выполнения. Рекомендую!',
+  },
 ];
 
 const aboutSchema = {
@@ -93,10 +112,13 @@ const aboutSchema = {
             Владислав Попович
           </h1>
           <p class="mt-3 text-base sm:text-lg text-[var(--color-text-muted)] leading-relaxed max-w-sm">
-            Разработчик и автоматизатор. Telegram-боты, AI-агенты, n8n-воронки, парсеры — под ключ.
+            Делаю ботов и автоматизации для бизнеса.
           </p>
-          <p class="mt-2 text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
-            Работаю с бизнесом по РФ. Ответ в течение дня.
+          <p class="mt-2 text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-sm">
+            Начал с одного Telegram-бота для знакомого — он сэкономил 4 часа ручной работы каждый день. После этого понял: у каждого бизнеса есть рутина, которую можно убрать.
+          </p>
+          <p class="mt-2 text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-sm">
+            20+ проектов по всей России: от постинга в 50 каналов до AI-юристов, разбирающих договоры за 30 секунд. Telegram-боты, AI-агенты, n8n, парсеры. Под ключ за 1–3 дня.
           </p>
         </div>
 
@@ -104,7 +126,7 @@ const aboutSchema = {
     </div>
 
     <!-- Цифры -->
-    <div class="reveal mt-10 grid grid-cols-3 gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 text-center sm:p-8" style="animation-delay:.1s">
+    <div class="reveal mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 text-center sm:p-8" style="animation-delay:.1s">
       {metrics.map((m) => (
         <div>
           <p class="text-xl sm:text-2xl font-black text-[var(--color-accent)]">{m.value}</p>
@@ -116,7 +138,7 @@ const aboutSchema = {
     <!-- Манифест (короткая цитата) -->
     <blockquote class="reveal mt-10 border-l-4 border-[var(--color-accent)] pl-6 py-2" style="animation-delay:.14s">
       <p class="text-lg font-medium text-[var(--color-text)] sm:text-xl leading-relaxed italic">
-        «Делаю так, чтобы рутину за вас делали боты и автоматизация — а вы занимались тем, что реально приносит деньги.»
+        «120 часов рутины в месяц → 2 часа. Вот ради чего я это делаю.»
       </p>
     </blockquote>
 
@@ -129,12 +151,14 @@ const aboutSchema = {
         <div class="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-glow-sm">
           <span class="inline-block text-xl text-[var(--color-accent)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
           <h3 class="mt-2 font-display text-base font-semibold text-[var(--color-text)]">Бизнесу</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Меньше ручных операций — предсказуемый процесс. Заявки, квалификация, отчёты — в автоматизацию.</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Меньше ручных операций — предсказуемый процесс.</p>
+          <p class="mt-1.5 text-xs text-[var(--color-accent)]">→ Мебельный магазин: постинг 120 ч/мес → 2 ч/мес</p>
         </div>
         <div class="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-glow-sm">
           <span class="inline-block text-xl text-[var(--color-accent)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
           <h3 class="mt-2 font-display text-base font-semibold text-[var(--color-text)]">Основателям и командам</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">«Цифровой экзоскелет»: объём работы отдела в одиночку или малой командой. Боты и агенты как усиление.</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Объём работы целого отдела — в одиночку.</p>
+          <p class="mt-1.5 text-xs text-[var(--color-accent)]">→ Один человек публикует 10 SEO-статей в день через AI</p>
         </div>
       </div>
     </section>
@@ -144,33 +168,32 @@ const aboutSchema = {
       В канале <a href={site.tgChannelContent} data-ym-goal="telegram_channel_click" class="text-[var(--color-accent)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded" target="_blank" rel="noopener noreferrer">{site.tgChannelContentHandle}</a> — кейсы, баги и решения без рекламы.
     </p>
 
-    <!-- Отзывы — ссылка на главную (без дублирования) -->
+    <!-- Отзывы — inline карточки -->
     <section class="reveal mt-14" aria-labelledby="reviews-heading" style="animation-delay:.26s">
       <h2 id="reviews-heading" class="font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl">
         Отзывы клиентов
       </h2>
       <p class="mt-2 text-[var(--color-text-muted)]">
-        Все отзывы — с Kwork, реальные заказы, реальные оценки.
+        Все отзывы — с Kwork, реальные заказы, реальные оценки. 5.0 из 5.
       </p>
-      <div class="mt-4 flex items-center gap-3">
-        <div class="flex gap-0.5" aria-label="Рейтинг 5.0 из 5">
-          {Array.from({ length: 5 }).map(() => (
-            <svg class="h-4 w-4 text-[#F5A500]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-          ))}
-        </div>
-        <span class="text-sm font-semibold text-[var(--color-text)]">5.0</span>
+      <div class="mt-5 grid gap-4 sm:grid-cols-3">
+        {inlineReviews.map((r) => (
+          <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
+            <div class="flex gap-0.5 mb-3" aria-label="5 из 5">
+              {Array.from({ length: 5 }).map(() => (
+                <svg class="h-3.5 w-3.5 text-[#F5A500]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <p class="text-sm text-[var(--color-text-muted)] italic leading-relaxed">«{r.text}»</p>
+            <p class="mt-3 text-xs text-[var(--color-text)]">
+              <span class="font-semibold">{r.author}</span>
+              <span class="text-[var(--color-text-muted)]"> · {r.project}</span>
+            </p>
+          </div>
+        ))}
       </div>
-      <a
-        href="/#reviews-section-heading"
-        class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent)] hover:underline transition-colors"
-      >
-        Читать отзывы
-        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
-      </a>
     </section>
 
     <!-- Стек -->

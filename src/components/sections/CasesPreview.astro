@@ -7,17 +7,17 @@
 import { getCollection } from 'astro:content';
 const allCases = await getCollection('cases');
 const cases = allCases.filter((c) => !c.data.draft).sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
-/** Всегда 4 новейших кейса по дате — блок обновляется автоматически при добавлении. */
-const featured = cases.slice(0, 4);
+/** 6 новейших кейсов по дате — блок обновляется автоматически при добавлении. */
+const featured = cases.slice(0, 6);
 ---
 
 <section class="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden bg-[var(--color-surface)]" aria-labelledby="cases-preview-heading">
   <div class="mx-auto max-w-6xl">
     <h2 id="cases-preview-heading" class="reveal font-display text-3xl font-bold text-[var(--color-text)] sm:text-4xl md:text-5xl text-center">
-      Проекты с цифрами
+      Не обещания — цифры
     </h2>
     <p class="reveal mt-4 text-center text-base sm:text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto" style="animation-delay:.06s">
-      Каждый кейс — с метрикой до и после.
+      До и после в каждом проекте.
     </p>
 
     <div class="reveal-stagger mt-16 grid gap-4 sm:grid-cols-2">

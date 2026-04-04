@@ -19,12 +19,12 @@ import { site } from '../../utils/site';
         id="cta-heading"
         class="relative font-display text-2xl font-bold text-[var(--color-text)] sm:text-3xl md:text-4xl"
       >
-        Опишите задачу — отвечу за день
+        Бесплатная оценка за 1 день
       </h2>
 
       <!-- Подзаголовок -->
       <p class="relative mt-4 text-sm sm:text-base text-[var(--color-text-muted)] max-w-lg mx-auto leading-relaxed">
-        Текстом, голосовым или готовым ТЗ — как удобно. Предложу варианты и цену.
+        Опишите задачу — назову цену и сроки. Без обязательств.
       </p>
 
       <!-- B2B trust-badges -->
@@ -33,36 +33,38 @@ import { site } from '../../utils/site';
           <svg class="h-4 w-4 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
           </svg>
-          <span class="text-[10px] sm:text-xs text-[var(--color-text-muted)] text-center leading-tight">Данные на вашем сервере</span>
+          <span class="text-xs text-[var(--color-text-muted)] text-center leading-tight">Данные на вашем сервере</span>
         </div>
         <div class="flex flex-col items-center gap-1.5 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-3">
           <svg class="h-4 w-4 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
           </svg>
-          <span class="text-[10px] sm:text-xs text-[var(--color-text-muted)] text-center leading-tight">Договор и чеки</span>
+          <span class="text-xs text-[var(--color-text-muted)] text-center leading-tight">Договор и чеки</span>
         </div>
         <div class="flex flex-col items-center gap-1.5 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-3">
           <svg class="h-4 w-4 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
           </svg>
-          <span class="text-[10px] sm:text-xs text-[var(--color-text-muted)] text-center leading-tight">Поддержка после запуска</span>
+          <span class="text-xs text-[var(--color-text-muted)] text-center leading-tight">Поддержка после запуска</span>
         </div>
         <div class="flex flex-col items-center gap-1.5 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-3">
           <svg class="h-4 w-4 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
           </svg>
-          <span class="text-[10px] sm:text-xs text-[var(--color-text-muted)] text-center leading-tight">Код принадлежит вам</span>
+          <span class="text-xs text-[var(--color-text-muted)] text-center leading-tight">Код принадлежит вам</span>
         </div>
       </div>
 
       <div class="relative mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-        <Button href={site.tgChannel} variant="primary" external dataYmGoal="telegram_click" class="w-full sm:w-auto gap-2">
+        <Button href="/contact" variant="primary" dataYmGoal="cta_contact" class="w-full sm:w-auto">
+          Начать проект
+        </Button>
+        <a href={site.tgChannel} target="_blank" rel="noopener noreferrer" data-ym-goal="telegram_click" class="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-accent)] hover:underline transition-colors">
           <svg class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.16 14.25l-2.97-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.666.336z"/>
           </svg>
-          Написать в Telegram
-        </Button>
-        <Button href="/contact" variant="outline" dataYmGoal="cta_contact">Оставить заявку</Button>
+          Написать в Telegram →
+        </a>
       </div>
 
       <!-- Micro-testimonial -->

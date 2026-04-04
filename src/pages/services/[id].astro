@@ -2,7 +2,7 @@
 /**
  * Детальная страница одной услуги — world-class редизайн.
  * Eyebrow label, pain points секция, feature grid, accent CTA.
- * Блок «Варианты сотрудничества» удалён.
+ * 3-tier pricing (MVP / Стандарт / Под ключ) с recommended badge.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Button from '../../components/common/Button.astro';
@@ -89,13 +89,17 @@ const serviceJsonLd = {
         {svc.pitch}
       </p>
 
+      <span class="reveal inline-flex mt-3 items-center rounded-full bg-[var(--color-accent)]/10 px-3.5 py-1 text-sm font-bold text-[var(--color-accent)]" style="animation-delay:.1s">
+        {svc.price}
+      </span>
+
       <!-- CTAs -->
       <div class="reveal mt-6 flex flex-wrap gap-3" style="animation-delay:.12s">
-        <Button href="https://t.me/goutach" variant="primary" dataYmGoal="cta_telegram_hero" external>
-          Обсудить в Telegram
+        <Button href="/contact" variant="primary" dataYmGoal="cta_contact_hero">
+          Узнать цену
         </Button>
-        <Button href="/contact" variant="outline" dataYmGoal="cta_contact_hero">
-          Оставить заявку
+        <Button href="https://t.me/goutach" variant="outline" dataYmGoal="cta_telegram_hero" external>
+          Написать в Telegram
         </Button>
       </div>
     </div>
@@ -168,6 +172,75 @@ const serviceJsonLd = {
     </div>
   </section>
 
+  <!-- ===== Варианты сотрудничества ===== -->
+  {svc.packages && svc.packages.length > 0 && (
+    <section class="px-4 sm:px-6 pb-14" aria-labelledby="packages-heading">
+      <div class="mx-auto max-w-3xl">
+        <h2
+          id="packages-heading"
+          class="reveal font-display text-xl font-bold text-[var(--color-text)] mb-2"
+          style="animation-delay:.19s"
+        >
+          Варианты
+        </h2>
+        <p class="reveal text-sm text-[var(--color-text-muted)] mb-6" style="animation-delay:.2s">
+          Выберите подходящий формат — или опишите задачу, подберу вариант.
+        </p>
+
+        <div class="reveal grid gap-4 sm:grid-cols-3" style="animation-delay:.22s">
+          {/* Mobile: recommended first */}
+          {[...svc.packages].sort((a, b) => (b.recommended ? 1 : 0) - (a.recommended ? 1 : 0)).map((pkg) => (
+            <div
+              class:list={[
+                'relative flex flex-col rounded-2xl border p-5 sm:p-6 transition-all duration-300',
+                pkg.recommended
+                  ? 'border-[var(--color-accent)] bg-[var(--color-accent)]/[0.04] shadow-glow-sm'
+                  : 'border-[var(--color-border)] bg-[var(--color-surface)]',
+              ]}
+              style={pkg.recommended ? `order: -1` : ''}
+            >
+              {pkg.recommended && (
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center rounded-full bg-[var(--color-accent)] px-3 py-0.5 text-xs font-bold text-white">
+                  Рекомендуем
+                </span>
+              )}
+
+              <h3 class="font-display text-base font-bold text-[var(--color-text)]">{pkg.name}</h3>
+              <p class="mt-1 text-2xl font-black text-[var(--color-accent)]">{pkg.price}</p>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-snug">{pkg.description}</p>
+
+              <ul class="mt-4 flex-1 space-y-2" role="list">
+                {pkg.items.map((item) => (
+                  <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+                    <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={pkg.recommended ? 'https://t.me/goutach' : '/contact'}
+                target={pkg.recommended ? '_blank' : undefined}
+                rel={pkg.recommended ? 'noopener noreferrer' : undefined}
+                data-ym-goal="package_click"
+                class:list={[
+                  'mt-5 block w-full rounded-xl py-2.5 text-center text-sm font-semibold transition-colors',
+                  pkg.recommended
+                    ? 'bg-[var(--color-accent)] text-white hover:opacity-90'
+                    : 'border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]',
+                ]}
+              >
+                {pkg.recommended ? 'Выбрать' : pkg.name === 'MVP' ? 'Начать с MVP' : 'Обсудить'}
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- ===== Примеры проектов ===== -->
   {svc.relatedCases.length > 0 && (
     <section class="px-4 sm:px-6 pb-12" aria-labelledby="cases-heading">
@@ -230,17 +303,17 @@ const serviceJsonLd = {
     <div class="mx-auto max-w-3xl">
       <div class="svc-cta-accent reveal p-8 sm:p-10 text-center" style="animation-delay:.28s">
         <h2 class="font-display text-xl font-bold text-[var(--color-text)] sm:text-2xl relative z-10">
-          Готовы обсудить задачу?
+          Бесплатная оценка за 1 день
         </h2>
         <p class="mt-2 text-[var(--color-text-muted)] relative z-10">
-          Опишите что нужно — назову цену и сроки за один день.
+          Опишите задачу — назову цену и сроки. Без обязательств.
         </p>
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3 relative z-10">
-          <Button href="https://t.me/goutach" variant="primary" dataYmGoal="cta_telegram" external>
-            Написать в Telegram
+          <Button href="/contact" variant="primary" dataYmGoal="cta_contact">
+            Начать проект
           </Button>
-          <Button href="/contact" variant="outline" dataYmGoal="cta_contact">
-            Отправить заявку
+          <Button href="https://t.me/goutach" variant="outline" dataYmGoal="cta_telegram" external>
+            Написать в Telegram
           </Button>
         </div>
         <p class="mt-4 text-sm text-[var(--color-text-muted)] relative z-10">

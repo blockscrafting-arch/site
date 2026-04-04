@@ -8,7 +8,8 @@
  */
 import Button from '../common/Button.astro';
 
-const rotatorWords = ['заявки', 'поддержку', 'контент', 'рассылки'] as const;
+import { Image } from 'astro:assets';
+import vladPortrait from '../../assets/vlad-portrait.png';
 
 const proofCases = [
   { metric: '120 ч → 2 ч', label: 'Постинг в 50+ групп Telegram', slug: 'telegram-roi-posting' },
@@ -27,24 +28,20 @@ const proofCycleDuration = proofCases.length * 5;
 
     <h1
       class="reveal font-display text-[clamp(2rem,7vw,4.5rem)] font-black tracking-tighter leading-[1.1] max-w-4xl"
-      aria-label="Заявки, поддержку, контент и рассылки — на автопилот"
     >
-      <span class="hero-rotator text-[var(--color-accent)]">
-        {rotatorWords.map((word, i) => (
-          <span class="hero-rotator__word" style={`animation-delay:${i * 3.5}s`}>{word}</span>
-        ))}
-      </span>
-      <br />
-      <span class="min-w-0">— на&nbsp;автопилот</span>
+      Заявки, контент и&nbsp;рассылки — <span class="text-[var(--color-accent)]">на&nbsp;автопилоте</span>
     </h1>
 
     <p class="reveal mt-3 sm:mt-4 text-base sm:text-lg text-[var(--color-text-muted)] max-w-xl mx-auto leading-relaxed" style="animation-delay:.35s">
       AI-боты и&nbsp;автоматизация, которые окупаются с&nbsp;первого дня. Работающее решение — за&nbsp;дни, не&nbsp;недели.
     </p>
 
-    <div class="reveal mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4" style="animation-delay:.65s;">
-      <Button href="/contact" variant="primary" dataYmGoal="cta_contact">Обсудить задачу</Button>
-      <Button href="/cases" variant="ghost" dataYmGoal="cta_cases">Кейсы с цифрами</Button>
+    <div class="reveal mt-4 sm:mt-6 flex flex-col items-center gap-2" style="animation-delay:.65s;">
+      <Button href="/contact" variant="primary" dataYmGoal="cta_contact">Узнать цену — бесплатно</Button>
+      <span class="text-xs text-[var(--color-text-muted)]">Без предоплаты на этапе оценки</span>
+      <a href="/cases" data-ym-goal="cta_cases" class="mt-1 text-sm font-medium text-[var(--color-accent)] hover:underline transition-colors">
+        Кейсы с цифрами →
+      </a>
     </div>
 
     <!-- Proof-метрика: CSS-ротация между кейсами (zero JS) -->
@@ -68,6 +65,15 @@ const proofCycleDuration = proofCases.length * 5;
     </div>
 
     <div class="reveal mt-3 sm:mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:gap-x-4" style="animation-delay:1s;">
+      <Image
+        src={vladPortrait}
+        alt=""
+        width={36}
+        height={36}
+        format="webp"
+        quality={80}
+        class="rounded-full h-9 w-9 object-cover object-[50%_6%] grayscale"
+      />
       <a
         href="https://kwork.ru/user/goutach"
         target="_blank"
