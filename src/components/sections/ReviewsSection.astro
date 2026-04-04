@@ -4,46 +4,11 @@
  * Ресерч: grid конвертирует лучше carousel (NN/g).
  * Aggregate rating в заголовке, Kwork как verified source badge.
  */
-const reviews = [
-  {
-    author: 'Nsltd',
-    project: 'Система парсинга',
-    label: 'Парсинг',
-    rating: 5,
-    text: 'Идеальная работа! Тот случай, один на сотню, когда человек делом подтверждает все свои слова.',
-  },
-  {
-    author: 'Кирилл Кушнерёв',
-    project: 'Интернет-магазин Щенок Игруля',
-    label: 'Web-приложение',
-    rating: 5,
-    text: 'Спасибо за оперативную качественную разработку. Стали настоящей командой: предлагал новшества и помогал в реализации всех задумок. Умение слушать и слышать. Обязательно обращусь ещё!',
-  },
-  {
-    author: 'postlunapark',
-    project: 'Контент-завод: Telegram + VK + Дзен',
-    label: 'Контент-завод',
-    rating: 5,
-    text: 'Теперь все время могу потратить на более важные задачи, чем руками всё постить.',
-  },
-  {
-    author: 'elena_bukina',
-    project: 'Бот на Python с OCR',
-    label: 'Telegram-бот',
-    rating: 5,
-    text: 'Редкое сочетание профессионализма и скорости выполнения. Рекомендую!',
-  },
-  {
-    author: 'wildtorneo',
-    project: 'Автоматизация email-рассылки',
-    label: 'Автоматизация',
-    rating: 5,
-    text: 'Всё было сделано профессионально, быстро и именно так как нужно! Рекомендую!',
-  },
-];
+import { reviews as allReviews } from '@/data/reviews';
 
+const reviews = allReviews.slice(0, 5);
 const avgRating = '5.0';
-const totalReviews = reviews.length;
+const totalReviews = allReviews.length;
 ---
 
 <section class="reveal py-20 sm:py-28 px-4 sm:px-6 bg-[var(--color-surface)]" aria-labelledby="reviews-section-heading">
@@ -113,7 +78,15 @@ const totalReviews = reviews.length;
       })}
     </div>
 
-    <div class="mt-10 text-center">
+    <div class="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-6">
+      <a
+        href="/reviews"
+        data-ym-goal="reviews_all"
+        class="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
+      >
+        Все {totalReviews} отзывов →
+      </a>
+      <span class="hidden sm:inline text-[var(--color-border)]">|</span>
       <a
         href="/contact"
         data-ym-goal="cta_after_reviews"

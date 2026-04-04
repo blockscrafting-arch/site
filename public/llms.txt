@@ -31,6 +31,10 @@
 - [Проверка базы на MAX](https://vladexecute.ru/cases/max-messenger-checker): Python + GREEN-API, автоматическая валидация номеров в MAX, результат в CSV без ручного труда
 - [Инструкции и гайды](https://vladexecute.ru/guides): разборы по инструментам — n8n, Telegram, VPS, OpenAI
 
+## Reviews
+
+- [Отзывы клиентов](https://vladexecute.ru/reviews): все отзывы о проектах — боты, автоматизация, парсинг, web-приложения; средняя оценка 5.0
+
 ## Optional
 
 - [Обо мне — Владислав Попович](https://vladexecute.ru/about): опыт, стек, отзывы, формат работы
