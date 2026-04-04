@@ -85,4 +85,20 @@ export const reviews: Review[] = [
     rating: 5,
     text: 'ОООООоооооочень быстро сделал. Я доволен !!',
   },
+  {
+    author: 'neonumberone1',
+    project: 'Скрипт на VDS',
+    category: 'script',
+    label: 'Скрипт',
+    rating: 5,
+    text: 'Всё понравилось!',
+  },
+  {
+    author: 'vitaly1303',
+    project: 'Разработка бота для MAX',
+    category: 'bot',
+    label: 'Telegram-бот',
+    rating: 5,
+    text: 'Все круто!',
+  },
 ];
