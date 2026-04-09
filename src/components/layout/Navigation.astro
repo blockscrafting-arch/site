@@ -29,7 +29,7 @@ const currentPath = Astro.url.pathname;
   {
     navItems.map(({ href, label }) => {
       const isActive = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
-      const ymGoals: Record<string, string> = {
+      const ymGoals = {
         '/services': 'nav_services',
         '/cases': 'nav_cases',
         '/reviews': 'nav_reviews',
