@@ -13,8 +13,10 @@ export const site = {
       : "https://vladexecute.ru",
   /** Путь к изображению для OG (от корня сайта). PNG 1200×630 — стандарт для всех платформ. */
   ogImage: "/og.png",
-  /** Личный аккаунт Telegram для связи (написать мне). */
-  tgChannel: "https://t.me/goutach",
+  /** Личный аккаунт Telegram для связи (написать мне). С предзаполненным сообщением. */
+  tgChannel: "https://t.me/goutach?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D1%83",
+  /** Личный аккаунт Telegram без ?text (для мест, где нужна чистая ссылка). */
+  tgChannelClean: "https://t.me/goutach",
   tgChannelHandle: "@goutach",
   /** Канал Telegram (кейсы, экспертика, решения). */
   tgChannelContent: "https://t.me/vladexecute",

@@ -7,6 +7,7 @@
  * чтобы на мобиле следующая секция не была видна без скролла.
  */
 import Button from '../common/Button.astro';
+import { site } from '../../utils/site';
 
 import { Image } from 'astro:assets';
 import vladPortrait from '../../assets/vlad-portrait.png';
@@ -36,9 +37,23 @@ const proofCycleDuration = proofCases.length * 5;
       AI-агенты и&nbsp;автоматизация для&nbsp;бизнеса. Под&nbsp;ключ за&nbsp;1–3&nbsp;дня, от&nbsp;5&nbsp;000&nbsp;р.
     </p>
 
-    <div class="reveal mt-4 sm:mt-6 flex flex-col items-center gap-2" style="animation-delay:.65s;">
-      <Button href="/contact" variant="primary" dataYmGoal="cta_contact">Обсудить задачу</Button>
-      <a href="/cases" data-ym-goal="cta_cases" class="mt-2 text-sm font-medium text-[var(--color-accent)] hover:underline transition-colors">
+    <div class="reveal mt-4 sm:mt-6 flex flex-col items-center gap-3" style="animation-delay:.65s;">
+      <div class="flex flex-col sm:flex-row items-center gap-3">
+        <Button href="/contact" variant="primary" dataYmGoal="cta_contact">Обсудить задачу</Button>
+        <a
+          href={site.tgChannel}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-ym-goal="telegram_click"
+          class="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-2.5 text-sm font-medium text-[var(--color-text)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] hover:border-[var(--color-accent)]/50"
+        >
+          <svg class="h-4 w-4 flex-shrink-0 text-[#26A5E4]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.16 14.25l-2.97-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.666.336z"/>
+          </svg>
+          Написать в Telegram
+        </a>
+      </div>
+      <a href="/cases" data-ym-goal="cta_cases" class="text-sm font-medium text-[var(--color-accent)] hover:underline transition-colors">
         Кейсы с цифрами →
       </a>
     </div>
