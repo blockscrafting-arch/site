@@ -75,7 +75,7 @@ const schemaOrg = path === '/' ? {
       image: `${site.url}/images/vlad-portrait.png`,
       description: site.description,
       knowsAbout: [...knowsAboutTopics],
-      sameAs: [site.tgChannel, site.tgChannelContent, site.kwork, site.max],
+      sameAs: [site.tgChannelClean, site.tgChannelContent, site.kwork, site.max],
     },
     {
       '@type': 'ProfessionalService',
@@ -89,7 +89,7 @@ const schemaOrg = path === '/' ? {
         '@type': 'ContactPoint',
         contactType: 'customer service',
         email: site.email,
-        url: site.tgChannel,
+        url: site.tgChannelClean,
         availableLanguage: 'Russian',
       },
       aggregateRating: {
