@@ -96,7 +96,7 @@ const serviceJsonLd = {
       <!-- CTAs -->
       <div class="reveal mt-6 flex flex-wrap gap-3" style="animation-delay:.12s">
         <Button href="/contact" variant="primary" dataYmGoal="cta_contact_hero">
-          Узнать цену
+          Обсудить задачу
         </Button>
         <Button href="https://t.me/goutach" variant="outline" dataYmGoal="cta_telegram_hero" external>
           Написать в Telegram
@@ -105,19 +105,12 @@ const serviceJsonLd = {
     </div>
   </section>
 
-  <!-- ===== «Знакомо?» — Pain Points ===== -->
+  <!-- ===== Pain Points ===== -->
   {svc.painPoints && svc.painPoints.length > 0 && (
     <section class="px-4 sm:px-6 pb-12" aria-labelledby="pain-heading">
       <div class="mx-auto max-w-3xl">
-        <h2
-          id="pain-heading"
-          class="reveal font-display text-xl font-bold text-[var(--color-text)] mb-2"
-          style="animation-delay:.1s"
-        >
-          Знакомо?
-        </h2>
-        <p class="reveal text-sm text-[var(--color-text-muted)] mb-5" style="animation-delay:.12s">
-          Если хотя бы одно — значит, есть что автоматизировать.
+        <p class="reveal text-sm text-[var(--color-text-muted)] mb-5" style="animation-delay:.1s">
+          Если хотя бы одно — есть что автоматизировать.
         </p>
         <ul
           class="reveal grid gap-3 sm:grid-cols-2"
@@ -250,11 +243,8 @@ const serviceJsonLd = {
           class="reveal font-display text-xl font-bold text-[var(--color-text)] mb-2"
           style="animation-delay:.2s"
         >
-          Реальные проекты
+          Меньше слов. Больше метрик.
         </h2>
-        <p class="reveal text-sm text-[var(--color-text-muted)] mb-5" style="animation-delay:.22s">
-          Не обещания — конкретные результаты.
-        </p>
         <ul class="reveal grid gap-4 sm:grid-cols-2" role="list" style="animation-delay:.24s">
           {svc.relatedCases.map((c) => (
             <li>
@@ -271,7 +261,7 @@ const serviceJsonLd = {
                 )}
                 <div class="mt-auto pt-4 flex items-center justify-end">
                   <span class="text-xs text-[var(--color-accent)] opacity-0 group-hover:opacity-100 transition-opacity">
-                    Подробнее →
+                    Читать кейс →
                   </span>
                 </div>
               </a>
