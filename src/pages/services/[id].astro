@@ -118,6 +118,18 @@ const serviceJsonLd = {
           Ответ в тот же день
         </span>
       </div>
+      <!-- Отзыв клиента (social proof в hero) -->
+      {svc.review && (
+        <div class="reveal mt-6 flex items-start gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4" style="animation-delay:.16s">
+          <span class="mt-0.5 text-lg leading-none text-[var(--color-text-muted)] select-none" aria-hidden="true">"</span>
+          <div>
+            <p class="text-sm text-[var(--color-text-muted)] italic leading-relaxed">«{svc.review.text}»</p>
+            <p class="mt-1.5 text-xs text-[var(--color-text-muted)]">
+              <span class="font-medium text-[var(--color-text)]">{svc.review.author}</span> — {svc.review.project}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   </section>
 
@@ -281,22 +293,6 @@ const serviceJsonLd = {
             </li>
           ))}
         </ul>
-      </div>
-    </section>
-  )}
-
-  <!-- ===== Отзыв ===== -->
-  {svc.review && (
-    <section class="px-4 sm:px-6 pb-12" aria-label="Отзыв клиента">
-      <div class="mx-auto max-w-3xl">
-        <div class="reveal case-testimonial" style="animation-delay:.24s">
-          <span class="case-testimonial__quote-icon" aria-hidden="true">"</span>
-          <p class="case-testimonial__text">«{svc.review.text}»</p>
-          <footer class="case-testimonial__author">
-            <span class="case-testimonial__name">— {svc.review.author}</span>
-            <span class="case-testimonial__role">{svc.review.project}</span>
-          </footer>
-        </div>
       </div>
     </section>
   )}
