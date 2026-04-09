@@ -25,10 +25,10 @@ const featured = cases.slice(0, 6);
           <a
             href={`/cases/${c.slug}`}
             class:list={[
-              'case-preview-card group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)] p-6 sm:p-8 relative overflow-hidden border-t-2',
+              'case-preview-card group block rounded-2xl border border-[var(--color-border)] p-6 sm:p-8 relative overflow-hidden border-t-2',
               isWide && 'sm:col-span-2',
             ]}
-            style={c.data.accentColor ? `border-top-color: ${c.data.accentColor}` : ''}
+            style={c.data.accentColor ? `border-top-color: ${c.data.accentColor}; background: color-mix(in srgb, ${c.data.accentColor} 4%, var(--color-bg))` : ''}
           >
             {/* Верхняя часть: метрика до → после или одиночное значение */}
             {metric && metric.before != null && metric.after != null ? (
