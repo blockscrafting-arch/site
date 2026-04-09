@@ -17,6 +17,9 @@ stack:
   ["Python", "Telethon", "aiogram", "n8n", "OpenAI", "PostgreSQL", "Docker"]
 categories: ["automation", "bot", "parser", "ai-agent", "content-factory"]
 accentColor: "#8b5cf6"
+testimonial:
+  text: "Идеальная работа! Тот случай, один на сотню, когда человек делом подтверждает все свои слова."
+  author: "Nsltd"
 problem: "Редактор тратил 2–4 часа в день на ручной мониторинг, чтение PDF и написание саммари. Процесс был не масштабируемым и зависел от одного человека."
 ---
 

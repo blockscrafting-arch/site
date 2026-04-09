@@ -30,6 +30,9 @@ productName: "napitki133.ru"
 productLink: "https://napitki133.ru"
 featured: false
 draft: false
+testimonial:
+  text: "Все круто!"
+  author: "vitaly1303"
 ---
 
 ## Задача

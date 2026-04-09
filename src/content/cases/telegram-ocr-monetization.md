@@ -32,6 +32,9 @@ metrics:
 problem: "Запрос: бот, чтобы студенты кидали фото конспектов или сканы и получали текст. Задача простая на словах, но потребовала лимитов, оплаты, учёта персданных и админки без отдельного интерфейса."
 featured: true
 draft: false
+testimonial:
+  text: "Редкое сочетание профессионализма и скорости выполнения. Рекомендую!"
+  author: "elena_bukina"
 productLogo: "/images/cases/scantextpro-logo.png"
 productName: "Scan Text"
 ---

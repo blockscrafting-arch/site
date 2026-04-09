@@ -7,6 +7,9 @@ date: 2026-01-30
 duration: "1 неделя"
 categories: [automation]
 accentColor: "#ec4899"
+testimonial:
+  text: "Теперь все время могу потратить на более важные задачи, чем руками всё постить."
+  author: "postlunapark"
 metrics:
   - { value: "2 мин", label: "На пост (проверка/одобрение)" }
   - { value: "5", label: "n8n-воркфлоу в конвейере" }

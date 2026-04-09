@@ -12,6 +12,9 @@ categories: ["automation", "ai-agent"]
 accentColor: "#3b82f6"
 featured: true
 featuredOrder: 4
+testimonial:
+  text: "Всё было сделано профессионально, быстро и именно так как нужно! Рекомендую!"
+  author: "wildtorneo"
 metrics:
   - { label: "Уникальность письма", before: "0%", after: "100%" }
   - { label: "Ручная работа на рассылку", before: "2–3 ч", after: "0 мин" }
