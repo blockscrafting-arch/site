@@ -1,0 +1,164 @@
+---
+/**
+ * Страница одной статьи блога.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Button from '../../components/common/Button.astro';
+import { site } from '../../utils/site';
+
+type ArticleEntry = CollectionEntry<'articles'>;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const articles = await getCollection('articles');
+  return articles
+    .filter((a: ArticleEntry) => !a.data.draft)
+    .map((entry: ArticleEntry) => ({ params: { slug: entry.slug } }));
+};
+
+const { slug } = Astro.params;
+if (!slug) throw new Error('Missing slug');
+
+const articles = await getCollection('articles');
+const entry = articles.find((a: ArticleEntry) => a.slug === slug);
+if (!entry) throw new Error(`Article not found: ${slug}`);
+
+const { Content } = await entry.render();
+const { title, description, date, author, tags } = entry.data;
+
+// Навигация prev/next
+const sorted = articles
+  .filter((a: ArticleEntry) => !a.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const currentIdx = sorted.findIndex((a: ArticleEntry) => a.slug === slug);
+const prev = currentIdx < sorted.length - 1 ? sorted[currentIdx + 1] : null;
+const next = currentIdx > 0 ? sorted[currentIdx - 1] : null;
+
+// Похожие статьи (по тегам)
+const related = sorted
+  .filter((a: ArticleEntry) => a.slug !== slug && a.data.tags.some((t) => tags.includes(t)))
+  .slice(0, 3);
+
+function formatDate(d: Date): string {
+  return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+const canonicalUrl = `${site.url}/blog/${slug}`;
+---
+
+<BaseLayout
+  title={`${title} — vlad.execute(_)`}
+  description={description}
+  ogType="article"
+  publishedTime={date.toISOString()}
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description: description,
+    datePublished: date.toISOString(),
+    author: { '@type': 'Person', name: author },
+    url: canonicalUrl,
+    keywords: tags.join(', '),
+  }}
+>
+  <article class="mx-auto max-w-3xl px-4 pt-6 pb-16 sm:px-6 sm:pt-10 lg:px-8">
+    <!-- Hero -->
+    <header class="mb-10">
+      {tags.length > 0 && (
+        <div class="mb-4 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <a
+              href={`/blog?tag=${tag}`}
+              class="rounded-full bg-[var(--color-surface-muted)] px-3 py-1 text-xs font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent)]"
+            >
+              {tag}
+            </a>
+          ))}
+        </div>
+      )}
+      <h1 class="font-display text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl">
+        {title}
+      </h1>
+      <p class="mt-3 text-lg text-[var(--color-text-muted)]">{description}</p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-[var(--color-text-muted)]">
+        <span>{author}</span>
+        <span class="opacity-40" aria-hidden="true">·</span>
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+      </div>
+    </header>
+
+    <!-- Контент -->
+    <div class="prose prose-invert max-w-none prose-headings:font-display prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline">
+      <Content />
+    </div>
+
+    <!-- Навигация prev/next -->
+    {(prev || next) && (
+      <nav class="mt-12 grid gap-4 sm:grid-cols-2 border-t border-[var(--color-border)] pt-8">
+        {prev && (
+          <a
+            href={`/blog/${prev.slug}`}
+            class="group flex flex-col gap-1 rounded-xl border border-[var(--color-border)] p-4 transition-colors hover:border-[var(--color-accent)]"
+          >
+            <span class="text-xs text-[var(--color-text-muted)]">← Предыдущая</span>
+            <span class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors line-clamp-2">
+              {prev.data.title}
+            </span>
+          </a>
+        )}
+        {next && (
+          <a
+            href={`/blog/${next.slug}`}
+            class="group flex flex-col gap-1 rounded-xl border border-[var(--color-border)] p-4 transition-colors hover:border-[var(--color-accent)] sm:text-right sm:col-start-2"
+          >
+            <span class="text-xs text-[var(--color-text-muted)]">Следующая →</span>
+            <span class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors line-clamp-2">
+              {next.data.title}
+            </span>
+          </a>
+        )}
+      </nav>
+    )}
+
+    <!-- Похожие статьи -->
+    {related.length > 0 && (
+      <section class="mt-12">
+        <h2 class="font-display text-xl font-bold text-[var(--color-text)] mb-4">Похожие статьи</h2>
+        <ul class="space-y-3" role="list">
+          {related.map((a) => (
+            <li>
+              <a
+                href={`/blog/${a.slug}`}
+                class="group flex items-start gap-3 rounded-xl border border-[var(--color-border)] p-4 transition-colors hover:border-[var(--color-accent)]"
+              >
+                <div>
+                  <p class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
+                    {a.data.title}
+                  </p>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] line-clamp-1">{a.data.description}</p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <!-- CTA -->
+    <div class="mt-14 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-center">
+      <h2 class="font-display text-xl font-bold text-[var(--color-text)]">
+        Нужно внедрить AI-автоматизацию?
+      </h2>
+      <p class="mt-2 text-[var(--color-text-muted)]">
+        Опишите задачу — обсудим решение и назову цену за один день.
+      </p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <Button href="/contact" variant="primary">Написать</Button>
+        <Button href={site.tgChannel} variant="outline" external>Telegram</Button>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

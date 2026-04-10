@@ -1,0 +1,111 @@
+---
+/**
+ * Блог — список статей с фильтрацией по тегам.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../utils/site';
+
+const allArticles = await getCollection('articles');
+const articles = allArticles
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Собрать уникальные теги
+const allTags = [...new Set(articles.flatMap((a) => a.data.tags))].sort();
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+---
+
+<BaseLayout
+  title="Блог — AI-автоматизация, боты, парсинг — vlad.execute(_)"
+  description="Статьи об AI-агентах, Telegram-ботах, автоматизации и парсинге от практика. Реальный опыт, цифры, кейсы."
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Блог vlad.execute(_)',
+    description: 'Статьи об AI-автоматизации, Telegram-ботах и парсинге.',
+    url: `${site.url}/blog`,
+  }}
+>
+  <div class="mx-auto max-w-4xl px-4 pt-6 pb-12 sm:px-6 sm:pt-10 sm:pb-16 lg:px-8">
+    <h1 class="reveal font-display text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl md:text-5xl">
+      Блог
+    </h1>
+    <p class="mt-3 text-base sm:text-lg text-[var(--color-text-muted)]">
+      AI-автоматизация, боты, парсинг — из первых рук.
+    </p>
+
+    {allTags.length > 0 && (
+      <div class="mt-8 flex flex-wrap gap-2" role="list" aria-label="Фильтр по тегам">
+        <button
+          type="button"
+          class="blog-tag-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)] data-[active]:bg-[var(--color-accent-muted)] data-[active]:text-[var(--color-accent)]"
+          data-tag="all"
+          data-active="true"
+        >
+          Все
+        </button>
+        {allTags.map((tag) => (
+          <button
+            type="button"
+            class="blog-tag-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)] data-[active]:bg-[var(--color-accent-muted)] data-[active]:text-[var(--color-accent)]"
+            data-tag={tag}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+    )}
+
+    {articles.length === 0 ? (
+      <p class="mt-12 text-[var(--color-text-muted)]">Статьи скоро появятся.</p>
+    ) : (
+      <ul class="reveal-stagger mt-10 space-y-6" role="list">
+        {articles.map((article) => (
+          <li class="blog-article-item" data-tags={article.data.tags.join(' ')}>
+            <a
+              href={`/blog/${article.slug}`}
+              class="group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-glow-sm"
+            >
+              <div class="flex flex-wrap items-center gap-3 text-xs text-[var(--color-text-muted)]">
+                <time datetime={article.data.date.toISOString()}>
+                  {formatDate(article.data.date)}
+                </time>
+                {article.data.tags.slice(0, 3).map((tag) => (
+                  <span class="rounded-full bg-[var(--color-surface-muted)] px-2.5 py-0.5 font-medium">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h2 class="mt-3 font-display text-lg font-semibold text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
+                {article.data.title}
+              </h2>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] line-clamp-2">
+                {article.data.description}
+              </p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.blog-tag-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tag = (btn as HTMLElement).dataset.tag;
+      document.querySelectorAll('.blog-tag-btn').forEach((b) => {
+        b.removeAttribute('data-active');
+        if ((b as HTMLElement).dataset.tag === tag) b.setAttribute('data-active', 'true');
+      });
+      document.querySelectorAll('.blog-article-item').forEach((el) => {
+        const itemTags = ((el as HTMLElement).dataset.tags ?? '').split(' ').filter(Boolean);
+        (el as HTMLElement).style.display = tag === 'all' || itemTags.includes(tag ?? '') ? '' : 'none';
+      });
+    });
+  });
+</script>

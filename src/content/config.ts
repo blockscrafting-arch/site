@@ -85,7 +85,25 @@ const guidesCollection = defineCollection({
   }),
 });
 
+const articlesCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.coerce.date(),
+    author: z.string().default("Владислав"),
+    tags: z.array(z.string()).default([]),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+    /** Источник контента: ручной, OmniPost или конкурент. */
+    source: z.enum(["manual", "omnipost", "competitor"]).default("manual"),
+    /** Площадка-инициатор (threads, telegram и т.д.) */
+    platform: z.string().optional(),
+  }),
+});
+
 export const collections = {
   cases: casesCollection,
   guides: guidesCollection,
+  articles: articlesCollection,
 };
