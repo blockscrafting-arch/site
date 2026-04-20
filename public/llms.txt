@@ -30,6 +30,7 @@
 - [WHOOP PWA](https://vladexecute.ru/cases/whoop-pwa): PWA с OAuth 2.0 — Recovery, сон, Strain, рекомендации на русском, AI-чат, кеширование, FastAPI + PostgreSQL
 - [Проверка базы на MAX](https://vladexecute.ru/cases/max-messenger-checker): Python + GREEN-API, автоматическая валидация номеров в MAX, результат в CSV без ручного труда
 - [Bitrix24 → Яндекс Метрика](https://vladexecute.ru/cases/dvexpert9-bitrix-metrika): офлайн-конверсии без сервера — b242ya + JS-сниппет на Tilda, статус лида → цель в Метрике, 0 р/мес
+- [AI-бот с подпиской в MAX](https://vladexecute.ru/cases/max-ai-subscription-bot): подписочный SaaS внутри MAX — GPT-4o + ЮKassa с 54-ФЗ + авто-продление + админка, Node.js/TypeScript/PostgreSQL, 10 дней до production
 - [Инструкции и гайды](https://vladexecute.ru/guides): разборы по инструментам — n8n, Telegram, VPS, OpenAI
 
 ## Reviews
