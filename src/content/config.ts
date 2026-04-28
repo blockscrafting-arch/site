@@ -99,6 +99,8 @@ const articlesCollection = defineCollection({
     source: z.enum(["manual", "omnipost", "competitor"]).default("manual"),
     /** Площадка-инициатор (threads, telegram и т.д.) */
     platform: z.string().optional(),
+    /** Обложка статьи (markdown image path). */
+    image: z.string().optional(),
   }),
 });
 
