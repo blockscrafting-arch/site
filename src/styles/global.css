@@ -1460,7 +1460,7 @@
 /* --- Impact metrics grid (big numbers) --- */
 .case-impact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
   gap: 1.5rem 2rem;
   list-style: none;
   padding: 0;
@@ -1470,6 +1470,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  min-width: 0;
 }
 .case-impact-num {
   font-size: clamp(2.5rem, 7vw, 4.5rem);
@@ -1477,7 +1478,7 @@
   line-height: 1;
   color: var(--case-accent, var(--color-accent));
   font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
 }
 .case-impact-label {
@@ -1724,6 +1725,8 @@
   flex-wrap: wrap;
   gap: 0.4rem;
   line-height: 1;
+  min-width: 0;
+  max-width: 100%;
 }
 .case-metric-ba__before {
   font-size: clamp(1rem, 3vw, 1.4rem);
@@ -1733,6 +1736,8 @@
   text-decoration-color: var(--color-text-muted);
   opacity: 0.55;
   font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .case-metric-ba__arrow {
   font-size: 1rem;
@@ -1745,7 +1750,9 @@
   line-height: 1;
   color: var(--case-accent, var(--color-accent));
   font-family: 'Manrope Variable', Manrope, system-ui, sans-serif;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .case-metric-ba__label {
   font-size: 0.8rem;
@@ -1944,13 +1951,14 @@
 }
 .case-detail .prose ol > li {
   counter-increment: case-step;
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
+  position: relative;
+  padding-left: 3rem;
 }
 .case-detail .prose ol > li::before {
   content: counter(case-step);
-  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
   min-width: 2rem;
   height: 2rem;
   background: var(--case-accent, var(--color-accent));
@@ -1962,7 +1970,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0.1rem;
   box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--case-accent, var(--color-accent)) 50%, transparent);
 }
 
@@ -2023,19 +2030,18 @@
   gap: 0.6rem;
 }
 .case-detail .prose ul > li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding-left: 0;
+  position: relative;
+  padding-left: 1.25rem;
 }
 .case-detail .prose ul > li::before {
   content: '';
-  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
   width: 5px;
   height: 5px;
   border-radius: 50%;
   background: var(--case-accent, var(--color-accent));
-  margin-top: 0.55rem;
 }
 
 /* ===== Services: Visual Uplift ===== */
