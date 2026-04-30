@@ -38,6 +38,14 @@ export const reviews: Review[] = [
     featured: true,
   },
   {
+    author: 'serge_action',
+    project: 'Система поиска конкурентов на n8n',
+    category: 'automation',
+    label: 'Автоматизация',
+    rating: 5,
+    text: 'Владислав отлично справился с заказом, продолжаем работу',
+  },
+  {
     author: 'Кирилл Кушнерёв',
     project: 'Интернет-магазин Щенок Игруля',
     category: 'web-app',
