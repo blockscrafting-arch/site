@@ -14,7 +14,7 @@ API-ключи, пароли и токены не должны быть в ко�
 ```env
 TELEGRAM_BOT_TOKEN=7123123:AAHe...
 OPENAI_API_KEY=sk-proj-...
-DATABASE_URL=postgresql://user:pass@localhost/db
+DATABASE_URL=replace_with_postgres_connection_string
 ```
 
 В коде подключайте переменные окружения, а не строки из файла. В Python:
