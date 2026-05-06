@@ -174,7 +174,16 @@ server {
     listen 80;
     listen [::]:80;
     server_name vladexecute.ru www.vladexecute.ru;
-    return 301 https://$host$request_uri;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        default_type "text/plain";
+        try_files $uri =404;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
 }
 
 server {
@@ -186,6 +195,12 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/vladexecute.ru/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        default_type "text/plain";
+        try_files $uri =404;
+    }
 
     location / {
         proxy_pass http://127.0.0.1:9080;
@@ -207,6 +222,17 @@ systemctl restart nginx
 ```
 
 6. Проверка: откройте `https://vladexecute.ru` и `https://www.vladexecute.ru`. Сертификат продлевается автоматически (certbot timer).
+
+Чтобы nginx подхватывал новый сертификат после автопродления, добавьте deploy-hook:
+
+```bash
+cat >/etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh <<'EOF'
+#!/usr/bin/env bash
+set -e
+systemctl reload nginx
+EOF
+chmod +x /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
+```
 
 ---
 
